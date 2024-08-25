@@ -15,34 +15,11 @@ export const ListConversations = ({
   isPWA,
   isConsent,
 }: IProps) => {
-
   const { client } = useClient();
   const { conversations } = useConversations();
   const [streamedConversations, setStreamedConversations] = useState([]);
 
   const styles = {
-    conversationListItem: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      margin: '0px',
-      border: '0px',
-      borderBottom: '1px solid #e0e0e0',
-      cursor: 'pointer',
-      backgroundColor: '#f0f0f0',
-      padding: '10px',
-      transition: 'background-color 0.3s ease',
-
-      padding: isPWA == true ? '15px' : '10px',
-    },
-    conversationDetails: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      width: '75%',
-      marginLeft: isPWA == true ? '15px' : '10px',
-      overflow: 'hidden',
-    },
     conversationName: {
       fontSize: isPWA == true ? '20px' : '16px',
       fontWeight: 'bold',
@@ -89,13 +66,22 @@ export const ListConversations = ({
       {filteredConversations.map((conversation, index) => (
         <li
           key={index}
-          style={styles.conversationListItem}
+          style={{ transition: 'background-color 0.3s ease' }}
           onClick={() => {
             selectConversation(conversation);
           }}
+          className={`
+            flex justify-between items-center
+            m-0 border-0 border-b bg-card p-2
+          `}
         >
-          <div style={styles.conversationDetails}>
-            <span style={styles.conversationName}>
+          <div
+            className={`
+            flex flex-col items-start
+            w-[75%] ml-2 overflow-hidden
+          `}
+          >
+            <span className="text-lg font-bold">
               {conversation.peerAddress.substring(0, 6) +
                 '...' +
                 conversation.peerAddress.substring(conversation.peerAddress.length - 4)}

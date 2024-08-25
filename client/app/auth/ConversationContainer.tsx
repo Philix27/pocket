@@ -4,6 +4,7 @@ import { useCanMessage, useClient } from '@xmtp/react-sdk';
 import { ListConversations } from './ListConversations';
 import { ethers } from 'ethers';
 import { NewConversation } from './NewConversation';
+import { AppButton } from '@/comps';
 
 type IProps = {
   selectedConversation: any;
@@ -117,14 +118,13 @@ export const ConversationContainer = ({
           {message && conversationFound !== true && <small>{message}</small>}
           {peerAddress && createNew && canMessage && !conversationFound && (
             <>
-              <button
-                style={styles.createNewButton}
+              <AppButton
                 onClick={() => {
                   setSelectedConversation({ messages: [] });
                 }}
               >
                 Create new conversation
-              </button>
+              </AppButton>
             </>
           )}
         </ul>

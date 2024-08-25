@@ -4,6 +4,7 @@ import { Client, useClient } from '@xmtp/react-sdk';
 import { ConversationContainer } from './ConversationContainer';
 import { cn } from '@/lib';
 import { AppButton, TextH, TextP } from '@/comps';
+import { BiChevronLeft } from 'react-icons/bi';
 
 type IProps = {
   isPWA: boolean;
@@ -171,14 +172,12 @@ export default function Home(props: IProps) {
                 bg-none border-none w-auto m-0`}
               >
                 {isOnNetwork && selectedConversation && (
-                  <button
-                    style={styles.backButton}
+                  <BiChevronLeft
+                    className={'cursor-pointer text-lg'}
                     onClick={() => {
                       setSelectedConversation(null);
                     }}
-                  >
-                    ←
-                  </button>
+                  />
                 )}
                 <TextH v="h5">Conversations</TextH>
               </div>

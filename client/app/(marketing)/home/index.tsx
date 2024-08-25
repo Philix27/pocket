@@ -24,20 +24,9 @@ export function HomeSection() {
         </TextH>
       </HeroWithImg>
       <div className="md:hidden my-5 flex flex-col items-center justify-center">
-        {isConnected ? (
-          <AppButton
-            className="w-fit"
-            onClick={() => {
-              router.push(AppPages.chess.chess);
-            }}
-          >
-            Play now
-          </AppButton>
-        ) : (
-          <AppButton className="w-fit" onClick={() => connect({ connector: injected() })}>
-            Connect
-          </AppButton>
-        )}
+        <AppButton className="w-fit" onClick={() => router.push('/chat')}>
+          Chat Now
+        </AppButton>
       </div>
       <div className="hidden md:block">
         <HeroSection img={AppImg.chain} title={'Play chess with friends a'} subtitle={``} />

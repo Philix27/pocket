@@ -11,7 +11,7 @@ import { WagmiProvider, http } from 'wagmi';
 const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID as string;
 
 const rainbowConfig = getDefaultConfig({
-  appName: 'Board game',
+  appName: 'ChatX',
   projectId: projectId,
   chains: [celo, celoAlfajores],
   ssr: true, // If your dApp uses server side rendering (SSR)

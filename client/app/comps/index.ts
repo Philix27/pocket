@@ -9,4 +9,4 @@ export * from './genDateTime';
 export * from './forms';
 export * from './theme';
 export * from './custom';
-export * from './chessGame';
+

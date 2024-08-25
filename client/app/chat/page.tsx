@@ -1,29 +1,25 @@
 'use client';
 
+import { TextH, TextP } from '@/comps';
 import { chatData } from './data';
 
 export default function ChatPage() {
   return (
     <div className="mt-10">
       {chatData.map((val, i) => (
-        <div key={i} className={`flex item-center justify-between  px-4`}>
-          <div className={`border-2 border-white rounded-[35px] bg-white h-[70px] w-[70px]`}>
-            <img src={val.img} />
-          </div>
+        <div key={i} className={`flex item-center justify-between px-4 py-2 mb-1 border-b-[0.5px]`}>
+          <div className="flex">
+            <div className={`border-2 border-white rounded-[25px] bg-white h-[50px] w-[50px] mr-5`}>
+              <img src={val.img} />
+            </div>
 
-          <div className={``}>
-            <h1>{val.name}</h1>
-            <h4>{val.lastMsg}</h4>
-          </div>
-
-          <div>
-            <p>{val.lastTime}</p>
-            <div
-              className={`border-2 border-red-600 rounded-[15px] bg-red-600 h-[30px] w-[30px] flex justify-center items-center `}
-            >
-              <h4 className={``}>{val.unreadMsgCount}</h4>
+            <div className={``}>
+              <TextH>{val.name}</TextH>
+              <TextP>{val.lastMsg}</TextP>
             </div>
           </div>
+
+          <TextP v="p6">{val.lastTime}</TextP>
         </div>
       ))}
     </div>

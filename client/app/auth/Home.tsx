@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ethers } from 'ethers';
 import { Client, useClient } from '@xmtp/react-sdk';
 import { ConversationContainer } from './ConversationContainer';
+import { cn } from '@/lib';
+import { AppButton, TextH, TextP } from '@/comps';
 
 type IProps = {
   isPWA: boolean;
@@ -51,7 +53,7 @@ export default function Home(props: IProps) {
     if (signer && isOnNetwork) {
       initXmtpWithKeys();
     }
-  }, [wallet, signer, client]);
+  }, [props.wallet, signer, client]);
 
   const connectWallet = async () => {
     if (typeof window.ethereum !== undefined) {
@@ -145,22 +147,29 @@ export default function Home(props: IProps) {
       {!props.isPWA && !props.isContained && (
         <div
           onClick={isOpen ? closeWidget : openWidget}
-          className={'FloatingInbox ' + (isOpen ? 'spin-clockwise' : 'spin-counter-clockwise')}
-          style={styles.FloatingLogo}
+          className={cn(
+            'FloatingInbox ' + (isOpen ? 'spin-clockwise' : 'spin-counter-clockwise'),
+            `fixed bottom-5 right-5 w-[40px] rounded-[50%] bg-background 
+            flex items-center border justify-center cursor-pointer p-5`
+          )}
         >
           💬
         </div>
       )}
       {isOpen && (
-        <div style={styles.uContainer} className={' ' + (isOnNetwork ? 'expanded' : '')}>
+        <div style={styles.uContainer} className={'bg-background border' + (isOnNetwork ? 'expanded' : '')}>
           {isConnected && (
-            <button style={styles.logoutBtn} onClick={handleLogout}>
+            <AppButton variant={'destructive'} onClick={handleLogout}>
               Logout
-            </button>
+            </AppButton>
           )}
+          <hr />
           {isConnected && isOnNetwork && (
-            <div style={styles.widgetHeader}>
-              <div style={styles.conversationHeader}>
+            <div className="p-1">
+              <div
+                className={`flex justify-center items-center 
+                bg-none border-none w-auto m-0`}
+              >
                 {isOnNetwork && selectedConversation && (
                   <button
                     style={styles.backButton}
@@ -171,7 +180,7 @@ export default function Home(props: IProps) {
                     ←
                   </button>
                 )}
-                <h4 style={styles.conversationHeaderH4}>Conversations</h4>
+                <TextH v="h5">Conversations</TextH>
               </div>
             </div>
           )}
@@ -179,19 +188,18 @@ export default function Home(props: IProps) {
           <div style={styles.widgetContent}>
             {!isConnected && (
               <div style={styles.xmtpContainer}>
-                <button style={styles.btnXmtp} onClick={connectWallet}>
+                <AppButton variant={'outline'} onClick={connectWallet}>
                   Connect Wallet
-                </button>
-                <div style={styles.label} onClick={createNewWallet}>
-                  or create new one
+                </AppButton>
+
+                <div onClick={createNewWallet}>
+                  <TextP>or create new one</TextP>
                 </div>
               </div>
             )}
             {isConnected && !isOnNetwork && (
-              <div style={styles.xmtpContainer}>
-                <button style={styles.btnXmtp} onClick={initXmtpWithKeys}>
-                  Connect to XMTP
-                </button>
+              <div className="flex justify-center flex-col items-center h-full">
+                <AppButton onClick={initXmtpWithKeys}>Connect to XMTP</AppButton>
                 {isWalletCreated && <button style={styles.label}>Your addess: {signer.address}</button>}
               </div>
             )}
@@ -236,22 +244,6 @@ export const wipeKeys = (walletAddress: string) => {
 
 const getStyles = (isPWA: boolean, isContained: boolean) => {
   return {
-    FloatingLogo: {
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px',
-      width: '40px',
-      height: '40px',
-      borderRadius: '50%',
-      backgroundColor: 'white',
-      display: 'flex',
-      alignItems: 'center',
-      border: '1px solid #ccc',
-      justifyContent: 'center',
-      cursor: 'pointer',
-      transition: 'transform 0.3s ease',
-      padding: '5px',
-    },
     uContainer: {
       position: isContained ? 'relative' : isPWA ? 'relative' : 'fixed',
       bottom: isContained ? '0px' : isPWA ? '0px' : '80px',
@@ -259,7 +251,6 @@ const getStyles = (isPWA: boolean, isContained: boolean) => {
       width: isContained ? '100%' : isPWA ? '100%' : '300px',
       height: isContained ? '100%' : isPWA ? '100vh' : '400px',
       border: isContained ? '0px' : isPWA ? '0px' : '1px solid #ccc',
-      backgroundColor: '#f9f9f9',
       borderRadius: isContained ? '0px' : isPWA ? '0px' : '10px',
       zIndex: '1000',
       overflow: 'hidden',
@@ -277,29 +268,13 @@ const getStyles = (isPWA: boolean, isContained: boolean) => {
       fontSize: isPWA == true ? '12px' : '10px',
       cursor: 'pointer',
     },
-    widgetHeader: {
-      padding: '2px',
-    },
+
     label: {
       fontSize: '10px',
       textAlign: 'center',
       marginTop: '5px',
       cursor: 'pointer',
       display: 'block',
-    },
-    conversationHeader: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      background: 'none',
-      border: 'none',
-      width: 'auto',
-      margin: '0px',
-    },
-    conversationHeaderH4: {
-      margin: '0px',
-      padding: '4px',
-      fontSize: isPWA == true ? '20px' : '14px', // Increased font size
     },
     backButton: {
       border: '0px',
@@ -317,18 +292,6 @@ const getStyles = (isPWA: boolean, isContained: boolean) => {
       flexDirection: 'column',
       alignItems: 'center',
       height: '100%',
-    },
-    btnXmtp: {
-      backgroundColor: '#f0f0f0',
-      display: 'flex',
-      alignItems: 'center',
-      textDecoration: 'none',
-      color: '#000',
-      justifyContent: 'center',
-      border: '1px solid grey',
-      padding: isPWA == true ? '20px' : '10px',
-      borderRadius: '5px',
-      fontSize: isPWA == true ? '20px' : '14px',
     },
   };
 };

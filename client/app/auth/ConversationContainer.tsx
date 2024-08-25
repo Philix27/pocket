@@ -12,7 +12,13 @@ type IProps = {
   isConsent?: boolean;
   isContained?: boolean;
 };
-export const ConversationContainer = ({ isPWA }: IProps) => {
+export const ConversationContainer = ({
+  isConsent,
+  isContained,
+  isPWA,
+  selectedConversation,
+  setSelectedConversation,
+}: IProps) => {
   const { client } = useClient();
   const [searchTerm, setSearchTerm] = useState('');
   const [peerAddress, setPeerAddress] = useState('');
@@ -87,7 +93,7 @@ export const ConversationContainer = ({ isPWA }: IProps) => {
     return <div style={{ textAlign: 'center', fontSize: 'small' }}>Loading...</div>;
   }
   return (
-    <div style={styles.conversations}>
+    <div className="h-full">
       {!selectedConversation && (
         <ul style={styles.conversationList}>
           <input
@@ -99,8 +105,8 @@ export const ConversationContainer = ({ isPWA }: IProps) => {
           />
           {loadingResolve && searchTerm && <small>Resolving address...</small>}
           <ListConversations
-            isPWA={isPWA}
-            isConsent={isConsent}
+            isPWA={isPWA!}
+            isConsent={isConsent!}
             searchTerm={searchTerm}
             selectConversation={setSelectedConversation}
             onConversationFound={(state) => {
@@ -126,9 +132,9 @@ export const ConversationContainer = ({ isPWA }: IProps) => {
       {selectedConversation && (
         <>
           {selectedConversation.id ? (
-            <MessageContainer isPWA={isPWA} isContained={isContained} conversation={selectedConversation} />
+            <MessageContainer isPWA={isPWA!} isContained={isContained!} conversation={selectedConversation} />
           ) : (
-            <NewConversation isPWA={isPWA} selectConversation={setSelectedConversation} peerAddress={peerAddress} />
+            <NewConversation isPWA={isPWA!} selectConversation={setSelectedConversation} peerAddress={peerAddress} />
           )}
         </>
       )}
@@ -138,10 +144,6 @@ export const ConversationContainer = ({ isPWA }: IProps) => {
 
 function getStyles(isPWA: boolean) {
   return {
-    conversations: {
-      height: '100%',
-      fontSize: isPWA == true ? '1.2em' : '.9em', // Increased font size
-    },
     conversationList: {
       overflowY: 'auto',
       padding: '0px',

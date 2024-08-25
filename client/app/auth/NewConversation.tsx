@@ -10,14 +10,6 @@ export const NewConversation = ({
   peerAddress: string;
 }) => {
   const { startConversation } = useStartConversation();
-  const styles = {
-    messagesContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-end',
-      height: '100%',
-    },
-  };
 
   const handleSendMessage = useCallback(
     async (message: string) => {
@@ -36,7 +28,7 @@ export const NewConversation = ({
   );
 
   return (
-    <div style={styles.messagesContainer}>
+    <div className="flex flex-col justify-end h-full">
       <MessageInput onSendMessage={handleSendMessage} replyingToMessage={''} isPWA={false} />
     </div>
   );

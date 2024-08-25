@@ -1,3 +1,4 @@
+import { AppButton } from '@/comps';
 import React, { useState } from 'react';
 
 type IProps = {
@@ -26,7 +27,7 @@ export const MessageInput = ({ onSendMessage, replyingToMessage, isPWA }: IProps
         onChange={handleInputChange}
         placeholder="Type your message..."
       />
-      <button
+      <AppButton
         className="px-3 py-2 border border-white cursor-pointer rounded-lg text-center flex justify-center items-center "
         onClick={() => {
           onSendMessage(newMessage);
@@ -34,7 +35,7 @@ export const MessageInput = ({ onSendMessage, replyingToMessage, isPWA }: IProps
         }}
       >
         {isPWA ? '📤' : 'Send'}
-      </button>
+      </AppButton>
     </div>
   );
 };

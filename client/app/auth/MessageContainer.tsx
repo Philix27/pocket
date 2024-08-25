@@ -10,29 +10,6 @@ export const MessageContainer = ({ conversation, isPWA, isContained }: IProps) =
   const { client } = useClient();
   const { messages, isLoading } = useMessages(conversation);
 
-  const styles = {
-    messagesContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      height: '100%',
-      fontSize: isPWA == true ? '1.2em' : '.9em', // Increased font size
-    },
-    loadingText: {
-      textAlign: 'center',
-    },
-    messagesList: {
-      paddingLeft: '5px',
-      paddingRight: '5px',
-      margin: '0px',
-      alignItems: 'flex-start',
-      flexGrow: 1,
-      display: 'flex',
-      flexDirection: 'column',
-      overflowY: 'auto',
-    },
-  };
-
   useStreamMessages(conversation);
   const { sendMessage } = useSendMessage();
 
@@ -51,12 +28,12 @@ export const MessageContainer = ({ conversation, isPWA, isContained }: IProps) =
   }, [messages]);
 
   return (
-    <div style={styles.messagesContainer}>
+    <div className="flex flex-col justify-between h-full text-md">
       {isLoading ? (
-        <small style={styles.loadingText}>Loading messages...</small>
+        <small className="text-center">Loading messages...</small>
       ) : (
         <>
-          <ul style={styles.messagesList}>
+          <ul className="px-2 m-0 items-start flex-grow flex flex-col overflow-y-auto">
             {messages.slice().map((message) => {
               return (
                 <MessageItem

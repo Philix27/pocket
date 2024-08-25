@@ -8,7 +8,8 @@ import { FloatingInbox } from './FloatingInbox';
 import { ethers, JsonRpcSigner } from 'ethers';
 import { AppButton } from '@/comps';
 
-const clientId = process.env.WEB3AUTH_CLIENT_ID!;
+const clientId = 'BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ';
+// const clientId = process.env.WEB3AUTH_CLIENT_ID!;
 
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,

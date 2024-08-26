@@ -19,30 +19,6 @@ export const ListConversations = ({
   const { conversations } = useConversations();
   const [streamedConversations, setStreamedConversations] = useState([]);
 
-  const styles = {
-    conversationName: {
-      fontSize: isPWA == true ? '20px' : '16px',
-      fontWeight: 'bold',
-    },
-    messagePreview: {
-      fontSize: isPWA == true ? '18px' : '14px',
-      color: '#666',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-    },
-    conversationTimestamp: {
-      fontSize: isPWA == true ? '16px' : '12px',
-      color: '#999',
-      width: '25%',
-      textAlign: 'right',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-end',
-      justifyContent: 'space-between',
-    },
-  };
-
   const filteredConversations = conversations.filter(
     (conversation) =>
       conversation?.peerAddress.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -86,9 +62,14 @@ export const ListConversations = ({
                 '...' +
                 conversation.peerAddress.substring(conversation.peerAddress.length - 4)}
             </span>
-            <span style={styles.messagePreview}>...</span>
+            <span className="text-slate-600 whitespace-nowrap overflow-hidden text-ellipsis text-lg">...</span>
           </div>
-          <div style={styles.conversationTimestamp}>{getRelativeTimeLabel(conversation.createdAt)}</div>
+          <div
+            className={`text-md text-slate-400 
+            w-[25%] text-right flex flex-col items-end justify-between`}
+          >
+            {getRelativeTimeLabel(conversation.createdAt)}
+          </div>
         </li>
       ))}
     </>

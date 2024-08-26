@@ -1,15 +1,12 @@
 'use client';
 
-import { FloatingInbox } from './FloatingInbox';
 import { AppButton } from '@/comps';
 import { useWeb3Auth } from './_hook';
 import { XMTPProvider } from '@xmtp/react-sdk';
 import Home from './Home';
 
 export default function AppX() {
-  const isPWA = true;
-
-  const { wallet, isLoggedIn, provider, login, logout, address } = useWeb3Auth();
+  const { wallet, isLoggedIn, login, logout, address } = useWeb3Auth();
 
   return (
     <div>
@@ -33,7 +30,6 @@ export default function AppX() {
         </section>
       )} */}
 
-     
       {isLoggedIn && (
         <XMTPProvider>
           <Home

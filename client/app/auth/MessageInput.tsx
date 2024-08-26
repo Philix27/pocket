@@ -28,7 +28,10 @@ export const MessageInput = ({ onSendMessage, replyingToMessage, isPWA }: IProps
         placeholder="Type your message..."
       />
       <AppButton
-        className="px-3 py-2 border border-white cursor-pointer rounded-lg text-center flex justify-center items-center "
+        className={`px-3 py-2 
+        border border-white cursor-pointer 
+        rounded-lg text-center flex
+        justify-center items-center`}
         onClick={() => {
           onSendMessage(newMessage);
           setNewMessage('');

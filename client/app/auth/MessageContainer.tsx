@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { MessageInput } from './MessageInput';
 import { useMessages, useSendMessage, useStreamMessages, useClient } from '@xmtp/react-sdk';
 import MessageItem from './MessageItem';
+import { toast } from 'sonner';
 
 type IProps = { conversation: any; isPWA: boolean; isContained: boolean };
 export const MessageContainer = ({ conversation, isPWA, isContained }: IProps) => {
@@ -15,7 +16,7 @@ export const MessageContainer = ({ conversation, isPWA, isContained }: IProps) =
 
   const handleSendMessage = async (newMessage: string) => {
     if (!newMessage.trim()) {
-      alert('empty message');
+      toast.error('empty message');
       return;
     }
     if (conversation && conversation.peerAddress) {

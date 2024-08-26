@@ -1,6 +1,10 @@
-import { getRedisClient } from "./lib/redis.js";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { logger } from "hono/logger";
+import { registerRoutes } from "./routes";
+// import { getRedisClient } from "./lib/redis.js";
 import { run, HandlerContext } from "@xmtp/message-kit";
-import { startCron } from "./lib/cron.js";
+// import { startCron } from "./lib/cron.js";
 
 //Tracks conversation steps
 const inMemoryCacheStep = new Map<string, number>();
@@ -8,66 +12,93 @@ const inMemoryCacheStep = new Map<string, number>();
 //List of words to stop or unsubscribe.
 const stopWords = ["stop", "unsubscribe", "cancel", "list"];
 
-const redisClient = await getRedisClient();
+// const redisClient = await getRedisClient();
 
 let clientInitialized = false;
-run(async (context: HandlerContext) => {
-  const {
-    client,
-    message: {
-      content: { content: text },
-      typeId,
-      sender,
-    },
-  } = context;
 
-  console.log(sender);
+// main
 
-  if (!clientInitialized) {
-    startCron(redisClient, client);
-    clientInitialized = true;
-  }
-  
-  if (typeId !== "text") {
-    /* If the input is not text do nothing */
-    return;
-  }
+const app = new Hono();
 
-  const lowerContent = text?.toLowerCase();
+app.use("*", cors({ origin: ["http://localhost:5500"] }));
+app.use("*", logger());
 
-  //Handles unsubscribe and resets step
-  if (stopWords.some((word) => lowerContent.includes(word))) {
-    inMemoryCacheStep.set(sender.address, 0);
-    await redisClient.del(sender.address);
-    await context.reply(
-      "You are now unsubscribed. You will no longer receive updates!.",
-    );
-  }
+const routes = registerRoutes(app);
 
-  const cacheStep = inMemoryCacheStep.get(sender.address) || 0;
-  let message = "";
-  if (cacheStep === 0) {
-    message = "Welcome! Choose an option:\n1. Info\n2. Subscribe";
-    // Move to the next step
-    inMemoryCacheStep.set(sender.address, cacheStep + 1);
-  } else if (cacheStep === 1) {
-    if (text === "1") {
-      message = "Here is the info.";
-    } else if (text === "2") {
-      await redisClient.set(sender.address, "subscribed"); //test
-      message =
-        "You are now subscribed. You will receive updates.\n\ntype 'stop' to unsubscribe";
-      //reset the app to the initial step
-      inMemoryCacheStep.set(sender.address, 0);
-    } else {
-      message = "Invalid option. Please choose 1 for Info or 2 to Subscribe.";
-      // Keep the same step to allow for re-entry
-    }
-  } else {
-    message = "Invalid option. Please start again.";
-    inMemoryCacheStep.set(sender.address, 0);
-  }
+app
+  .get("/", (c) => {
+    return c.text("Hello Hono!");
+  })
+  .get("/bot", (c) => {
+    run(async (context: HandlerContext) => {
+      console.log("In bot")
+      const {
+        client,
+        message: {
+          content: { content: text },
+          typeId,
+          sender,
+        },
+      } = context;
+      console.log(sender);
+      if (!clientInitialized) {
+        // startCron(redisClient, client);
+        clientInitialized = true;
+      }
+      if (typeId !== "text") {
+        /* If the input is not text do nothing */
+        return;
+      }
 
-  //Send the message
-  await context.reply(message);
+      const lowerContent = text?.toLowerCase();
+
+      //Handles unsubscribe and resets step
+      if (stopWords.some((word) => lowerContent.includes(word))) {
+        inMemoryCacheStep.set(sender.address, 0);
+        // await redisClient.del(sender.address);
+        await context.reply(
+          "You are now unsubscribed. You will no longer receive updates!."
+        );
+      }
+
+      const cacheStep = inMemoryCacheStep.get(sender.address) || 0;
+      let message = "";
+      if (cacheStep === 0) {
+        message = "Welcome! Choose an option:\n1. Info\n2. Subscribe";
+        // Move to the next step
+        inMemoryCacheStep.set(sender.address, cacheStep + 1);
+      } else if (cacheStep === 1) {
+        if (text === "1") {
+          message = "Here is the info.";
+        } else if (text === "2") {
+          // await redisClient.set(sender.address, "subscribed"); //test
+          message =
+            "You are now subscribed. You will receive updates.\n\ntype 'stop' to unsubscribe";
+          //reset the app to the initial step
+          inMemoryCacheStep.set(sender.address, 0);
+        } else {
+          message =
+            "Invalid option. Please choose 1 for Info or 2 to Subscribe.";
+          // Keep the same step to allow for re-entry
+        }
+      } else {
+        message = "Invalid option. Please start again.";
+        inMemoryCacheStep.set(sender.address, 0);
+      }
+
+      //Send the message
+      await context.reply(message);
+    });
+
+    return c.json({ message: "Reply from bot" });
+  });
+
+const port = process.env.PORT;
+console.log(`Server is running on port ${port}`);
+
+Bun.serve({
+  port,
+  fetch: app.fetch,
 });
+
+export type AppType = typeof routes;

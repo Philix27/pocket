@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { MessageInput } from './MessageInput';
 import { useStartConversation } from '@xmtp/react-sdk'; // import the required SDK hooks
+import { toast } from 'sonner';
 
 export const NewConversation = ({
   selectConversation,
@@ -14,11 +15,11 @@ export const NewConversation = ({
   const handleSendMessage = useCallback(
     async (message: string) => {
       if (!message.trim()) {
-        alert('Empty message');
+        toast.error('Empty message');
         return;
       }
       if (!peerAddress) {
-        alert('No peer address provided');
+        toast.error('No peer address provided');
         return;
       }
       const newConversation = await startConversation(peerAddress, message);

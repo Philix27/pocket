@@ -8,30 +8,24 @@ type IProps = {
   isPWA: boolean;
   isConsent: boolean;
 };
-export const ListConversations = ({
-  searchTerm,
-  selectConversation,
-  onConversationFound,
-  isPWA,
-  isConsent,
-}: IProps) => {
+export const ListConversations = (props: IProps) => {
   const { client } = useClient();
   const { conversations } = useConversations();
   const [streamedConversations, setStreamedConversations] = useState([]);
 
   const filteredConversations = conversations.filter(
     (conversation) =>
-      conversation?.peerAddress.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      conversation?.peerAddress !== client.address
+      conversation?.peerAddress.toLowerCase().includes(props.searchTerm.toLowerCase()) &&
+      conversation?.peerAddress !== client!.address
   );
 
   useEffect(() => {
     if (filteredConversations.length > 0) {
-      onConversationFound(true);
+      props.onConversationFound(true);
     }
-  }, [filteredConversations, onConversationFound]);
+  }, [filteredConversations, props.onConversationFound]);
 
-  const onConversation = useCallback((conversation) => {
+  const onConversation = useCallback((conversation: any) => {
     setStreamedConversations((prev) => [...prev, conversation]);
   }, []);
 
@@ -44,7 +38,7 @@ export const ListConversations = ({
           key={index}
           style={{ transition: 'background-color 0.3s ease' }}
           onClick={() => {
-            selectConversation(conversation);
+            props.selectConversation(conversation);
           }}
           className={`
             flex justify-between items-center
@@ -76,7 +70,7 @@ export const ListConversations = ({
   );
 };
 
-const getRelativeTimeLabel = (dateString) => {
+const getRelativeTimeLabel = (dateString: string | number | Date) => {
   const diff = new Date() - new Date(dateString);
   const diffMinutes = Math.floor(diff / 1000 / 60);
   const diffHours = Math.floor(diff / 1000 / 60 / 60);

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MessageContainer } from './MessageContainer';
 import { useCanMessage, useClient } from '@xmtp/react-sdk';
 import { ListConversations } from './ListConversations';
-import { ethers } from 'ethers';
+import { BrowserProvider } from 'ethers';
 import { NewConversation } from './NewConversation';
 import { AppButton } from '@/comps';
 
@@ -13,13 +13,7 @@ type IProps = {
   isConsent?: boolean;
   isContained?: boolean;
 };
-export const ConversationContainer = ({
-  isConsent,
-  isContained,
-  isPWA,
-  selectedConversation,
-  setSelectedConversation,
-}: IProps) => {
+export const ConversationContainer = (props: IProps) => {
   const { client } = useClient();
   const [searchTerm, setSearchTerm] = useState('');
   const [peerAddress, setPeerAddress] = useState('');
@@ -30,13 +24,11 @@ export const ConversationContainer = ({
   const [createNew, setCreateNew] = useState(false);
   const [conversationFound, setConversationFound] = useState(false);
 
-  const styles = getStyles(isPWA!);
-
   const isValidEthereumAddress = (address: string) => {
     return /^0x[a-fA-F0-9]{40}$/.test(address);
   };
 
-  const handleSearchChange = async (e) => {
+  const handleSearchChange = async (e: any) => {
     setCreateNew(false);
     setConversationFound(false);
     setSearchTerm(e.target.value);
@@ -48,7 +40,8 @@ export const ConversationContainer = ({
     if (isEthDomain) {
       setLoadingResolve(true);
       try {
-        const provider = new ethers.providers.CloudflareProvider();
+        // const provider = new ethers.BrowserProvider();
+        const provider = new BrowserProvider(window.ethereum);
         resolvedAddress = await provider.resolveName(resolvedAddress);
       } catch (error) {
         console.log(error);
@@ -69,9 +62,9 @@ export const ConversationContainer = ({
     }
   };
 
-  const processEthereumAddress = async (address) => {
+  const processEthereumAddress = async (address: string) => {
     setPeerAddress(address);
-    if (address === client.address) {
+    if (address === client!.address) {
       setMessage('No self messaging allowed');
       setCreateNew(false);
       // setCanMessage(false);
@@ -95,32 +88,33 @@ export const ConversationContainer = ({
   }
   return (
     <div className="h-full">
-      {!selectedConversation && (
-        <ul style={styles.conversationList}>
+      {!props.selectedConversation && (
+        <ul className="p-0 m-0 list-none overflow-y-scroll">
           <input
             type="text"
             placeholder="Enter a 0x wallet or ENS address"
             value={searchTerm}
             onChange={handleSearchChange}
-            style={styles.peerAddressInput}
+            className="w-full p-2 box-border outline-none text-sm border border-white"
           />
           {loadingResolve && searchTerm && <small>Resolving address...</small>}
           <ListConversations
-            isPWA={isPWA!}
-            isConsent={isConsent!}
+            isPWA={props.isPWA!}
+            isConsent={props.isConsent!}
             searchTerm={searchTerm}
-            selectConversation={setSelectedConversation}
+            selectConversation={props.setSelectedConversation}
             onConversationFound={(state) => {
               setConversationFound(state);
               if (state === true) setCreateNew(false);
             }}
           />
           {message && conversationFound !== true && <small>{message}</small>}
-          {peerAddress && createNew && canMessage && !conversationFound && (
+          {peerAddress && createNew && !conversationFound && (
+            // {peerAddress && createNew && (await canMessage(peerAddress)) && !conversationFound && (
             <>
               <AppButton
                 onClick={() => {
-                  setSelectedConversation({ messages: [] });
+                  props.setSelectedConversation({ messages: [] });
                 }}
               >
                 Create new conversation
@@ -129,45 +123,19 @@ export const ConversationContainer = ({
           )}
         </ul>
       )}
-      {selectedConversation && (
+      {props.selectedConversation && (
         <>
-          {selectedConversation.id ? (
-            <MessageContainer isPWA={isPWA!} isContained={isContained!} conversation={selectedConversation} />
+          {props.selectedConversation.id ? (
+            <MessageContainer
+              isPWA={props.isPWA!}
+              isContained={props.isContained!}
+              conversation={props.selectedConversation}
+            />
           ) : (
-            <NewConversation isPWA={isPWA!} selectConversation={setSelectedConversation} peerAddress={peerAddress} />
+            <NewConversation selectConversation={props.setSelectedConversation} peerAddress={peerAddress} />
           )}
         </>
       )}
     </div>
   );
 };
-
-function getStyles(isPWA: boolean) {
-  return {
-    conversationList: {
-      overflowY: 'auto',
-      padding: '0px',
-      margin: '0',
-      listStyle: 'none',
-      overflowY: 'scroll',
-    },
-    smallLabel: {
-      fontSize: isPWA == true ? '1.5em' : '.9em', // Increased font size
-    },
-    createNewButton: {
-      border: '1px',
-      padding: '5px',
-      borderRadius: '5px',
-      marginTop: '10px',
-      fontSize: isPWA == true ? '1.2em' : '.9em', // Increased font size
-    },
-    peerAddressInput: {
-      width: '100%',
-      padding: '10px',
-      boxSizing: 'border-box',
-      border: '0px solid #ccc',
-      fontSize: isPWA == true ? '1em' : '.9em',
-      outline: 'none',
-    },
-  };
-}

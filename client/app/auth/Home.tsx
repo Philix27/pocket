@@ -20,6 +20,12 @@ export default function Home(props: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isOnNetwork, setIsOnNetwork] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
+  const [isWalletCreated, setIsWalletCreated] = useState(false);
+  const { client, error, isLoading, initialize, disconnect } = useClient();
+  const [loading, setLoading] = useState(false);
+
+  const [selectedConversation, setSelectedConversation] = useState(null);
+  const [signer, setSigner] = useState();
 
   useEffect(() => {
     const initialIsOpen = props.isPWA || props.isContained || localStorage.getItem('isWidgetOpen') === 'true' || false;
@@ -31,13 +37,6 @@ export default function Home(props: IProps) {
     setIsConnected(initialIsConnected);
   }, []);
 
-  const { client, error, isLoading, initialize, disconnect } = useClient();
-  const [loading, setLoading] = useState(false);
-
-  const [selectedConversation, setSelectedConversation] = useState(null);
-  const [signer, setSigner] = useState();
-
-  const styles = getStyles(props.isPWA!, props.isContained);
   useEffect(() => {
     localStorage.setItem('isOnNetwork', isOnNetwork.toString());
     localStorage.setItem('isWidgetOpen', isOpen.toString());
@@ -73,7 +72,9 @@ export default function Home(props: IProps) {
     }
   };
 
-  const getAddress = async (signer) => {
+  const getAddress = async (
+    signer: { getAddress: () => any; getAddresses: () => [any] | PromiseLike<[any]> } | undefined
+  ) => {
     try {
       if (signer && typeof signer.getAddress === 'function') {
         return await signer.getAddress();
@@ -88,7 +89,6 @@ export default function Home(props: IProps) {
       console.log(e);
     }
   };
-  const [isWalletCreated, setIsWalletCreated] = useState(false);
 
   const createNewWallet = async () => {
     const newWallet = ethers.Wallet.createRandom();
@@ -97,6 +97,7 @@ export default function Home(props: IProps) {
     setIsConnected(true);
     setIsWalletCreated(true); // Set isWalletCreated to true when a new wallet is created
   };
+
   const initXmtpWithKeys = async () => {
     const options = { env: props.env ? props.env : getEnv() };
     const address = await getAddress(signer);
@@ -108,7 +109,7 @@ export default function Home(props: IProps) {
         skipContactPublishing: true,
         persistConversations: false,
       });
-      storeKeys(address, keys);
+      storeKeys(address, keys!);
     }
     setLoading(true);
     await initialize({ keys, options, signer });
@@ -159,7 +160,18 @@ export default function Home(props: IProps) {
         </div>
       )}
       {isOpen && (
-        <div style={styles.uContainer} className={'bg-background border' + (isOnNetwork ? 'expanded' : '')}>
+        <div
+          style={{
+            position: props.isContained ? 'relative' : props.isPWA ? 'relative' : 'fixed',
+            bottom: props.isContained ? '0px' : props.isPWA ? '0px' : '80px',
+            right: props.isContained ? '0px' : props.isPWA ? '0px' : '20px',
+            width: props.isContained ? '100%' : props.isPWA ? '100%' : '300px',
+            height: props.isContained ? '100%' : props.isPWA ? '100vh' : '400px',
+            border: props.isContained ? '0px' : props.isPWA ? '0px' : '1px solid #ccc',
+            borderRadius: props.isContained ? '0px' : props.isPWA ? '0px' : '10px',
+          }}
+          className={'bg-background border overflow-hidden flex flex-col z-50' + (isOnNetwork ? 'expanded' : '')}
+        >
           {isConnected && (
             <AppButton variant={'destructive'} onClick={handleLogout}>
               Logout
@@ -185,9 +197,9 @@ export default function Home(props: IProps) {
             </div>
           )}
           {isConnected}
-          <div style={styles.widgetContent}>
+          <div className={'flex-grow overflow-y-auto'}>
             {!isConnected && (
-              <div style={styles.xmtpContainer}>
+              <div className={`flex justify-center flex-col items-center h-full`}>
                 <AppButton variant={'outline'} onClick={connectWallet}>
                   Connect Wallet
                 </AppButton>
@@ -200,7 +212,7 @@ export default function Home(props: IProps) {
             {isConnected && !isOnNetwork && (
               <div className="flex justify-center flex-col items-center h-full">
                 <AppButton onClick={initXmtpWithKeys}>Connect to XMTP</AppButton>
-                {isWalletCreated && <button style={styles.label}>Your addess: {signer.address}</button>}
+                {isWalletCreated && <TextP> Your addess: {signer!.address}</TextP>}
               </div>
             )}
             {isConnected && isOnNetwork && client && (
@@ -218,59 +230,3 @@ export default function Home(props: IProps) {
     </>
   );
 }
-
-
-
-const getStyles = (isPWA: boolean, isContained: boolean) => {
-  return {
-    uContainer: {
-      position: isContained ? 'relative' : isPWA ? 'relative' : 'fixed',
-      bottom: isContained ? '0px' : isPWA ? '0px' : '80px',
-      right: isContained ? '0px' : isPWA ? '0px' : '20px',
-      width: isContained ? '100%' : isPWA ? '100%' : '300px',
-      height: isContained ? '100%' : isPWA ? '100vh' : '400px',
-      border: isContained ? '0px' : isPWA ? '0px' : '1px solid #ccc',
-      borderRadius: isContained ? '0px' : isPWA ? '0px' : '10px',
-      zIndex: '1000',
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    logoutBtn: {
-      position: 'absolute',
-      top: '10px',
-      textDecoration: 'none',
-      color: '#000',
-      left: '5px',
-      background: 'transparent',
-      border: 'none',
-      fontSize: isPWA == true ? '12px' : '10px',
-      cursor: 'pointer',
-    },
-
-    label: {
-      fontSize: '10px',
-      textAlign: 'center',
-      marginTop: '5px',
-      cursor: 'pointer',
-      display: 'block',
-    },
-    backButton: {
-      border: '0px',
-      background: 'transparent',
-      cursor: 'pointer',
-      fontSize: isPWA == true ? '20px' : '14px', // Increased font size
-    },
-    widgetContent: {
-      flexGrow: 1,
-      overflowY: 'auto',
-    },
-    xmtpContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'column',
-      alignItems: 'center',
-      height: '100%',
-    },
-  };
-};

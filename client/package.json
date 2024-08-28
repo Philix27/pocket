@@ -24,6 +24,8 @@
     "@web3auth/modal": "^8.12.3",
     "@web3auth/mpc-core-kit": "3.0.0",
     "@web3auth/single-factor-auth": "^7.4.0",
+    "@web3auth/wallet-services-plugin": "^8.12.3",
+    "@web3auth/web3auth-wagmi-connector": "^6.0.0",
     "@xmtp/content-type-reaction": "^1.1.9",
     "@xmtp/content-type-remote-attachment": "^1.1.9",
     "@xmtp/content-type-reply": "^1.1.11",

@@ -6,6 +6,7 @@ import { Client } from '@xmtp/xmtp-js';
 export interface ISlice {
   selectedConversation?: string;
   isOnNetwork?: boolean;
+  isConnected?: boolean;
   keys?: Map<string, Uint8Array>;
   newKeys?: Uint8Array | any;
   xmtpClient?: Client | any;
@@ -30,6 +31,7 @@ export const defaultValues: Required<ISlice> = {
   showChat: false,
   web3Wallet: '',
   signer: null,
+  isConnected: false,
 };
 
 export const useChat = create(

@@ -17,50 +17,57 @@ type IProps = {
 };
 
 export default function Home(props: IProps) {
-  // const [isWalletCreated, setIsWalletCreated] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const [isOnNetwork, setIsOnNetwork] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
+  const [isWalletCreated, setIsWalletCreated] = useState(false);
   const { client, error, isLoading, initialize, disconnect } = useClient();
   const [loading, setLoading] = useState(false);
   const store = AppStores.useChat();
   const [selectedConversation, setSelectedConversation] = useState(null);
-  // const [signer, setSigner] = useState();
+  const [signer, setSigner] = useState();
 
   useEffect(() => {
     const initialIsOpen = props.isContained || localStorage.getItem('isWidgetOpen') === 'true' || false;
     const initialIsOnNetwork = localStorage.getItem('isOnNetwork') === 'true' || false;
     const initialIsConnected = (localStorage.getItem('isConnected') && props.wallet === 'true') || false;
 
-    store.update({ showChat: initialIsOpen, isOnNetwork: initialIsOnNetwork, isConnected: initialIsConnected });
+    store.update({ showChat: initialIsOpen });
+    setIsOnNetwork(initialIsOnNetwork);
+    setIsConnected(initialIsConnected);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('isOnNetwork', store.isOnNetwork.toString());
+    localStorage.setItem('isOnNetwork', isOnNetwork.toString());
     localStorage.setItem('isWidgetOpen', store.showChat.toString());
-    localStorage.setItem('isConnected', store.isConnected.toString());
-  }, [store.showChat, store.isConnected, store.isOnNetwork]);
+    localStorage.setItem('isConnected', isConnected.toString());
+  }, [store.showChat, isConnected, isOnNetwork]);
 
   useEffect(() => {
-    if (store.web3Wallet) {
-      store.update({ isConnected: true });
+    if (props.wallet) {
+      setSigner(props.wallet);
+      setIsConnected(true);
     }
-    if (client && !store.isOnNetwork) {
-      store.update({ isOnNetwork: true });
+    if (client && !isOnNetwork) {
+      setIsOnNetwork(true);
     }
-    if (store.signer && store.isOnNetwork) {
+    if (signer && isOnNetwork) {
       initXmtpWithKeys();
     }
-  }, [props.wallet, store.signer, client]);
+  }, [props.wallet, signer, client]);
 
   const connectWallet = async () => {
     console.log('Connect am');
     if (typeof window.ethereum !== undefined) {
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-        // const provider = new ethers.BrowserProvider(window.ethereum);
+        const provider = new ethers.BrowserProvider(window.ethereum);
         // .providers.Web3Provider(window.ethereum);
         const providerx = new ethers.CloudflareProvider();
         // .providers.Web3Provider(window.ethereum);
-        const signer = await providerx.getSigner();
-        store.update({ signer: signer, isConnected: true });
+        const signer = provider.getSigner();
+        setSigner(signer);
+        setIsConnected(true);
       } catch (error) {
         console.error('User rejected request', error);
       }
@@ -97,7 +104,7 @@ export default function Home(props: IProps) {
 
   const initXmtpWithKeys = async () => {
     const options = { env: props.env ? props.env : getEnv() };
-    const address = store.web3Wallet;
+    const address = getAddress();
     // const address = store.web3Wallet;
 
     if (!address) return;
@@ -147,7 +154,7 @@ export default function Home(props: IProps) {
           skipContactPublishing: true,
           // privateKeyOverride: keys,
         },
-        signer: store.signer,
+        signer,
       });
     } catch (error) {
       console.log('client initialize', error);
@@ -155,10 +162,12 @@ export default function Home(props: IProps) {
   };
 
   const handleLogout = async () => {
+    setIsConnected(false);
     const address = store.web3Wallet;
     wipeKeys(address);
     console.log('wipe', address);
-    store.update({ isConnected: false, isOnNetwork: false, signer: null });
+    setSigner(null);
+    setIsOnNetwork(false);
     await disconnect();
     setSelectedConversation(null);
     localStorage.removeItem('isOnNetwork');
@@ -181,23 +190,22 @@ export default function Home(props: IProps) {
             border: props.isContained ? '0px' : '1px solid #ccc',
           }}
           className={
-            'bg-background rounded-md  border overflow-hidden flex flex-col z-50' +
-            (store.isOnNetwork ? 'expanded' : '')
+            'bg-background rounded-md  border overflow-hidden flex flex-col z-50' + (isOnNetwork ? 'expanded' : '')
           }
         >
-          {store.isConnected && (
+          {isConnected && (
             <AppButton variant={'destructive'} onClick={handleLogout}>
               Logout
             </AppButton>
           )}
           <hr />
-          {store.isConnected && store.isOnNetwork && (
+          {isConnected && isOnNetwork && (
             <div className="p-1">
               <div
                 className={`flex justify-center items-center 
                 bg-none border-none w-auto m-0`}
               >
-                {store.isOnNetwork && selectedConversation && (
+                {isOnNetwork && selectedConversation && (
                   <BiChevronLeft
                     className={'cursor-pointer text-lg'}
                     onClick={() => {
@@ -211,7 +219,7 @@ export default function Home(props: IProps) {
           )}
 
           <div className={'flex-grow overflow-y-auto'}>
-            {!store.isConnected && (
+            {!isConnected && (
               <div className={`flex justify-center flex-col items-center h-full`}>
                 <AppButton variant={'outline'} onClick={connectWallet}>
                   Connect Wallet
@@ -219,13 +227,13 @@ export default function Home(props: IProps) {
               </div>
             )}
 
-            {store.isConnected && !store.isOnNetwork && (
+            {isConnected && !isOnNetwork && (
               <div className="flex justify-center flex-col items-center h-full">
                 <AppButton onClick={initXmtpWithKeys}>Connect to XMTP</AppButton>
-                {store.web3Wallet && <TextP> Your address: {store.web3Wallet}</TextP>}
+                {isWalletCreated && <TextP> Your address: {signer!.address}</TextP>}
               </div>
             )}
-            {store.isConnected && store.isOnNetwork && client && (
+            {isConnected && isOnNetwork && client && (
               <ConversationContainer
                 isConsent={props.isConsent}
                 isContained={props.isContained}

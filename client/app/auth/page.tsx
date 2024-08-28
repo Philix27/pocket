@@ -8,7 +8,7 @@ import { AppStores } from '@/lib';
 
 export default function AppX() {
   const { wagAddress, wallet, isLoggedIn, login, logout, address } = useWeb3Auth();
-  const store = AppStores.useSettingsStore();
+  const store = AppStores.useChat();
 
   return (
     <div className="w-full flex items-center justify-center h-full">
@@ -46,8 +46,7 @@ export default function AppX() {
             <XMTPProvider>
               <Home
                 env={process.env.REACT_APP_XMTP_ENV || 'dev'}
-                wallet={wallet}
-                isPWA={false}
+                wallet={address}
                 onLogout={logout}
                 isContained={false}
                 isConsent={false}

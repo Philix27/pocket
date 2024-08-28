@@ -22,7 +22,11 @@ export const NewConversation = ({
         toast.error('No peer address provided');
         return;
       }
-      const newConversation = await startConversation(peerAddress, message);
+      const newConversation: {
+        cachedConversation: any;
+        cachedMessage: any;
+        conversation: any;
+      } = await startConversation(peerAddress, message);
       selectConversation(newConversation?.cachedConversation);
     },
     [peerAddress, startConversation, selectConversation]

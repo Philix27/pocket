@@ -5,10 +5,9 @@ import { ListConversations } from './ListConversations';
 import { BrowserProvider } from 'ethers';
 import { NewConversation } from './NewConversation';
 import { AppButton } from '@/comps';
+import { AppStores } from '@/lib';
 
 type IProps = {
-  selectedConversation: any;
-  setSelectedConversation: any;
   isConsent?: boolean;
   isContained?: boolean;
 };
@@ -22,6 +21,7 @@ export const ConversationContainer = (props: IProps) => {
   const { canMessage } = useCanMessage();
   const [createNew, setCreateNew] = useState(false);
   const [conversationFound, setConversationFound] = useState(false);
+  const store = AppStores.useChat();
 
   const isValidEthereumAddress = (address: string) => {
     return /^0x[a-fA-F0-9]{40}$/.test(address);
@@ -87,7 +87,7 @@ export const ConversationContainer = (props: IProps) => {
   }
   return (
     <div className="h-full">
-      {!props.selectedConversation && (
+      {!store.selectedConversation && (
         <ul className="p-0 m-0 list-none overflow-y-scroll">
           <input
             type="text"
@@ -124,10 +124,7 @@ export const ConversationContainer = (props: IProps) => {
       {props.selectedConversation && (
         <>
           {props.selectedConversation.id ? (
-            <MessageContainer
-              isContained={props.isContained!}
-              conversation={props.selectedConversation}
-            />
+            <MessageContainer isContained={props.isContained!} conversation={props.selectedConversation} />
           ) : (
             <NewConversation selectConversation={props.setSelectedConversation} peerAddress={peerAddress} />
           )}

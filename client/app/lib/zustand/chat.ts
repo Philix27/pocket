@@ -4,7 +4,11 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import { Client } from '@xmtp/xmtp-js';
 
 export interface ISlice {
-  selectedConversation?: string;
+  selectedConversation?: {
+    cachedConversation: any;
+    cachedMessage: any;
+    conversation: any;
+  } | null;
   isOnNetwork?: boolean;
   isConnected?: boolean;
   keys?: Map<string, Uint8Array>;
@@ -22,7 +26,7 @@ export interface ISliceUpdate extends Required<ISlice> {
 }
 
 export const defaultValues: Required<ISlice> = {
-  selectedConversation: '',
+  selectedConversation: null,
   isOnNetwork: false,
   keys: new Map(),
   xmtpClient: undefined,

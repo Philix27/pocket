@@ -17,26 +17,11 @@ type IProps = {
 };
 
 export default function Home(props: IProps) {
-  // const [isWalletCreated, setIsWalletCreated] = useState(false);
   const { client, error, isLoading, initialize, disconnect } = useClient();
   const [loading, setLoading] = useState(false);
   const store = AppStores.useChat();
-  const [selectedConversation, setSelectedConversation] = useState(null);
+  // const [selectedConversation, setSelectedConversation] = useState(null);
   // const [signer, setSigner] = useState();
-
-  useEffect(() => {
-    const initialIsOpen = props.isContained || localStorage.getItem('isWidgetOpen') === 'true' || false;
-    const initialIsOnNetwork = localStorage.getItem('isOnNetwork') === 'true' || false;
-    const initialIsConnected = (localStorage.getItem('isConnected') && props.wallet === 'true') || false;
-
-    store.update({ showChat: initialIsOpen, isOnNetwork: initialIsOnNetwork, isConnected: initialIsConnected });
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('isOnNetwork', store.isOnNetwork.toString());
-    localStorage.setItem('isWidgetOpen', store.showChat.toString());
-    localStorage.setItem('isConnected', store.isConnected.toString());
-  }, [store.showChat, store.isConnected, store.isOnNetwork]);
 
   useEffect(() => {
     if (store.web3Wallet) {
@@ -155,14 +140,10 @@ export default function Home(props: IProps) {
   };
 
   const handleLogout = async () => {
-    const address = store.web3Wallet;
-    wipeKeys(address);
-    console.log('wipe', address);
-    store.update({ isConnected: false, isOnNetwork: false, signer: null });
+    wipeKeys(store.web3Wallet);
+    console.log('wipe', store.web3Wallet);
+    store.clear();
     await disconnect();
-    setSelectedConversation(null);
-    localStorage.removeItem('isOnNetwork');
-    localStorage.removeItem('isConnected');
     if (typeof props.onLogout === 'function') {
       props.onLogout();
     }
@@ -197,11 +178,11 @@ export default function Home(props: IProps) {
                 className={`flex justify-center items-center 
                 bg-none border-none w-auto m-0`}
               >
-                {store.isOnNetwork && selectedConversation && (
+                {store.isOnNetwork && store.selectedConversation && (
                   <BiChevronLeft
                     className={'cursor-pointer text-lg'}
                     onClick={() => {
-                      setSelectedConversation(null);
+                      store.update({ selectedConversation: null });
                     }}
                   />
                 )}
@@ -226,19 +207,8 @@ export default function Home(props: IProps) {
               </div>
             )}
             {store.isConnected && store.isOnNetwork && client && (
-              <ConversationContainer
-                isConsent={props.isConsent}
-                isContained={props.isContained}
-                selectedConversation={selectedConversation}
-                setSelectedConversation={setSelectedConversation}
-              />
+              <ConversationContainer isConsent={props.isConsent} isContained={props.isContained} />
             )}
-            <ConversationContainer
-              isConsent={props.isConsent}
-              isContained={props.isContained}
-              selectedConversation={selectedConversation}
-              setSelectedConversation={setSelectedConversation}
-            />
           </div>
         </div>
       )}

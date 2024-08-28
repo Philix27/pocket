@@ -1,10 +1,10 @@
 'use client';
 
-import React, { Dispatch, ReactNode, SetStateAction, createContext } from 'react';
+import React, { ReactNode } from 'react';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from 'sonner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
+import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { celo, celoAlfajores } from 'wagmi/chains';
 import { WagmiProvider, http } from 'wagmi';
 

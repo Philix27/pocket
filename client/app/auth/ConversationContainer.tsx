@@ -9,7 +9,6 @@ import { AppButton } from '@/comps';
 type IProps = {
   selectedConversation: any;
   setSelectedConversation: any;
-  isPWA?: boolean;
   isConsent?: boolean;
   isContained?: boolean;
 };
@@ -99,7 +98,6 @@ export const ConversationContainer = (props: IProps) => {
           />
           {loadingResolve && searchTerm && <small>Resolving address...</small>}
           <ListConversations
-            isPWA={props.isPWA!}
             isConsent={props.isConsent!}
             searchTerm={searchTerm}
             selectConversation={props.setSelectedConversation}
@@ -127,7 +125,6 @@ export const ConversationContainer = (props: IProps) => {
         <>
           {props.selectedConversation.id ? (
             <MessageContainer
-              isPWA={props.isPWA!}
               isContained={props.isContained!}
               conversation={props.selectedConversation}
             />

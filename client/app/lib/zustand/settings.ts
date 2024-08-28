@@ -20,6 +20,7 @@ export const defaultValues: Required<ISlice> = {
   movesView: 'FULL',
   settingsView: 'PROFILE',
   isLoud: true,
+ 
 };
 
 export const useSettingsStore = create(

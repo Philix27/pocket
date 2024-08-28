@@ -4,9 +4,8 @@ import React, { useState } from 'react';
 type IProps = {
   onSendMessage: (val: string) => void;
   replyingToMessage: string;
-  isPWA: boolean;
 };
-export const MessageInput = ({ onSendMessage, replyingToMessage, isPWA }: IProps) => {
+export const MessageInput = ({ onSendMessage, replyingToMessage }: IProps) => {
   const [newMessage, setNewMessage] = useState('');
 
   const handleInputChange = (event: any) => {
@@ -37,7 +36,7 @@ export const MessageInput = ({ onSendMessage, replyingToMessage, isPWA }: IProps
           setNewMessage('');
         }}
       >
-        {isPWA ? '📤' : 'Send'}
+        {'Send'}
       </AppButton>
     </div>
   );

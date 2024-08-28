@@ -4,8 +4,8 @@ import { useMessages, useSendMessage, useStreamMessages, useClient } from '@xmtp
 import MessageItem from './MessageItem';
 import { toast } from 'sonner';
 
-type IProps = { conversation: any; isPWA: boolean; isContained: boolean };
-export const MessageContainer = ({ conversation, isPWA, isContained }: IProps) => {
+type IProps = { conversation: any;  isContained: boolean };
+export const MessageContainer = ({ conversation, isContained }: IProps) => {
   const messagesEndRef = useRef(null);
 
   const { client } = useClient();
@@ -38,7 +38,6 @@ export const MessageContainer = ({ conversation, isPWA, isContained }: IProps) =
             {messages.slice().map((message) => {
               return (
                 <MessageItem
-                  isPWA={isPWA}
                   key={message.id}
                   message={message}
                   senderAddress={message.senderAddress}
@@ -49,7 +48,6 @@ export const MessageContainer = ({ conversation, isPWA, isContained }: IProps) =
             <div ref={messagesEndRef} />
           </ul>
           <MessageInput
-            isPWA={isPWA}
             onSendMessage={(msg) => {
               handleSendMessage(msg);
             }}

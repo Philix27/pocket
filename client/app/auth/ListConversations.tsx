@@ -5,7 +5,6 @@ type IProps = {
   searchTerm: string;
   selectConversation: any;
   onConversationFound: any;
-  isPWA: boolean;
   isConsent: boolean;
 };
 export const ListConversations = (props: IProps) => {

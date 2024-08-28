@@ -13,10 +13,21 @@ export const loadKeys = (walletAddress: string) => {
   return val ? Buffer.from(val, ENCODING) : null;
 };
 
-export const storeKeys = (walletAddress: string, keys: Buffer) => {
+export const storeKeys = (walletAddress: any, keys: WithImplicitCoercion<ArrayBuffer | SharedArrayBuffer>) => {
+  localStorage.setItem('onboarding', 'true');
   localStorage.setItem(buildLocalStorageKey(walletAddress), Buffer.from(keys).toString(ENCODING));
 };
 
 export const wipeKeys = (walletAddress: string) => {
   localStorage.removeItem(buildLocalStorageKey(walletAddress));
+};
+
+export const storeKeysEthers = (walletAddress: string, keys: string) => {
+  localStorage.setItem('walletAddress', walletAddress);
+  localStorage.setItem(walletAddress, keys);
+};
+
+export const loadKeysEthers = (walletAddress: string) => {
+  const val = localStorage.getItem(walletAddress);
+  return val;
 };

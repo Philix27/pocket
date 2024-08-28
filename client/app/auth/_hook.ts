@@ -2,12 +2,13 @@ import { IProvider, WALLET_ADAPTERS } from '@web3auth/base';
 import { useEffect, useState } from 'react';
 import { web3auth } from './config';
 import { ethers, JsonRpcSigner } from 'ethers';
+import { useAccount } from 'wagmi';
+import { AppStores } from '@/lib';
 
 export const useWeb3Auth = () => {
   const [provider, setProvider] = useState<IProvider | null>(null);
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [wallet, setWallet] = useState<any | null>(null);
-  const [address, setAddress] = useState<string | null>(null);
+  const { address: wagAddress } = useAccount();
+  const store = AppStores.useChat();
 
   const init = async () => {
     try {
@@ -15,7 +16,8 @@ export const useWeb3Auth = () => {
       setProvider(web3auth.provider);
 
       if (web3auth.connected) {
-        setLoggedIn(true);
+        // setLoggedIn(true);
+        store.update({ isLoggedIn: true });
       }
     } catch (error) {
       console.error(error);
@@ -28,15 +30,15 @@ export const useWeb3Auth = () => {
     });
     setProvider(web3authProvider);
     if (web3auth.connected) {
-      setLoggedIn(true);
+      // setLoggedIn(true);
+      store.update({ isLoggedIn: true });
     }
   };
 
   const logout = async () => {
     await web3auth.logout();
     setProvider(null);
-    setWallet(null);
-    setLoggedIn(false);
+    store.update({ isLoggedIn: false, signer: null });
   };
 
   const getWallet = async (): Promise<JsonRpcSigner | null> => {
@@ -59,9 +61,9 @@ export const useWeb3Auth = () => {
       const signer = await ethersProvider.getSigner();
 
       // Get user's Ethereum public address
-      const address = signer.getAddress();
+      const address = await signer.getAddress();
 
-      return await address;
+      return address;
     } catch (error) {
       return error;
     }
@@ -70,19 +72,27 @@ export const useWeb3Auth = () => {
   const getDetails = async () => {
     if (web3auth.connected) {
       const address = await getAccounts();
-      setAddress(address);
       const wallet = await getWallet();
-      setWallet(wallet);
+      store.update({ signer: wallet, web3Wallet: address });
     }
   };
 
   useEffect(() => {
     init();
+    getAccounts();
   }, []);
 
   useEffect(() => {
     getDetails();
-  }, [provider, isLoggedIn]);
+  }, [provider, store.isLoggedIn]);
 
-  return { login, isLoggedIn, wallet, logout, provider, address };
+  return {
+    isLoggedIn: store.isLoggedIn,
+    address: store.web3Wallet,
+    wagAddress,
+    login,
+    wallet: store.signer,
+    logout,
+    provider,
+  };
 };

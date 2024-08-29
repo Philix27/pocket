@@ -1,17 +1,17 @@
 import React, { useRef, useEffect } from 'react';
 import { MessageInput } from './MessageInput';
-import { useMessages, useSendMessage, useStreamMessages, useClient } from '@xmtp/react-sdk';
+import { useMessages, useSendMessage, useStreamMessages, useClient, CachedConversation } from '@xmtp/react-sdk';
 import MessageItem from './MessageItem';
 import { toast } from 'sonner';
 
-type IProps = { conversation: any;  isContained: boolean };
+type IProps = { conversation: CachedConversation; isContained: boolean };
 export const MessageContainer = ({ conversation, isContained }: IProps) => {
   const messagesEndRef = useRef(null);
 
   const { client } = useClient();
   const { messages, isLoading } = useMessages(conversation);
 
-  useStreamMessages(conversation);
+  const { error } = useStreamMessages(conversation);
   const { sendMessage } = useSendMessage();
 
   const handleSendMessage = async (newMessage: string) => {
@@ -19,6 +19,7 @@ export const MessageContainer = ({ conversation, isContained }: IProps) => {
       toast.error('empty message');
       return;
     }
+
     if (conversation && conversation.peerAddress) {
       await sendMessage(conversation, newMessage);
     }
@@ -36,14 +37,7 @@ export const MessageContainer = ({ conversation, isContained }: IProps) => {
         <>
           <ul className="px-2 m-0 items-start flex-grow flex flex-col overflow-y-auto">
             {messages.slice().map((message) => {
-              return (
-                <MessageItem
-                  key={message.id}
-                  message={message}
-                  senderAddress={message.senderAddress}
-                  client={client}
-                />
-              );
+              return <MessageItem key={message.id} message={message} senderAddress={message.senderAddress} />;
             })}
             <div ref={messagesEndRef} />
           </ul>
@@ -51,7 +45,6 @@ export const MessageContainer = ({ conversation, isContained }: IProps) => {
             onSendMessage={(msg) => {
               handleSendMessage(msg);
             }}
-            replyingToMessage={''}
           />
         </>
       )}

@@ -1,29 +1,60 @@
 'use client';
 
-import { TextH, TextP } from '@/comps';
-import { chatData } from './data';
-import { useRouter } from 'next/navigation';
+import { AppButton } from '@/comps';
+import { useWeb3Auth } from './_hook';
+import { XMTPProvider } from '@xmtp/react-sdk';
+import Home from './Home';
+import { AppStores } from '@/lib';
 
-export default function ChatPage() {
-  const router = useRouter();
+export default function AppX() {
+  const { wagAddress, wallet, isLoggedIn, login, logout, address } = useWeb3Auth();
+  const store = AppStores.useChat();
+
   return (
-    <div className="mt-10">
-      {chatData.map((val, i) => (
-        <div key={i} className={`flex item-center justify-between px-4 py-2 mb-1 border-b-[0.5px]`} onClick={()=>{router.push("/messages")}}>
-          <div className="flex">
-            <div className={` rounded-[25px] bg-white h-[50px] w-[50px] mr-5`}>
-              <img src={val.img} />
-            </div>
+    <div className="w-full flex items-center justify-center h-full">
+      <div className="w-[50%]">
+        <h1>Web3Auth XMTP Quickstart </h1>
+        <AppButton
+          className="ml-3"
+          onClick={() => {
+            if (store.isLoggedIn) {
+              logout();
+            } else {
+              login();
+            }
+          }}
+        >
+          {isLoggedIn ? 'Logout' : 'Login with Google'}
+        </AppButton>
 
-            <div className={``}>
-              <TextH>{val.name}</TextH>
-              <TextP>{val.lastMsg}</TextP>
-            </div>
-          </div>
+        {store.isLoggedIn && (
+          <AppButton
+            className="ml-3"
+            onClick={() => {
+              store.update({ showChat: !store.showChat });
+            }}
+          >
+            Toggle
+          </AppButton>
+        )}
+        <h3>Web3Auth {address}</h3>
+        <h3>WagAddress {wagAddress}</h3>
 
-          <TextP v="p6">{val.lastTime}</TextP>
-        </div>
-      ))}
+        {isLoggedIn && (
+          <>
+            Ontop
+            <XMTPProvider>
+              <Home
+                env={process.env.REACT_APP_XMTP_ENV || 'dev'}
+                wallet={address}
+                onLogout={logout}
+                isContained={false}
+                isConsent={false}
+              />
+            </XMTPProvider>
+          </>
+        )}
+      </div>
     </div>
   );
 }

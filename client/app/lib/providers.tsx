@@ -47,14 +47,14 @@ const queryClient = new QueryClient();
 export function AppProviders(props: { children: ReactNode }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <WagmiProvider config={wagConfig}>
-        <QueryClientProvider client={queryClient}>
-          {/* <RainbowKitProvider> */}
-          {props.children}
-          <Toaster className={'bg-primary'} />
-          {/* </RainbowKitProvider> */}
-        </QueryClientProvider>
-      </WagmiProvider>
+      {/* <WagmiProvider config={wagConfig}> */}
+      {/* <QueryClientProvider client={queryClient}> */}
+      {/* <RainbowKitProvider> */}
+      {props.children}
+      <Toaster className={'bg-primary'} />
+      {/* </RainbowKitProvider> */}
+      {/* </QueryClientProvider> */}
+      {/* </WagmiProvider> */}
     </ThemeProvider>
   );
 }

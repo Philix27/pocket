@@ -27,5 +27,18 @@
     "strictNullChecks": true
   },
   "exclude": ["node_modules", "tmp", "server"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/file/page.tsx", "app/(pages)/cluster9", "app/auth/ConversationContainer.tsx", "app/auth/ListConversations.tsx", "app/auth/MessageContainer.tsx", "app/auth/MessageInput.tsx", "app/auth/MessageItem.tsx", "app/auth/NewConversation.tsx"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/file/page.tsx",
+    "app/(pages)/cluster9",
+    "app/chat/ConversationContainer.tsx",
+    "app/chat/ListConversations.tsx",
+    "app/chat/MessageContainer.tsx",
+    "app/chat/MessageInput.tsx",
+    "app/chat/MessageItem.tsx",
+    "app/chat/NewConversation.tsx"
+  ]
 }

@@ -14,7 +14,7 @@ type IProps = {
 export const ConversationContainer = (props: IProps) => {
   const { client } = useClient();
   const [searchTerm, setSearchTerm] = useState('');
-  const [peerAddress, setPeerAddress] = useState('');
+  // const [peerAddress, setPeerAddress] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadingResolve, setLoadingResolve] = useState(false);
@@ -55,14 +55,15 @@ export const ConversationContainer = (props: IProps) => {
       setSearchTerm(resolvedAddress); // <-- Add this line
     } else {
       setMessage('Invalid Ethereum address');
-      setPeerAddress(null);
+      store.update({ peerAddress: null });
       setCreateNew(false);
       //setCanMessage(false);
     }
   };
 
   const processEthereumAddress = async (address: string) => {
-    setPeerAddress(address);
+    // setPeerAddress(address);
+    store.update({ peerAddress: address });
     if (address === client!.address) {
       setMessage('No self messaging allowed');
       setCreateNew(false);
@@ -70,7 +71,7 @@ export const ConversationContainer = (props: IProps) => {
     } else {
       const canMessageStatus = await client?.canMessage(address);
       if (canMessageStatus) {
-        setPeerAddress(address);
+        store.update({ peerAddress: address });
         // setCanMessage(true);
         setMessage('Address is on the network ✅');
         setCreateNew(true);
@@ -100,35 +101,28 @@ export const ConversationContainer = (props: IProps) => {
           <ListConversations
             isConsent={props.isConsent!}
             searchTerm={searchTerm}
-            selectConversation={props.setSelectedConversation}
-            onConversationFound={(state) => {
+            // selectConversation={props.setSelectedConversation}
+            onConversationFound={(state: any) => {
               setConversationFound(state);
               if (state === true) setCreateNew(false);
             }}
           />
           {message && conversationFound !== true && <small>{message}</small>}
-          {peerAddress && createNew && !conversationFound && (
-            // {peerAddress && createNew && (await canMessage(peerAddress)) && !conversationFound && (
-            <>
-              <AppButton
-                onClick={() => {
-                  props.setSelectedConversation({ messages: [] });
-                }}
-              >
-                Create new conversation
-              </AppButton>
-            </>
+          {store.peerAddress && createNew && !conversationFound && (
+            <AppButton
+              onClick={() => {
+                store.update({ selectedConversation: { messgae: [] } });
+              }}
+            >
+              Create new conversation
+            </AppButton>
           )}
         </ul>
       )}
-      {props.selectedConversation && (
-        <>
-          {props.selectedConversation.id ? (
-            <MessageContainer isContained={props.isContained!} conversation={props.selectedConversation} />
-          ) : (
-            <NewConversation selectConversation={props.setSelectedConversation} peerAddress={peerAddress} />
-          )}
-        </>
+      {store.selectedConversation ? (
+        <MessageContainer isContained={props.isContained!} conversation={store.selectedConverse} />
+      ) : (
+        <NewConversation />
       )}
     </div>
   );

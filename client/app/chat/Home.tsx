@@ -6,7 +6,6 @@ import { AppStores, cn } from '@/lib';
 import { AppButton, TextH, TextP } from '@/comps';
 import { BiChevronLeft } from 'react-icons/bi';
 import { getEnv, loadKeys, storeKeys, wipeKeys } from './_store';
-import { xclient } from '@/ahatx/xmtpClient';
 
 type IProps = {
   wallet: string;
@@ -20,10 +19,9 @@ export default function Home(props: IProps) {
   const { client, error, isLoading, initialize, disconnect } = useClient();
   const [loading, setLoading] = useState(false);
   const store = AppStores.useChat();
-  // const [selectedConversation, setSelectedConversation] = useState(null);
-  // const [signer, setSigner] = useState();
 
   useEffect(() => {
+    // store.update({ xmtpClient: client });
     if (store.web3Wallet) {
       store.update({ isConnected: true });
     }
@@ -54,24 +52,6 @@ export default function Home(props: IProps) {
     }
   };
 
-  const getAddress = async (
-    signer: { getAddress: () => any; getAddresses: () => [any] | PromiseLike<[any]> } | undefined
-  ) => {
-    try {
-      if (signer && typeof signer.getAddress === 'function') {
-        return await signer.getAddress();
-      }
-      if (signer && typeof signer.getAddresses === 'function') {
-        //viem
-        const [address] = await signer.getAddresses();
-        return address;
-      }
-      return null;
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   // const createNewWallet = async () => {
   //   const newWallet = ethers.Wallet.createRandom();
   //   console.log('Your address', newWallet.address);
@@ -89,19 +69,7 @@ export default function Home(props: IProps) {
     // xclient();
     let keys = loadKeys(address);
 
-    // if (!keys) {
-    //   keys = await Client.getKeys(signer, {
-    //     ...options,
-    //     skipContactPublishing: true,
-    //     persistConversations: false,
-    //   });
-    //   storeKeys(address, keys!);
-    // }
     let currKey = loadKeys(address) as Uint8Array;
-    // const currKey = getState.keys.get(address!);
-    // let keys;
-
-    // if (!getState.keys.has(address!)) {
     if (!currKey) {
       // let keys = await Client.getKeys(signer, {
       try {
@@ -124,7 +92,7 @@ export default function Home(props: IProps) {
     setLoading(true);
 
     try {
-      await initialize({
+      const response = await initialize({
         keys: currKey,
         options: {
           env: process.env.NODE_ENV === 'production' ? 'production' : 'dev',
@@ -134,6 +102,7 @@ export default function Home(props: IProps) {
         },
         signer: store.signer,
       });
+      console.log('initialize response:', response);
     } catch (error) {
       console.log('client initialize', error);
     }

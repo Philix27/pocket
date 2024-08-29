@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useConversations, useStreamConversations, useClient } from '@xmtp/react-sdk';
+import { useConversations, useStreamConversations, useClient, Conversation } from '@xmtp/react-sdk';
+import { AppStores } from '@/lib';
 
 type IProps = {
   searchTerm: string;
-  selectConversation: any;
+  // selectConversation: any;
   onConversationFound: any;
   isConsent: boolean;
 };
+
 export const ListConversations = (props: IProps) => {
+  const store = AppStores.useChat();
   const { client } = useClient();
   const { conversations } = useConversations();
-  const [streamedConversations, setStreamedConversations] = useState([]);
 
   const filteredConversations = conversations.filter(
     (conversation) =>
@@ -24,11 +26,14 @@ export const ListConversations = (props: IProps) => {
     }
   }, [filteredConversations, props.onConversationFound]);
 
-  const onConversation = useCallback((conversation: any) => {
-    setStreamedConversations((prev) => [...prev, conversation]);
+  const onConversation = useCallback((conversation: Conversation<any>) => {
+    store.update({ conversations: [...store.conversations, conversation] });
   }, []);
 
-  const { error } = useStreamConversations(onConversation);
+  const { error } = useStreamConversations({
+    onConversation: onConversation,
+    onError: () => {},
+  });
 
   return (
     <>
@@ -37,7 +42,8 @@ export const ListConversations = (props: IProps) => {
           key={index}
           style={{ transition: 'background-color 0.3s ease' }}
           onClick={() => {
-            props.selectConversation(conversation);
+            // props.selectConversation(conversation);
+            store.update({ selectedConverse: conversation, peerAddress: conversation.peerAddress });
           }}
           className={`
             flex justify-between items-center
@@ -70,7 +76,7 @@ export const ListConversations = (props: IProps) => {
 };
 
 const getRelativeTimeLabel = (dateString: string | number | Date) => {
-  const diff = new Date() - new Date(dateString);
+  const diff = new Date().getTime() - new Date(dateString).getTime();
   const diffMinutes = Math.floor(diff / 1000 / 60);
   const diffHours = Math.floor(diff / 1000 / 60 / 60);
   const diffDays = Math.floor(diff / 1000 / 60 / 60 / 24);

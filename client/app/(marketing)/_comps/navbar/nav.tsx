@@ -5,16 +5,12 @@ import { MainNavProps } from './site';
 import { AppButton, Drawer, TextH, TextP } from '@/comps';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
-import { AppPages, AppStores } from '@/lib';
-import { useAccount, useConnect } from 'wagmi';
-import { injected } from 'wagmi/connectors';
+import { AppPages, AppStores, useWeb3Modal } from '@/lib';
 
 export function NavbarMarketing(props: MainNavProps) {
   const router = useRouter();
-  const { isConnected } = useAccount();
-  const { connectors, connect } = useConnect();
   const store = AppStores.useSettingsStore();
-
+  const { isLoggedIn, login } = useWeb3Modal();
   return (
     <header className="bg-card sticky top-0 z-20 w-full border-b">
       <div className="container flex h-[50px] md:h-[60px] items-center justify-between">
@@ -39,12 +35,12 @@ export function NavbarMarketing(props: MainNavProps) {
               </Link>
             ))}
 
-            {isConnected ? (
-              <AppButton className="px-4" onClick={() => router.push(AppPages.chess.chess)}>
-                Play now
+            {isLoggedIn ? (
+              <AppButton className="px-4" onClick={() => router.push('/chat')}>
+                Chat now
               </AppButton>
             ) : (
-              <AppButton className="px-4" onClick={() => connect({ connector: injected() })}>
+              <AppButton className="px-4" onClick={login}>
                 Connect
               </AppButton>
             )}

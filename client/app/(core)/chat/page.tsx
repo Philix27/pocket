@@ -1,13 +1,12 @@
 'use client';
 
 import { AppButton } from '@/comps';
-import { useWeb3Auth } from './_hook';
 import { XMTPProvider } from '@xmtp/react-sdk';
 import Home from './Home';
-import { AppStores } from '@/lib';
+import { useWeb3Modal, AppStores } from '@/lib';
 
 export default function AppX() {
-  const { wagAddress, wallet, isLoggedIn, login, logout, address } = useWeb3Auth();
+  const { login, logout, address, isLoggedIn } = useWeb3Modal();
   const store = AppStores.useChat();
 
   return (
@@ -38,7 +37,7 @@ export default function AppX() {
           </AppButton>
         )}
         <h3>Web3Auth {address}</h3>
-        <h3>WagAddress {wagAddress}</h3>
+        {/* <h3>WagAddress {wagAddress}</h3> */}
 
         {isLoggedIn && (
           <>

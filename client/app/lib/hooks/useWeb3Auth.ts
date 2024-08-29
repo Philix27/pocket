@@ -3,14 +3,14 @@
 
 'use client';
 
-import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK } from '@web3auth/base';
+import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK, UserInfo } from '@web3auth/base';
 import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
 // IMP START - Quick Start
 import { Web3Auth } from '@web3auth/modal';
 import { useEffect, useState } from 'react';
 
 // IMP START - Blockchain Calls
-import RPC from './ethersRPC';
+import RPC from '../../auth/ethersRPC';
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
 // IMP END - Blockchain Calls
@@ -48,6 +48,9 @@ const web3auth = new Web3Auth({
 export const useWeb3Modal = () => {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [balance, setBalance] = useState('');
+  const [address, setAddress] = useState('');
+  const [userInfo, setUserInfo] = useState<Partial<UserInfo>>();
 
   useEffect(() => {
     const init = async () => {
@@ -82,7 +85,9 @@ export const useWeb3Modal = () => {
     // IMP START - Get User Information
     const user = await web3auth.getUserInfo();
     // IMP END - Get User Information
+    setUserInfo(user);
     uiConsole(user);
+    return user;
   };
 
   const logout = async () => {
@@ -102,7 +107,9 @@ export const useWeb3Modal = () => {
       return;
     }
     const address = await RPC.getAccounts(provider);
+    setAddress(address);
     uiConsole(address);
+    return address;
   };
 
   const getBalance = async () => {
@@ -111,7 +118,9 @@ export const useWeb3Modal = () => {
       return;
     }
     const balance = await RPC.getBalance(provider);
+    setBalance(balance);
     uiConsole(balance);
+    return balance;
   };
 
   const signMessage = async () => {
@@ -121,6 +130,7 @@ export const useWeb3Modal = () => {
     }
     const signedMessage = await RPC.signMessage(provider);
     uiConsole(signedMessage);
+    return signedMessage;
   };
 
   const sendTransaction = async () => {
@@ -131,6 +141,7 @@ export const useWeb3Modal = () => {
     uiConsole('Sending Transaction...');
     const transactionReceipt = await RPC.sendTransaction(provider);
     uiConsole(transactionReceipt);
+    return transactionReceipt;
   };
   // IMP END - Blockchain Calls
 
@@ -148,11 +159,11 @@ export const useWeb3Modal = () => {
     getBalance,
     getUserInfo,
     getAccounts,
-    balance: getBalance(),
-    account: getAccounts(),
-    userInfo: getUserInfo(),
+    balance,
+    address,
+    userInfo,
     logout,
     login,
-    loggedIn,
+    isLoggedIn: loggedIn,
   };
 };

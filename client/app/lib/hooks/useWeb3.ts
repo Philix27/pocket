@@ -1,6 +1,7 @@
+'use client';
 import { IProvider, WALLET_ADAPTERS } from '@web3auth/base';
 import { useEffect, useState } from 'react';
-import { web3auth } from './config';
+import { web3auth } from '../../(core)/chat/config';
 import { ethers, JsonRpcSigner } from 'ethers';
 import { useAccount } from 'wagmi';
 import { AppStores } from '@/lib';

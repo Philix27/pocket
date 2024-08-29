@@ -7,9 +7,11 @@ import { AppImg, AppPages } from '@/lib';
 import { AppButton, TextH } from '@/comps';
 import { cardData } from './cards';
 import { useRouter } from 'next/navigation';
+import { useWeb3Modal } from '@/lib';
 
 export function HomeSection() {
   const router = useRouter();
+  const { login, isLoggedIn } = useWeb3Modal();
 
   return (
     <div className={'flex flex-col items-center justify-center'}>
@@ -21,9 +23,15 @@ export function HomeSection() {
         </TextH>
       </HeroWithImg>
       <div className="md:hidden my-5 flex flex-col items-center justify-center">
-        <AppButton className="w-fit" onClick={() => router.push('/chat')}>
-          Chat Now
-        </AppButton>
+        {isLoggedIn ? (
+          <AppButton className="w-fit" onClick={() => router.push('/chat')}>
+            Chat Now
+          </AppButton>
+        ) : (
+          <AppButton className="w-fit" onClick={login}>
+            Login
+          </AppButton>
+        )}
       </div>
       <div className="hidden md:block">
         <HeroSection img={AppImg.chain} title={'Play chess with friends a'} subtitle={``} />

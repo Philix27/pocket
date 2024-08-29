@@ -1,9 +1,9 @@
 'use client';
 
-import { useWeb3Modal } from '@/auth/_hook';
+import { useWeb3Modal } from '@/lib';
 
 export default function App() {
-  const { login, logout, loggedIn, getUserInfo, getAccounts, getBalance, signMessage, sendTransaction } =
+  const { login, logout, isLoggedIn, getUserInfo, getAccounts, getBalance, signMessage, sendTransaction } =
     useWeb3Modal();
 
   function uiConsole(...args: any[]): void {
@@ -66,7 +66,7 @@ export default function App() {
         & NextJS Quick Start
       </h1>
 
-      <div className="grid">{loggedIn ? loggedInView : unloggedInView}</div>
+      <div className="grid">{isLoggedIn ? loggedInView : unloggedInView}</div>
       <div id="console" style={{ whiteSpace: 'pre-line' }}>
         <p style={{ whiteSpace: 'pre-line' }}></p>
       </div>

@@ -47,7 +47,6 @@ const web3auth = new Web3Auth({
 
 export const useWeb3Modal = () => {
   const [provider, setProvider] = useState<IProvider | null>(null);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [balance, setBalance] = useState('');
   const [address, setAddress] = useState('');
   const [userInfo, setUserInfo] = useState<Partial<UserInfo>>();
@@ -59,16 +58,13 @@ export const useWeb3Modal = () => {
         await web3auth.initModal();
         // IMP END - SDK Initialization
         setProvider(web3auth.provider);
-
-        if (web3auth.connected) {
-          setLoggedIn(true);
-        }
       } catch (error) {
         console.error(error);
       }
     };
 
     init();
+    setDetails();
   }, []);
 
   const login = async () => {
@@ -76,18 +72,6 @@ export const useWeb3Modal = () => {
     const web3authProvider = await web3auth.connect();
     // IMP END - Login
     setProvider(web3authProvider);
-    if (web3auth.connected) {
-      setLoggedIn(true);
-    }
-  };
-
-  const getUserInfo = async () => {
-    // IMP START - Get User Information
-    const user = await web3auth.getUserInfo();
-    // IMP END - Get User Information
-    setUserInfo(user);
-    uiConsole(user);
-    return user;
   };
 
   const logout = async () => {
@@ -95,32 +79,23 @@ export const useWeb3Modal = () => {
     await web3auth.logout();
     // IMP END - Logout
     setProvider(null);
-    setLoggedIn(false);
     uiConsole('logged out');
   };
 
-  // IMP START - Blockchain Calls
-  // Check the RPC file for the implementation
-  const getAccounts = async () => {
+  const setDetails = async () => {
     if (!provider) {
       uiConsole('provider not initialized yet');
       return;
     }
+    // await getBalance();
+    // IMP START - Get User Information
+    const user = await web3auth.getUserInfo();
     const address = await RPC.getAccounts(provider);
-    setAddress(address);
-    uiConsole(address);
-    return address;
-  };
-
-  const getBalance = async () => {
-    if (!provider) {
-      uiConsole('provider not initialized yet');
-      return;
-    }
     const balance = await RPC.getBalance(provider);
+
+    setAddress(address);
+    setUserInfo(user);
     setBalance(balance);
-    uiConsole(balance);
-    return balance;
   };
 
   const signMessage = async () => {
@@ -156,14 +131,13 @@ export const useWeb3Modal = () => {
   return {
     sendTransaction,
     signMessage,
-    getBalance,
-    getUserInfo,
-    getAccounts,
-    balance,
     address,
     userInfo,
     logout,
     login,
-    isLoggedIn: loggedIn,
+    balance: web3auth,
+    isLoggedIn: web3auth.connected,
+    status: web3auth.status,
+    enableMFA: web3auth.enableMFA(),
   };
 };

@@ -69,32 +69,6 @@ function HomeDrawer(props: { router: AppRouterInstance }) {
         }}
       />
       <DrawerRow
-        title={'Contact Us'}
-        icon={BiMessage}
-        onClick={() => {
-          router.push('/notify');
-        }}
-      />
-      <DrawerRow
-        title={'Faq'}
-        icon={RiQuestionAnswerLine}
-        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-      />
-      <DrawerRow
-        title={'Privacy'}
-        icon={MdOutlinePrivacyTip}
-        onClick={() => {
-          router.push('/notify');
-        }}
-      />
-      <DrawerRow
-        title={'Terms of service'}
-        icon={FaServicestack}
-        onClick={() => {
-          router.push('/notify');
-        }}
-      />
-      <DrawerRow
         title={'Theme'}
         icon={IoColorPaletteOutline}
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}

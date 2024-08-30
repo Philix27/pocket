@@ -27,7 +27,7 @@ export const ListConversations = (props: IProps) => {
   }, [filteredConversations, props.onConversationFound]);
 
   const onConversation = useCallback((conversation: Conversation<any>) => {
-    store.update({ conversations: [...store.conversations, conversation] });
+    store.update({ conversations: [...store.conversations!, conversation] });
   }, []);
 
   const { error } = useStreamConversations({

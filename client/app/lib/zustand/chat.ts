@@ -12,15 +12,16 @@ export interface ISlice {
     cachedMessage?: any;
     conversation?: any;
   } | null;
-  conversations?: Conversation[];
-  selectedConverse?: CachedConversation<ContentTypeMetadata>;
+  conversations?: Conversation[] | null;
+  selectedConverse?: CachedConversation<ContentTypeMetadata> | null;
   // conversations?: CachedConversation<ContentTypeMetadata>;
   peerAddress?: string | null;
+  balance?: string | null;
   isOnNetwork?: boolean;
   isConnected?: boolean;
   keys?: Map<string, Uint8Array>;
   newKeys?: Uint8Array | any;
-  xmtpClient?: Client<any> | undefined;
+  xmtpClient?: Client<any> | null;
   isLoggedIn?: boolean;
   web3Wallet?: string;
   signer?: ethers.JsonRpcSigner | null;
@@ -35,9 +36,10 @@ export interface ISliceUpdate extends Required<ISlice> {
 
 export const defaultValues: Required<ISlice> = {
   selectedConversation: null,
+  balance: null,
   isOnNetwork: false,
   keys: new Map(),
-  xmtpClient: undefined,
+  xmtpClient: null,
   newKeys: undefined,
   isConsent: false,
   isLoggedIn: false,
@@ -46,17 +48,8 @@ export const defaultValues: Required<ISlice> = {
   signer: null,
   isConnected: false,
   peerAddress: '',
-  conversations: {
-    context: undefined,
-    createdAt: new Date(),
-    isReady: false,
-    lastSyncedAt: undefined,
-    metadata: undefined,
-    peerAddress: '',
-    topic: '',
-    updatedAt: new Date(),
-    walletAddress: '',
-  },
+  conversations: null,
+  selectedConverse: null,
 };
 
 export const useChat = create(

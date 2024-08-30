@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 
 // IMP START - Blockchain Calls
 import RPC from '../../auth/ethersRPC';
+import { AppStores } from '../zustand';
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
 // IMP END - Blockchain Calls
@@ -50,6 +51,7 @@ export const useWeb3Modal = () => {
   const [balance, setBalance] = useState('');
   const [address, setAddress] = useState('');
   const [userInfo, setUserInfo] = useState<Partial<UserInfo>>();
+  const store = AppStores.useChat();
 
   useEffect(() => {
     const init = async () => {
@@ -58,13 +60,13 @@ export const useWeb3Modal = () => {
         await web3auth.initModal();
         // IMP END - SDK Initialization
         setProvider(web3auth.provider);
+        setDetails();
       } catch (error) {
         console.error(error);
       }
     };
 
     init();
-    setDetails();
   }, []);
 
   const login = async () => {
@@ -96,6 +98,7 @@ export const useWeb3Modal = () => {
     setAddress(address);
     setUserInfo(user);
     setBalance(balance);
+    store.update({isLoggedIn: true})
   };
 
   const signMessage = async () => {
@@ -135,9 +138,8 @@ export const useWeb3Modal = () => {
     userInfo,
     logout,
     login,
-    balance: web3auth,
+    balance,
     isLoggedIn: web3auth.connected,
     status: web3auth.status,
-    enableMFA: web3auth.enableMFA(),
   };
 };

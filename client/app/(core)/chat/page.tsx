@@ -13,18 +13,7 @@ export default function AppX() {
     <div className="w-full flex items-center justify-center h-full">
       <div className="w-[50%]">
         <h1>Web3Auth XMTP Quickstart </h1>
-        <AppButton
-          className="ml-3"
-          onClick={() => {
-            if (store.isLoggedIn) {
-              logout();
-            } else {
-              login();
-            }
-          }}
-        >
-          {isLoggedIn ? 'Logout' : 'Login with Google'}
-        </AppButton>
+        
 
         {store.isLoggedIn && (
           <AppButton

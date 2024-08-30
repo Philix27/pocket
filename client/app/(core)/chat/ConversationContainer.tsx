@@ -120,7 +120,7 @@ export const ConversationContainer = (props: IProps) => {
         </ul>
       )}
       {store.selectedConversation ? (
-        <MessageContainer isContained={props.isContained!} conversation={store.selectedConverse} />
+        <MessageContainer isContained={props.isContained!} conversation={store.selectedConverse!} />
       ) : (
         <NewConversation />
       )}

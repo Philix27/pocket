@@ -3,7 +3,7 @@
 
 'use client';
 
-import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK, UserInfo } from '@web3auth/base';
+import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK, UserInfo, WALLET_ADAPTERS } from '@web3auth/base';
 import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
 // IMP START - Quick Start
 import { Web3Auth } from '@web3auth/modal';
@@ -55,14 +55,16 @@ export const useWeb3Modal = () => {
 
   useEffect(() => {
     const init = async () => {
-      try {
-        // IMP START - SDK Initialization
-        await web3auth.initModal();
-        // IMP END - SDK Initialization
-        setProvider(web3auth.provider);
-        setDetails();
-      } catch (error) {
-        console.error(error);
+      if (!web3auth.connected) {
+        try {
+          // IMP START - SDK Initialization
+          await web3auth.initModal();
+          // IMP END - SDK Initialization
+          setProvider(web3auth.provider);
+          setDetails();
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
 
@@ -72,8 +74,14 @@ export const useWeb3Modal = () => {
   const login = async () => {
     // IMP START - Login
     const web3authProvider = await web3auth.connect();
+    // Connect to specific wallet adapter
+    // const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
+    //   loginProvider: 'google',
+    // });
     // IMP END - Login
     setProvider(web3authProvider);
+    setDetails();
+    store.update({ isLoggedIn: true });
   };
 
   const logout = async () => {
@@ -91,14 +99,18 @@ export const useWeb3Modal = () => {
     }
     // await getBalance();
     // IMP START - Get User Information
-    const user = await web3auth.getUserInfo();
-    const address = await RPC.getAccounts(provider);
-    const balance = await RPC.getBalance(provider);
+    try {
+      const user = await web3auth.getUserInfo();
+      const address = await RPC.getAccounts(provider);
+      const balance = await RPC.getBalance(provider);
 
-    setAddress(address);
-    setUserInfo(user);
-    setBalance(balance);
-    store.update({isLoggedIn: true})
+      setAddress(address);
+      setUserInfo(user);
+      setBalance(balance);
+      store.update({ isLoggedIn: true, web3Wallet: address });
+    } catch (e) {
+      console.log('user not logged in');
+    }
   };
 
   const signMessage = async () => {

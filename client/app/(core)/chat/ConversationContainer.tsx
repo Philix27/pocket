@@ -86,6 +86,7 @@ export const ConversationContainer = (props: IProps) => {
   if (loading) {
     return <div style={{ textAlign: 'center', fontSize: 'small' }}>Loading...</div>;
   }
+
   return (
     <div className="h-full">
       {!store.selectedConversation && (
@@ -111,7 +112,7 @@ export const ConversationContainer = (props: IProps) => {
           {store.peerAddress && createNew && !conversationFound && (
             <AppButton
               onClick={() => {
-                store.update({ selectedConversation: { messgae: [] } });
+                store.update({ selectedConversation: { message: [] } });
               }}
             >
               Create new conversation

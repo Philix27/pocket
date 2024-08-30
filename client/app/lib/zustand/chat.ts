@@ -7,7 +7,7 @@ import { CachedConversation, ContentTypeMetadata } from '@xmtp/react-sdk';
 export interface ISlice {
   selectedConversation?: {
     id?: string | number;
-    messgae?: [];
+    message?: [];
     cachedConversation?: any;
     cachedMessage?: any;
     conversation?: any;
@@ -18,7 +18,6 @@ export interface ISlice {
   peerAddress?: string | null;
   balance?: string | null;
   isOnNetwork?: boolean;
-  isConnected?: boolean;
   keys?: Map<string, Uint8Array>;
   newKeys?: Uint8Array | any;
   xmtpClient?: Client<any> | null;
@@ -27,6 +26,7 @@ export interface ISlice {
   signer?: ethers.JsonRpcSigner | null;
   showChat?: boolean;
   isConsent?: boolean;
+  isConnectedToXmpt?: boolean;
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -46,10 +46,10 @@ export const defaultValues: Required<ISlice> = {
   showChat: false,
   web3Wallet: '',
   signer: null,
-  isConnected: false,
   peerAddress: '',
   conversations: null,
   selectedConverse: null,
+  isConnectedToXmpt: false
 };
 
 export const useChat = create(

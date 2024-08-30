@@ -25,10 +25,6 @@ export const MessageContainer = ({ conversation, isContained }: IProps) => {
     }
   };
 
-  useEffect(() => {
-    if (!isContained) messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
   return (
     <div className="flex flex-col justify-between h-full text-md">
       {isLoading ? (

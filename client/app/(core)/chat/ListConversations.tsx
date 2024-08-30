@@ -24,19 +24,24 @@ export const ListConversations = (props: IProps) => {
     if (filteredConversations.length > 0) {
       props.onConversationFound(true);
     }
-  }, [filteredConversations, props.onConversationFound]);
+    console.log('Conversations: - ', conversations);
+  }, []);
+  // }, [filteredConversations, props.onConversationFound]);
 
   const onConversation = useCallback((conversation: Conversation<any>) => {
     store.update({ conversations: [...store.conversations!, conversation] });
   }, []);
 
-  const { error } = useStreamConversations({
-    onConversation: onConversation,
-    onError: () => {},
-  });
+  // const { error } = useStreamConversations({
+  //   onConversation: onConversation,
+  //   onError: () => {},
+  // });
 
   return (
     <>
+      <p>Just a list</p>
+      <p>{filteredConversations.toString()}</p>
+      <p>Error: {error!.toString()}</p>
       {filteredConversations.map((conversation, index) => (
         <li
           key={index}

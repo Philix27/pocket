@@ -24,6 +24,8 @@ export interface ISlice {
   isLoggedIn?: boolean;
   web3Wallet?: string;
   signer?: ethers.JsonRpcSigner | null;
+  etherKey?: string | null;
+  etherWallet?: ethers.Wallet | null;
   showChat?: boolean;
   isConsent?: boolean;
   isConnectedToXmpt?: boolean;
@@ -49,7 +51,9 @@ export const defaultValues: Required<ISlice> = {
   peerAddress: '',
   conversations: null,
   selectedConverse: null,
-  isConnectedToXmpt: false
+  isConnectedToXmpt: false,
+  etherKey: null,
+  etherWallet: null
 };
 
 export const useChat = create(

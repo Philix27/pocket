@@ -12,6 +12,8 @@ import { useEffect, useState } from 'react';
 // IMP START - Blockchain Calls
 import RPC from '../../auth/ethersRPC';
 import { AppStores } from '../zustand';
+import { ethers } from 'ethers';
+import { EIP1193Provider } from 'web3';
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
 // IMP END - Blockchain Calls
@@ -23,16 +25,28 @@ const clientId = 'BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw
 // IMP START - Chain Config
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: '0xaa36a7',
-  rpcTarget: 'https://rpc.ankr.com/eth_sepolia',
+  chainId: '0x1',
+  rpcTarget: 'https://rpc.ankr.com/eth',
   // Avoid using public rpcTarget in production.
   // Use services like Infura, Quicknode etc
-  displayName: 'Ethereum Sepolia Testnet',
-  blockExplorerUrl: 'https://sepolia.etherscan.io',
+  displayName: 'Ethereum Mainnet',
+  blockExplorerUrl: 'https://etherscan.io',
   ticker: 'ETH',
   tickerName: 'Ethereum',
   logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
 };
+// const chainConfig = {
+//   chainNamespace: CHAIN_NAMESPACES.EIP155,
+//   chainId: '0xaef3', // hex of 44787, celo testnet
+//   rpcTarget: 'https://rpc.ankr.com/celo',
+//   // Avoid using public rpcTarget in production.
+//   // Use services like Infura, Quicknode etc
+//   displayName: 'Celo Testnet',
+//   blockExplorerUrl: 'https://alfajores-blockscout.celo-testnet.org',
+//   ticker: 'CELO',
+//   tickerName: 'CELO',
+//   logo: 'https://cryptologos.cc/logos/celo-celo-logo.png',
+// };
 // IMP END - Chain Config
 
 // IMP START - SDK Initialization
@@ -55,17 +69,19 @@ export const useWeb3Modal = () => {
 
   useEffect(() => {
     const init = async () => {
-      if (!web3auth.connected) {
-        try {
-          // IMP START - SDK Initialization
-          await web3auth.initModal();
-          // IMP END - SDK Initialization
-          setProvider(web3auth.provider);
-          setDetails();
-        } catch (error) {
-          console.error(error);
-        }
+      if (web3auth.connected) {
+        return;
       }
+      try {
+        // IMP START - SDK Initialization
+        await web3auth.initModal();
+        // IMP END - SDK Initialization
+        setProvider(web3auth.provider);
+        setDetails();
+      } catch (error) {
+        console.error(error);
+      }
+      // }
     };
 
     init();
@@ -97,6 +113,15 @@ export const useWeb3Modal = () => {
       uiConsole('provider not initialized yet');
       return;
     }
+
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const providerX = new ethers.BrowserProvider(window.ethereum);
+    // const providerX = new ethers.providers.Web3Provider(window.ethereum); // source code
+    const signer = await providerX.getSigner();
+    store.update({ signer: signer });
+    // const ethersProvider = new ethers.BrowserProvider(web3auth.provider);
+    // const ethSigner = ethersProvider.getSigner();
+
     // await getBalance();
     // IMP START - Get User Information
     try {

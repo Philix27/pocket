@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3300",
+    "dev": "next dev -p 3400",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -35,7 +35,7 @@
     "clsx": "^2.1.1",
     "cookie-parser": "^1.4.6",
     "country-flag-icons": "^1.5.13",
-    "ethers": "^6.12.1",
+    "ethers": "^6.13.2",
     "firebase": "^10.11.1",
     "framer-motion": "^10.17.9",
     "net": "^1.0.2",

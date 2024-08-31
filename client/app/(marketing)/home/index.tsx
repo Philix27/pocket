@@ -15,7 +15,7 @@ export function HomeSection() {
 
   return (
     <div className={'flex flex-col items-center justify-center'}>
-      <HeroWithImg img={'/piece.png'}>
+      <HeroWithImg img={'/bit.jpeg'}>
         <TextH v="h1" className={'text-[24px] font-extrabold md:text-[50px] text-card-foreground'}>
           <span className="text-primary tracking-wide"> ChatX </span>
           {/* <span className="text-primary tracking-wide"> Chess </span> and
@@ -34,11 +34,11 @@ export function HomeSection() {
         )}
       </div>
       <div className="hidden md:block">
-        <HeroSection img={AppImg.chain} title={'Play chess with friends a'} subtitle={``} />
+        <HeroSection img={'/bit.jpeg'} title={'Play chess with friends a'} subtitle={``} />
       </div>
       <JumbutronSection title={'Fun time'} subtitle="Play chess and have fun with friends and top chess master." />
 
-      <CardsSection data={cardData} />
+      {/* <CardsSection data={cardData} /> */}
     </div>
   );
 }

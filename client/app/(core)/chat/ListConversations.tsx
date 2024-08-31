@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useConversations, useStreamConversations, useClient, Conversation } from '@xmtp/react-sdk';
+import React, { useEffect, useCallback } from 'react';
+import { useConversations, useClient, Conversation } from '@xmtp/react-sdk';
 import { AppStores } from '@/lib';
 
 type IProps = {
@@ -41,7 +41,7 @@ export const ListConversations = (props: IProps) => {
     <>
       <p>Just a list</p>
       <p>{filteredConversations.toString()}</p>
-      <p>Error: {error!.toString()}</p>
+      {/* <p>Error: {error!.toString()}</p> */}
       {filteredConversations.map((conversation, index) => (
         <li
           key={index}

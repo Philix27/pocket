@@ -93,7 +93,7 @@ export const useWeb3Modal = () => {
       // IMP START - Login
       const web3authProvider = await web3auth.connect();
 
-      manageSigner(web3authProvider!);
+      await manageSigner();
       // Connect to specific wallet adapter
       // const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
       //   loginProvider: 'google',
@@ -113,10 +113,16 @@ export const useWeb3Modal = () => {
     uiConsole('logged out');
   };
 
-  const manageSigner = async (provider: IProvider) => {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const providerX = new ethers.CloudflareProvider();
-    const signer = providerX.getSigner();
+  const manageSigner = async () => {
+    if (!provider) {
+      return;
+    }
+    // await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const ethersProvider = new ethers.BrowserProvider(provider);
+    const signer = await ethersProvider.getSigner();
+
+    // const providerX = new ethers.CloudflareProvider();
+    // const signer = providerX.getSigner();
     // const providerX = new ethers.providers.Web3Provider(window.ethereum); // source code
     // const signer = await providerX.getSigner();
     // store.update({ signer: signer });
@@ -124,8 +130,9 @@ export const useWeb3Modal = () => {
     // const ethSigner = ethersProvider.getSigner();
     if (!store.signer) {
       // const smartAccountSigner = await providerToSmartAccountSigner(provider as EIP1193Provider<''>);
-      store.update({ signer: providerX });
+      store.update({ signer: signer });
     }
+    return signer;
   };
 
   const setDetails = async () => {
@@ -135,7 +142,7 @@ export const useWeb3Modal = () => {
     }
 
     // IMP START - Get User Information
-    manageSigner(provider);
+    await manageSigner();
     try {
       const user = await web3auth.getUserInfo();
       const address = await RPC.getAccounts(provider);
@@ -190,5 +197,6 @@ export const useWeb3Modal = () => {
     balance,
     isLoggedIn: web3auth.connected,
     status: web3auth.status,
+    manageSigner,
   };
 };

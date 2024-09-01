@@ -1,7 +1,8 @@
-import { AppStores } from '@/lib';
+import { AppStores, useWeb3Modal } from '@/lib';
 import { Client, useClient, useConversations, useCanMessage, useStartConversation } from '@xmtp/react-sdk';
 import { ethers } from 'ethers';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { loadKeys, storeKeys } from '../chatBackUp/_store';
 
 export const useXm = () => {
   const { client, initialize } = useClient();
@@ -9,6 +10,8 @@ export const useXm = () => {
   const conversationFn = useConversations();
   const { canMessage } = useCanMessage();
   const store = AppStores.useChat();
+  const { manageSigner } = useWeb3Modal();
+  const [xClient, setXmtpClient] = useState<Client>();
   //Initialize
   {
     // !isConnected && <button onClick={initXmtp}>Connect to XMTP</button>;
@@ -23,31 +26,36 @@ export const useXm = () => {
   }, []);
 
   const getKey = async () => {
-    if (!store.newKeys) {
+    const signer = await manageSigner();
+    let keys = loadKeys(store.web3Wallet);
+
+    if (!keys) {
+      console.log('no key found');
       try {
-        let currKey = await Client.getKeys(store.signer, {
+        let currKey = await Client.getKeys(signer!, {
           env: process.env.NODE_ENV === 'production' ? 'production' : 'dev',
           skipContactPublishing: true,
           persistConversations: false,
         });
 
+        console.log('could not store keys');
+        storeKeys(store.web3Wallet, currKey);
         return currKey;
       } catch (error) {
         console.log('client getKeys', error);
       }
+    } else {
+      console.log('has keys');
+      return keys;
     }
   };
 
   const initXmtp = async () => {
-    const res = await getKey();
-    let keys;
+    const keys = await getKey();
 
-    if (!res) {
-      keys = store.newKeys;
-    }
     if (keys) {
       try {
-        await initialize({
+        const client = await initialize({
           keys: keys,
           options: {
             env: process.env.NODE_ENV === 'production' ? 'production' : 'dev',
@@ -57,6 +65,8 @@ export const useXm = () => {
           },
           signer: store.signer,
         });
+        console.log("xmtp client:", client)
+        setXmtpClient(client);
         store.update({
           // keys: getState.keys.set(address!, keys),
           newKeys: keys,
@@ -68,18 +78,10 @@ export const useXm = () => {
     }
   };
 
-  // Start a conversation with XMTP
-  const startCon = async () => {
-    const add = '0x3F11b27F323b62B159D2642964fa27C46C841897';
-    if (await canMessage(add)) {
-      const conversation = await startConversation(add, 'hi');
-    }
-  };
-
   return {
     conversationFn,
     initXmtp,
-    client,
+    client: xClient,
   };
 };
 

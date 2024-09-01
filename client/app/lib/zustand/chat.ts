@@ -19,11 +19,11 @@ export interface ISlice {
   balance?: string | null;
   isOnNetwork?: boolean;
   keys?: Map<string, Uint8Array>;
-  newKeys?: Uint8Array | any;
+  newKeys?: Uint8Array | null;
   xmtpClient?: Client<any> | null;
   isLoggedIn?: boolean;
   web3Wallet?: string;
-  signer?: any | null;
+  signer?: ethers.JsonRpcSigner | null;
   etherKey?: string | null;
   etherWallet?: ethers.Wallet | null;
   showChat?: boolean;
@@ -42,7 +42,7 @@ export const defaultValues: Required<ISlice> = {
   isOnNetwork: false,
   keys: new Map(),
   xmtpClient: null,
-  newKeys: undefined,
+  newKeys: null,
   isConsent: false,
   isLoggedIn: false,
   showChat: false,
@@ -53,7 +53,7 @@ export const defaultValues: Required<ISlice> = {
   selectedConverse: null,
   isConnectedToXmpt: false,
   etherKey: null,
-  etherWallet: null
+  etherWallet: null,
 };
 
 export const useChat = create(

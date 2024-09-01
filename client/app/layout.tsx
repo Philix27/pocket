@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import '@rainbow-me/rainbowkit/styles.css';
+import './styles/index.css';
 import './globals.css';
 import { AppProviders, fontSans, cn } from './lib';
 

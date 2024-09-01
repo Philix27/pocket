@@ -1,9 +1,10 @@
-import { createContext, useMemo } from "react";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+'use client';
+import { createContext, useMemo } from 'react';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
 
 type WalletContextValue = {
   address: `0x${string}` | undefined;
-  disconnect: ReturnType<typeof useDisconnect>["disconnect"];
+  disconnect: ReturnType<typeof useDisconnect>['disconnect'];
   error: Error | null;
   isConnected: boolean;
   isLoading: boolean;
@@ -17,9 +18,7 @@ export const WalletContext = createContext<WalletContextValue>({
   isLoading: false,
 });
 
-export const WalletProvider: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
+export const WalletProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { address, isConnected, isConnecting, isReconnecting } = useAccount();
   const { error } = useConnect();
   const { disconnect } = useDisconnect();
@@ -35,10 +34,8 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({
       isLoading,
       isConnected,
     }),
-    [address, disconnect, error, isLoading, isConnected],
+    [address, disconnect, error, isLoading, isConnected]
   );
 
-  return (
-    <WalletContext.Provider value={value}>{children}</WalletContext.Provider>
-  );
+  return <WalletContext.Provider value={value}>{children}</WalletContext.Provider>;
 };

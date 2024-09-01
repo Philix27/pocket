@@ -1,23 +1,18 @@
-import "./Inbox.css";
-import { useCallback, useEffect, useState } from "react";
-import { useConsent, type CachedConversation } from "@xmtp/react-sdk";
-import {
-  ArrowRightOnRectangleIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/24/outline";
-import { Conversations } from "./Conversations";
-import { Messages } from "./Messages";
-import { NewMessage } from "./NewMessage";
-import { useWallet } from "../hooks/useWallet";
-import { NoSelectedConversationNotification } from "./NoSelectedConversationNotification";
-import { Button } from "./library/Button";
+import './Inbox.css';
+import { useCallback, useEffect, useState } from 'react';
+import { useConsent, type CachedConversation } from '@xmtp/react-sdk';
+import { ArrowRightOnRectangleIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
+import { Conversations } from './Conversations';
+import { Messages } from './Messages';
+import { NewMessage } from './NewMessage';
+import { useWallet } from '../lib/hooks/useWallet';
+import { NoSelectedConversationNotification } from './NoSelectedConversationNotification';
+import { Button } from './library/Button';
 
 export const Inbox: React.FC = () => {
   const { disconnect } = useWallet();
   const { loadConsentList } = useConsent();
-  const [selectedConversation, setSelectedConversation] = useState<
-    CachedConversation | undefined
-  >(undefined);
+  const [selectedConversation, setSelectedConversation] = useState<CachedConversation | undefined>(undefined);
   const [isNewMessage, setIsNewMessage] = useState(false);
 
   const handleConversationClick = useCallback((convo: CachedConversation) => {
@@ -29,13 +24,10 @@ export const Inbox: React.FC = () => {
     setIsNewMessage(true);
   }, []);
 
-  const handleStartNewConversationSuccess = useCallback(
-    (convo?: CachedConversation) => {
-      setSelectedConversation(convo);
-      setIsNewMessage(false);
-    },
-    [],
-  );
+  const handleStartNewConversationSuccess = useCallback((convo?: CachedConversation) => {
+    setSelectedConversation(convo);
+    setIsNewMessage(false);
+  }, []);
 
   const handleDisconnect = useCallback(() => {
     disconnect();
@@ -53,25 +45,17 @@ export const Inbox: React.FC = () => {
           <img src="/xmtp-icon.png" alt="XMTP logo" width="32" />
         </div>
         <div className="InboxHeader__actions">
-          <Button
-            icon={<PlusCircleIcon width={24} />}
-            onClick={handleStartNewConversation}>
+          <Button icon={<PlusCircleIcon width={24} />} onClick={handleStartNewConversation}>
             New message
           </Button>
-          <Button
-            secondary
-            onClick={handleDisconnect}
-            icon={<ArrowRightOnRectangleIcon width={24} />}>
+          <Button secondary onClick={handleDisconnect} icon={<ArrowRightOnRectangleIcon width={24} />}>
             Disconnect
           </Button>
         </div>
       </div>
       <div className="InboxConversations">
         <div className="InboxConversations__list">
-          <Conversations
-            onConversationClick={handleConversationClick}
-            selectedConversation={selectedConversation}
-          />
+          <Conversations onConversationClick={handleConversationClick} selectedConversation={selectedConversation} />
         </div>
         <div className="InboxConversations__messages">
           {isNewMessage ? (
@@ -79,9 +63,7 @@ export const Inbox: React.FC = () => {
           ) : selectedConversation ? (
             <Messages conversation={selectedConversation} />
           ) : (
-            <NoSelectedConversationNotification
-              onStartNewConversation={handleStartNewConversation}
-            />
+            <NoSelectedConversationNotification onStartNewConversation={handleStartNewConversation} />
           )}
         </div>
       </div>

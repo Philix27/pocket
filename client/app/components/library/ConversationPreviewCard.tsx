@@ -9,7 +9,7 @@ import type {
 } from "@xmtp/react-sdk";
 import { Avatar } from "./Avatar";
 import styles from "./ConversationPreviewCard.module.css";
-import { shortAddress } from "../../helpers/shortAddress";
+import { shortAddress } from "../../lib/utils/shortAddress";
 
 type ConversationPreviewCardProps = {
   /**

@@ -1,8 +1,8 @@
-import "./App.css";
-import { useEffect } from "react";
-import { useClient } from "@xmtp/react-sdk";
-import { ContentRouter } from "./ContentRouter";
-import { useWallet } from "../hooks/useWallet";
+import './App.css';
+import { useEffect } from 'react';
+import { useClient } from '@xmtp/react-sdk';
+import { ContentRouter } from './ContentRouter';
+import { useWallet } from '../lib/hooks/useWallet';
 
 export const App = () => {
   const { address } = useWallet();

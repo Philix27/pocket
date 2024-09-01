@@ -3,15 +3,11 @@ import {
   attachmentContentTypeConfig,
   reactionContentTypeConfig,
   replyContentTypeConfig,
-} from "@xmtp/react-sdk";
-import { WalletProvider } from "../contexts/WalletContext";
-import { App } from "../components/App";
+} from '@xmtp/react-sdk';
+import { WalletProvider } from '../lib/contexts/WalletContext';
+import { App } from '../components/App';
 
-const contentTypeConfigs = [
-  attachmentContentTypeConfig,
-  reactionContentTypeConfig,
-  replyContentTypeConfig,
-];
+const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 
 export const AppController: React.FC = () => (
   <WalletProvider>

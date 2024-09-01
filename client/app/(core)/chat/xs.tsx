@@ -1,15 +1,7 @@
 import { AppStores } from '@/lib';
-import {
-  Client,
-  useStreamMessages,
-  useClient,
-  useMessages,
-  useConversations,
-  useCanMessage,
-  useStartConversation,
-} from '@xmtp/react-sdk';
+import { Client, useClient, useConversations, useCanMessage, useStartConversation } from '@xmtp/react-sdk';
 import { ethers } from 'ethers';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export const useXm = () => {
   const { client, initialize } = useClient();
@@ -30,25 +22,9 @@ export const useXm = () => {
     return () => {};
   }, []);
 
-  const loadSavedWallet = () => {
-    if (store.web3Wallet) {
-      const privateKey = store.etherKey;
-
-      if (privateKey) {
-        const wallet = new ethers.Wallet(privateKey);
-        store.update({ etherWallet: wallet });
-        return wallet;
-      }
-    }
-    return null;
-  };
-
   const getKey = async () => {
     if (!store.newKeys) {
       try {
-        // let gop: ethers.Wallet = {};
-
-        // let currKey = await Client.getKeys(store.signer, {
         let currKey = await Client.getKeys(store.signer, {
           env: process.env.NODE_ENV === 'production' ? 'production' : 'dev',
           skipContactPublishing: true,
@@ -63,7 +39,12 @@ export const useXm = () => {
   };
 
   const initXmtp = async () => {
-    const keys = await getKey();
+    const res = await getKey();
+    let keys;
+
+    if (!res) {
+      keys = store.newKeys;
+    }
     if (keys) {
       try {
         await initialize({
@@ -82,7 +63,7 @@ export const useXm = () => {
           isConnectedToXmpt: true,
         });
       } catch (error) {
-        console.log('could not initialize xmtp', error);
+        console.log('could not initialize xmtp', error, 'Signer', store.signer);
       }
     }
   };
@@ -98,6 +79,7 @@ export const useXm = () => {
   return {
     conversationFn,
     initXmtp,
+    client,
   };
 };
 

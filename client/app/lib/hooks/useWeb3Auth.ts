@@ -8,12 +8,13 @@ import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
 // IMP START - Quick Start
 import { Web3Auth } from '@web3auth/modal';
 import { useEffect, useState } from 'react';
-
+// import { EIP1193Provider } from 'viem';
 // IMP START - Blockchain Calls
-import RPC from '../../auth/ethersRPC';
+import RPC from '../auth/ethersRPC';
 import { AppStores } from '../zustand';
-import { ethers } from 'ethers';
 import { EIP1193Provider } from 'web3';
+import { ethers } from 'ethers';
+// import { ethers } from 'ethers';
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
 // IMP END - Blockchain Calls
@@ -88,16 +89,20 @@ export const useWeb3Modal = () => {
   }, []);
 
   const login = async () => {
-    // IMP START - Login
-    const web3authProvider = await web3auth.connect();
-    // Connect to specific wallet adapter
-    // const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
-    //   loginProvider: 'google',
-    // });
-    // IMP END - Login
-    setProvider(web3authProvider);
-    setDetails();
-    store.update({ isLoggedIn: true });
+    try {
+      // IMP START - Login
+      const web3authProvider = await web3auth.connect();
+
+      manageSigner(web3authProvider!);
+      // Connect to specific wallet adapter
+      // const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
+      //   loginProvider: 'google',
+      // });
+      // IMP END - Login
+      setProvider(web3authProvider);
+      setDetails();
+      store.update({ isLoggedIn: true });
+    } catch (error) {}
   };
 
   const logout = async () => {
@@ -108,22 +113,29 @@ export const useWeb3Modal = () => {
     uiConsole('logged out');
   };
 
+  const manageSigner = async (provider: IProvider) => {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const providerX = new ethers.CloudflareProvider();
+    const signer = providerX.getSigner();
+    // const providerX = new ethers.providers.Web3Provider(window.ethereum); // source code
+    // const signer = await providerX.getSigner();
+    // store.update({ signer: signer });
+    // const ethersProvider = new ethers.BrowserProvider(web3auth.provider);
+    // const ethSigner = ethersProvider.getSigner();
+    if (!store.signer) {
+      // const smartAccountSigner = await providerToSmartAccountSigner(provider as EIP1193Provider<''>);
+      store.update({ signer: providerX });
+    }
+  };
+
   const setDetails = async () => {
     if (!provider) {
       uiConsole('provider not initialized yet');
       return;
     }
 
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const providerX = new ethers.BrowserProvider(window.ethereum);
-    // const providerX = new ethers.providers.Web3Provider(window.ethereum); // source code
-    const signer = await providerX.getSigner();
-    store.update({ signer: signer });
-    // const ethersProvider = new ethers.BrowserProvider(web3auth.provider);
-    // const ethSigner = ethersProvider.getSigner();
-
-    // await getBalance();
     // IMP START - Get User Information
+    manageSigner(provider);
     try {
       const user = await web3auth.getUserInfo();
       const address = await RPC.getAccounts(provider);

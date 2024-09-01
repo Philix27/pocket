@@ -1,6 +1,6 @@
 'use client';
 
-import { useWeb3Modal } from '../lib/hooks/useWeb3Auth';
+import { useWeb3Modal } from '@/lib';
 
 export default function App() {
   const {} = useWeb3Modal();

@@ -1,9 +1,6 @@
 'use client';
 
-import { AppButton } from '@/comps';
 import { XMTPProvider } from '@xmtp/react-sdk';
-import { useWeb3Modal, AppStores } from '@/lib';
-import { useXm } from './xs';
 import CoreComp from './Core';
 
 export default function AppX() {

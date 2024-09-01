@@ -23,7 +23,7 @@ export interface ISlice {
   xmtpClient?: Client<any> | null;
   isLoggedIn?: boolean;
   web3Wallet?: string;
-  signer?: ethers.JsonRpcSigner | null;
+  signer?: any | null;
   etherKey?: string | null;
   etherWallet?: ethers.Wallet | null;
   showChat?: boolean;

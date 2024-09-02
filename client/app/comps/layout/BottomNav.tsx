@@ -59,8 +59,8 @@ export function BottomNav() {
     >
       <div
         className={`
-      flex justify-around items-center
-      py-2 w-[70%]
+      flex justify-evenly items-center
+      py-2 w-full 
       `}
       >
         {navItems.map(({ Icon, title, link, onClick }, i) => {

@@ -4,8 +4,8 @@ import {
   reactionContentTypeConfig,
   replyContentTypeConfig,
 } from '@xmtp/react-sdk';
-import { WalletProvider } from '../lib/contexts/WalletContext';
-import { App } from '../components/App';
+import { WalletProvider } from '@/lib';
+import { App } from '@/components/App';
 
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 

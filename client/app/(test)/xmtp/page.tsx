@@ -1,7 +1,7 @@
 'use client';
 
-import { App } from '../..';
+import { AppController } from './controllers/AppController';
 
 export default function Home() {
-  return <App />;
+  return <AppController />;
 }

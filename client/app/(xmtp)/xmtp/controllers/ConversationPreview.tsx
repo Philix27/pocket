@@ -1,10 +1,8 @@
-import type {
-  CachedConversation,
-  CachedMessage,
-  ConsentState,
-} from "@xmtp/react-sdk";
-import { useCallback } from "react";
-import { ConversationPreviewCard } from "../components/library/ConversationPreviewCard";
+'use client';
+import { ConversationPreviewCard } from '@/components/library/ConversationPreviewCard';
+import type { CachedConversation, CachedMessage, ConsentState } from '@xmtp/react-sdk';
+import { useCallback } from 'react';
+// import { ConversationPreviewCard } from "../components/library/ConversationPreviewCard";
 
 type ConversationPreviewProps = {
   /**

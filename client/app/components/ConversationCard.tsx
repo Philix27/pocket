@@ -1,6 +1,7 @@
-import type { CachedConversation } from "@xmtp/react-sdk";
-import { useLastMessage, useConsent } from "@xmtp/react-sdk";
-import { ConversationPreview } from "../controllers/ConversationPreview";
+import { ConversationPreview } from '@/(xmtp)/xmtp/controllers/ConversationPreview';
+import type { CachedConversation } from '@xmtp/react-sdk';
+import { useLastMessage, useConsent } from '@xmtp/react-sdk';
+// import { ConversationPreview } from "../controllers/ConversationPreview";
 
 type ConversationCardProps = {
   conversation: CachedConversation;
@@ -23,9 +24,7 @@ export const ConversationCard: React.FC<ConversationCardProps> = ({
       isSelected={isSelected}
       onClick={onConversationClick}
       lastMessage={lastMessage}
-      consentState={
-        entries[conversation.peerAddress]?.permissionType ?? "unknown"
-      }
+      consentState={entries[conversation.peerAddress]?.permissionType ?? 'unknown'}
     />
   );
 };

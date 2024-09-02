@@ -1,9 +1,9 @@
-import { LinkIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { useClient } from "@xmtp/react-sdk";
-import { useCallback } from "react";
-import { useWalletClient } from "wagmi";
-import { Notification } from "./Notification";
-import { Button } from "./library/Button";
+import { LinkIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { Signer, useClient } from '@xmtp/react-sdk';
+import { useCallback } from 'react';
+import { useWalletClient } from 'wagmi';
+import { Notification } from './Notification';
+import { Button } from './library/Button';
 
 type XMTPConnectButtonProps = {
   label: string;
@@ -15,9 +15,9 @@ const XMTPConnectButton: React.FC<XMTPConnectButtonProps> = ({ label }) => {
 
   const handleConnect = useCallback(() => {
     void initialize({
-      signer: walletClient,
+      signer: walletClient as unknown as Signer,
       options: {
-        env: "dev",
+        env: 'dev',
       },
     });
   }, [initialize, walletClient]);
@@ -33,7 +33,8 @@ export const XMTPConnect: React.FC = () => {
       <Notification
         icon={<ExclamationTriangleIcon />}
         title="Could not connect to XMTP"
-        cta={<XMTPConnectButton label="Try again" />}>
+        cta={<XMTPConnectButton label="Try again" />}
+      >
         Something went wrong
       </Notification>
     );
@@ -48,10 +49,7 @@ export const XMTPConnect: React.FC = () => {
   }
 
   return (
-    <Notification
-      icon={<LinkIcon />}
-      title="XMTP not connected"
-      cta={<XMTPConnectButton label="Connect" />}>
+    <Notification icon={<LinkIcon />} title="XMTP not connected" cta={<XMTPConnectButton label="Connect" />}>
       Connect to XMTP to continue
     </Notification>
   );

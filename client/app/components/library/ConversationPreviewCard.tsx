@@ -1,15 +1,12 @@
-import type { KeyboardEvent } from "react";
-import { useCallback } from "react";
-import { formatDistanceToNowStrict } from "date-fns";
-import { getAttachment, useConsent } from "@xmtp/react-sdk";
-import type {
-  ConsentState,
-  CachedConversation,
-  CachedMessage,
-} from "@xmtp/react-sdk";
-import { Avatar } from "./Avatar";
-import styles from "./ConversationPreviewCard.module.css";
-import { shortAddress } from "../../lib/utils/shortAddress";
+'use client';
+import type { KeyboardEvent } from 'react';
+import { useCallback } from 'react';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { getAttachment, useConsent } from '@xmtp/react-sdk';
+import type { ConsentState, CachedConversation, CachedMessage } from '@xmtp/react-sdk';
+import { Avatar } from './Avatar';
+import styles from './ConversationPreviewCard.module.css';
+import { shortAddress } from '../../lib/utils/shortAddress';
 
 type ConversationPreviewCardProps = {
   /**
@@ -31,26 +28,30 @@ type ConversationPreviewCardProps = {
   consentState: ConsentState;
 };
 
-export const ConversationPreviewCard: React.FC<
-  ConversationPreviewCardProps
-> = ({ conversation, onClick, isSelected, lastMessage, consentState }) => {
+export const ConversationPreviewCard: React.FC<ConversationPreviewCardProps> = ({
+  conversation,
+  onClick,
+  isSelected,
+  lastMessage,
+  consentState,
+}) => {
   const { allow, deny } = useConsent();
   const attachment = lastMessage ? getAttachment(lastMessage) : undefined;
   let content: any;
   if (attachment) {
     content = attachment.filename;
-  } else if (typeof lastMessage?.content === "string") {
+  } else if (typeof lastMessage?.content === 'string') {
     content = lastMessage.content;
   } else if (lastMessage?.contentFallback) {
     content = lastMessage.contentFallback;
   }
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (event.key === "Enter") {
+      if (event.key === 'Enter') {
         onClick?.(conversation);
       }
     },
-    [conversation, onClick],
+    [conversation, onClick]
   );
 
   const handleClick = useCallback(() => {
@@ -65,48 +66,45 @@ export const ConversationPreviewCard: React.FC<
     await deny([conversation.peerAddress]);
   }, [deny, conversation.peerAddress]);
 
-  let consentStyle = "";
-  if (consentState === "allowed") {
+  let consentStyle = '';
+  if (consentState === 'allowed') {
     consentStyle = styles.allow;
-  } else if (consentState === "denied") {
+  } else if (consentState === 'denied') {
     consentStyle = styles.deny;
   }
 
   return (
     <div
-      className={`${styles.wrapper} ${isSelected ? styles.selected : ""}`}
+      className={`${styles.wrapper} ${isSelected ? styles.selected : ''}`}
       role="button"
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
       <Avatar address={conversation.peerAddress} />
       <div className={styles.element}>
-        <div className={styles.address}>
-          {shortAddress(conversation.peerAddress)}
-        </div>
+        <div className={styles.address}>{shortAddress(conversation.peerAddress)}</div>
         <div className={styles.message}>{content}</div>
       </div>
       <div className={styles.extra}>
         <div className={styles.time}>
-          {lastMessage?.sentAt &&
-            `${formatDistanceToNowStrict(lastMessage.sentAt)} ago`}
+          {lastMessage?.sentAt && `${formatDistanceToNowStrict(lastMessage.sentAt)} ago`}
         </div>
-        <div className={`${styles.consent} ${consentStyle}`}>
-          {consentState}
-        </div>
+        <div className={`${styles.consent} ${consentStyle}`}>{consentState}</div>
         <div className={`${styles.actions}`}>
           <div
             tabIndex={0}
             role="button"
             className={`${styles.action}`}
             onKeyDown={(e) => {
-              if (e.key === "Enter") {
+              if (e.key === 'Enter') {
                 void handleAllow();
               }
             }}
             onClick={() => {
               void handleAllow();
-            }}>
+            }}
+          >
             Allow
           </div>
           <div
@@ -114,13 +112,14 @@ export const ConversationPreviewCard: React.FC<
             tabIndex={0}
             role="button"
             onKeyDown={(e) => {
-              if (e.key === "Enter") {
+              if (e.key === 'Enter') {
                 void handleDeny();
               }
             }}
             onClick={() => {
               void handleDeny();
-            }}>
+            }}
+          >
             Deny
           </div>
         </div>

@@ -15,6 +15,8 @@ export interface NavItem {
 }
 
 export const MarketingNavItems: NavItem[] = [
-  { title: 'Blogs', href: AppPages.blogs },
-  { title: 'FAQ', href: AppPages.faq },
+  { title: 'FAQ', href: '/#' },
+  { title: 'Privacy Policy', href: '/#' },
+  { title: 'Terms of Service', href: '/#' },
+  { title: 'About Us', href: '/#' },
 ];

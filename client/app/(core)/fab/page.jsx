@@ -15,6 +15,7 @@ export default function FloatingInbox({
   isContained = false,
   isConsent = false,
 }) {
+  
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isOnNetwork, setIsOnNetwork] = useState(false);

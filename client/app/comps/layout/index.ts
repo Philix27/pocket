@@ -1,4 +1,5 @@
 export * from "./Dashboard"
 export * from "./Tabs"
-export * from "./drawer"
-export * from "./navbar"
+export * from "./Drawer"
+export * from "./Navbar"
+export * from "./BottomNav"

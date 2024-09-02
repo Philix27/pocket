@@ -15,17 +15,18 @@ type IRoutes =
   | '/customer-care'
   | '/vendor-chat'
   | '/kyc'
+  | '/settings'
   | '/profile';
 
 export const useAppRouter = () => {
   const router = useRouter();
 
-  const go = (props: IRoutes | string) => {
+  const go = (props: IRoutes) => {
     router.push(props);
   };
 
   return {
-    router,
+    ...router,
     go,
   };
 };

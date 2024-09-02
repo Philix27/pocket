@@ -1,16 +1,46 @@
 'use client';
 
 import React from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { IconType } from 'react-icons';
-import { BiSolidChess } from 'react-icons/bi';
 import { MdOutlineSettings } from 'react-icons/md';
-import { FaRegChessKing } from 'react-icons/fa6';
-import { cn } from '@/lib';
+import { cn, useAppRouter } from '@/lib';
+import { IoSwapHorizontal } from 'react-icons/io5';
+import { MdOutlineSavings } from 'react-icons/md';
+import { IoHomeOutline } from 'react-icons/io5';
+
+type INavItem = { title: string; Icon: IconType | IconType; link: string; onClick: VoidFunction };
 
 export function BottomNav() {
-  const router = useRouter();
+  const router = useAppRouter();
   const path = usePathname();
+
+  const navItems: INavItem[] = [
+    {
+      title: 'home',
+      link: '/dashboard',
+      Icon: IoHomeOutline,
+      onClick: () => router.go('/dashboard'),
+    },
+    {
+      title: 'Savings',
+      link: '/savings',
+      Icon: MdOutlineSavings,
+      onClick: () => router.go('/savings'),
+    },
+    {
+      title: 'Swap',
+      link: '/swap',
+      Icon: IoSwapHorizontal,
+      onClick: () => router.go('/swap'),
+    },
+    {
+      title: 'Settings',
+      link: '/settings',
+      Icon: MdOutlineSettings,
+      onClick: () => router.go('/settings'),
+    },
+  ];
 
   function isActive(link: string): boolean {
     if (link === path) {
@@ -33,10 +63,10 @@ export function BottomNav() {
       py-2 w-[70%]
       `}
       >
-        {navItems.map(({ Icon, title, link }, i) => {
+        {navItems.map(({ Icon, title, link, onClick }, i) => {
           return (
             <div
-              onClick={() => router.push(link)}
+              onClick={onClick}
               key={i}
               className={cn(
                 `size-[40px] 
@@ -57,20 +87,3 @@ export function BottomNav() {
     </div>
   );
 }
-const navItems: { title: string; Icon: IconType | IconType; link: string }[] = [
-  {
-    title: 'chess',
-    link: '/chess',
-    Icon: FaRegChessKing,
-  },
-  // {
-  //   title: 'checkers',
-  //   link: '/checkers',
-  //   Icon: BiSolidChess,
-  // },
-  {
-    title: 'Settings',
-    link: '/settings',
-    Icon: MdOutlineSettings,
-  },
-];

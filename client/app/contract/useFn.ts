@@ -1,5 +1,5 @@
-import { AppContract } from '@/web3';
 import { useReadContract } from 'wagmi';
+import { AppContract } from './const';
 
 export const useGetBalance = (gameId: number) => {
   const result = useReadContract({

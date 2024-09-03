@@ -19,9 +19,7 @@ export default function WithdrawalSection() {
   }
 
   return (
-    <div className={`mt-[70px] px-6 md:max-w-[60%]`}>
-      <h1 className={`my-4 text-xl font-bold text-primary`}>Withdrawal</h1>
-
+    <div className={`px-6 md:max-w-[60%]`}>
       <div className={`mt-2`}>
         <div className={`flex items-start justify-between`}>
           <p>Wallet Address:</p>

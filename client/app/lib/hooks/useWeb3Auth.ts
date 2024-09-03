@@ -14,6 +14,7 @@ import RPC from '../auth/ethersRPC';
 import { AppStores } from '../zustand';
 import { EIP1193Provider } from 'web3';
 import { ethers } from 'ethers';
+import { useAppRouter } from './useRouter';
 // import { ethers } from 'ethers';
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
@@ -67,6 +68,7 @@ export const useWeb3Modal = () => {
   const [address, setAddress] = useState('');
   const [userInfo, setUserInfo] = useState<Partial<UserInfo>>();
   const store = AppStores.useChat();
+  const router = useAppRouter();
 
   useEffect(() => {
     const init = async () => {
@@ -101,16 +103,20 @@ export const useWeb3Modal = () => {
       // IMP END - Login
       setProvider(web3authProvider);
       setDetails();
-      store.update({ isLoggedIn: true });
+
+      const user = await web3auth.getUserInfo();
+      store.update({
+        isLoggedIn: true,
+        userInfo: user,
+      });
     } catch (error) {}
   };
 
   const logout = async () => {
-    // IMP START - Logout
     await web3auth.logout();
-    // IMP END - Logout
     setProvider(null);
-    uiConsole('logged out');
+    store.clear();
+    router.push('/');
   };
 
   const manageSigner = async () => {
@@ -130,7 +136,7 @@ export const useWeb3Modal = () => {
     // const ethSigner = ethersProvider.getSigner();
     if (!store.signer) {
       // const smartAccountSigner = await providerToSmartAccountSigner(provider as EIP1193Provider<''>);
-      store.update({ signer: signer });
+      // store.update({ signer: signer });
     }
     return signer;
   };
@@ -151,7 +157,7 @@ export const useWeb3Modal = () => {
       setAddress(address);
       setUserInfo(user);
       setBalance(balance);
-      store.update({ isLoggedIn: true, web3Wallet: address });
+      store.update({ isLoggedIn: true, balance: balance, web3Wallet: address, userInfo: user });
     } catch (e) {
       console.log('user not logged in');
     }

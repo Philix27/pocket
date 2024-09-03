@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { Client, Conversation } from '@xmtp/xmtp-js';
 import { CachedConversation, ContentTypeMetadata } from '@xmtp/react-sdk';
+import { UserInfo } from '@web3auth/base';
 
 export interface ISlice {
   selectedConversation?: {
@@ -29,6 +30,7 @@ export interface ISlice {
   showChat?: boolean;
   isConsent?: boolean;
   isConnectedToXmpt?: boolean;
+  userInfo?: Partial<UserInfo> | null;
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -54,6 +56,7 @@ export const defaultValues: Required<ISlice> = {
   isConnectedToXmpt: false,
   etherKey: null,
   etherWallet: null,
+  userInfo: null
 };
 
 export const useChat = create(

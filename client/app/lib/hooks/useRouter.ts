@@ -11,7 +11,7 @@ type IRoutes =
   | '/docs'
   | '/inbox'
   | '/xmtp'
-  | '/customer-care'
+  | '/support'
   | '/vendor-chat'
   | '/kyc'
   | '/settings'

@@ -4,16 +4,16 @@ import React from 'react';
 import { Navbar, shortenAddress, TextH, TextP } from '@/comps';
 import { IconType } from 'react-icons';
 import { IoPersonOutline } from 'react-icons/io5';
-import { AppStores, cn, useWeb3Modal } from '@/lib';
+import { AppStores, cn, useAppRouter, useWeb3Modal } from '@/lib';
 import { MdEmail, MdSecurity, MdSupportAgent } from 'react-icons/md';
-import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
+import { LuChevronRight } from 'react-icons/lu';
 import { BiLogOut } from 'react-icons/bi';
 import Image from 'next/image';
 
 export default function SettingsPage() {
   const { logout } = useWeb3Modal();
   const store = AppStores.useChat();
-
+  const router = useAppRouter();
   return (
     <>
       <Navbar title={'Profile'} />
@@ -31,7 +31,12 @@ export default function SettingsPage() {
         <TextH v="h5">More</TextH>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
           <RowItem title={'Verification'} subtitle={'KYC verification'} Icon={IoPersonOutline} />
-          <RowItem title={'Support'} subtitle={'Contact Agents'} Icon={MdSupportAgent} />
+          <RowItem
+            title={'Support'}
+            subtitle={'Contact Agents'}
+            Icon={MdSupportAgent}
+            onClick={() => router.go('/support')}
+          />
           <RowItem
             title={'Logout'}
             subtitle={'Disconnect from Pocket Ramp'}
@@ -51,14 +56,15 @@ function InfoRowItem(props: { left: string; right: string; Icon: IconType; color
   return (
     <div className="flex justify-between items-center py-2 border-b border-accent">
       <TextP className={'text-muted'}>{props.left} </TextP>
-      <TextP className='font-semibold'>{props.right}</TextP>
+      <TextP className="font-semibold">{props.right}</TextP>
     </div>
   );
 }
+
 function RowItem(props: { title: string; subtitle: string; Icon: IconType; color?: string; onClick?: VoidFunction }) {
   const { Icon } = props;
   return (
-    <div className="flex justify-between items-center py-2 border-b border-accent">
+    <div className="flex justify-between items-center py-2 border-b border-accent" onClick={() => props.onClick}>
       <div className="flex items-center justify-center">
         <Icon size={20} className={cn('text-primary mr-3')} />
         <div>

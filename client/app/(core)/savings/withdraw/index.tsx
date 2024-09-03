@@ -3,8 +3,6 @@
 import { Suspense } from 'react';
 import { Spinner } from '@/comps';
 // import { useMain } from '@/contract';
-
-import SavingsCards from './Savings';
 import { AppStores } from '@/lib';
 // https://github.com/Philix27/SupaSave
 export default function WithdrawalSection() {

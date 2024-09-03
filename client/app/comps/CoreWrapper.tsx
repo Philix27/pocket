@@ -9,15 +9,14 @@ export function CoreLayoutWrapper(props: { children: ReactNode }) {
   const router = useRouter();
   const store = AppStores.useSettingsStore();
 
-  if (!isLoggedIn) {
-    router.push('/');
-  }
+  //   if (!isLoggedIn) {
+  //     router.push('/');
+  //   }
 
   return (
     <div className="h-screen ">
-      <div className="min-h-[calc(100vh-250px)]">
+      <div className="min-h-[calc(100vh-250px)] mt-[50px]">
         {props.children}
-
         <BottomNav />
         {store.drawerIsOpen && <Drawer />}
       </div>

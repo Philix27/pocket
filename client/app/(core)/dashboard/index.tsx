@@ -1,17 +1,19 @@
 'use client';
-import { Navbar, TextH, TextP } from '@/comps';
+import { Navbar, TextH, } from '@/comps';
 import React from 'react';
-import CreateGiftCard from './create';
-import { CardsCreationHistory } from './history';
+
+import QuickActions from './QuickActions';
+import TransactionHistory from './transactions';
+import { IoNotifications } from 'react-icons/io5';
 
 export default function DashboardScreen() {
   return (
     <>
-      <Navbar title={'Pocket Ramp'} />
-      <div className="px-8 py-4 mb-10">
-        <TextP v={'p5'}>Send a gift card to your loved ones</TextP>
-        {/* <CreateGiftCard />
-        <CardsCreationHistory /> */}
+      <Navbar title={'Pocket Ramp'} icon={IoNotifications} onIconClick={() => {}} />
+      <div className="px-8 py-4 mt-12 mb-10">
+        <TextH className="text-3xl font-bold">$300,000</TextH>
+        <QuickActions />
+        <TransactionHistory />
       </div>
     </>
   );

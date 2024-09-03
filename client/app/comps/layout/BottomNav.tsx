@@ -30,9 +30,9 @@ export function BottomNav() {
     },
     {
       title: 'Swap',
-      link: '/swap',
+      link: '/fx',
       Icon: IoSwapHorizontal,
-      onClick: () => router.go('/swap'),
+      onClick: () => router.go('/fx'),
     },
     {
       title: 'Settings',

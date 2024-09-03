@@ -1,31 +1,32 @@
 'use client';
 import { Navbar, Tabs, TextH, TextP } from '@/comps';
 import React, { useState } from 'react';
-import SavingsList from './list';
-import CreateLockedSavings from './create';
+import OrdersComp from './orders';
+import P2pComp from './p2p';
+import { IoSwapHorizontal } from 'react-icons/io5';
 
-export default function Savings() {
+export default function SwapPage() {
   const [isSwap, setIsSwap] = useState(true);
 
   return (
     <>
-      <Navbar title={'Savings'} />
+      <Navbar title={'Exchange'} icon={IoSwapHorizontal} onIconClick={() => {}} />
       <div className="mb-10">
         <Tabs
           data={[
             {
-              title: 'Create',
+              title: 'Orders',
               isActive: isSwap,
               onClick: () => setIsSwap(true),
             },
             {
-              title: 'History',
+              title: 'P2P',
               isActive: !isSwap,
               onClick: () => setIsSwap(false),
             },
           ]}
         />
-        {isSwap ? <SavingsList /> : <CreateLockedSavings />}
+        {isSwap ? <OrdersComp /> : <P2pComp />}
       </div>
     </>
   );

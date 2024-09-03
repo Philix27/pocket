@@ -1,12 +1,13 @@
 'use client';
-import { Navbar, Tabs, TextH, TextP } from '@/comps';
+import { Navbar, Tabs } from '@/comps';
 import React, { useState } from 'react';
 import OrdersComp from './orders';
 import P2pComp from './p2p';
 import { IoSwapHorizontal } from 'react-icons/io5';
+import CreateAdsSection from './deposit';
 
 export default function SwapPage() {
-  const [isSwap, setIsSwap] = useState(true);
+  const [activeTab, setActiveTap] = useState<'CREATE' | 'P2P' | 'ORDERS'>('ORDERS');
 
   return (
     <>
@@ -16,17 +17,24 @@ export default function SwapPage() {
           data={[
             {
               title: 'Orders',
-              isActive: isSwap,
-              onClick: () => setIsSwap(true),
+              isActive: activeTab === 'ORDERS',
+              onClick: () => setActiveTap('ORDERS'),
+            },
+            {
+              title: 'Create',
+              isActive: activeTab === 'CREATE',
+              onClick: () => setActiveTap('CREATE'),
             },
             {
               title: 'P2P',
-              isActive: !isSwap,
-              onClick: () => setIsSwap(false),
+              isActive: activeTab === 'P2P',
+              onClick: () => setActiveTap('P2P'),
             },
           ]}
         />
-        {isSwap ? <OrdersComp /> : <P2pComp />}
+        {activeTab === 'ORDERS' && <OrdersComp />}
+        {activeTab === 'P2P' && <P2pComp />}
+        {activeTab === 'CREATE' && <CreateAdsSection />}
       </div>
     </>
   );

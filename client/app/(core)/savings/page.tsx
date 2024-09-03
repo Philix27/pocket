@@ -2,7 +2,7 @@
 import { Navbar, Tabs } from '@/comps';
 import React, { useState } from 'react';
 import DepositSection from './deposit';
-import WithdrawalSection from './withdrawal';
+import WithdrawalSection from './withdraw';
 
 export default function Savings() {
   const [IsDeposit, setIsDeposit] = useState(true);

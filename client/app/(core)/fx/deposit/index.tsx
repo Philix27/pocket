@@ -10,7 +10,7 @@ import { AppStores } from '@/lib';
 import { useDeposit } from './useDeposit';
 import { AppButton, AppTextInput } from '@/comps';
 
-export default function DepositSection() {
+export default function CreateAdsSection() {
   const {
     register,
     handleSubmit,

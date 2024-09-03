@@ -60,14 +60,12 @@ export function AppTextInput<T extends FieldValues>(props: {
               <IoEyeOutline
                 onClick={() => {
                   setToggle(false);
-                  console.log('Clicked on');
                 }}
               />
             ) : (
               <IoEyeOffOutline
                 onClick={() => {
                   setToggle(true);
-                  console.log('Clicked off');
                 }}
               />
             ))}

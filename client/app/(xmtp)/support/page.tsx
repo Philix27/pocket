@@ -6,10 +6,9 @@ export default function SupportPage() {
   return (
     <>
       <Navbar title="Support" isBack />
-
-      <div className={`mt-6 px-4`}>
+      <div className={`mt-[65px] px-4`}>
         <div className={`w-full flex items-center justify-between`}>
-          <div className={`rounded bg-card px-2 pb-2 max-w-[70%] w-fit`}>
+          <div className={`rounded bg-accent px-2 pb-2 max-w-[70%] w-fit`}>
             <div className={`flex items-center justify-center`}>
               <TextP className={``}>
                 How are you doing and your family, hope everyone is fine? what about the food

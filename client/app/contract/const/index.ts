@@ -13,4 +13,7 @@ export const AppContract = {
   address: isTestnet ? TESTNET_CONTRACT_ADDRESS : MAINNET_CONTRACT_ADDRESS,
   abi: AppContractAbi,
   cusdTokenAddress: TokenAddress.CUSD_TESTNET,
+  supportAddress: '',
+  escrowContractAddress: '',
+  savingsContractAddress: '',
 };

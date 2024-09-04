@@ -3,11 +3,9 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import { IconType } from 'react-icons';
-import { MdOutlineSettings } from 'react-icons/md';
 import { cn, useAppRouter } from '@/lib';
-import { IoSwapHorizontal } from 'react-icons/io5';
-import { MdOutlineSavings } from 'react-icons/md';
-import { IoHomeOutline } from 'react-icons/io5';
+import { IoSwapHorizontal, IoHomeOutline } from 'react-icons/io5';
+import { MdOutlineSettings, MdOutlineSavings } from 'react-icons/md';
 
 type INavItem = { title: string; Icon: IconType | IconType; link: string; onClick: VoidFunction };
 

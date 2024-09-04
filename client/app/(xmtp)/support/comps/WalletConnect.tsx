@@ -1,7 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { LinkIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { Notification } from './Notification';
-import { useWallet } from '../lib/hooks/useWallet';
+import { useWallet } from '@/lib';
 
 export const WalletConnect: React.FC = () => {
   const { error, isLoading } = useWallet();

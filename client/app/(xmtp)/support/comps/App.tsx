@@ -1,6 +1,6 @@
 import './App.css';
 import { useClient } from '@xmtp/react-sdk';
-import { useWallet } from '../lib/hooks/useWallet';
+import { useWallet } from '@/lib';
 import { XMTPConnect } from './XMTPConnect';
 import { WalletConnect } from './WalletConnect';
 import { Inbox } from './Inbox';

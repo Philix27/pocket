@@ -5,7 +5,7 @@ import { ArrowRightOnRectangleIcon, PlusCircleIcon } from '@heroicons/react/24/o
 import { Conversations } from './Conversations';
 import { Messages } from './Messages';
 import { NewMessage } from './NewMessage';
-import { useWallet } from '../lib/hooks/useWallet';
+import { useWallet } from '@/lib';
 import { NoSelectedConversationNotification } from './NoSelectedConversationNotification';
 import { Button } from './library/Button';
 

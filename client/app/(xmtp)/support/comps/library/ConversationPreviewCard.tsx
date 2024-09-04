@@ -6,7 +6,7 @@ import { getAttachment, useConsent } from '@xmtp/react-sdk';
 import type { ConsentState, CachedConversation, CachedMessage } from '@xmtp/react-sdk';
 import { Avatar } from './Avatar';
 import styles from './ConversationPreviewCard.module.css';
-import { shortAddress } from '../../lib/utils/shortAddress';
+import { shortAddress } from '@/lib';
 
 type ConversationPreviewCardProps = {
   /**

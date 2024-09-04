@@ -1,8 +1,8 @@
 'use client';
 
 import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { celo, celoAlfajores, mainnet, polygon, sepolia } from '@wagmi/core/chains';
-import { createConfig, http } from '@wagmi/core';
+import { mainnet } from '@wagmi/core/chains';
+import { http } from '@wagmi/core';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
@@ -14,26 +14,26 @@ import {
   replyContentTypeConfig,
 } from '@xmtp/react-sdk';
 import { WalletProvider } from '@/lib';
-import Web3AuthConnectorInstance from './web3Connector';
+import { App } from '@/components/App';
 
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 
-const configX = createConfig({
-  chains: [mainnet, sepolia, celoAlfajores],
+// ! Wagmi Connection
+const config = getDefaultConfig({
+  appName: 'XMTP Next.js Example',
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  chains: [mainnet],
   transports: {
     [mainnet.id]: http(),
-    [sepolia.id]: http(),
-    [celoAlfajores.id]: http(),
   },
   ssr: true,
-  connectors: [Web3AuthConnectorInstance([mainnet, sepolia, celoAlfajores])],
 });
 
 const queryClient = new QueryClient();
 
 export default function AppProvider(props: { children: ReactNode }) {
   return (
-    <WagmiProvider config={configX}>
+    <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
           <WalletProvider>

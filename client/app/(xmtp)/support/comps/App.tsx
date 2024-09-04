@@ -1,14 +1,15 @@
-import './App.css';
+'use client';
 import { useClient } from '@xmtp/react-sdk';
-import { useWallet } from '@/lib';
-import { XMTPConnect } from './XMTPConnect';
+import './App.css';
+import { useEffect } from 'react';
+import { use3Wagmi } from '@/(xmtp)/xp/use3Wagmi';
 import { WalletConnect } from './WalletConnect';
 import { Inbox } from './Inbox';
-import { useEffect } from 'react';
+import { XMTPConnect } from './XMTPConnect';
 
 export const App = () => {
-  const { isConnected, address } = useWallet();
   const { client, disconnect } = useClient();
+  const { isConnected, address } = use3Wagmi();
 
   // disconnect XMTP client when the wallet changes
   useEffect(() => {

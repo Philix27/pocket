@@ -1,9 +1,10 @@
 import { LinkIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { Signer, useClient } from '@xmtp/react-sdk';
 import { useCallback } from 'react';
-import { useWalletClient } from 'wagmi';
 import { Notification } from './Notification';
-import { Button } from './library/Button';
+import { BiChat } from 'react-icons/bi';
+import { AppButton } from '@/comps';
+import { useWalletClient } from 'wagmi';
 
 type XMTPConnectButtonProps = {
   label: string;
@@ -14,15 +15,19 @@ const XMTPConnectButton: React.FC<XMTPConnectButtonProps> = ({ label }) => {
   const { data: walletClient } = useWalletClient();
 
   const handleConnect = useCallback(() => {
-    void initialize({
-      signer: walletClient as unknown as Signer,
-      options: {
-        env: 'dev',
-      },
-    });
+    try {
+      void initialize({
+        signer: walletClient as unknown as Signer,
+        options: {
+          env: 'dev',
+        },
+      });
+    } catch (error) {
+      console.log('initErr', error);
+    }
   }, [initialize, walletClient]);
 
-  return <Button onClick={handleConnect}>{label}</Button>;
+  return <AppButton onClick={handleConnect}>{label}</AppButton>;
 };
 
 export const XMTPConnect: React.FC = () => {
@@ -49,8 +54,12 @@ export const XMTPConnect: React.FC = () => {
   }
 
   return (
-    <Notification icon={<LinkIcon />} title="XMTP not connected" cta={<XMTPConnectButton label="Connect" />}>
-      Connect to XMTP to continue
+    <Notification
+      icon={<BiChat size={24} />}
+      title="Not connected with an agent"
+      cta={<XMTPConnectButton label="Connect & Get started" />}
+    >
+      Welcome
     </Notification>
   );
 };

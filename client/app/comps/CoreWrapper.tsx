@@ -15,7 +15,7 @@ export function CoreLayoutWrapper(props: { children: ReactNode }) {
 
   return (
     <div className="h-screen ">
-      <div className="min-h-[calc(100vh-250px)] mt-[50px]">
+      <div className="min-h-[calc(100vh-250px)] mt-[60px]">
         {props.children}
         <BottomNav />
         {store.drawerIsOpen && <Drawer />}

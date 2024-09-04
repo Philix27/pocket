@@ -1,13 +1,12 @@
 import './Inbox.css';
 import { useCallback, useEffect, useState } from 'react';
 import { useConsent, type CachedConversation } from '@xmtp/react-sdk';
-import { ArrowRightOnRectangleIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
 import { Conversations } from './Conversations';
 import { Messages } from './Messages';
 import { NewMessage } from './NewMessage';
 import { useWallet } from '@/lib';
 import { NoSelectedConversationNotification } from './NoSelectedConversationNotification';
-import { Button } from './library/Button';
+import { AppButton } from '@/comps';
 
 export const Inbox: React.FC = () => {
   const { disconnect } = useWallet();
@@ -39,24 +38,23 @@ export const Inbox: React.FC = () => {
   }, []);
 
   return (
-    <div className="Inbox">
-      <div className="InboxHeader">
-        <div className="InboxHeader__xmtp">
-          <img src="/xmtp-icon.png" alt="XMTP logo" width="32" />
-        </div>
-        <div className="InboxHeader__actions">
-          <Button icon={<PlusCircleIcon width={24} />} onClick={handleStartNewConversation}>
+    <div className="flex flex-col h-screen mb-[100px]">
+      <div className="flex flex-shrink-0">
+        <div className="flex items-center justify-between w-full">
+          <AppButton className="fit" onClick={handleStartNewConversation}>
             New message
-          </Button>
-          <Button secondary onClick={handleDisconnect} icon={<ArrowRightOnRectangleIcon width={24} />}>
+          </AppButton>
+          <AppButton className="fit" variant={'destructive'} onClick={handleDisconnect}>
             Disconnect
-          </Button>
+          </AppButton>
         </div>
       </div>
+
       <div className="InboxConversations">
-        <div className="InboxConversations__list">
+        <div className="overflow-y-auto flex">
           <Conversations onConversationClick={handleConversationClick} selectedConversation={selectedConversation} />
         </div>
+        
         <div className="InboxConversations__messages">
           {isNewMessage ? (
             <NewMessage onSuccess={handleStartNewConversationSuccess} />

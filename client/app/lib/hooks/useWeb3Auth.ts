@@ -3,7 +3,7 @@
 
 'use client';
 
-import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK, UserInfo, WALLET_ADAPTERS } from '@web3auth/base';
+import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK, UserInfo } from '@web3auth/base';
 import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
 // IMP START - Quick Start
 import { Web3Auth } from '@web3auth/modal';
@@ -25,30 +25,30 @@ const clientId = 'BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw
 // IMP END - Dashboard Registration
 
 // IMP START - Chain Config
-const chainConfig = {
-  chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: '0x1',
-  rpcTarget: 'https://rpc.ankr.com/eth',
-  // Avoid using public rpcTarget in production.
-  // Use services like Infura, Quicknode etc
-  displayName: 'Ethereum Mainnet',
-  blockExplorerUrl: 'https://etherscan.io',
-  ticker: 'ETH',
-  tickerName: 'Ethereum',
-  logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
-};
 // const chainConfig = {
 //   chainNamespace: CHAIN_NAMESPACES.EIP155,
-//   chainId: '0xaef3', // hex of 44787, celo testnet
-//   rpcTarget: 'https://rpc.ankr.com/celo',
+//   chainId: '0x1',
+//   rpcTarget: 'https://rpc.ankr.com/eth',
 //   // Avoid using public rpcTarget in production.
 //   // Use services like Infura, Quicknode etc
-//   displayName: 'Celo Testnet',
-//   blockExplorerUrl: 'https://alfajores-blockscout.celo-testnet.org',
-//   ticker: 'CELO',
-//   tickerName: 'CELO',
-//   logo: 'https://cryptologos.cc/logos/celo-celo-logo.png',
+//   displayName: 'Ethereum Mainnet',
+//   blockExplorerUrl: 'https://etherscan.io',
+//   ticker: 'ETH',
+//   tickerName: 'Ethereum',
+//   logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
 // };
+const chainConfig = {
+  chainNamespace: CHAIN_NAMESPACES.EIP155,
+  chainId: '0xaef3', // hex of 44787, celo testnet
+  rpcTarget: 'https://rpc.ankr.com/celo',
+  // Avoid using public rpcTarget in production.
+  // Use services like Infura, Quicknode etc
+  displayName: 'Celo Testnet',
+  blockExplorerUrl: 'https://alfajores-blockscout.celo-testnet.org',
+  ticker: 'CELO',
+  tickerName: 'CELO',
+  logo: 'https://cryptologos.cc/logos/celo-celo-logo.png',
+};
 // IMP END - Chain Config
 
 // IMP START - SDK Initialization
@@ -66,6 +66,7 @@ export const useWeb3Modal = () => {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [balance, setBalance] = useState('');
   const [address, setAddress] = useState('');
+  const [signer, setSigner] = useState<ethers.JsonRpcSigner>();
   const [userInfo, setUserInfo] = useState<Partial<UserInfo>>();
   const store = AppStores.useChat();
   const router = useAppRouter();
@@ -126,7 +127,8 @@ export const useWeb3Modal = () => {
     // await window.ethereum.request({ method: 'eth_requestAccounts' });
     const ethersProvider = new ethers.BrowserProvider(provider);
     const signer = await ethersProvider.getSigner();
-
+    console.log('manageSigner:', signer);
+    setSigner(signer);
     // const providerX = new ethers.CloudflareProvider();
     // const signer = providerX.getSigner();
     // const providerX = new ethers.providers.Web3Provider(window.ethereum); // source code
@@ -201,6 +203,7 @@ export const useWeb3Modal = () => {
     logout,
     login,
     balance,
+    signer,
     isLoggedIn: web3auth.connected,
     status: web3auth.status,
     manageSigner,

@@ -34,7 +34,7 @@
 .InboxConversations__list {
   overflow-y: auto;
   flex: 0 0 28rem;
-  background-color: #eee;
+  /* background-color: #eee; */
 }
 
 .InboxConversations__messages {

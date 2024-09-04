@@ -73,7 +73,7 @@ export const NewMessage: React.FC<NewMessageProps> = ({ onSuccess }) => {
   }
 
   return (
-    <>
+    <div>
       <AddressInput
         ref={inputRef}
         subtext={subtext}
@@ -91,6 +91,6 @@ export const NewMessage: React.FC<NewMessageProps> = ({ onSuccess }) => {
           onSubmit={handleStartConversation}
         />
       </div>
-    </>
+    </div>
   );
 };

@@ -1,9 +1,7 @@
 import './Inbox.css';
 import { useCallback, useEffect, useState } from 'react';
-import { useConsent, type CachedConversation } from '@xmtp/react-sdk';
-import { Conversations } from './Conversations';
+import { useConsent, useConversations, type CachedConversation } from '@xmtp/react-sdk';
 import { Messages } from './Messages';
-import { NewMessage } from './NewMessage';
 import { useWallet } from '@/lib';
 import { NoSelectedConversationNotification } from './NoSelectedConversationNotification';
 import { AppButton } from '@/comps';
@@ -13,6 +11,7 @@ export const Inbox: React.FC = () => {
   const { loadConsentList } = useConsent();
   const [selectedConversation, setSelectedConversation] = useState<CachedConversation | undefined>(undefined);
   const [isNewMessage, setIsNewMessage] = useState(false);
+  const { conversations, isLoading } = useConversations();
 
   const handleConversationClick = useCallback((convo: CachedConversation) => {
     setSelectedConversation(convo);
@@ -32,9 +31,19 @@ export const Inbox: React.FC = () => {
     disconnect();
   }, [disconnect]);
 
+  const getConvo = () => {
+    // useStreamConversations();
+    const supportConversation = conversations.filter(
+      (conversation) => conversation.peerAddress === '0x20F50b8832f87104853df3FdDA47Dd464f885a49'
+    )[0];
+
+    handleConversationClick!(supportConversation);
+  };
+
   useEffect(() => {
     void loadConsentList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    getConvo();
   }, []);
 
   return (
@@ -51,17 +60,11 @@ export const Inbox: React.FC = () => {
       </div>
 
       <div className="InboxConversations">
-        <div className="overflow-y-auto flex">
-          <Conversations onConversationClick={handleConversationClick} selectedConversation={selectedConversation} />
-        </div>
-        
         <div className="InboxConversations__messages">
-          {isNewMessage ? (
-            <NewMessage onSuccess={handleStartNewConversationSuccess} />
-          ) : selectedConversation ? (
-            <Messages conversation={selectedConversation} />
+          {selectedConversation ? (
+            <Messages conversation={selectedConversation} /> //! Remains
           ) : (
-            <NoSelectedConversationNotification onStartNewConversation={handleStartNewConversation} />
+            <NoSelectedConversationNotification onStartNewConversation={handleStartNewConversation} /> //! remove
           )}
         </div>
       </div>

@@ -4,6 +4,7 @@ import { ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
 import { ConversationList } from './library/ConversationList';
 import { Notification } from './Notification';
 import { ConversationCard } from './ConversationCard';
+import { useEffect } from 'react';
 
 type ConversationsProps = {
   selectedConversation?: CachedConversation;
@@ -18,12 +19,18 @@ const NoConversations: React.FC = () => (
 
 export const Conversations: React.FC<ConversationsProps> = ({ onConversationClick, selectedConversation }) => {
   const { conversations, isLoading } = useConversations();
-  useStreamConversations();
+
+  // useStreamConversations();
+  const supportConversation = conversations.filter(
+    (conversation) => conversation.peerAddress === '0xe6b6aAe8fA2718F5371e30F2ad2eEDa250801BB5'
+  )[0];
+
+  useEffect(() => {
+    onConversationClick!(supportConversation);
+    return () => {};
+  }, []);
 
   function SupportChat() {
-    const supportConversation = conversations.filter(
-      (conversation) => conversation.peerAddress === '0xe6b6aAe8fA2718F5371e30F2ad2eEDa250801BB5'
-    )[0];
     return (
       <ConversationCard
         key={supportConversation.topic}
@@ -33,6 +40,7 @@ export const Conversations: React.FC<ConversationsProps> = ({ onConversationClic
       />
     );
   }
+
   const previews = conversations.map((conversation) => (
     <ConversationCard
       key={conversation.topic}

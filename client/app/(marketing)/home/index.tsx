@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { HeroSection, JumbutronSection, HeroWithImg } from '../_comps';
+import { JumbutronSection, HeroWithImg } from '../_comps';
 import { useAppRouter } from '@/lib';
 import { AppButton, TextH } from '@/comps';
 import { useWeb3Modal } from '@/lib';
@@ -29,10 +29,11 @@ export function HomeSection() {
           </AppButton>
         )}
       </div>
-      <div className="hidden md:block">
-        <HeroSection img={'/bit.jpeg'} title={'Play chess with friends a'} subtitle={``} />
-      </div>
-      <JumbutronSection title={'Fun time'} subtitle="Play chess and have fun with friends and top chess master." />
+
+      <JumbutronSection
+        title={'Lock and Grow'}
+        subtitle="Easy to use off-ramping service. We also help you save your funds"
+      />
     </div>
   );
 }

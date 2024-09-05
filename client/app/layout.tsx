@@ -5,7 +5,7 @@ import './globals.css';
 import { AppProviders, fontSans, cn } from './lib';
 
 export const metadata: Metadata = {
-  title: 'ChatX',
+  title: 'Pocket Ramp',
   description: 'An easy to use off-ramping platform',
 };
 

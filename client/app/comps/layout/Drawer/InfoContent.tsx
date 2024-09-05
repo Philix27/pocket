@@ -1,41 +1,43 @@
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { GoPerson } from 'react-icons/go';
 import { DrawerRow } from './Row';
+import { FaInfo } from 'react-icons/fa';
+import { MdOutlinePrivacyTip, MdQuestionMark } from 'react-icons/md';
+import { IoInformation } from 'react-icons/io5';
 
 export function InfoContent({ router }: { router: AppRouterInstance }) {
   return (
     <div>
       <DrawerRow
         title={'Help'}
-        icon={GoPerson}
+        icon={FaInfo}
         onClick={() => {
           router.push('/docs/HELP');
         }}
       />
       <DrawerRow
         title={'FAQ'}
-        icon={GoPerson}
+        icon={MdQuestionMark}
         onClick={() => {
           router.push('/docs/FAQ');
         }}
       />
       <DrawerRow
         title={'About Us'}
-        icon={GoPerson}
+        icon={IoInformation}
         onClick={() => {
           router.push('/docs/ABOUT');
         }}
       />
       <DrawerRow
         title={'Privacy Policy'}
-        icon={GoPerson}
+        icon={MdOutlinePrivacyTip}
         onClick={() => {
           router.push('/docs/PP');
         }}
       />
       <DrawerRow
         title={'Terms of Service'}
-        icon={GoPerson}
+        icon={FaInfo}
         onClick={() => {
           router.push('/docs/TOS');
         }}

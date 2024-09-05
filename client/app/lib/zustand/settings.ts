@@ -5,8 +5,6 @@ export interface ISlice {
   drawerIsOpen?: boolean;
   isLoud?: boolean;
   homeContent?: 'BUY' | 'SELL' | 'NONE';
-  movesView?: 'FULL' | 'WHITE' | 'BLACK' | 'CHAT';
-  settingsView?: 'PROFILE' | 'CHESS' | 'CHECKERS';
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -17,10 +15,7 @@ export interface ISliceUpdate extends Required<ISlice> {
 export const defaultValues: Required<ISlice> = {
   drawerIsOpen: false,
   homeContent: 'NONE',
-  movesView: 'FULL',
-  settingsView: 'PROFILE',
   isLoud: true,
- 
 };
 
 export const useSettingsStore = create(

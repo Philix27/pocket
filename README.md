@@ -1,59 +1,70 @@
-![banner](./assets/landing.png)
+# Pocket Ramp
 
-# Board Masters
-This is a simple multiplayer chess game. We aim the solve the challenges of participating in 
-various chess tournament and also provide a platform where friends can come together and play 
-games.
+![banner](./assets/landing.jpg)
 
-## Features and Roadmap
-    [] Multiplayer
-    [] Stake matches using cryptocurrencies
-    [] Invite friends
-    [] Play with AI
 
-## Structure of Repository
+## Short Description
+An off Ramping platform
+## Project Description
 
-This project uses Turbo-repo for management of the various apps and packages. 
-- Apps
-  - mini: which is also the frontend application. 
-  - ws: websocket server running on socket.io
-  - server: http server for handling non-websocket request to the backend
-- Packages
-  - rpc: where the core backend logic takes place. 
-    - service: core logic of the app
-    - rpc: exposes endpoints to the frontend
-    - repository layer: communicates with the database
-  - ui: major frontend reusable components
-  - eslint
-  - tailwind-config
-  - typescript-config
-- Foundary
-  - The smart contract
+Rampage is a platform that aims to simplify the process of off-ramping by providing a simple way to pay for bills and send gift cards which can be used to pay for bills using the cUSD token on Minipay. 
 
-## Technology used
-Frontend: Next.js, Tailwind, Wagmi, Ethers.js, Socket.io-client, WalletConnect
-Backend: Express.js, Hono.js, Socket.io, Ethers.js
-Smart Contract: Foundary
+
+#### Problems
+- Challenges of paying bills and buying digital assets using cryptocurrencies.
+
+#### Solution
+- Provide aa easy way to purchase airtime and data plans for friends and family
+- Pay for utility such as light, GoTv, MyTv subscription using cUSD.
+
+
+### Challenges faced while building
+- Having access to the necessary third party api needed for the utility payments.
+
+## Methodology
+
+This project was built using Next.js on the frontend and Hono.js on the backend. Once a user buys a gift card he is debited and the value of cUSD. On claiming the gift card the specified phone number will be credited the equivalent amount.
+
+
+### Tools & Frameworks used
+- Next.js, React, Wagmi, Solidity, Remix, Typescript
+- Wagmi, Ethers, Viem, WalletConnect
+- Remix
+
+
+### Project Structure
+This is a turbo repo that consist of three main apps.
+- `mini`: This is a mini app designed to be very lightweight and compatible with MiniPay Telegram Mini App.
+- `server`: The backend server running on Hono.js
+- `web`: This is the marketing web app. For Contact Us, Blogs, About Us, Landing page and others
+### Languages
+
+- Typescript, Javascript, Solidity
+
+## How it was made
+
+This project was built using Next.js on the frontend and Hono.js on the backend. When a user creates a gift card of a certain amount for a friend, this friend will be notified and can claim the amount specified on the gift card as airtime. The backend service call mobile vtu platform which then credits the specified phone number provided by the user.
+
 
 #### Run locally
 - Clone the repository from github
 - cd in the folder
 - Run `pnpm install` to install all packages
-- Run `pnpm run dev:mini` to run the frontend server
-- Run `pnpm run dev:server` to run the backend Hono.js server
-- Run `pnpm run dev:ws` to run the websocket server
+- Run `pnpm run dev:mini` to start the Next.js server
+- Run `pnpm run dev:server` to start the Hono.js server
+
+
+#### Live link
+- Visit [App link](https://rampage-mini.vercel.app/)
+- Open the link in your Opera-mini Minipay site testing playground
+
+
 
 ## Links
-- [Live Demo](https://www.youtube.com/)
-- [Video Walk through](https://www.youtube.com/)
-- [Github](https://github.com/Philix27/Board-Masters)
+
+- [Hackathon link](https://build-with-celo-7.hackerearth.com/)
+- [Github link](https://github.com/Philix27/rampage)
+- [Vercel link](https://rampage-mini.vercel.app/)
+- [Video link](https://youtu.be/oDCC7BvNqdI)
 
 
-
-## Roadmap
-
-- [] Basic chess logic
-- [] Use of Socket.io for multiplayer 
-- [] Use of XMTP for in app messaging during chat
-- [] Create rooms for managing various games
-- [] Use of Web3Auth for Authentication of user on the web

@@ -19,7 +19,7 @@ const XMTPConnectButton: React.FC<XMTPConnectButtonProps> = ({ label }) => {
       void initialize({
         signer: walletClient as unknown as Signer,
         options: {
-          env: 'dev',
+          env: 'production',
         },
       });
     } catch (error) {

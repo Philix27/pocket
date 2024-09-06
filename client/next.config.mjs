@@ -13,16 +13,18 @@ const nextConfig = {
 };
 
 import mdx from '@next/mdx';
-// const withMDX = mdx();
-const config = mdx(nextConfig);
+import withPWAInit from '@ducanh2912/next-pwa';
 
-
-import withPWAInit from "@ducanh2912/next-pwa";
+const withMDX = mdx();
+// const config = mdx(nextConfig);
 
 const withPWA = withPWAInit({
-  dest: "public",
+  dest: 'public',
 });
+const config = withPWA(nextConfig);
 
-export default withPWA(config);
+const finalConfig = mdx(config);
+// export default withPWA(config);
 
 // export default config;
+export default finalConfig;

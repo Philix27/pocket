@@ -14,7 +14,10 @@ export function CoreLayoutWrapper(props: { children: ReactNode }) {
   //   }
 
   return (
-    <div className="h-screen overscroll-none bg-background">
+    <div
+      className="h-screen overscroll-none bg-background overflow-y-auto"
+      style={{ WebkitOverflowScrolling: 'touch' }}
+    >
       <div className="min-h-[calc(100vh-250px)] mt-[50px] ">
         {props.children}
         <BottomNav />

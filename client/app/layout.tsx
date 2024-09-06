@@ -12,7 +12,7 @@ const APP_DESCRIPTION = 'Easy swap and p2p exchange';
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
-
+  icons: '/logo.png',
   title: {
     default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,
@@ -57,8 +57,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overscroll-none bg-background">
+    <html lang="en" className="overscroll-none bg-background" style={{ overscrollBehavior: 'none' }}>
       <body
+        style={{ overscrollBehavior: 'none' }}
         className={cn(
           `min-h-screen bg-background overscroll-none 
           font-sans antialiased`,

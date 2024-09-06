@@ -1,6 +1,6 @@
-import { ConversationPreview } from '@/(xmtp)/xmtp/controllers/ConversationPreview';
 import type { CachedConversation } from '@xmtp/react-sdk';
 import { useLastMessage, useConsent } from '@xmtp/react-sdk';
+import { ConversationPreview } from './controllers/ConversationPreview';
 // import { ConversationPreview } from "../controllers/ConversationPreview";
 
 type ConversationCardProps = {

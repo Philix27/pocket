@@ -4,7 +4,7 @@
 
 
 ## Short Description
-An off Ramping platform
+An off Ramping **platform**
 ## Project Description
 
 Rampage is a platform that aims to simplify the process of off-ramping by providing a simple way to pay for bills and send gift cards which can be used to pay for bills using the cUSD token on Minipay. 

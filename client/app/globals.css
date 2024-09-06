@@ -60,9 +60,9 @@
     --destructive: #d00000;
     --destructive-foreground: #ffffff;
 
-    --ring:  #3a4d5f;
-    --border:  #3a4d5f;
-    --input:  #3a4d5f;
+    --ring: #3a4d5f;
+    --border: #3a4d5f;
+    --input: #3a4d5f;
 
     --radius: 0.5rem;
   }
@@ -74,10 +74,22 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 
 /* :root {
   font-family: "SF Pro Rounded", Inter, system-ui, Avenir, Helvetica, Arial,

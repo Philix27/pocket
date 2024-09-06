@@ -1,11 +1,13 @@
 'use client';
-import { AppStores, cn } from '@/lib';
+import { cn } from '@/lib';
 import { TextP } from '@/comps';
 
-export function Tabs(props: { data: { title: string; isActive: boolean; onClick: VoidFunction }[] }) {
-  const store = AppStores.useSettingsStore();
+export function Tabs(props: {
+  className?: string;
+  data: { title: string; isActive: boolean; onClick: VoidFunction; className?: string }[];
+}) {
   return (
-    <div className="w-full">
+    <div className={cn('w-full', props.className)}>
       <div className="flex items-center justify-between">
         {props.data.map((val, i) => (
           <div

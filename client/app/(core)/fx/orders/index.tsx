@@ -1,13 +1,33 @@
 'use client';
-import { TextP } from '@/comps';
-import React from 'react';
+import { Tabs, TextP } from '@/comps';
+import React, { useState } from 'react';
 import { adsData } from './data';
 import { cn } from '@/lib';
 
 export default function OrdersComp() {
+  const [isActive, setActive] = useState(false);
+
   return (
-    <div className="py-4 px-6 mb-[100px]">
-      <TextP>Filters</TextP>
+    <div className="px-6 mb-[100px]">
+      <Tabs
+        className="mt-[1px]"
+        data={[
+          {
+            title: 'Pending',
+            isActive: isActive,
+            onClick: () => {
+              setActive(true);
+            },
+          },
+          {
+            title: 'Canceled',
+            isActive: !isActive,
+            onClick: () => {
+              setActive(false);
+            },
+          },
+        ]}
+      />
       <div className="my-2">
         {adsData.map((ads, index) => (
           <div className="w-full bg-card mb-2 rounded-lg p-3 border-muted border-[0.1px]" key={index}>

@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF',
+  themeColor: '#19232f',
 };
 
 export default function RootLayout({
@@ -57,10 +57,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overscroll-none bg-background">
       <body
         className={cn(
-          `min-h-screen bg-background 
+          `min-h-screen bg-background overscroll-none 
           font-sans antialiased`,
           fontSans.variable
         )}

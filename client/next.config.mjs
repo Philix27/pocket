@@ -15,4 +15,14 @@ const nextConfig = {
 import mdx from '@next/mdx';
 // const withMDX = mdx();
 const config = mdx(nextConfig);
-export default config;
+
+
+import withPWAInit from "@ducanh2912/next-pwa";
+
+const withPWA = withPWAInit({
+  dest: "public",
+});
+
+export default withPWA(config);
+
+// export default config;

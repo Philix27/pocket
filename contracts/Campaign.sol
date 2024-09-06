@@ -39,7 +39,6 @@ event CampaignUpdated(
 contract P2PAdCampaign {
     Campaign[] public campaigns;
 
-    // Modifier to check if caller is the owner of the campaign
     modifier onlyOwner(uint256 campaignId) {
         require(
             campaigns[campaignId].owner == msg.sender,
@@ -48,7 +47,6 @@ contract P2PAdCampaign {
         _;
     }
 
-    // Function to create a new campaign
     function createCampaign(
         string memory _token,
         string memory _paymentMethod,

@@ -1,10 +1,10 @@
-'use client';
 import { TextP } from '@/comps';
 import React from 'react';
+import { boolean } from 'zod';
 import { adsData } from './data';
 import { cn } from '@/lib';
 
-export default function OrdersComp() {
+export default function AdsComp() {
   return (
     <div className="py-4 px-6 mb-[100px]">
       <TextP>Filters</TextP>
@@ -12,10 +12,11 @@ export default function OrdersComp() {
         {adsData.map((ads, index) => (
           <div className="w-full bg-card mb-2 rounded-lg p-3 border-muted border-[0.1px]" key={index}>
             <Row title={'Username'} subtitle={'Felix Eligbue'} />
-            <Row title={'Amount'} subtitle={ads.amount.toString()} />
-            <Row title={'Trade'} subtitle={ads.isBuy ? 'BUY' : 'SELL'} />
+            <Row title={'Limit'} subtitle={`${ads.lowerLimit.toString()} - ${ads.upperLimit.toString()}`} />
+            <Row title={'SALE'} subtitle={ads.isBuy ? 'BUY' : 'SELL'} />
+            <Row title={'Address'} subtitle={ads.owner} />
             <Row title={'Payment Method'} subtitle={ads.paymentMethod} />
-            <Row title={'Trade with'} subtitle={ads.tradeWith} isLast />
+            <Row title={'Rate'} subtitle={ads.rate.toString()} isLast />
           </div>
         ))}
       </div>

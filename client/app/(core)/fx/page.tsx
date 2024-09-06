@@ -2,19 +2,24 @@
 import { Navbar, Tabs } from '@/comps';
 import React, { useState } from 'react';
 import OrdersComp from './orders';
-import P2pComp from './p2p';
+import AdsComp from './ads';
 import { IoSwapHorizontal } from 'react-icons/io5';
 import CreateAdsSection from './deposit';
 
 export default function SwapPage() {
-  const [activeTab, setActiveTap] = useState<'CREATE' | 'P2P' | 'ORDERS'>('ORDERS');
+  const [activeTab, setActiveTap] = useState<'CREATE' | 'ADS' | 'ORDERS'>('ORDERS');
 
   return (
     <>
       <Navbar title={'Exchange'} icon={IoSwapHorizontal} onIconClick={() => {}} />
-      <div className="mb-10">
+      <div className="mb-[100px]">
         <Tabs
           data={[
+            {
+              title: 'Ads',
+              isActive: activeTab === 'ADS',
+              onClick: () => setActiveTap('ADS'),
+            },
             {
               title: 'Orders',
               isActive: activeTab === 'ORDERS',
@@ -25,15 +30,10 @@ export default function SwapPage() {
               isActive: activeTab === 'CREATE',
               onClick: () => setActiveTap('CREATE'),
             },
-            {
-              title: 'P2P',
-              isActive: activeTab === 'P2P',
-              onClick: () => setActiveTap('P2P'),
-            },
           ]}
         />
         {activeTab === 'ORDERS' && <OrdersComp />}
-        {activeTab === 'P2P' && <P2pComp />}
+        {activeTab === 'ADS' && <AdsComp />}
         {activeTab === 'CREATE' && <CreateAdsSection />}
       </div>
     </>

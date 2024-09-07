@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Navbar, shortenAddress, TextH, TextP } from '@/comps';
+import { Navbar, shortenAddress, Spinner, TextH, TextP } from '@/comps';
 import { IconType } from 'react-icons';
 import { IoPersonOutline } from 'react-icons/io5';
 import { AppStores, cn, use3Wagmi, useAppRouter, useWeb3Modal } from '@/lib';
@@ -9,11 +9,15 @@ import { MdEmail, MdSecurity, MdSupportAgent } from 'react-icons/md';
 import { LuChevronRight } from 'react-icons/lu';
 import { BiLogOut } from 'react-icons/bi';
 import Image from 'next/image';
+import { useBalance } from 'wagmi';
+import { InfoRowItem, RowItem } from './Row';
 
 export default function SettingsPage() {
   const store = AppStores.useChat();
   const router = useAppRouter();
-  const {logout} = use3Wagmi(); // Just for initialization of values
+  const { logout, address } = use3Wagmi(); // Just for initialization of values
+
+  if (!address) return <Spinner />;
 
   return (
     <>
@@ -27,6 +31,7 @@ export default function SettingsPage() {
           <InfoRowItem left={'Email'} right={store.userInfo?.email!} Icon={MdEmail} />
           <InfoRowItem left={'MFA'} right={store.userInfo?.isMfaEnabled ? 'Enabled' : 'Disabled'} Icon={MdSecurity} />
           <InfoRowItem left={'Balance'} right={store.balance!} Icon={IoPersonOutline} />
+          <Balance address={store.web3Wallet} />
           <InfoRowItem left={'Address'} right={shortenAddress(store.web3Wallet)} Icon={IoPersonOutline} />
         </div>
         <TextH v="h5">More</TextH>
@@ -45,30 +50,12 @@ export default function SettingsPage() {
   );
 }
 
-function InfoRowItem(props: { left: string; right: string; Icon: IconType; color?: string }) {
-  const { Icon } = props;
-  return (
-    <div className="flex justify-between items-center py-2 border-b border-accent">
-      <TextP className={'text-muted'}>{props.left} </TextP>
-      <TextP className="font-semibold">{props.right}</TextP>
-    </div>
-  );
-}
+function Balance(props: { address: string }) {
+  const { isLoading, error, data } = useBalance({
+    address: props.address as `0x${string}`,
+  });
+  if (isLoading) return <InfoRowItem left={'Balance'} right={'...'} Icon={IoPersonOutline} />;
+  if (error) return <InfoRowItem left={'Balance'} right={'...x'} Icon={IoPersonOutline} />;
 
-function RowItem(props: { title: string; subtitle: string; Icon: IconType; color?: string; onClick?: VoidFunction }) {
-  const { Icon } = props;
-  return (
-    <div className="flex justify-between items-center py-2 border-b border-accent" onClick={() => props.onClick}>
-      <div className="flex items-center justify-center">
-        <Icon size={20} className={cn('text-primary mr-3')} />
-        <div>
-          <TextH v="h5" className={'text-card-foreground tracking-wide mb-1'}>
-            {props.title}
-          </TextH>
-          <TextP className="text-muted">{props.subtitle}</TextP>
-        </div>
-      </div>
-      <LuChevronRight size={20} onClick={props.onClick} />
-    </div>
-  );
+  return <InfoRowItem left={'Balance'} right={Number(data?.value).toString()} Icon={IoPersonOutline} />;
 }

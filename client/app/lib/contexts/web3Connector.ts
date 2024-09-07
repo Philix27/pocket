@@ -6,6 +6,8 @@ import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
 import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK, WALLET_ADAPTERS } from '@web3auth/base';
 import { Chain } from 'wagmi/chains';
 import { WalletServicesPlugin } from '@web3auth/wallet-services-plugin';
+import { AppStores } from '../zustand';
+// import { web3AuthInstance } from './web3Instance';
 
 export function Web3AuthConnectorInstance(chains: Chain[]) {
   // Create Web3Auth Instance
@@ -49,6 +51,8 @@ export function Web3AuthConnectorInstance(chains: Chain[]) {
 
   web3AuthInstance.addPlugin(walletServicesPlugin);
 
+  // updateInfp(web3AuthInstance);
+
   const modalConfig = {
     [WALLET_ADAPTERS.OPENLOGIN]: {
       label: 'openlogin',
@@ -69,3 +73,11 @@ export function Web3AuthConnectorInstance(chains: Chain[]) {
     modalConfig,
   });
 }
+
+const updateInfp = async (web3AuthInstance: Web3Auth) => {
+  const store = AppStores.useChat;
+  if (web3AuthInstance.connected) {
+    const user = await web3AuthInstance.getUserInfo();
+    store.setState({ isLoggedIn: true, userInfo: user });
+  }
+};

@@ -11,18 +11,17 @@ export const use3Wagmi = () => {
   const { disconnect } = useDisconnect();
 
   useEffect(() => {
-    const init = async () => {
-      if (web3AuthInstance.connected) {
-        const user = await web3AuthInstance.getUserInfo();
-        store.update({
-          isLoggedIn: true,
-          userInfo: user,
-        });
-      }
-    };
-
     init();
   }, []);
+
+  const init = async () => {
+    if (isConnected) {
+      store.update({
+        isLoggedIn: true,
+        web3Wallet: address,
+      });
+    }
+  };
 
   const logout = async () => {
     disconnect();

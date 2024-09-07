@@ -10,8 +10,7 @@ import { useAccount, useConnect } from 'wagmi';
 
 export function HomeSection() {
   const router = useAppRouter();
-  const { isConnected, connectors, connectionErr, connect } = use3Wagmi();
-  const { login } = useWeb3Modal();
+  const { isConnected, connectors, connectionErr, connect, address, logout } = use3Wagmi();
   return (
     <div className={'flex flex-col items-center justify-center'} style={{ overscrollBehavior: 'none' }}>
       <HeroWithImg img={'/banner.png'}>
@@ -20,6 +19,9 @@ export function HomeSection() {
         </TextH>
       </HeroWithImg>
       <div className="md:hidden my-5 flex flex-col items-center justify-center">
+        <AppButton className="w-fit" onClick={logout}>
+          Logout
+        </AppButton>
         {isConnected ? (
           <AppButton className="w-fit" onClick={() => router.go('/dashboard')}>
             Get Started
@@ -33,13 +35,12 @@ export function HomeSection() {
                   <AppButton
                     key={connector.id}
                     onClick={async () => {
-                      login();
-                      // try {
-                      //   connect({ connector });
-                      //   console.log('connect 256', connector);
-                      // } catch (error) {
-                      //   console.log('connect 456', error);
-                      // }
+                      try {
+                        connect({ connector });
+                        console.log('connect 256', connector);
+                      } catch (error) {
+                        console.log('connect 456', error);
+                      }
                     }}
                   >
                     Login with {connector.name}

@@ -51,8 +51,9 @@ export function BottomNav() {
     <div
       className={`
         fixed bottom-0 h-[70px]
-        border-t-[0.5px] bg-secondary
-        w-full flex items-center justify-center 
+        border-t-[0.5px] bg-background
+        w-full flex items-center justify-center
+        pb-[16px] 
       `}
     >
       <div
@@ -70,12 +71,12 @@ export function BottomNav() {
                 `size-[40px] 
               flex flex-col items-center justify-center
               rounded-[10px]`,
-                isActive(link) ? 'bg-background' : 'bg-primary',
+                isActive(link) ? 'bg-background' : 'bg-card',
                 isActive(link) && 'border-primary border-solid border-[1px]'
               )}
             >
               <Icon
-                className={cn('text-primary-foreground', isActive(link) ? 'text-primary' : 'text-primary-foreground')}
+                className={cn('text-primary-foreground', isActive(link) ? 'text-primary' : 'text-muted')}
                 size={18}
               />
             </div>

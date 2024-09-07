@@ -39,7 +39,7 @@ export function Navbar(props: { title: string; icon?: IconType; isBack?: boolean
           </h1>
         )} */}
       </div>
-      <TextP v="p4" className="text-card-foreground my-0 font-bold tracking-wide">
+      <TextP v="p4" className="text-card-foreground my-0 font-extrabold tracking-wide font-sans">
         {props.title}
       </TextP>
       <div className="flex items-center gap-x-3">{props.icon ? <Icon onClick={props.onIconClick} /> : <div />}</div>

@@ -18,7 +18,7 @@ export function CoreLayoutWrapper(props: { children: ReactNode }) {
       className="h-screen overscroll-none bg-background overflow-y-auto"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
-      <div className="min-h-[calc(100vh-250px)] mt-[50px] ">
+      <div className="min-h-[calc(100vh-250px)] mt-[70px] ">
         {props.children}
         <BottomNav />
         {store.drawerIsOpen && <Drawer />}

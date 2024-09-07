@@ -25,20 +25,22 @@ export function HomeSection() {
           </AppButton>
         ) : (
           <div className="main gap-x-2 gap-y-3">
-            {connectors.map((connector) => {
-              return (
-                <AppButton key={connector.id} onClick={() => connect({ connector })}>
-                  {connector.name}
-                </AppButton>
-              );
-            })}
+            {connectors
+              .filter((con, i) => con.name.toUpperCase() == 'WEB3AUTH')
+              .map((connector) => {
+                return (
+                  <AppButton key={connector.id} onClick={() => connect({ connector })}>
+                    Login
+                  </AppButton>
+                );
+              })}
             {connectionErr && <div>{connectionErr.message}</div>}
           </div>
         )}
       </div>
       <JumbutronSection
-        title={'Lock and Grow'}
-        subtitle="Easy to use off-ramping service. We also help you save your funds"
+        title={'Swift exchange'}
+        subtitle="Easy to use off-ramping service. We also help you develop a good saving habit."
       />
     </div>
   );

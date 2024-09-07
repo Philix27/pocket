@@ -11,10 +11,9 @@ import { BiLogOut } from 'react-icons/bi';
 import Image from 'next/image';
 
 export default function SettingsPage() {
-  const { logout } = useWeb3Modal();
   const store = AppStores.useChat();
   const router = useAppRouter();
-  const {} = use3Wagmi(); // Just for initialization of values
+  const {logout} = use3Wagmi(); // Just for initialization of values
 
   return (
     <>
@@ -39,14 +38,7 @@ export default function SettingsPage() {
             Icon={MdSupportAgent}
             onClick={() => router.go('/support')}
           />
-          <RowItem
-            title={'Logout'}
-            subtitle={'Disconnect from Pocket Ramp'}
-            Icon={BiLogOut}
-            onClick={() => {
-              logout();
-            }}
-          />
+          <RowItem title={'Logout'} subtitle={'Disconnect from Pocket Ramp'} Icon={BiLogOut} onClick={logout} />
         </div>
       </div>
     </>

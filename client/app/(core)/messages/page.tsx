@@ -14,10 +14,8 @@ export default function MessageChat() {
             <TextP>12 pm</TextP>
           </div>
         </div>
-
         <div />
       </div>
-
       <div className={`w-full flex  justify-between`}>
         <div />
         <div className={`max-w-[70%] w-fit rounded bg-lime-500 px-2 pb-2 mt-4`}>

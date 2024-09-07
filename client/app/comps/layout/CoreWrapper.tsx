@@ -1,17 +1,18 @@
 'use client';
 import { BottomNav, Drawer } from '@/comps';
-import { AppStores, useWeb3Modal } from '@/lib';
+import { AppStores, use3Wagmi, useWeb3Modal } from '@/lib';
 import { useRouter } from 'next/navigation';
 import React, { ReactNode } from 'react';
 
 export function CoreLayoutWrapper(props: { children: ReactNode }) {
   const router = useRouter();
   const { isLoggedIn } = useWeb3Modal();
+  const { isConnected } = use3Wagmi();
   const store = AppStores.useSettingsStore();
 
-  //   if (!isLoggedIn) {
-  //     router.push('/');
-  //   }
+  if (!isConnected) {
+    router.push('/');
+  }
 
   return (
     <div

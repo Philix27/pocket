@@ -1,3 +1,4 @@
+'use client'
 import { AppContract, TokenAddress } from '@/contract';
 import { ethers, BrowserProvider, Contract } from 'ethers';
 

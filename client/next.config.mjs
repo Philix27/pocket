@@ -6,8 +6,13 @@ const nextConfig = {
     mdxRs: true,
     serverComponentsExternalPackages: ['@xmtp/user-preferences-bindings-wasm'],
   },
-  webpack: (config) => {
+  webpack: (config, options) => {
     config.externals.push('pino-pretty', 'lokijs', 'encoding');
+    config.experiments = {
+      asyncWebAssembly: true,
+      syncWebAssembly: true,
+      layers: true,
+    };
     return config;
   },
 };
@@ -23,7 +28,7 @@ const withPWA = withPWAInit({
 });
 const config = withPWA(nextConfig);
 
-const finalConfig = mdx(config);
+const finalConfig = withMDX(config);
 // export default withPWA(config);
 
 // export default config;

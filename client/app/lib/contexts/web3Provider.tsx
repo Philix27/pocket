@@ -1,6 +1,5 @@
 'use client';
 
-import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { celo, celoAlfajores, mainnet, sepolia } from '@wagmi/core/chains';
 import { createConfig, http } from '@wagmi/core';
 import { WagmiProvider } from 'wagmi';
@@ -12,7 +11,6 @@ import {
   reactionContentTypeConfig,
   replyContentTypeConfig,
 } from '@xmtp/react-sdk';
-import { WalletProvider } from '@/lib';
 import { Web3AuthConnectorInstance } from './web3Connector';
 
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
@@ -34,11 +32,7 @@ export function Web3Providers(props: { children: ReactNode }) {
   return (
     <WagmiProvider config={configX}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
-          <WalletProvider>
-            <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
-          </WalletProvider>
-        </RainbowKitProvider>
+        <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );

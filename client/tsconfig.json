@@ -17,7 +17,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./app/*", "./src/*"],
+      "@/*": ["./app/*", "./src/*"]
     },
     "plugins": [
       {
@@ -34,11 +34,11 @@
     ".next/types/**/*.ts",
     "app/file/page.tsx",
     "app/(pages)/cluster9",
-    "app/(core)/chat/ConversationContainer.tsx",
-    "app/(core)/chat/ListConversations.tsx",
-    "app/(core)/chat/MessageContainer.tsx",
-    "app/(core)/chat/MessageInput.tsx",
-    "app/(core)/chat/MessageItem.tsx",
-    "app/(core)/chat/NewConversation.tsx"
+    "../z/mod1/(core)/chat/ConversationContainer.tsx",
+    "../z/mod1/(core)/chat/ListConversations.tsx",
+    "../z/mod1/(core)/chat/MessageContainer.tsx",
+    "../z/mod1/(core)/chat/MessageInput.tsx",
+    "../z/mod1/(core)/chat/MessageItem.tsx",
+    "../z/mod1/(core)/chat/NewConversation.tsx"
   ]
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { celo, celoAlfajores, mainnet, sepolia } from '@wagmi/core/chains';
-import { createConfig, http } from '@wagmi/core';
+import { createConfig, http, injected } from '@wagmi/core';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
@@ -24,7 +24,7 @@ const configX = createConfig({
     // [sepolia.id]: http(),
   },
   ssr: true,
-  connectors: [Web3AuthConnectorInstance([celoAlfajores])],
+  connectors: [Web3AuthConnectorInstance([celoAlfajores]), injected()],
 });
 
 const queryClient = new QueryClient();

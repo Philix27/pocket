@@ -2,11 +2,15 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { DrawerRow } from './Row';
 import { FaInfo } from 'react-icons/fa';
 import { MdOutlinePrivacyTip, MdQuestionMark } from 'react-icons/md';
-import { IoInformation } from 'react-icons/io5';
+import { IoInformation, IoLogOut } from 'react-icons/io5';
+import { use3Wagmi } from '@/lib';
 
 export function InfoContent({ router }: { router: AppRouterInstance }) {
+  const { isConnected, logout, login } = use3Wagmi();
+
   return (
     <div>
+      {isConnected && <DrawerRow title={'Logout'} icon={IoLogOut} onClick={logout} />}
       <DrawerRow
         title={'Help'}
         icon={FaInfo}

@@ -1,68 +1,18 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable no-console */
-
 'use client';
 
-import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK, UserInfo } from '@web3auth/base';
-import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
-// IMP START - Quick Start
-import { Web3Auth } from '@web3auth/modal';
+import { IProvider, UserInfo } from '@web3auth/base';
 import { useEffect, useState } from 'react';
-// import { EIP1193Provider } from 'viem';
-// IMP START - Blockchain Calls
 import RPC from '../auth/ethersRPC';
 import { AppStores } from '../zustand';
-import { EIP1193Provider } from 'web3';
 import { ethers } from 'ethers';
 import { useAppRouter } from './useRouter';
+import { web3AuthInstance } from '../contexts';
 // import { ethers } from 'ethers';
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
-// IMP END - Blockchain Calls
-
-// IMP START - Dashboard Registration
-const clientId = 'BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ'; // get from https://dashboard.web3auth.io
-// IMP END - Dashboard Registration
-
-// IMP START - Chain Config
-// const chainConfig = {
-//   chainNamespace: CHAIN_NAMESPACES.EIP155,
-//   chainId: '0x1',
-//   rpcTarget: 'https://rpc.ankr.com/eth',
-//   // Avoid using public rpcTarget in production.
-//   // Use services like Infura, Quicknode etc
-//   displayName: 'Ethereum Mainnet',
-//   blockExplorerUrl: 'https://etherscan.io',
-//   ticker: 'ETH',
-//   tickerName: 'Ethereum',
-//   logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
-// };
-const chainConfig = {
-  chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: '0xaef3', // hex of 44787, celo testnet
-  rpcTarget: 'https://rpc.ankr.com/celo',
-  // Avoid using public rpcTarget in production.
-  // Use services like Infura, Quicknode etc
-  displayName: 'Celo Testnet',
-  blockExplorerUrl: 'https://alfajores-blockscout.celo-testnet.org',
-  ticker: 'CELO',
-  tickerName: 'CELO',
-  logo: 'https://cryptologos.cc/logos/celo-celo-logo.png',
-};
-// IMP END - Chain Config
-
-// IMP START - SDK Initialization
-const privateKeyProvider = new EthereumPrivateKeyProvider({
-  config: { chainConfig },
-});
-
-const web3auth = new Web3Auth({
-  clientId,
-  web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
-  privateKeyProvider,
-});
 
 export const useWeb3Modal = () => {
+  const web3auth = web3AuthInstance;
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [balance, setBalance] = useState('');
   const [address, setAddress] = useState('');
@@ -95,13 +45,6 @@ export const useWeb3Modal = () => {
     try {
       // IMP START - Login
       const web3authProvider = await web3auth.connect();
-
-      await manageSigner();
-      // Connect to specific wallet adapter
-      // const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
-      //   loginProvider: 'google',
-      // });
-      // IMP END - Login
       setProvider(web3authProvider);
       setDetails();
 
@@ -129,13 +72,7 @@ export const useWeb3Modal = () => {
     const signer = await ethersProvider.getSigner();
     console.log('manageSigner:', signer);
     setSigner(signer);
-    // const providerX = new ethers.CloudflareProvider();
-    // const signer = providerX.getSigner();
-    // const providerX = new ethers.providers.Web3Provider(window.ethereum); // source code
-    // const signer = await providerX.getSigner();
-    // store.update({ signer: signer });
-    // const ethersProvider = new ethers.BrowserProvider(web3auth.provider);
-    // const ethSigner = ethersProvider.getSigner();
+
     if (!store.signer) {
       // const smartAccountSigner = await providerToSmartAccountSigner(provider as EIP1193Provider<''>);
       // store.update({ signer: signer });
@@ -145,7 +82,7 @@ export const useWeb3Modal = () => {
 
   const setDetails = async () => {
     if (!provider) {
-      uiConsole('provider not initialized yet');
+      console.log('Provider not initialized');
       return;
     }
 
@@ -165,39 +102,7 @@ export const useWeb3Modal = () => {
     }
   };
 
-  const signMessage = async () => {
-    if (!provider) {
-      uiConsole('provider not initialized yet');
-      return;
-    }
-    const signedMessage = await RPC.signMessage(provider);
-    uiConsole(signedMessage);
-    return signedMessage;
-  };
-
-  const sendTransaction = async () => {
-    if (!provider) {
-      uiConsole('provider not initialized yet');
-      return;
-    }
-    uiConsole('Sending Transaction...');
-    const transactionReceipt = await RPC.sendTransaction(provider);
-    uiConsole(transactionReceipt);
-    return transactionReceipt;
-  };
-  // IMP END - Blockchain Calls
-
-  function uiConsole(...args: any[]): void {
-    const el = document.querySelector('#console>p');
-    if (el) {
-      el.innerHTML = JSON.stringify(args || {}, null, 2);
-      console.log(...args);
-    }
-  }
-
   return {
-    sendTransaction,
-    signMessage,
     address,
     userInfo,
     logout,

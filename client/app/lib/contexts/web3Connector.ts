@@ -35,7 +35,7 @@ export function Web3AuthConnectorInstance(chains: Chain[]) {
       uxMode: 'redirect',
       mode: 'auto',
     },
-    web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
+    web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
     enableLogging: true,
   });
 

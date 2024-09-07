@@ -12,18 +12,19 @@ import {
   replyContentTypeConfig,
 } from '@xmtp/react-sdk';
 import { Web3AuthConnectorInstance } from './web3Connector';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 
 const configX = createConfig({
-  chains: [sepolia, celoAlfajores, celo],
+  chains: [celoAlfajores],
   transports: {
-    [sepolia.id]: http(),
     [celoAlfajores.id]: http(),
-    [celo.id]: http(),
+    // [celo.id]: http(),
+    // [sepolia.id]: http(),
   },
   ssr: true,
-  connectors: [Web3AuthConnectorInstance([sepolia, celoAlfajores, celo])],
+  connectors: [Web3AuthConnectorInstance([celoAlfajores])],
 });
 
 const queryClient = new QueryClient();
@@ -32,7 +33,9 @@ export function Web3Providers(props: { children: ReactNode }) {
   return (
     <WagmiProvider config={configX}>
       <QueryClientProvider client={queryClient}>
-        <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
+        <RainbowKitProvider>
+          <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );

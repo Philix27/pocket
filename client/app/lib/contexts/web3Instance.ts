@@ -31,6 +31,6 @@ export const web3AuthInstance = new Web3Auth({
     uxMode: 'redirect',
     mode: 'auto',
   },
-  web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
+  web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
   enableLogging: true,
 });

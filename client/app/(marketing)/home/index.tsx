@@ -3,14 +3,15 @@
 import React from 'react';
 
 import { JumbutronSection, HeroWithImg } from '../_comps';
-import { useAppRouter } from '@/lib';
+import { useAppRouter, useWeb3Modal } from '@/lib';
 import { AppButton, TextH } from '@/comps';
 import { use3Wagmi } from '@/lib';
+import { useAccount, useConnect } from 'wagmi';
 
 export function HomeSection() {
   const router = useAppRouter();
   const { isConnected, connectors, connectionErr, connect } = use3Wagmi();
-
+  const { login } = useWeb3Modal();
   return (
     <div className={'flex flex-col items-center justify-center'} style={{ overscrollBehavior: 'none' }}>
       <HeroWithImg img={'/banner.png'}>
@@ -32,12 +33,13 @@ export function HomeSection() {
                   <AppButton
                     key={connector.id}
                     onClick={async () => {
-                      try {
-                        await connect({ connector });
-                        console.log('connect 256', connector);
-                      } catch (error) {
-                        console.log('connect 456', error);
-                      }
+                      login();
+                      // try {
+                      //   connect({ connector });
+                      //   console.log('connect 256', connector);
+                      // } catch (error) {
+                      //   console.log('connect 456', error);
+                      // }
                     }}
                   >
                     Login with {connector.name}

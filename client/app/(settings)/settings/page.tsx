@@ -4,7 +4,7 @@ import React from 'react';
 import { Navbar, shortenAddress, TextH, TextP } from '@/comps';
 import { IconType } from 'react-icons';
 import { IoPersonOutline } from 'react-icons/io5';
-import { AppStores, cn, useAppRouter, useWeb3Modal } from '@/lib';
+import { AppStores, cn, use3Wagmi, useAppRouter, useWeb3Modal } from '@/lib';
 import { MdEmail, MdSecurity, MdSupportAgent } from 'react-icons/md';
 import { LuChevronRight } from 'react-icons/lu';
 import { BiLogOut } from 'react-icons/bi';
@@ -14,6 +14,8 @@ export default function SettingsPage() {
   const { logout } = useWeb3Modal();
   const store = AppStores.useChat();
   const router = useAppRouter();
+  const {} = use3Wagmi(); // Just for initialization of values
+
   return (
     <>
       <Navbar title={'Profile'} />

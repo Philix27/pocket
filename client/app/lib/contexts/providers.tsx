@@ -12,7 +12,6 @@ export function AppProviders(props: { children: ReactNode }) {
         {props.children}
         <Toaster className={'bg-primary'} />
       </ThemeProvider>
-      //{' '}
     </Web3Providers>
   );
 }

@@ -1,17 +1,12 @@
-import { LinkIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { LinkIcon } from '@heroicons/react/24/outline';
 import { Signer, useClient } from '@xmtp/react-sdk';
 import { useCallback } from 'react';
 import { Notification } from './Notification';
-import { BiChat } from 'react-icons/bi';
-import { AppButton } from '@/comps';
+import { AppButton, TextP } from '@/comps';
 import { useWalletClient } from 'wagmi';
 
-type XMTPConnectButtonProps = {
-  label: string;
-};
-
-const XMTPConnectButton: React.FC<XMTPConnectButtonProps> = ({ label }) => {
-  const { initialize } = useClient();
+export const XMTPConnect: React.FC = () => {
+  const { isLoading, error, initialize } = useClient();
   const { data: walletClient } = useWalletClient();
 
   const handleConnect = useCallback(() => {
@@ -27,21 +22,17 @@ const XMTPConnectButton: React.FC<XMTPConnectButtonProps> = ({ label }) => {
     }
   }, [initialize, walletClient]);
 
-  return <AppButton onClick={handleConnect}>{label}</AppButton>;
-};
-
-export const XMTPConnect: React.FC = () => {
-  const { isLoading, error } = useClient();
-
   if (error) {
     return (
-      <Notification
-        icon={<ExclamationTriangleIcon />}
-        title="Could not connect to XMTP"
-        cta={<XMTPConnectButton label="Try again" />}
-      >
-        Something went wrong
-      </Notification>
+      <div className="w-full flex items-center justify-center">
+        <div className="w-[70%] flex flex-col items-center">
+          <div className="w-full">
+            <img src={'/support.png'} className="h-[300px] w-auto" />
+          </div>
+          <TextP className="my-5">Something went wrong.</TextP>
+          <AppButton onClick={handleConnect}>{`Try again`}</AppButton>
+        </div>
+      </div>
     );
   }
 
@@ -54,12 +45,14 @@ export const XMTPConnect: React.FC = () => {
   }
 
   return (
-    <Notification
-      icon={<BiChat size={24} />}
-      title="Not connected with an agent"
-      cta={<XMTPConnectButton label="Connect & Get started" />}
-    >
-      Welcome
-    </Notification>
+    <div className="w-full flex items-center justify-center">
+      <div className="w-[70%] flex flex-col items-center">
+        <div className="w-full">
+          <img src={'/support.png'} className="h-[300px] w-auto" />
+        </div>
+        <TextP className="my-5">Welcome...</TextP>
+        <AppButton onClick={handleConnect}>{`Connect & Get started`}</AppButton>
+      </div>
+    </div>
   );
 };

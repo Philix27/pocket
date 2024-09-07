@@ -1,9 +1,6 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable no-console */
-
 import { useEffect } from 'react';
-import { useAppRouter, AppStores } from '@/lib';
+import { useAppRouter, AppStores, web3AuthInstance } from '@/lib';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 
 export const use3Wagmi = () => {
@@ -14,7 +11,15 @@ export const use3Wagmi = () => {
   const { disconnect } = useDisconnect();
 
   useEffect(() => {
-    const init = async () => {};
+    const init = async () => {
+      if (web3AuthInstance.connected) {
+        const user = await web3AuthInstance.getUserInfo();
+        store.update({
+          isLoggedIn: true,
+          userInfo: user,
+        });
+      }
+    };
 
     init();
   }, []);

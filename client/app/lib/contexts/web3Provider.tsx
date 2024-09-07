@@ -19,11 +19,11 @@ const configX = createConfig({
   chains: [sepolia, celoAlfajores, celo],
   transports: {
     [sepolia.id]: http(),
-    [celo.id]: http(),
     [celoAlfajores.id]: http(),
+    [celo.id]: http(),
   },
   ssr: true,
-  connectors: [Web3AuthConnectorInstance([sepolia, celo, celoAlfajores])],
+  connectors: [Web3AuthConnectorInstance([sepolia, celoAlfajores, celo])],
 });
 
 const queryClient = new QueryClient();

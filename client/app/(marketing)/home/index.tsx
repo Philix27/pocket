@@ -29,8 +29,18 @@ export function HomeSection() {
               .filter((con, i) => con.name.toUpperCase() == 'WEB3AUTH')
               .map((connector) => {
                 return (
-                  <AppButton key={connector.id} onClick={() => connect({ connector })}>
-                    Login
+                  <AppButton
+                    key={connector.id}
+                    onClick={async () => {
+                      try {
+                        await connect({ connector });
+                        console.log('connect 256', connector);
+                      } catch (error) {
+                        console.log('connect 456', error);
+                      }
+                    }}
+                  >
+                    Login with {connector.name}
                   </AppButton>
                 );
               })}

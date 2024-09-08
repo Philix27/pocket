@@ -4,7 +4,7 @@ import { AppStores, use3Wagmi, useWeb3Modal } from '@/lib';
 import { useRouter } from 'next/navigation';
 import React, { ReactNode } from 'react';
 
-export function CoreLayoutWrapper(props: { children: ReactNode }) {
+export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: boolean }) {
   const router = useRouter();
   const { isLoggedIn } = useWeb3Modal();
   const { isConnected } = use3Wagmi();
@@ -21,7 +21,7 @@ export function CoreLayoutWrapper(props: { children: ReactNode }) {
     >
       <div className="min-h-[calc(100vh-250px)] mt-[50px]">
         {props.children}
-        <BottomNav />
+        {props.hideBottomNav || <BottomNav />}
         {store.drawerIsOpen && <Drawer />}
       </div>
     </div>

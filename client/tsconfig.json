@@ -34,11 +34,11 @@
     ".next/types/**/*.ts",
     "app/file/page.tsx",
     "app/(pages)/cluster9",
-    "../z/mod1/(core)/chat/ConversationContainer.tsx",
-    "../z/mod1/(core)/chat/ListConversations.tsx",
-    "../z/mod1/(core)/chat/MessageContainer.tsx",
-    "../z/mod1/(core)/chat/MessageInput.tsx",
-    "../z/mod1/(core)/chat/MessageItem.tsx",
-    "../z/mod1/(core)/chat/NewConversation.tsx"
+    "z/mod1/(core)/chat/ConversationContainer.tsx",
+    "z/mod1/(core)/chat/ListConversations.tsx",
+    "z/mod1/(core)/chat/MessageContainer.tsx",
+    "z/mod1/(core)/chat/MessageInput.tsx",
+    "z/mod1/(core)/chat/MessageItem.tsx",
+    "z/mod1/(core)/chat/NewConversation.tsx"
   ]
 }

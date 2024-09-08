@@ -1,13 +1,21 @@
 'use client';
 import './App.css';
-import { CachedConversation, useClient, useConsent, useConversations, useStreamConversations } from '@xmtp/react-sdk';
+import {
+  CachedConversation,
+  useClient,
+  useConsent,
+  useConversations,
+  useSendMessage,
+  useStartConversation,
+  useStreamConversations,
+} from '@xmtp/react-sdk';
 import { useCallback, useEffect, useState } from 'react';
 import { use3Wagmi } from '@/lib';
-import { Spinner, AppButton } from '@/comps';
+import { Spinner, AppButton, AppTextInput } from '@/comps';
 import { XMTPConnect } from './XMTPConnect';
 import { Messages } from './Messages';
 
-const SUPPORT_ADDRESS = '0xe6b6aAe8fA2718F5371e30F2ad2eEDa250801BB5';
+export const SUPPORT_ADDRESS = '0xe6b6aAe8fA2718F5371e30F2ad2eEDa250801BB5';
 
 export const App = () => {
   const { client, disconnect } = useClient();
@@ -30,22 +38,33 @@ function Inbox() {
   const { loadConsentList } = useConsent();
   const [selectedConversation, setSelectedConversation] = useState<CachedConversation | undefined>(undefined);
 
+  const { startConversation } = useStartConversation();
   const { conversations, isLoading } = useConversations();
   useStreamConversations();
+  const { sendMessage } = useSendMessage();
 
   const handleConversationClick = useCallback((convo: CachedConversation) => {
     setSelectedConversation(convo);
   }, []);
 
-  const getConvo = () => {
+  const getConvo = async () => {
     const supportConversation = conversations.filter((conversation) => conversation.peerAddress === SUPPORT_ADDRESS)[0];
     console.log('supportConversation:', supportConversation);
     handleConversationClick!(supportConversation);
+    // sendMessage("")
+    if (!supportConversation) {
+      const result = await startConversation(SUPPORT_ADDRESS, 'Hello!');
+
+      if (result) {
+        console.log('Message sent successfully');
+      }
+    }
   };
 
   useEffect(() => {
     void loadConsentList();
   }, []);
+
   return (
     <div className="flex flex-col h-screen mb-[100px]">
       <div className="flex flex-col w-full items-center justify-center h-full">
@@ -53,9 +72,11 @@ function Inbox() {
         {selectedConversation ? (
           <Messages conversation={selectedConversation} />
         ) : (
-          <AppButton className="w-fit h-fit" onClick={getConvo}>
-            Get conv
-          </AppButton>
+          <>
+            <AppButton className="w-fit h-fit" onClick={getConvo}>
+              Get conv
+            </AppButton>
+          </>
         )}
       </div>
     </div>

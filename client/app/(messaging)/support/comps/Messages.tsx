@@ -56,20 +56,20 @@ export const Messages: React.FC<ConversationMessagesProps> = ({
   }, [conversation]);
 
   return (
-    <>
+    <div className="w-full px-0">
       <MessagesList
         conversation={conversation}
         isLoading={isLoading}
         messages={filteredMessages}
         clientAddress={client?.address}
       />
-      <div className="MessageInputWrapper">
+      <div className="w-full">
         <MessageInput
           isDisabled={isSending}
           onSubmit={handleSendMessage}
           ref={messageInputRef}
         />
       </div>
-    </>
+    </div>
   );
 };

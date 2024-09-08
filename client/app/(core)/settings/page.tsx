@@ -41,7 +41,7 @@ export default function SettingsPage() {
             title={'Support'}
             subtitle={'Contact Agents'}
             Icon={MdSupportAgent}
-            onClick={() => router.go('/support')}
+            onClick={() => router.push('/support')}
           />
           <RowItem title={'Logout'} subtitle={'Disconnect from Pocket Ramp'} Icon={BiLogOut} onClick={logout} />
         </div>
@@ -55,8 +55,8 @@ function Balance(props: { address: string; title: string; tokenAddress?: `0x${st
     address: props.address as `0x${string}`,
     token: props.tokenAddress,
   });
-  if (isLoading) return <InfoRowItem left={'Balance'} right={'...'} Icon={IoPersonOutline} />;
-  if (error) return <InfoRowItem left={'Balance'} right={'...x'} Icon={IoPersonOutline} />;
-
+  if (isLoading) return <InfoRowItem left={'Balance' + props.title} right={'...'} Icon={IoPersonOutline} />;
+  if (error) return <InfoRowItem left={'Balance ' + props.title} right={'...x'} Icon={IoPersonOutline} />;
+  console.log('Balances ' + props.title, data);
   return <InfoRowItem left={'Balance ' + props.title} right={Number(data?.value).toString()} Icon={IoPersonOutline} />;
 }

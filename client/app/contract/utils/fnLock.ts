@@ -1,5 +1,5 @@
 import { BrowserProvider, Contract, ethers } from 'ethers';
-import { AppContract, TokenAddress } from '../const';
+import { TokenAddress } from '../const';
 import { App3Abi } from '../abi';
 import { useReadContract, useWriteContract } from 'wagmi';
 
@@ -24,7 +24,7 @@ export const useDeposit = () => {
 
         await tx.wait();
 
-        const contract = new Contract(AppContract.address, App3Abi.lockedSavingsAbi, signer);
+        const contract = new Contract(App3Abi.lockedSavingsAddress, App3Abi.lockedSavingsAbi, signer);
 
         const txn = await contract.deposit!(props.timeInSeconds, tokenAmount, props.purpose);
         await txn.wait();

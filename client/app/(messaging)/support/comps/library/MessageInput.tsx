@@ -1,15 +1,8 @@
-import type { ChangeEvent, KeyboardEvent } from "react";
-import {
-  useCallback,
-  forwardRef,
-  useImperativeHandle,
-  useState,
-  useLayoutEffect,
-  useRef,
-} from "react";
-import { ArrowUpIcon } from "@heroicons/react/24/solid";
-import { IconButton } from "./IconButton";
-import styles from "./MessageInput.module.css";
+import type { ChangeEvent, KeyboardEvent } from 'react';
+import { useCallback, forwardRef, useImperativeHandle, useState, useLayoutEffect, useRef } from 'react';
+import { ArrowUpIcon } from '@heroicons/react/24/solid';
+import { IconButton } from './IconButton';
+import styles from './MessageInput.module.css';
 
 type MessageInputProps = {
   /**
@@ -36,54 +29,48 @@ export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
   ({ isDisabled, onSubmit, placeholder, submitSrText }, ref) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     // make external ref point to internal ref
-    useImperativeHandle<HTMLTextAreaElement | null, HTMLTextAreaElement | null>(
-      ref,
-      () => textAreaRef.current,
-    );
-    const [value, setValue] = useState("");
-    const onChange = (event: ChangeEvent<HTMLTextAreaElement>) =>
-      setValue(event.target.value);
+    useImperativeHandle<HTMLTextAreaElement | null, HTMLTextAreaElement | null>(ref, () => textAreaRef.current);
+    const [value, setValue] = useState('');
+
+    const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => setValue(event.target.value);
 
     const handleKeyDown = useCallback(
       (event: KeyboardEvent) => {
-        if (event.key === "Enter" && !event.shiftKey) {
+        if (event.key === 'Enter' && !event.shiftKey) {
           event.preventDefault();
           if (value) {
             void onSubmit?.(value);
-            setValue("");
+            setValue('');
           }
         }
       },
-      [onSubmit, value],
+      [onSubmit, value]
     );
 
     const handleClick = useCallback(() => {
       if (value) {
         void onSubmit?.(value);
-        setValue("");
+        setValue('');
       }
     }, [onSubmit, value]);
 
     useLayoutEffect(() => {
       if (textAreaRef?.current?.value) {
         const currentScrollHeight = textAreaRef?.current.scrollHeight;
-        textAreaRef.current.style.height = `${Math.max(
-          currentScrollHeight,
-          MIN_TEXTAREA_HEIGHT,
-        )}px`;
+        textAreaRef.current.style.height = `${Math.max(currentScrollHeight, MIN_TEXTAREA_HEIGHT)}px`;
       } else if (textAreaRef?.current) {
         textAreaRef.current.style.height = `${MIN_TEXTAREA_HEIGHT}px`;
       }
     }, [value]);
 
     return (
-      <div>
+      <div className="w-full ">
         {placeholder && (
           <label htmlFor="chat" className={styles.label}>
             {placeholder}
           </label>
         )}
-        <div className={styles.wrapper}>
+        <div className={`fixed bottom-[6px] p-4 w-full gap-2 bg-card border flex items-center`}>
           <textarea
             name="chat"
             data-testid="message-input"
@@ -91,10 +78,15 @@ export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
             onKeyDown={handleKeyDown}
             ref={textAreaRef}
             rows={1}
-            className={styles.input}
             placeholder={placeholder}
             value={value}
             disabled={isDisabled}
+            className={`
+              border-none resize-none
+              outline-none w-full
+               p-2 max-h-[10rem] 
+               flex-grow bg-transparent
+            `}
           />
           <IconButton
             testId="message-input-submit"
@@ -107,7 +99,7 @@ export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
         </div>
       </div>
     );
-  },
+  }
 );
 
-MessageInput.displayName = "MessageInput";
+MessageInput.displayName = 'MessageInput';

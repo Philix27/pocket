@@ -67,6 +67,7 @@ export default function QuickActions() {
         const Icon = val.Icon;
         return (
           <div
+            key={i}
             className="p-4 flex flex-col items-center justify-center bg-accent rounded-md"
             onClick={() => router.push(val.link)}
           >

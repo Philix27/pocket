@@ -15,8 +15,8 @@ import { Spinner, AppButton, AppTextInput } from '@/comps';
 import { XMTPConnect } from './XMTPConnect';
 import { Messages } from './Messages';
 
-// export const SUPPORT_ADDRESS = '0x41aF31aCfbA5936f0fea733b77bd8d8473289090';
-export const SUPPORT_ADDRESS = '0xe6b6aAe8fA2718F5371e30F2ad2eEDa250801BB5';
+export const SUPPORT_ADDRESS = '0x20F50b8832f87104853df3FdDA47Dd464f885a49';
+// export const SUPPORT_ADDRESS = '0xe6b6aAe8fA2718F5371e30F2ad2eEDa250801BB5';
 
 export const App = () => {
   const { client, disconnect } = useClient();

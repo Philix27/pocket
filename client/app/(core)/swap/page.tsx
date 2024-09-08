@@ -1,6 +1,6 @@
 'use client';
-import { Navbar, Tabs, TextH, TextP } from '@/comps';
-import React, { useState } from 'react';
+import { Navbar, TextP } from '@/comps';
+import React from 'react';
 
 export default function SwapPage() {
   return (

@@ -5,7 +5,7 @@ import { Notification } from './Notification';
 import { AppButton, TextP } from '@/comps';
 import { useWalletClient } from 'wagmi';
 
-export const XMTPConnect: React.FC = () => {
+export function XMTPConnect(props: { getConversations: VoidFunction }) {
   const { isLoading, error, initialize } = useClient();
   const { data: walletClient } = useWalletClient();
 
@@ -17,6 +17,8 @@ export const XMTPConnect: React.FC = () => {
           env: 'production',
         },
       });
+
+      props.getConversations();
     } catch (error) {
       console.log('initErr', error);
     }
@@ -55,4 +57,4 @@ export const XMTPConnect: React.FC = () => {
       </div>
     </div>
   );
-};
+}

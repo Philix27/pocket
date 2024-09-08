@@ -9,7 +9,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ContentTypeReaction } from "@xmtp/content-type-reaction";
 import "./Messages.css";
 import { ContentTypeId } from "@xmtp/content-type-primitives";
-import { AddressInput } from "./library/AddressInput";
 import { Messages as MessagesList } from "./library/Messages";
 import { MessageInput } from "./library/MessageInput";
 

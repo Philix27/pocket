@@ -4,32 +4,35 @@
 
 
 ## Short Description
-An off Ramping **platform**
+Pocket Ramp is a savings dApp that helps users lock their funds over a 
+specified period of time and only have access to funds when it is due for withdrawal.
+
+
 ## Project Description
 
-Rampage is a platform that aims to simplify the process of off-ramping by providing a simple way to pay for bills and send gift cards which can be used to pay for bills using the cUSD token on Minipay. 
+Pocket Ramp is a savings app which provides a robust support system that relies on 
+the XMTP messaging protocol to manage messages between users and customer care. 
+
+In order to make the use of the dApp seamless for users, especially non-web3 literates, an account
+abstraction provided my Web3Auth is been used handle signing into the application.
 
 
-#### Problems
-- Challenges of paying bills and buying digital assets using cryptocurrencies.
+## How it was made
 
-#### Solution
-- Provide aa easy way to purchase airtime and data plans for friends and family
-- Pay for utility such as light, GoTv, MyTv subscription using cUSD.
+We provide a perfect user experience  of a savings app using:
 
+- Web3Auth
+- XMTP
 
-### Challenges faced while building
-- Having access to the necessary third party api needed for the utility payments.
+First users sign-in to the app through the use of their preferred auth provider or social 
+media account. This is achieved through the aid of Web3Auth. After which the user can 
+then choose an amount of money they wish to lock and the duration for which the wish to
+lock their funds. After which funds are locked for the specified period of time before 
+the user can access their funds. 
 
-## Methodology
+In order to ensure a decent UX, users can always chat with the support team via the XMTP
+protocol. This 
 
-This project was built using Next.js on the frontend and Hono.js on the backend. Once a user buys a gift card he is debited and the value of cUSD. On claiming the gift card the specified phone number will be credited the equivalent amount.
-
-
-### Tools & Frameworks used
-- Next.js, React, Wagmi, Solidity, Remix, Typescript
-- Wagmi, Ethers, Viem, WalletConnect
-- Remix
 
 
 ### Project Structure
@@ -37,34 +40,23 @@ This is a turbo repo that consist of three main apps.
 - `mini`: This is a mini app designed to be very lightweight and compatible with MiniPay Telegram Mini App.
 - `server`: The backend server running on Hono.js
 - `web`: This is the marketing web app. For Contact Us, Blogs, About Us, Landing page and others
+
+
+
+### Tools & Frameworks used
+- Next.js, React, Wagmi, Solidity, Remix, Typescript
+- Wagmi, Ethers, Viem, WalletConnect
+- Remix
+
 ### Languages
 
 - Typescript, Javascript, Solidity
-
-## How it was made
-
-This project was built using Next.js on the frontend and Hono.js on the backend. When a user creates a gift card of a certain amount for a friend, this friend will be notified and can claim the amount specified on the gift card as airtime. The backend service call mobile vtu platform which then credits the specified phone number provided by the user.
-
-
-#### Run locally
-- Clone the repository from github
-- cd in the folder
-- Run `pnpm install` to install all packages
-- Run `pnpm run dev:mini` to start the Next.js server
-- Run `pnpm run dev:server` to start the Hono.js server
-
-
-#### Live link
-- Visit [App link](https://rampage-mini.vercel.app/)
-- Open the link in your Opera-mini Minipay site testing playground
-
 
 
 ## Links
 
 - [Hackathon link](https://build-with-celo-7.hackerearth.com/)
-- [Github link](https://github.com/Philix27/rampage)
-- [Vercel link](https://rampage-mini.vercel.app/)
-- [Video link](https://youtu.be/oDCC7BvNqdI)
+- [Github link](https://github.com/Philix27/pocket)
+- [Vercel link](https://pocketramp.vercel.app/)
 
 

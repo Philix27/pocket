@@ -1,8 +1,7 @@
 import { isTestnet } from './env';
-import { AppContractAbi } from './abi';
 import { TokenAddress } from './cusdToken';
 
-export * from './abi';
+export * from '../abi/lockedSavings';
 export * from './cusdToken';
 export * from './env';
 

@@ -36,6 +36,11 @@ event CampaignUpdated(
     bool isBuy
 );
 
+event CampaignDeactivated(
+    uint256 campaignId,
+   
+);
+
 contract P2PAdCampaign {
     Campaign[] public campaigns;
 
@@ -112,6 +117,18 @@ contract P2PAdCampaign {
         campaign.startDate = _startDate;
         campaign.endDate = _endDate;
         campaign.rate = _rate;
+
+         // Emit an event for the creation of the campaign
+        emit CampaignCreated(
+            campaigns.length - 1,
+            msg.sender,
+            _token,
+            _rate,
+            _upperLimit,
+            _lowerLimit,
+            _startDate,
+            _isBuy
+        );
     }
 
     function deactivateCampaign(uint256 _campaignId)
@@ -119,6 +136,8 @@ contract P2PAdCampaign {
         onlyOwner(_campaignId)
     {
         campaigns[_campaignId].isActive = false;
+        
+        emit CampaignDeactivated(_campaignId)
     }
 
     function getTotalCampaigns() external view returns (uint256) {

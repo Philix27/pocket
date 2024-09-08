@@ -1,10 +1,10 @@
 'use client';
 import { Navbar, Tabs } from '@/comps';
 import React, { useState } from 'react';
-import OrdersComp from './orders';
-import AdsComp from './ads';
+import OrdersComp from './Orders';
+import AdsComp from './Ads';
 import { IoSwapHorizontal } from 'react-icons/io5';
-import CreateAdsSection from './deposit';
+import CreateAdsSection from './Deposit';
 
 export default function SwapPage() {
   const [activeTab, setActiveTap] = useState<'CREATE' | 'ADS' | 'ORDERS'>('ORDERS');

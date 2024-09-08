@@ -1,7 +1,9 @@
-import { campaignAbi } from './campaign';
-import { LockedSavingsContractAbi } from './lockedSavings';
+import { campaignAbi, campaignAddress } from './campaign';
+import { lockedSavingsAddress, lockedSavingsAbi } from './lockedSavings';
 
 export const App3Abi = {
-  lockedSavings: LockedSavingsContractAbi,
-  campaign: campaignAbi,
+  lockedSavingsAbi,
+  lockedSavingsAddress,
+  campaignAbi,
+  campaignAddress,
 };

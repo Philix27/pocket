@@ -34,13 +34,12 @@ export const use3Wagmi = () => {
 
   const login = async () => {
     try {
-      await web3auth.initModal();
+      // await web3auth.initModal(); // already initialized from wagmi
+      const activeCon = connectors.filter((con) => con.name.toUpperCase() === 'WEB3AUTH')[0];
 
       const web3authProvider = await web3auth.connect();
-
       setProvider(web3authProvider);
 
-      const activeCon = connectors.filter((con) => con.name.toUpperCase() === 'WEB3AUTH')[0];
       connect({
         connector: activeCon,
       });

@@ -1021,6 +1021,11 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
+"@celo/abis@^11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@celo/abis/-/abis-11.0.0.tgz#7f96b6142498662fdf36427afc8a4539c6db50e4"
+  integrity sha512-rPjHQxHbWaKQU3MX6hE3A3xRkBFBphjFvfCs4t+19dqPPys6Q+cneHmRWGBX4NLiBh5BLZcNZjQoMf2jxRLMpg==
+
 "@chaitanyapotti/register-service-worker@^1.7.4":
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/@chaitanyapotti/register-service-worker/-/register-service-worker-1.7.4.tgz#db410702dc54a91ac61328c8bcf765da30c6eaad"

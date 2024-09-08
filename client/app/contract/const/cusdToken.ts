@@ -43,3 +43,4 @@ export async function transferCusdTokens(props: {
   console.log('Transaction confirmed in block:', receipt.blockNumber);
   return tx.hash as string;
 }
+

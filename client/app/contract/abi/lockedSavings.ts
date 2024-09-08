@@ -1,4 +1,5 @@
-export const LockedSavingsContractAbi = [
+export const lockedSavingsAddress = '0x8d1aE51Acef6c671b659f5aC3916e9b211560CD0';
+export const lockedSavingsAbi = [
   {
     inputs: [
       {

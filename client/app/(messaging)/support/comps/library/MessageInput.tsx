@@ -70,7 +70,7 @@ export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
             {placeholder}
           </label>
         )}
-        <div className={`fixed bottom-[6px] p-4 w-full gap-2 bg-card border flex items-center`}>
+        <div className={`fixed bottom-[0px] p-4 w-full gap-2 bg-card flex items-center`}>
           <textarea
             name="chat"
             data-testid="message-input"

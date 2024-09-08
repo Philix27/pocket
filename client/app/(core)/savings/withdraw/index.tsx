@@ -2,8 +2,9 @@
 
 import { Suspense } from 'react';
 import { Spinner } from '@/comps';
-// import { useMain } from '@/contract';
 import { AppStores } from '@/lib';
+import SavingsCards from './Savings';
+
 // https://github.com/Philix27/SupaSave
 export default function WithdrawalSection() {
   const userAddress = AppStores.useChat().web3Wallet;
@@ -35,11 +36,11 @@ export default function WithdrawalSection() {
           <p>$100</p>
         </div>
 
-        {/* {userAddress && (
+        {userAddress && (
           <Suspense fallback={<Spinner />}>
             <SavingsCards address={userAddress as `0x${string}`} />
           </Suspense>
-        )} */}
+        )}
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ export function Web3AuthConnectorInstance(chains: Chain[]) {
       appName: name,
       loginMethodsOrder: ['google'],
       defaultLanguage: 'en',
-      modalZIndex: '2147483647',
+      modalZIndex: '99999',
       logoLight: 'https://web3auth.io/images/web3authlog.png',
       logoDark: 'https://web3auth.io/images/web3authlogodark.png',
       uxMode: 'redirect',

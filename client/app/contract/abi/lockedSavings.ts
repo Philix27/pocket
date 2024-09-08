@@ -1,4 +1,4 @@
-export const lockedSavingsAddress = '0x8d1aE51Acef6c671b659f5aC3916e9b211560CD0';
+export const lockedSavingsAddress = '0xbb4791525fb9dc6D613c67d47771265B2285e35A';
 export const lockedSavingsAbi = [
   {
     inputs: [
@@ -29,7 +29,13 @@ export const lockedSavingsAbi = [
       {
         indexed: false,
         internalType: 'uint256',
-        name: 'lockEndTime',
+        name: 'createdAt',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'expiresAt',
         type: 'uint256',
       },
       {
@@ -119,7 +125,12 @@ export const lockedSavingsAbi = [
       },
       {
         internalType: 'uint256',
-        name: 'lockEndTime',
+        name: 'createdAt',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'expiresAt',
         type: 'uint256',
       },
       {
@@ -150,7 +161,12 @@ export const lockedSavingsAbi = [
           },
           {
             internalType: 'uint256',
-            name: 'lockEndTime',
+            name: 'createdAt',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'expiresAt',
             type: 'uint256',
           },
           {
@@ -159,7 +175,7 @@ export const lockedSavingsAbi = [
             type: 'string',
           },
         ],
-        internalType: 'struct LockedSavings.Deposit[]',
+        internalType: 'struct LockedFunds.Deposit[]',
         name: '',
         type: 'tuple[]',
       },
@@ -189,7 +205,12 @@ export const lockedSavingsAbi = [
       },
       {
         internalType: 'uint256',
-        name: 'lockEndTime',
+        name: 'createdAt',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'expiresAt',
         type: 'uint256',
       },
       {

@@ -10,9 +10,9 @@ export function CoreLayoutWrapper(props: { children: ReactNode }) {
   const { isConnected } = use3Wagmi();
   const store = AppStores.useSettingsStore();
 
-  if (!isConnected) {
-    router.push('/');
-  }
+  // if (!isConnected) {
+  //   router.push('/');
+  // }
 
   return (
     <div

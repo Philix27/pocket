@@ -1,4 +1,5 @@
-import { AppContract, TokenAddress } from '@/contract';
+import { TokenAddress } from '@/contract';
+import { App3Abi } from '@/contract/abi';
 import { ethers, BrowserProvider, Contract } from 'ethers';
 
 export const useDeposit = () => {
@@ -16,14 +17,14 @@ export const useDeposit = () => {
         const address = await signer.getAddress();
         // approve txn
 
-        const tokenContract = new ethers.Contract(AppContract.cusdTokenAddress, TokenAddress.erc20Abi, signer);
+        const tokenContract = new ethers.Contract(TokenAddress.CUSD_TESTNET, TokenAddress.erc20Abi, signer);
 
-        const tx = await tokenContract.approve!(AppContract.address, tokenAmount);
+        const tx = await tokenContract.approve!(App3Abi.lockedSavingsAddress, tokenAmount);
         console.log('Transaction approved!:', tx);
         // cons
         await tx.wait();
         // contract call
-        const contract = new Contract(AppContract.address, AppContract.abi, signer);
+        const contract = new Contract(App3Abi.lockedSavingsAddress, App3Abi.lockedSavingsAbi, signer);
 
         const txn = await contract.deposit!(props.timeInSeconds, tokenAmount, props.purpose);
         await txn.wait();

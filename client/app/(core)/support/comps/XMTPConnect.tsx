@@ -5,7 +5,7 @@ import { Notification } from './Notification';
 import { AppButton, TextP } from '@/comps';
 import { useWalletClient } from 'wagmi';
 
-export function XMTPConnect(props: { getConversations: VoidFunction }) {
+export function XMTPConnect() {
   const { isLoading, error, initialize } = useClient();
   const { data: walletClient } = useWalletClient();
 
@@ -18,7 +18,7 @@ export function XMTPConnect(props: { getConversations: VoidFunction }) {
         },
       });
 
-      props.getConversations();
+      // props.getConversations();
     } catch (error) {
       console.log('initErr', error);
     }

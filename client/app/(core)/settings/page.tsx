@@ -30,9 +30,9 @@ export default function SettingsPage() {
           <InfoRowItem left={'Name'} right={store.userInfo?.name!} Icon={IoPersonOutline} />
           <InfoRowItem left={'Email'} right={store.userInfo?.email!} Icon={MdEmail} />
           <InfoRowItem left={'MFA'} right={store.userInfo?.isMfaEnabled ? 'Enabled' : 'Disabled'} Icon={MdSecurity} />
-          <InfoRowItem left={'Balance'} right={store.balance!} Icon={IoPersonOutline} />
-          <Balance address={store.web3Wallet} />
-          <InfoRowItem left={'Address'} right={shortenAddress(store.web3Wallet)} Icon={IoPersonOutline} />
+          <Balance address={address} title={'celo'} />
+          <Balance address={address} title={'cUSD'} tokenAddress="0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" />
+          <InfoRowItem left={'Address'} right={shortenAddress(address)} Icon={IoPersonOutline} />
         </div>
         <TextH v="h5">More</TextH>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
@@ -50,12 +50,13 @@ export default function SettingsPage() {
   );
 }
 
-function Balance(props: { address: string }) {
+function Balance(props: { address: string; title: string; tokenAddress?: `0x${string}` }) {
   const { isLoading, error, data } = useBalance({
     address: props.address as `0x${string}`,
+    token: props.tokenAddress,
   });
   if (isLoading) return <InfoRowItem left={'Balance'} right={'...'} Icon={IoPersonOutline} />;
   if (error) return <InfoRowItem left={'Balance'} right={'...x'} Icon={IoPersonOutline} />;
 
-  return <InfoRowItem left={'Balance'} right={Number(data?.value).toString()} Icon={IoPersonOutline} />;
+  return <InfoRowItem left={'Balance ' + props.title} right={Number(data?.value).toString()} Icon={IoPersonOutline} />;
 }

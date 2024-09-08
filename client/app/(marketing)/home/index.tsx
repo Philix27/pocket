@@ -10,7 +10,7 @@ import { useAccount, useConnect } from 'wagmi';
 
 export function HomeSection() {
   const router = useAppRouter();
-  const { isConnected, login } = use3Wagmi();
+  const { isConnected, login, address } = use3Wagmi();
 
   return (
     <div className={'flex flex-col items-center justify-center'} style={{ overscrollBehavior: 'none' }}>
@@ -25,20 +25,9 @@ export function HomeSection() {
             Get Started
           </AppButton>
         ) : (
-          <>
-            {/* {connectors.map((connector) => {
-              return (
-                <button className="card" key={connector.id} onClick={() => connect({ connector })}>
-                  {connector.name}
-                </button>
-              );
-            })} */}
-            <div className="main gap-x-2 gap-y-3">
-              <AppButton className="w-fit" onClick={login}>
-                Login
-              </AppButton>
-            </div>
-          </>
+          <AppButton className="w-fit" onClick={login}>
+            Login
+          </AppButton>
         )}
       </div>
       <JumbutronSection

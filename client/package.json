@@ -46,6 +46,7 @@
     "country-flag-icons": "^1.5.13",
     "date-fns": "^3.6.0",
     "ethers": "^6.13.2",
+    "fhenixjs": "^0.4.0-alpha.0",
     "firebase": "^10.11.1",
     "framer-motion": "^10.17.9",
     "gray-matter": "^4.0.3",

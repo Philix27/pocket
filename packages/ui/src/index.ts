@@ -1,2 +1,2 @@
-export * from "./lib"
-export * from "./components"
+export * from "./comps";
+export * from "./lib";

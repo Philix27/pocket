@@ -7,10 +7,13 @@ export function Button(props: {
 }) {
   return (
     <button
-      className={"rounded-md px-5 py-1 bg-primary text-white" + props.className}
+      className={
+        "rounded-md px-5 py-1 bg-primary " +
+        props.className
+      }
       onClick={props.onClick}
     >
-      {props.children}
+     <span className="text-primary-foreground"> {props.children}</span>
     </button>
   )
 }

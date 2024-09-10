@@ -14,11 +14,33 @@ import {
 import { Web3AuthConnectorInstance } from './web3Connector';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
+export const fhenixFrontier = defineChain({
+  id: 8008135,
+  name: 'Fhenix Frontier',
+  network: 'fhenixFrontier',
+  nativeCurrency: { name: 'tFHE', symbol: 'tFHE', decimals: 18 },
+  rpcUrls: {
+    public: {
+      http: ['https://api.helium.fhenix.zone'],
+    },
+    default: {
+      http: ['https://api.helium.fhenix.zone'],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: 'Fhenix',
+      url: ' https://explorer.helium.fhenix.zone',
+    },
+  },
+});
+
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 
 const configX = createConfig({
   chains: [celoAlfajores],
   transports: {
+    [fhenixFrontier.id]: http(),
     [celoAlfajores.id]: http(),
     // [celo.id]: http(),
     // [sepolia.id]: http(),

@@ -21,7 +21,7 @@ export default function Footer() {
         <Link href={"/orders"} className={"  text-primary"}>
           <BsBank size={20} />
         </Link>
-        <Link href={"/all-transactions"} className={" text-primary"}>
+        <Link href={"/all"} className={" text-primary"}>
           <BiMoneyWithdraw size={20} />
         </Link>
       </div>

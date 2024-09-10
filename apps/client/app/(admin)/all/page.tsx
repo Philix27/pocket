@@ -1,23 +1,23 @@
-"use client"
+'use client';
 
-import React from "react"
-import { Button, Loader } from "@/comps"
-import { FHE } from "@/contract"
-import { shortAddress } from "@/shortAddress"
-import { useAccount } from "wagmi"
+import React from 'react';
+import { AppButton, Spinner } from '@/comps';
+import { FHE } from '@/contract';
+import { useAccount } from 'wagmi';
+import { shortAddress } from '@/lib';
 
 export default function Page() {
-  const { address } = useAccount()
+  const { address } = useAccount();
   const {
     data,
     result: { isLoading, error },
-  } = FHE.useGetAllTransactionsForUser(address!)
+  } = FHE.useGetAllTransactionsForUser(address!);
 
   if (isLoading) {
-    return <Loader />
+    return <Spinner />;
   }
   if (error) {
-    return <p className="text-destructive">{error.message}</p>
+    return <p className="text-destructive">{error.message}</p>;
   }
   return (
     <div className="flex w-full flex-col">
@@ -43,11 +43,7 @@ export default function Page() {
 
           <div className="flex items-center justify-between">
             Status:
-            {val.isCompleted ? (
-              <p className="text-green-500">Completed</p>
-            ) : (
-              <p className="text-orange-600">Pending</p>
-            )}
+            {val.isCompleted ? <p className="text-green-500">Completed</p> : <p className="text-orange-600">Pending</p>}
           </div>
           <div className="flex items-center justify-between">
             Dispute:
@@ -61,32 +57,32 @@ export default function Page() {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export function ReleaseFunds() {
   const {
     releaseFunds,
     result: { data, error },
-  } = FHE.useReleaseFunds()
-  const { requestRefund, result: requestRefundResult } = FHE.useRequestRefund()
+  } = FHE.useReleaseFunds();
+  const { requestRefund, result: requestRefundResult } = FHE.useRequestRefund();
 
   return (
     <div className="flex items-center justify-around">
-      <Button
+      <AppButton
         onClick={() => {
-          requestRefund(1)
+          requestRefund(1);
         }}
       >
         Request refunds
-      </Button>
-      <Button
+      </AppButton>
+      <AppButton
         onClick={() => {
-          releaseFunds(0)
+          releaseFunds(0);
         }}
       >
         Release Funds
-      </Button>
+      </AppButton>
     </div>
-  )
+  );
 }

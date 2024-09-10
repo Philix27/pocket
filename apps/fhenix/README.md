@@ -1,4 +1,4 @@
-# SupaSave
+# Pocket Ramp
 
 Welcome to SupaSave, where you can securely lock your funds 
 for a set period, helping you grow your savings effortlessly. 

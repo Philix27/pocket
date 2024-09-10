@@ -1,16 +1,16 @@
-import React, { useEffect } from "react"
+"use client"
+
+import React from "react"
 import { Loader } from "@/comps"
 import { FHE } from "@/contract"
+import { useAccount } from "wagmi"
 
-export default function Page(props: { userAddress: string }) {
+export default function Page() {
+  const { address } = useAccount()
   const {
     data,
     result: { isLoading, error },
-  } = FHE.useGetAllTransactionsForUser(props.userAddress)
-
-  useEffect(() => {
-    return () => {}
-  }, [])
+  } = FHE.useGetAllTransactionsForUser(address!)
 
   if (isLoading) {
     return <Loader />

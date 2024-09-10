@@ -5,7 +5,7 @@ import { Spinner } from '@/comps';
 import { AppStores } from '@/lib';
 import SavingsCards from './Savings';
 
-// https://github.com/Philix27/SupaSave
+// https://github.com/Philix27/Pocket
 export default function WithdrawalSection() {
   const userAddress = AppStores.useChat().web3Wallet;
 

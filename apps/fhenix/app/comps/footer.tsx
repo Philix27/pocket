@@ -18,7 +18,7 @@ export default function Footer() {
         <Link href={"/"} className={"text-primary"}>
           <FaHome size={20} />
         </Link>
-        <Link href={"/deposit"} className={"  text-primary"}>
+        <Link href={"/orders"} className={"  text-primary"}>
           <BsBank size={20} />
         </Link>
         <Link href={"/withdrawal"} className={" text-primary"}>

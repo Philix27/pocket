@@ -5,7 +5,7 @@ import { Loader } from "@/comps"
 import { useMain } from "@/contract"
 
 import SavingsCards from "./Savings"
-// https://github.com/Philix27/SupaSave
+// https://github.com/Philix27/Pocket
 export default function WithdrawalPage() {
   const { userAddress } = useMain()
 

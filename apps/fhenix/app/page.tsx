@@ -9,26 +9,22 @@ export default function HomePage() {
     >
       <div className={` `}>
         <h1 className={`pl-5 pt-5 text-2xl font-extrabold`}>
-          Super<span className={`text-white`}>Save</span>
+          Pocket<span className={`text-white`}>Escrow</span>
         </h1>
 
-        <div className={` flex w-full items-center justify-center my-10`}>
+        <div className={` my-10 flex w-full items-center justify-center`}>
           <img src={"./wallet.png"} className="h-[30vh] w-auto" />
         </div>
 
         <p
           className={`flex w-full items-center justify-center p-4 text-center`}
         >
-           Welcome to SupaSave, where you can
-          securely lock your funds for a set
-          period, helping you grow your savings 
-          effortlessly. Plan for the future
-          with confidence—start saving smarter today!
+          An app that facilitates p2p exchange in a reliable and secure manner
         </p>
 
         <div className={`mt-4  flex items-center justify-center`}>
           <Link
-            href={"/deposit"}
+            href={"/orders"}
             className={`rounded-lg border-2 border-white bg-white px-8  py-2 text-center font-bold`}
           >
             Deposit Now

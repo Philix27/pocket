@@ -5,8 +5,8 @@ import Provider from "./provider"
 
 export const metadata: Metadata = {
   title: {
-    default: "SupaSave",
-    template: `%s - SupaSave`,
+    default: "Pocket",
+    template: `%s - Pocket`,
   },
   description: "A savings application",
   themeColor: [

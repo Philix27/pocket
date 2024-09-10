@@ -1,18 +1,13 @@
-"use client";
+"use client"
 
-import { ReactNode } from "react";
-import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Analytics } from "@vercel/analytics/react";
-import { Toaster } from "sonner";
-import { defineChain } from "viem";
-import { WagmiProvider, http } from "wagmi";
-import { celo, celoAlfajores } from "wagmi/chains";
-import { injected } from "wagmi/connectors";
-
-
-
-
+import { ReactNode } from "react"
+import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { Toaster } from "sonner"
+import { defineChain } from "viem"
+import { WagmiProvider, http } from "wagmi"
+import { celo, celoAlfajores } from "wagmi/chains"
+import { injected } from "wagmi/connectors"
 
 // import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK } from "@web3auth/base"
 
@@ -51,7 +46,7 @@ export const fhenixFrontier = defineChain({
 const queryClient = new QueryClient()
 const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID as string
 const rainbowConfig = getDefaultConfig({
-  appName: "SupaSave",
+  appName: "Pocket",
   projectId: projectId,
   chains: [fhenixFrontier, celoAlfajores],
   ssr: true, // If your dApp uses server side rendering (SSR)
@@ -69,7 +64,6 @@ export default function Provider(props: { children: ReactNode }) {
         <RainbowKitProvider>
           {props.children}
           <Toaster />
-          <Analytics />
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

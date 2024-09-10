@@ -1,33 +1,16 @@
-export const AppContractAbi = [
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_lockTime",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_purpose",
-        type: "string",
-      },
-    ],
-    name: "deposit",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
+export const p2pContractAddress = "0xC3F740D8C669ca56FE82DC87D2f55E82A42E4a00"
+export const p2pAbi = [
   {
     inputs: [
       {
         internalType: "address",
-        name: "_cUSDAddress",
+        name: "_arbitrator",
         type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_feePercent",
+        type: "uint256",
       },
     ],
     stateMutability: "nonpayable",
@@ -37,53 +20,59 @@ export const AppContractAbi = [
     anonymous: false,
     inputs: [
       {
-        indexed: true,
+        indexed: false,
+        internalType: "uint256",
+        name: "txId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
         internalType: "address",
-        name: "user",
+        name: "seller",
         type: "address",
       },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "expiresAt",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "string",
-        name: "purpose",
-        type: "string",
-      },
     ],
-    name: "Deposited",
+    name: "DisputeRaised",
     type: "event",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "index",
-        type: "uint256",
-      },
-    ],
-    name: "withdraw",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
   },
   {
     anonymous: false,
     inputs: [
       {
-        indexed: true,
+        indexed: false,
+        internalType: "uint256",
+        name: "txId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "releaseToSeller",
+        type: "bool",
+      },
+    ],
+    name: "DisputeResolved",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "txId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
         internalType: "address",
-        name: "user",
+        name: "buyer",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "seller",
         type: "address",
       },
       {
@@ -93,56 +82,87 @@ export const AppContractAbi = [
         type: "uint256",
       },
     ],
-    name: "Withdrawn",
+    name: "EscrowCreated",
     type: "event",
   },
   {
-    inputs: [],
-    name: "cUSD",
-    outputs: [
-      {
-        internalType: "contract IERC20",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
+    anonymous: false,
     inputs: [
       {
+        indexed: false,
+        internalType: "uint256",
+        name: "txId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
         internalType: "address",
-        name: "",
+        name: "seller",
         type: "address",
       },
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "deposits",
-    outputs: [
-      {
+        indexed: false,
         internalType: "uint256",
         name: "amount",
         type: "uint256",
       },
+    ],
+    name: "FundsReleased",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
       {
+        indexed: false,
         internalType: "uint256",
-        name: "createdAt",
+        name: "txId",
         type: "uint256",
       },
       {
+        indexed: false,
+        internalType: "address",
+        name: "buyer",
+        type: "address",
+      },
+    ],
+    name: "RefundRequested",
+    type: "event",
+  },
+  {
+    inputs: [],
+    name: "admin",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "uint256",
-        name: "expiresAt",
+        name: "_txId",
         type: "uint256",
       },
+    ],
+    name: "agreeRefund",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "arbitrator",
+    outputs: [
       {
-        internalType: "string",
-        name: "purpose",
-        type: "string",
+        internalType: "address",
+        name: "",
+        type: "address",
       },
     ],
     stateMutability: "view",
@@ -152,36 +172,169 @@ export const AppContractAbi = [
     inputs: [
       {
         internalType: "address",
-        name: "user",
+        name: "_seller",
         type: "address",
       },
     ],
-    name: "getAllDeposits",
+    name: "createEscrow",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_txId",
+        type: "uint256",
+      },
+    ],
+    name: "disputeTransaction",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "feePercent",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllCompletedTransactions",
     outputs: [
       {
         components: [
           {
-            internalType: "uint256",
+            internalType: "address",
+            name: "buyer",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "seller",
+            type: "address",
+          },
+          {
+            internalType: "euint256",
             name: "amount",
             type: "uint256",
           },
           {
-            internalType: "uint256",
-            name: "createdAt",
-            type: "uint256",
+            internalType: "bool",
+            name: "isCompleted",
+            type: "bool",
           },
           {
-            internalType: "uint256",
-            name: "expiresAt",
-            type: "uint256",
+            internalType: "bool",
+            name: "isDisputed",
+            type: "bool",
           },
           {
-            internalType: "string",
-            name: "purpose",
-            type: "string",
+            internalType: "bool",
+            name: "isRefunded",
+            type: "bool",
           },
         ],
-        internalType: "struct SupaSafe.Deposit[]",
+        internalType: "struct Escrow.Transaction[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllDisputedTransactions",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address",
+            name: "buyer",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "seller",
+            type: "address",
+          },
+          {
+            internalType: "euint256",
+            name: "amount",
+            type: "uint256",
+          },
+          {
+            internalType: "bool",
+            name: "isCompleted",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "isDisputed",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "isRefunded",
+            type: "bool",
+          },
+        ],
+        internalType: "struct Escrow.Transaction[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllRefundedTransactions",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address",
+            name: "buyer",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "seller",
+            type: "address",
+          },
+          {
+            internalType: "euint256",
+            name: "amount",
+            type: "uint256",
+          },
+          {
+            internalType: "bool",
+            name: "isCompleted",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "isDisputed",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "isRefunded",
+            type: "bool",
+          },
+        ],
+        internalType: "struct Escrow.Transaction[]",
         name: "",
         type: "tuple[]",
       },
@@ -193,79 +346,149 @@ export const AppContractAbi = [
     inputs: [
       {
         internalType: "address",
-        name: "user",
+        name: "_user",
         type: "address",
       },
+    ],
+    name: "getAllTransactionsForUser",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address",
+            name: "buyer",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "seller",
+            type: "address",
+          },
+          {
+            internalType: "euint256",
+            name: "amount",
+            type: "uint256",
+          },
+          {
+            internalType: "bool",
+            name: "isCompleted",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "isDisputed",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "isRefunded",
+            type: "bool",
+          },
+        ],
+        internalType: "struct Escrow.Transaction[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
       {
         internalType: "uint256",
-        name: "index",
+        name: "_txId",
         type: "uint256",
       },
     ],
-    name: "getDepositDetails",
+    name: "releaseFunds",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_txId",
+        type: "uint256",
+      },
+    ],
+    name: "requestRefund",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_txId",
+        type: "uint256",
+      },
+      {
+        internalType: "bool",
+        name: "_releaseToSeller",
+        type: "bool",
+      },
+    ],
+    name: "resolveDispute",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "transactionCounter",
     outputs: [
       {
         internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "transactions",
+    outputs: [
+      {
+        internalType: "address",
+        name: "buyer",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "seller",
+        type: "address",
+      },
+      {
+        internalType: "euint256",
         name: "amount",
         type: "uint256",
       },
       {
-        internalType: "uint256",
-        name: "createdAt",
-        type: "uint256",
+        internalType: "bool",
+        name: "isCompleted",
+        type: "bool",
       },
       {
-        internalType: "uint256",
-        name: "expiresAt",
-        type: "uint256",
+        internalType: "bool",
+        name: "isDisputed",
+        type: "bool",
       },
       {
-        internalType: "string",
-        name: "purpose",
-        type: "string",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "index",
-        type: "uint256",
-      },
-    ],
-    name: "getRemainingLockTime",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "user",
-        type: "address",
-      },
-    ],
-    name: "getUserDepositCount",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
+        internalType: "bool",
+        name: "isRefunded",
+        type: "bool",
       },
     ],
     stateMutability: "view",

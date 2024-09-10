@@ -6,82 +6,66 @@
 
 @layer base {
   :root {
-    
-    --background: #fff;
-    --foreground: #0c0f0d;
-    --font-sans: "IBM Plex Sans", sans-serif;
+    --background: #e6e6e6;
+    --foreground: #535353;
 
-    --muted: 210 40% 96.1%;
+    --muted: #898989;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --card: #ffffff;
+    --card-foreground: #0e151d;
 
-    --card: #39bc09;
-    --card-foreground: #fff;
-
-    --primary: #39bc09;
+    --primary: #f24500;
     --primary-foreground: #fff;
 
-    --secondary: #8bae7d;
-    --secondary-foreground: #fff;
+    --secondary: #ffffff;
+    --secondary-foreground: #19232f;
 
-    --accent: #ddfad2;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: #ff926878;
+    --accent-foreground: #f8f8f8;
 
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: #d00000;
+    --destructive-foreground: #ffffff;
 
-    --ring: 215 20.2% 65.1%;
+    --ring: #4c4847;
+    --border: #4c4847;
+    --input: #4c4847;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: #11181f;
-    --foreground: #ffffff;
+    --background: #19232f;
+    --foreground: #e3e6e6;
 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
+    --muted: #5e5e5e;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: #080b0a;
-    --accent-foreground: #ffff;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
 
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
+    --card: #151e27;
+    --card-foreground: #ffff;
 
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
+    --primary: #ff500b;
+    --primary-foreground: #fff;
 
-    --card: rgb(31, 32, 32);
-    --card-foreground: #FFFF;
+    --secondary: #121b24;
+    --secondary-foreground: #f8f8f8;
 
-    --primary: #2d7d40;
-    --primary-foreground: #ffff;
+    --accent: #243140;
+    --accent-foreground: #f8f8f8;
 
-    --secondary:#FFF;
-    --secondary-foreground: #fff;
+    --destructive: #d00000;
+    --destructive-foreground: #ffffff;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 216 34% 17%;
+    --ring: #3a4d5f;
+    --border: #3a4d5f;
+    --input: #3a4d5f;
 
     --radius: 0.5rem;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-
-    font-feature-settings: "rlig" 1, "calt" 1;
-    font-family: Roboto;
   }
 }

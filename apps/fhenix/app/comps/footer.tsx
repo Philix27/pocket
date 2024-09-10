@@ -8,7 +8,7 @@ import { FaHome } from "react-icons/fa"
 export default function Footer() {
   return (
     <div
-      className={`fixed bottom-0 flex w-[100%] items-center justify-between py-2 text-center bg-accent`}
+      className={`bg-secondary fixed bottom-0 flex w-full items-center justify-between py-2 text-center`}
     >
       <div
         className={
@@ -21,7 +21,7 @@ export default function Footer() {
         <Link href={"/orders"} className={"  text-primary"}>
           <BsBank size={20} />
         </Link>
-        <Link href={"/withdrawal"} className={" text-primary"}>
+        <Link href={"/all-transactions"} className={" text-primary"}>
           <BiMoneyWithdraw size={20} />
         </Link>
       </div>

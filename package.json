@@ -1,5 +1,5 @@
 {
-  "name": "turborepo-shadcn-ui",
+  "name": "root-app",
   "version": "1.4.1",
   "private": true,
   "license": "MIT",
@@ -8,7 +8,8 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ui": "pnpm --filter @repo/ui ui"
+    "ui": "pnpm --filter @repo/ui ui",
+    "pocket": "pnpm run dev --filter pocket"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

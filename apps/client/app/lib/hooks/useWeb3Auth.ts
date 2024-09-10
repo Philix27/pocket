@@ -2,7 +2,7 @@
 
 import { IProvider, UserInfo } from '@web3auth/base';
 import { useEffect, useState } from 'react';
-import RPC from '../auth/ethersRPC';
+// import RPC from '../auth/ethersRPC';
 import { AppStores } from '../zustand';
 import { ethers } from 'ethers';
 import { useAppRouter } from './useRouter';
@@ -90,8 +90,8 @@ export const useWeb3Modal = () => {
     await manageSigner();
     try {
       const user = await web3auth.getUserInfo();
-      const address = await RPC.getAccounts(provider);
-      const balance = await RPC.getBalance(provider);
+      // const address = await RPC.getAccounts(provider);
+      // const balance = await RPC.getBalance(provider);
 
       setAddress(address);
       setUserInfo(user);

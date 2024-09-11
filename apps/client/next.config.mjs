@@ -5,6 +5,7 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
     serverComponentsExternalPackages: ['@xmtp/user-preferences-bindings-wasm'],
+    optimizePackageImports: ['react-icons'],
   },
   webpack: (config, options) => {
     config.externals.push('pino-pretty', 'lokijs', 'encoding');
@@ -19,6 +20,7 @@ const nextConfig = {
 
 import mdx from '@next/mdx';
 import withPWAInit from '@ducanh2912/next-pwa';
+import analyzer from '@next/bundle-analyzer';
 
 const withMDX = mdx();
 // const config = mdx(nextConfig);
@@ -26,12 +28,17 @@ const withMDX = mdx();
 const withPWA = withPWAInit({
   dest: 'public',
 });
-const config = withPWA(nextConfig);
+const pwaConfig = withPWA(nextConfig);
 
-const finalConfig = withMDX(config);
+const mdxConfig = withMDX(pwaConfig);
 // export default withPWA(config);
 
 // export default config;
-export default finalConfig;
+
+const withBundleAnalyzer = analyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+export default withBundleAnalyzer(mdxConfig);
 
 // "fhenixjs": "^0.2.1",

@@ -14,22 +14,33 @@ datasource db {
 }
 
 model user {
-  id              Int     @id @unique()
+  id              Int     @id
   email           String
-  isEmailVerified Boolean
-  phone           String
-  isPhoneVerified Boolean
-  bvn             String
-  isBvnVerified   Boolean
-  nin             String
-  isNinVerified   Boolean
+  isEmailVerified Boolean @default(false)
+  phone           String?
+  isPhoneVerified Boolean @default(false)
+  bvn             String?
+  isBvnVerified   Boolean @default(false)
+  nin             String?
+  isNinVerified   Boolean @default(false)
+  dob             String?
+  address1        String?
+  address2        String?
+  // bankAccounts bank_account[]
+}
+
+model bank_account {
+  id        Int    @id
+  name      String
+  bankName  String
+  accountNo String
+  // userId user[]
 }
 
 model p2p_ads {
-  id              Int     @id @unique()
+  id Int @id @unique()
 }
 
 model transactions {
-  id              Int     @id @unique()
-  
+  id Int @id @unique()
 }

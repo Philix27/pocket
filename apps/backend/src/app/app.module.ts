@@ -4,18 +4,18 @@ import { AppService } from './app.service';
 import { PrismaModule } from 'mod/prisma';
 import { AuthModule } from 'mod/auth';
 import { InvoiceModule } from 'mod/invoice';
-import { KycModule } from 'mod/kyc';
+import { UserModule } from 'mod/user';
 import { OrderModule } from 'mod/p2p_ads';
-import { SwapService } from 'mod/swap';
+import { SwapModule } from 'mod/swap';
 
 @Module({
   imports: [
     PrismaModule,
     AuthModule,
     InvoiceModule,
-    KycModule,
+    UserModule,
     OrderModule,
-    SwapService,
+    SwapModule,
   ],
   controllers: [AppController],
   providers: [AppService],

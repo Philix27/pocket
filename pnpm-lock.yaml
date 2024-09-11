@@ -171,6 +171,9 @@ importers:
       ethers:
         specifier: ^6.13.2
         version: 6.13.2
+      fhenixjs:
+        specifier: ^0.2.1
+        version: 0.2.1
       firebase:
         specifier: ^10.11.1
         version: 10.13.1

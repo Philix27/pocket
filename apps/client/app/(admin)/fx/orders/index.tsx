@@ -1,41 +1,33 @@
 'use client';
-import { Tabs, TextP } from '@/comps';
+import { Spinner, Tabs, TextP } from '@/comps';
 import React, { useState } from 'react';
-import { adsData } from './data';
-import { cn } from '@/lib';
+import { cn, shortAddress } from '@/lib';
+import { FHE } from '@/contract';
+import { useAccount } from 'wagmi';
 
 export default function OrdersComp() {
-  const [isActive, setActive] = useState(false);
+  const { address } = useAccount();
+  const {
+    data,
+    result: { isLoading, error },
+  } = FHE.useGetAllTransactionsForUser(address!);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (error) {
+    return <p className="text-destructive">{error.message}</p>;
+  }
 
   return (
     <div className="px-6 mb-[100px]">
-      <Tabs
-        className="mt-[1px]"
-        data={[
-          {
-            title: 'Pending',
-            isActive: isActive,
-            onClick: () => {
-              setActive(true);
-            },
-          },
-          {
-            title: 'Canceled',
-            isActive: !isActive,
-            onClick: () => {
-              setActive(false);
-            },
-          },
-        ]}
-      />
       <div className="my-2">
-        {adsData.map((ads, index) => (
+        {data && data.map((ads, index) => (
           <div className="w-full bg-card mb-2 rounded-lg p-3 border-muted border-[0.1px]" key={index}>
-            <Row title={'Username'} subtitle={'Felix Eligbue'} />
             <Row title={'Amount'} subtitle={ads.amount.toString()} />
-            <Row title={'Trade'} subtitle={ads.isBuy ? 'BUY' : 'SELL'} />
-            <Row title={'Payment Method'} subtitle={ads.paymentMethod} />
-            <Row title={'Trade with'} subtitle={ads.tradeWith} isLast />
+            <Row title={'Status'} subtitle={ads.isCompleted ? 'Completed' : 'Pending'} />
+            <Row title={'Dispute'} subtitle={ads.isDisputed ? 'Yes' : 'None'} />
+            <Row title={'Dispute'} subtitle={shortAddress(ads.seller)} />
           </div>
         ))}
       </div>

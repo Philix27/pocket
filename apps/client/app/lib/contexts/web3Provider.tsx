@@ -5,6 +5,7 @@ import { createConfig, http, injected } from '@wagmi/core';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
+import { defineChain } from 'viem';
 import {
   XMTPProvider,
   attachmentContentTypeConfig,

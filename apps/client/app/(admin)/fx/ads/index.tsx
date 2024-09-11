@@ -1,10 +1,29 @@
-import { TextP } from '@/comps';
-import React from 'react';
+import { AppButton, TextP } from '@/comps';
+import React, { useState } from 'react';
 import { boolean } from 'zod';
-import { adsData } from './data';
-import { cn } from '@/lib';
+import { adsData, IAds } from './data';
+import { cn, shortAddress } from '@/lib';
+import { FHE } from '@/contract';
+import { toast } from 'sonner';
 
 export default function AdsComp() {
+  const [order, setOrder] = useState<IAds>();
+  const { createEscrow } = FHE.useCreateEscrow();
+
+  const submitData = async () => {
+    if (!order) {
+      toast.error('Please select an order');
+      return;
+    }
+
+    try {
+      createEscrow(order?.owner, order?.rate);
+      toast('Escrow created successfully');
+    } catch (error) {
+      toast('Oops an error occured');
+    }
+  };
+
   return (
     <div className="py-4 px-6 mb-[100px]">
       <TextP>Filters</TextP>
@@ -14,9 +33,17 @@ export default function AdsComp() {
             <Row title={'Username'} subtitle={'Felix Eligbue'} />
             <Row title={'Limit'} subtitle={`${ads.lowerLimit.toString()} - ${ads.upperLimit.toString()}`} />
             <Row title={'SALE'} subtitle={ads.isBuy ? 'BUY' : 'SELL'} />
-            <Row title={'Address'} subtitle={ads.owner} />
+            <Row title={'Address'} subtitle={shortAddress(ads.owner)} />
             <Row title={'Payment Method'} subtitle={ads.paymentMethod} />
             <Row title={'Rate'} subtitle={ads.rate.toString()} isLast />
+            <AppButton
+              onClick={() => {
+                setOrder(ads);
+                submitData();
+              }}
+            >
+              Buy
+            </AppButton>
           </div>
         ))}
       </div>

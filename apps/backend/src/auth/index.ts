@@ -1,3 +1,3 @@
-export * from './app.controller';
-export * from './app.module';
-export * from './app.service';
+export * from './auth.controller';
+export * from './auth.module';
+export * from './auth.service';

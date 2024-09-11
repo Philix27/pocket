@@ -1,6 +1,6 @@
 'use client';
 import React, { ReactNode } from 'react';
-import { MarketingNavItems, NavbarMarketing } from './_comps/navbar';
+import { NavbarMarketing } from './_comps/Nav';
 
 export default function MarketingLayout(props: { children: ReactNode }) {
   return (
@@ -8,9 +8,8 @@ export default function MarketingLayout(props: { children: ReactNode }) {
       className="h-screen overscroll-none bg-background"
       style={{ overscrollBehavior: 'none', WebkitOverflowScrolling: 'touch', height: '100vh' }}
     >
-      <NavbarMarketing title={'PR'} items={MarketingNavItems} />
+      <NavbarMarketing title={'PR'} />
       <div className="min-h-[calc(100vh-250px)]">{props.children}</div>
-      <div className="hidden md:block"></div>
     </div>
   );
 }

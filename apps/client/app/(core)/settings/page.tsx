@@ -10,7 +10,7 @@ import { LuChevronRight } from 'react-icons/lu';
 import { BiLogOut } from 'react-icons/bi';
 import Image from 'next/image';
 import { useBalance } from 'wagmi';
-import { InfoRowItem, RowItem } from './Row';
+import { InfoRowItem, RowItem } from './_comps/Row';
 
 export default function SettingsPage() {
   const store = AppStores.useChat();

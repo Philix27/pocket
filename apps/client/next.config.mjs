@@ -33,3 +33,5 @@ const finalConfig = withMDX(config);
 
 // export default config;
 export default finalConfig;
+
+// "fhenixjs": "^0.2.1",

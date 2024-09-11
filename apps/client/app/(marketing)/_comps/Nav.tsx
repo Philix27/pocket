@@ -1,11 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { MainNavProps } from './site';
-import { AppButton, Drawer, TextH, TextP } from '@/comps';
+
+import { Drawer, TextH } from '@/comps';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
-import { AppPages, AppStores, useWeb3Modal } from '@/lib';
+import { AppStores, useWeb3Modal } from '@/lib';
+
+export interface MainNavProps {
+  title: string;
+}
 
 export function NavbarMarketing(props: MainNavProps) {
   const router = useRouter();
@@ -24,29 +28,7 @@ export function NavbarMarketing(props: MainNavProps) {
         </div>
 
         <div className="flex items-center justify-center md:gap-x-3">
-          <div className={'hidden md:flex w-full gap-x-4'}>
-            {props.items?.map((v, i) => (
-              <Link
-                key={i}
-                href={v.href || '/#'}
-                className={`hover:bg-accent p-2 rounded-md hover:[&>p]:text-primary-foreground`}
-              >
-                <TextP className={'text-primary'}>{v.title}</TextP>
-              </Link>
-            ))}
-
-            {isLoggedIn ? (
-              <AppButton className="px-4" onClick={() => router.push('/chat')}>
-                Chat now
-              </AppButton>
-            ) : (
-              <AppButton className="px-4" onClick={login}>
-                Connect
-              </AppButton>
-            )}
-          </div>
-
-          <div className={'md:hidden'}>
+          <div className={''}>
             {store.drawerIsOpen && <Drawer />}
 
             {store.drawerIsOpen ? (

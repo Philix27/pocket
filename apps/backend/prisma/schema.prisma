@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model user {
   id              Int     @id @unique()
   email           String
   isEmailVerified Boolean
@@ -23,4 +23,13 @@ model User {
   isBvnVerified   Boolean
   nin             String
   isNinVerified   Boolean
+}
+
+model p2p_ads {
+  id              Int     @id @unique()
+}
+
+model transactions {
+  id              Int     @id @unique()
+  
 }

@@ -17,7 +17,7 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 export const fhenixFrontier = defineChain({
   id: 8008135,
-  name: 'Fhenix Frontier',
+  name: 'Fhenix',
   network: 'fhenixFrontier',
   nativeCurrency: { name: 'tFHE', symbol: 'tFHE', decimals: 18 },
   rpcUrls: {
@@ -39,16 +39,16 @@ export const fhenixFrontier = defineChain({
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 
 const configX = createConfig({
-  chains: [fhenixFrontier],
+  chains: [fhenixFrontier, celoAlfajores, celo],
   // chains: [celoAlfajores],
   transports: {
     [fhenixFrontier.id]: http(),
-    // [celoAlfajores.id]: http(),
-    // [celo.id]: http(),
-    // [sepolia.id]: http(),
+    [celoAlfajores.id]: http(),
+    [celo.id]: http(),
+    [sepolia.id]: http(),
   },
   ssr: true,
-  connectors: [Web3AuthConnectorInstance([fhenixFrontier]), injected()],
+  connectors: [Web3AuthConnectorInstance([fhenixFrontier, celoAlfajores, celo, sepolia]), injected()],
   // connectors: [Web3AuthConnectorInstance([celoAlfajores]), injected()],
 });
 

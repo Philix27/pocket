@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, shortenAddress, Spinner, TextH, TextP } from '@/comps';
 import { IconType } from 'react-icons';
 import { IoPersonOutline } from 'react-icons/io5';
@@ -11,6 +11,8 @@ import { BiLogOut } from 'react-icons/bi';
 import Image from 'next/image';
 import { useBalance } from 'wagmi';
 import { InfoRowItem, RowItem } from './_comps/Row';
+import { BottomSheet } from './_comps/BottomSheet';
+import { SwitchChain } from './_comps';
 
 export default function SettingsPage() {
   const store = AppStores.useChat();
@@ -36,6 +38,7 @@ export default function SettingsPage() {
         </div>
         <TextH v="h5">More</TextH>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
+          <SwitchChain />
           <RowItem title={'Verification'} subtitle={'KYC verification'} Icon={IoPersonOutline} />
           <RowItem
             title={'Support'}

@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { UserService } from './user.service';
+import { User } from '@repo/rpc';
 
 type IGetUserInfoResponse = {
   firstName?: string;
@@ -17,48 +18,68 @@ type IVerifyPhoneDto = {
   sessionId?: string;
 };
 
+const UserRoute = {
+  get_info: '/get_info',
+  verify_nin: '/verify_nin',
+  verify_bvn: '/verify_bvn',
+  verify_phone: '/verify_phone',
+  verify_email: '/verify_email',
+  get_bank_accounts: '/get_bank_accounts',
+  set_transaction_pin: '/set_transaction_pin',
+  verify_transaction_pin: '/verify_transaction_pin',
+};
+
 @Controller('/user')
 export class UserController {
   constructor(private readonly service: UserService) {}
 
-  @Get('/info')
+  @Get(UserRoute.get_info)
   getInfo(@Param('address') address: string): IGetUserInfoResponse {
     // return this.service.getHello();
 
     return {};
   }
 
-  @Post('/verify_phone')
-  verifyPhone(@Body() body: IVerifyPhoneDto): boolean {
+  @Post(UserRoute.verify_phone)
+  verifyPhone(@Body() body: IVerifyPhoneDto) {
     // return this.service.getHello();
 
     return;
   }
 
-  @Post('/verify_bvn')
+  @Post(UserRoute.verify_bvn)
   verifyBvn(@Body() body: IVerifyPhoneDto): boolean {
     // return this.service.getHello();
 
     return;
   }
 
-  @Post('/verify_nin')
+  @Post(UserRoute.verify_nin)
   verifyNin(@Body() body: IVerifyPhoneDto): boolean {
     // return this.service.getHello();
 
     return;
   }
 
-  @Post('/verify_email')
+  @Post(UserRoute.verify_email)
   verifyEmail(@Body() body: IVerifyPhoneDto): boolean {
     // return this.service.getHello();
 
     return;
   }
-  @Get('/get_bank_accounts')
-  verifyBankAccounts(): boolean {
-    // return this.service.getHello();
 
+  @Get(UserRoute.get_bank_accounts)
+  get_bank_accounts(): boolean {
+    return;
+  }
+
+  @Patch(UserRoute.set_transaction_pin)
+  set_transaction_pin() {
+    return;
+  }
+
+  @Post(UserRoute.verify_transaction_pin)
+  verify_transaction_pin() {
     return;
   }
 }

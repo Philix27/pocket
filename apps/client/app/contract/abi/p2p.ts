@@ -1,5 +1,44 @@
-export const p2pContractAddress = '0x';
+export const p2pContractAddress = '0x3C235a7AED6Fc77e799f9aeb9bFD652FE2465928';
 export const p2pAbi = [
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_txId',
+        type: 'uint256',
+      },
+    ],
+    name: 'agreeRefund',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_seller',
+        type: 'address',
+      },
+    ],
+    name: 'createEscrow',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_txId',
+        type: 'uint256',
+      },
+    ],
+    name: 'disputeTransaction',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
   {
     inputs: [
       {
@@ -130,6 +169,63 @@ export const p2pAbi = [
     type: 'event',
   },
   {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_txId',
+        type: 'uint256',
+      },
+    ],
+    name: 'releaseFunds',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_txId',
+        type: 'uint256',
+      },
+    ],
+    name: 'requestRefund',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_txId',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bool',
+        name: '_releaseToSeller',
+        type: 'bool',
+      },
+    ],
+    name: 'resolveDispute',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_admin',
+        type: 'address',
+      },
+    ],
+    name: 'updateAdmin',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
     inputs: [],
     name: 'admin',
     outputs: [
@@ -143,19 +239,6 @@ export const p2pAbi = [
     type: 'function',
   },
   {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_txId',
-        type: 'uint256',
-      },
-    ],
-    name: 'agreeRefund',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
     inputs: [],
     name: 'arbitrator',
     outputs: [
@@ -166,32 +249,6 @@ export const p2pAbi = [
       },
     ],
     stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '_seller',
-        type: 'address',
-      },
-    ],
-    name: 'createEscrow',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_txId',
-        type: 'uint256',
-      },
-    ],
-    name: 'disputeTransaction',
-    outputs: [],
-    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
@@ -213,6 +270,11 @@ export const p2pAbi = [
     outputs: [
       {
         components: [
+          {
+            internalType: 'uint256',
+            name: 'id',
+            type: 'uint256',
+          },
           {
             internalType: 'address',
             name: 'buyer',
@@ -259,6 +321,11 @@ export const p2pAbi = [
       {
         components: [
           {
+            internalType: 'uint256',
+            name: 'id',
+            type: 'uint256',
+          },
+          {
             internalType: 'address',
             name: 'buyer',
             type: 'address',
@@ -303,6 +370,11 @@ export const p2pAbi = [
     outputs: [
       {
         components: [
+          {
+            internalType: 'uint256',
+            name: 'id',
+            type: 'uint256',
+          },
           {
             internalType: 'address',
             name: 'buyer',
@@ -355,6 +427,11 @@ export const p2pAbi = [
       {
         components: [
           {
+            internalType: 'uint256',
+            name: 'id',
+            type: 'uint256',
+          },
+          {
             internalType: 'address',
             name: 'buyer',
             type: 'address',
@@ -394,50 +471,6 @@ export const p2pAbi = [
     type: 'function',
   },
   {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_txId',
-        type: 'uint256',
-      },
-    ],
-    name: 'releaseFunds',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_txId',
-        type: 'uint256',
-      },
-    ],
-    name: 'requestRefund',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_txId',
-        type: 'uint256',
-      },
-      {
-        internalType: 'bool',
-        name: '_releaseToSeller',
-        type: 'bool',
-      },
-    ],
-    name: 'resolveDispute',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
     inputs: [],
     name: 'transactionCounter',
     outputs: [
@@ -460,6 +493,11 @@ export const p2pAbi = [
     ],
     name: 'transactions',
     outputs: [
+      {
+        internalType: 'uint256',
+        name: 'id',
+        type: 'uint256',
+      },
       {
         internalType: 'address',
         name: 'buyer',

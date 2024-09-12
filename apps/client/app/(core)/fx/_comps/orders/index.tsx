@@ -1,16 +1,21 @@
 'use client';
-import { Spinner, Tabs, TextP } from '@/comps';
-import React, { useState } from 'react';
+import { AppButton, Spinner, Tabs, TextP } from '@/comps';
+import React, { memo, useMemo, useState } from 'react';
 import { cn, shortAddress } from '@/lib';
 import { FHE } from '@/contract';
 import { useAccount } from 'wagmi';
+import { parseEther } from 'viem';
+import { toast } from 'sonner';
 
-export default function OrdersComp() {
+export const OrdersComp = memo(() => {
+  const [fundsProcessing, setFundsProcessing] = useState<number>();
   const { address } = useAccount();
   const {
     data,
     result: { isLoading, error },
   } = FHE.useGetAllTransactionsForUser(address!);
+
+  const { releaseFunds, result: releaseFundsResult } = FHE.useReleaseFunds();
 
   if (isLoading) {
     return <Spinner />;
@@ -22,18 +27,39 @@ export default function OrdersComp() {
   return (
     <div className="px-6 mb-[100px]">
       <div className="my-2">
-        {data && data.map((ads, index) => (
-          <div className="w-full bg-card mb-2 rounded-lg p-3 border-muted border-[0.1px]" key={index}>
-            <Row title={'Amount'} subtitle={ads.amount.toString()} />
-            <Row title={'Status'} subtitle={ads.isCompleted ? 'Completed' : 'Pending'} />
-            <Row title={'Dispute'} subtitle={ads.isDisputed ? 'Yes' : 'None'} />
-            <Row title={'Dispute'} subtitle={shortAddress(ads.seller)} />
-          </div>
-        ))}
+        {data &&
+          data.map((ads, index) => {
+            if (fundsProcessing === ads.id && releaseFundsResult.isPending) {
+              return <Spinner />;
+            }
+            // if (releaseFundsResult.error) {
+            //   return <p>{releaseFundsResult.error.message}</p>;
+            // }
+            return (
+              <div className="w-full bg-card mb-2 rounded-lg p-3 border-muted border-[0.1px]" key={index}>
+                <Row title={'Id'} subtitle={ads.id.toString()} />
+                <Row title={'Amount'} subtitle={Number(parseEther(ads.amount.toString())).toString()} />
+                <Row title={'Status'} subtitle={ads.isCompleted ? 'Completed' : 'Pending'} />
+                <Row title={'Dispute'} subtitle={ads.isDisputed ? 'Yes' : 'None'} />
+                <Row title={'Dispute'} subtitle={shortAddress(ads.seller)} />
+                <AppButton
+                  onClick={() => {
+                    setFundsProcessing(ads.id);
+                    releaseFunds(ads.id);
+                    setTimeout(() => {
+                      toast.success('Funds released to seller');
+                    }, 5000);
+                  }}
+                >
+                  Release Funds
+                </AppButton>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
-}
+});
 
 function Row(props: { title: string; subtitle: string; isLast?: boolean }) {
   return (

@@ -5,7 +5,7 @@ import { PrismaModule } from 'mod/prisma';
 import { AuthModule } from 'mod/auth';
 import { InvoiceModule } from 'mod/invoice';
 import { UserModule } from 'mod/user';
-import { OrderModule } from 'mod/p2p_ads';
+import { OrderModule } from 'mod/orders';
 import { SwapModule } from 'mod/swap';
 
 @Module({

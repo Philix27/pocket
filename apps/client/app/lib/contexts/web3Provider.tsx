@@ -39,15 +39,17 @@ export const fhenixFrontier = defineChain({
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 
 const configX = createConfig({
-  chains: [celoAlfajores],
+  chains: [fhenixFrontier],
+  // chains: [celoAlfajores],
   transports: {
     [fhenixFrontier.id]: http(),
-    [celoAlfajores.id]: http(),
+    // [celoAlfajores.id]: http(),
     // [celo.id]: http(),
     // [sepolia.id]: http(),
   },
   ssr: true,
-  connectors: [Web3AuthConnectorInstance([celoAlfajores]), injected()],
+  connectors: [Web3AuthConnectorInstance([fhenixFrontier]), injected()],
+  // connectors: [Web3AuthConnectorInstance([celoAlfajores]), injected()],
 });
 
 const queryClient = new QueryClient();

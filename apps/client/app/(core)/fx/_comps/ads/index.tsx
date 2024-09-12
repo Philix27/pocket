@@ -20,6 +20,7 @@ export default function AdsComp() {
       createEscrow(order?.owner, order?.rate);
       toast('Escrow created successfully');
     } catch (error) {
+      console.log('Error: ads', error);
       toast('Oops an error occured');
     }
   };
@@ -39,7 +40,9 @@ export default function AdsComp() {
             <AppButton
               onClick={() => {
                 setOrder(ads);
-                submitData();
+                if (ads) {
+                  submitData();
+                }
               }}
             >
               Buy

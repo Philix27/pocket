@@ -11,6 +11,7 @@ contract Escrow {
     address public admin;
 
     struct Transaction {
+        uint256 id;
         address buyer;
         address seller;
         euint256 amount;
@@ -88,6 +89,7 @@ contract Escrow {
         // bool _sellerAddress = FHE.isInitialized(_seller);
 
         transactions[transactionCounter] = Transaction({
+            id:  transactionCounter,
             buyer: msg.sender,
             seller: _seller,
             amount: FHE.asEuint256(msg.value),
@@ -97,7 +99,7 @@ contract Escrow {
         });
 
         emit EscrowCreated(transactionCounter, msg.sender, _seller, msg.value);
-        transactionCounter++;
+       transactionCounter++;
     }
 
     // Buyer confirms seller has paid in fiat, releasing funds to the seller
@@ -332,5 +334,8 @@ contract Escrow {
         return completedTransactions;
     }
 
+    function updateAdmin(address _admin) public  onlyAdmin() {
+      admin =  _admin;
+    }
    
 }

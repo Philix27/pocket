@@ -11,8 +11,8 @@ import { BiLogOut } from 'react-icons/bi';
 import Image from 'next/image';
 import { useBalance } from 'wagmi';
 import { InfoRowItem, RowItem } from './_comps/Row';
-import { BottomSheet } from './_comps/BottomSheet';
-import { SwitchChain } from './_comps';
+import { BottomSheet } from '../../comps/layout/BottomSheet';
+import { SwitchChain, WalletBalance } from './_comps';
 
 export default function SettingsPage() {
   const store = AppStores.useChat();
@@ -31,13 +31,13 @@ export default function SettingsPage() {
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
           <InfoRowItem left={'Name'} right={store.userInfo?.name!} Icon={IoPersonOutline} />
           <InfoRowItem left={'Email'} right={store.userInfo?.email!} Icon={MdEmail} />
-          <InfoRowItem left={'MFA'} right={store.userInfo?.isMfaEnabled ? 'Enabled' : 'Disabled'} Icon={MdSecurity} />
           <Balance address={address} title={'celo'} />
           <Balance address={address} title={'cUSD'} tokenAddress="0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" />
           <InfoRowItem left={'Address'} right={shortenAddress(address)} Icon={IoPersonOutline} />
         </div>
         <TextH v="h5">More</TextH>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
+          <WalletBalance />
           <SwitchChain />
           <RowItem title={'Verification'} subtitle={'KYC verification'} Icon={IoPersonOutline} />
           <RowItem

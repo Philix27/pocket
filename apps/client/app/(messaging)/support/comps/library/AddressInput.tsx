@@ -1,11 +1,9 @@
-import {
-  ChevronLeftIcon,
-  InformationCircleIcon,
-} from "@heroicons/react/24/outline";
-import { forwardRef, useCallback } from "react";
-import { Avatar } from "./Avatar";
-import { ShortCopySkeletonLoader } from "./SkeletonLoaders/ShortCopySkeletonLoader";
-import styles from "./AddressInput.module.css";
+import { forwardRef, useCallback } from 'react';
+import { Avatar } from './Avatar';
+import { ShortCopySkeletonLoader } from './SkeletonLoaders/ShortCopySkeletonLoader';
+import styles from './AddressInput.module.css';
+import { MdOutlineChevronLeft } from 'react-icons/md';
+import { IoInformation } from 'react-icons/io5';
 
 type AddressInputProps = {
   /**
@@ -79,27 +77,22 @@ export const AddressInput = forwardRef<HTMLInputElement, AddressInputProps>(
       onTooltipClick,
       value,
     },
-    ref,
+    ref
   ) => {
-    const handleChange = useCallback<
-      React.ChangeEventHandler<HTMLInputElement>
-    >(
+    const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
       (event) => {
         onChange?.(event.target.value);
       },
-      [onChange],
+      [onChange]
     );
 
     const isResolvedAddress = !!resolvedAddress?.displayAddress;
 
     return (
-      <div
-        className={`${styles.wrapper} ${
-          isResolvedAddress ? styles.resolved : ""
-        }`}>
+      <div className={`${styles.wrapper} ${isResolvedAddress ? styles.resolved : ''}`}>
         {onLeftIconClick && (
           <div className={styles.leftIcon}>
-            <ChevronLeftIcon onClick={onLeftIconClick} width={24} />
+            <MdOutlineChevronLeft onClick={onLeftIconClick} width={24} />
           </div>
         )}
         <div className={styles.element}>
@@ -110,15 +103,11 @@ export const AddressInput = forwardRef<HTMLInputElement, AddressInputProps>(
               <ShortCopySkeletonLoader lines={1} />
             ) : resolvedAddress?.displayAddress ? (
               <div className={styles.resolvedAddress}>
-                <span
-                  className={styles.displayAddress}
-                  data-testid="recipient-wallet-address">
+                <span className={styles.displayAddress} data-testid="recipient-wallet-address">
                   {resolvedAddress.displayAddress}
                 </span>
                 {resolvedAddress.walletAddress && (
-                  <span className={styles.walletAddress}>
-                    {resolvedAddress.walletAddress}
-                  </span>
+                  <span className={styles.walletAddress}>{resolvedAddress.walletAddress}</span>
                 )}
               </div>
             ) : (
@@ -138,19 +127,15 @@ export const AddressInput = forwardRef<HTMLInputElement, AddressInputProps>(
                 ref={ref}
               />
             )}
-            <div
-              className={`${styles.subtext} ${isError ? styles.error : ""}`}
-              data-testid="message-to-subtext">
+            <div className={`${styles.subtext} ${isError ? styles.error : ''}`} data-testid="message-to-subtext">
               {subtext}
             </div>
           </div>
         </div>
-        {onTooltipClick && (
-          <InformationCircleIcon onClick={onTooltipClick} height="24" />
-        )}
+        {onTooltipClick && <IoInformation onClick={onTooltipClick} height="24" />}
       </div>
     );
-  },
+  }
 );
 
-AddressInput.displayName = "AddressInput";
+AddressInput.displayName = 'AddressInput';

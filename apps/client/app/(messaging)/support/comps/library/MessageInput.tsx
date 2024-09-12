@@ -1,8 +1,8 @@
 import type { ChangeEvent, KeyboardEvent } from 'react';
 import { useCallback, forwardRef, useImperativeHandle, useState, useLayoutEffect, useRef } from 'react';
-import { ArrowUpIcon } from '@heroicons/react/24/solid';
 import { IconButton } from './IconButton';
 import styles from './MessageInput.module.css';
+import { AiOutlineArrowUp } from 'react-icons/ai';
 
 type MessageInputProps = {
   /**
@@ -91,7 +91,7 @@ export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
           <IconButton
             testId="message-input-submit"
             variant="secondary"
-            label={<ArrowUpIcon color="white" width="20" />}
+            label={<AiOutlineArrowUp color="white" width="20" />}
             srText={submitSrText}
             onClick={handleClick}
             isDisabled={!value || isDisabled}

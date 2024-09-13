@@ -51,7 +51,7 @@ export default function QuickActions() {
     },
     {
       Icon: IoIosSwap,
-      title: 'Swap',
+      title: 'Deposit',
       link: '/swap',
     },
     {

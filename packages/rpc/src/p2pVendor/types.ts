@@ -18,21 +18,14 @@ export interface IP2pAds {
 }
 
 export type IP2pAds_GetPrimaryAcctParams = { walletAddress: string };
+
 export type IP2pAds_GetPrimaryAcctRs = {
-  data?: {
-    bankName: string;
-    accountName: string;
-    accountNo: string;
-  };
+  data?: {};
 };
 
 export type IP2pAds_GetAllParams = { walletAddress: string };
 export type IP2pAds_GetAllRs = {
-  data?: {
-    bankName: string;
-    accountName: string;
-    accountNo: string;
-  }[];
+  data?: {}[];
 };
 
 export type IP2pAds_AddRq = {};

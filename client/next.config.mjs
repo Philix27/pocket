@@ -20,7 +20,6 @@ const nextConfig = {
 
 import mdx from '@next/mdx';
 import withPWAInit from '@ducanh2912/next-pwa';
-import analyzer from '@next/bundle-analyzer';
 
 const withMDX = mdx();
 // const config = mdx(nextConfig);
@@ -30,15 +29,16 @@ const withPWA = withPWAInit({
 });
 const pwaConfig = withPWA(nextConfig);
 
-const mdxConfig = withMDX(pwaConfig);
+const config = withMDX(pwaConfig);
 // export default withPWA(config);
 
-// export default config;
+export default config;
 
-const withBundleAnalyzer = analyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
+// import analyzer from '@next/bundle-analyzer';
+// const withBundleAnalyzer = analyzer({
+//   enabled: process.env.ANALYZE === 'true',
+// });
 
-export default withBundleAnalyzer(mdxConfig);
+// export default withBundleAnalyzer(mdxConfig);
 
 // "fhenixjs": "^0.2.1",

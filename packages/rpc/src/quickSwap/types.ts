@@ -2,6 +2,7 @@ export const QuickSwapRoute = {
   base: "/quick-swap",
   get_rates: "/get_rates",
   get_transactions: "/get_transactions",
+  // get_quick_orders: "/get_quick_orders",
   buy: "/buy",
   sell: "/sell",
 };

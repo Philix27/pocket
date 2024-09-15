@@ -27,12 +27,13 @@ const withMDX = mdx();
 const withPWA = withPWAInit({
   dest: 'public',
 });
-const pwaConfig = withPWA(nextConfig);
 
-const config = withMDX(pwaConfig);
+const pwaConfig = withPWA(nextConfig);
 // export default withPWA(config);
 
-export default config;
+export default withMDX(pwaConfig);
+
+// export default config;
 
 // import analyzer from '@next/bundle-analyzer';
 // const withBundleAnalyzer = analyzer({

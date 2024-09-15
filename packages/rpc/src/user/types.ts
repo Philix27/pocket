@@ -48,20 +48,38 @@ export type IUser_GetInfo = {
   pathParam: {};
 };
 
-export type IUser_VerifyNinRq = {};
+export type IUser_VerifyNinRq = {
+  nin: string;
+  walletAddress: string;
+};
 export type IUser_VerifyNinRs = {};
 
-export type IUser_VerifyBvnRq = {};
+export type IUser_VerifyBvnRq = {
+  bvn: string;
+  walletAddress: string;
+};
 export type IUser_VerifyBvnRs = {};
 
-export type IUser_VerifyPhoneRq = {};
+export type IUser_VerifyPhoneRq = {
+  phone: string;
+  walletAddress: string;
+};
 export type IUser_VerifyPhoneRs = {};
 
-export type IUser_VerifyEmailRq = {};
+export type IUser_VerifyEmailRq = {
+  email: string;
+  walletAddress: string;
+};
 export type IUser_VerifyEmailRs = {};
 
-export type IUser_SetTransactionPinRq = {};
+export type IUser_SetTransactionPinRq = {
+  pin: string;
+  walletAddress: string;
+};
 export type IUser_SetTransactionPinRs = {};
 
-export type IUser_VerifyTransactionPinRq = {};
+export type IUser_VerifyTransactionPinRq = {
+  pin: string;
+  walletAddress: string;
+};
 export type IUser_VerifyTransactionPinRs = {};

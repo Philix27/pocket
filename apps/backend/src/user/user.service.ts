@@ -24,30 +24,86 @@ export class UserService implements IUser {
 
   async get_info(params: IUserGetInfoRqParam): Promise<IUserGetInfoRsBody> {
     const res = await this.prisma.user.findFirst({
-      where: {},
+      where: {
+        walletAddress: params.walletAddress,
+      },
     });
     return res;
   }
-  verify_nin(body: IUser_VerifyNinRq): Promise<IUser_VerifyNinRs> {
-    throw new Error('Method not implemented.');
+
+  async verify_nin(body: IUser_VerifyNinRq): Promise<IUser_VerifyNinRs> {
+    const res = await this.prisma.user.update({
+      where: {
+        walletAddress: body.walletAddress,
+      },
+      data: {
+        nin: body.nin,
+      },
+    });
+    return res;
   }
-  verify_bvn(body: IUser_VerifyBvnRq): Promise<IUser_VerifyBvnRs> {
-    throw new Error('Method not implemented.');
+
+  async verify_bvn(body: IUser_VerifyBvnRq): Promise<IUser_VerifyBvnRs> {
+    const res = await this.prisma.user.update({
+      where: {
+        walletAddress: body.walletAddress,
+      },
+      data: {
+        nin: body.bvn,
+      },
+    });
+    return res;
   }
-  verify_phone(body: IUser_VerifyPhoneRq): Promise<IUser_VerifyPhoneRs> {
-    throw new Error('Method not implemented.');
+
+  async verify_phone(body: IUser_VerifyPhoneRq): Promise<IUser_VerifyPhoneRs> {
+    const res = await this.prisma.user.update({
+      where: {
+        walletAddress: body.walletAddress,
+      },
+      data: {
+        nin: body.phone,
+      },
+    });
+    return res;
   }
-  verify_email(body: IUser_VerifyEmailRq): Promise<IUser_VerifyEmailRs> {
-    throw new Error('Method not implemented.');
+
+  async verify_email(body: IUser_VerifyEmailRq): Promise<IUser_VerifyEmailRs> {
+    const res = await this.prisma.user.update({
+      where: {
+        walletAddress: body.walletAddress,
+      },
+      data: {
+        nin: body.email,
+      },
+    });
+    return res;
   }
-  set_transaction_pin(
+
+  async set_transaction_pin(
     body: IUser_SetTransactionPinRq,
   ): Promise<IUser_SetTransactionPinRs> {
-    throw new Error('Method not implemented.');
+    const res = await this.prisma.user.update({
+      where: {
+        walletAddress: body.walletAddress,
+      },
+      data: {
+        pin: body.pin,
+      },
+    });
+    return res;
   }
-  verify_transaction_pin(
+
+  async verify_transaction_pin(
     body: IUser_VerifyTransactionPinRq,
   ): Promise<IUser_VerifyTransactionPinRs> {
-    throw new Error('Method not implemented.');
+    const res = await this.prisma.user.update({
+      where: {
+        walletAddress: body.walletAddress,
+      },
+      data: {
+        pin: body.pin,
+      },
+    });
+    return res;
   }
 }

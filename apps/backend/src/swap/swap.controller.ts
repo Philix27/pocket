@@ -16,26 +16,26 @@ import {
 export class SwapController implements IQuickSwap {
   constructor(private readonly appService: SwapService) {}
 
-  @Get()
+  @Get('/get_rates')
   async get_rates(
     params: IQuickSwap_GetRatesParams,
   ): Promise<IQuickSwap_GetRatesRs> {
     return await this.appService.get_rates(params);
   }
 
-  @Get()
+  @Get('/get_transactions')
   async get_transactions(
     params: IQuickSwap_GetTransactionsParams,
   ): Promise<IQuickSwap_GetTransactionsRs> {
     return await this.appService.get_transactions(params);
   }
 
-  @Post()
+  @Post('/buy')
   async buy(body: IQuickSwap_BuyRq): Promise<IQuickSwap_BuyRs> {
     return await this.appService.buy(body);
   }
 
-  @Post()
+  @Post('/sell')
   async sell(body: IQuickSwap_SellRq): Promise<IQuickSwap_SellRs> {
     return await this.appService.sell(body);
   }

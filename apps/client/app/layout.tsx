@@ -58,8 +58,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="overscroll-none bg-background" style={{ overscrollBehavior: 'none' }}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="HandheldFriendly" content="true" />
+      </head>
       <body
-        style={{ overscrollBehavior: 'none', overflow: "hidden" }}
+        style={{ overscrollBehavior: 'none', overflow: 'hidden' }}
         className={cn(
           `min-h-screen bg-background overscroll-none overflow-hidden 
           font-sans antialiased`,

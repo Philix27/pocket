@@ -2,7 +2,7 @@
 import { BottomNav, Drawer } from '@/comps';
 import { AppStores, use3Wagmi, useWeb3Modal } from '@/lib';
 import { useRouter } from 'next/navigation';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: boolean }) {
   const router = useRouter();
@@ -13,6 +13,28 @@ export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: 
   if (!isConnected) {
     router.push('/');
   }
+
+  useEffect(() => {
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+      // special hack to prevent zoom-to-tabs gesture in safari
+      document.body.style.zoom = 0.99;
+    });
+
+    document.addEventListener('gesturechange', function (e) {
+      e.preventDefault();
+      // special hack to prevent zoom-to-tabs gesture in safari
+      document.body.style.zoom = 0.99;
+    });
+
+    document.addEventListener('gestureend', function (e) {
+      e.preventDefault();
+      // special hack to prevent zoom-to-tabs gesture in safari
+      document.body.style.zoom = 0.99;
+    });
+
+    return () => {};
+  }, []);
 
   return (
     <div

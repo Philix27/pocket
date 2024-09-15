@@ -15,6 +15,7 @@ datasource db {
 
 model user {
   id              Int     @id
+  walletAddress           String
   email           String
   isEmailVerified Boolean @default(false)
   phone           String?

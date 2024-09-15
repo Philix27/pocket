@@ -33,6 +33,7 @@ model user {
   bankAccounts    bank_account[]
   transactions    transactions[]
   p2pAds          p2p_ads[]
+  direct_orders   direct_order[]
 }
 
 model bank_account {
@@ -54,14 +55,39 @@ model p2p_ads {
   updated_at DateTime? @updatedAt
 }
 
+model direct_order {
+  id         String           @id @default(uuid())
+  created_at DateTime?        @default(now())
+  updated_at DateTime?        @updatedAt
+  amount     Int
+  user_id    String?
+  user       user?            @relation(fields: [user_id], references: [id])
+  status     QuickOrderStatus
+}
+
+enum QuickOrderStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
 model transactions {
   id              String               @id @default(uuid())
   created_at      DateTime?            @default(now())
   updated_at      DateTime?            @updatedAt
   user_id         String?
   transactionhash String
+  description     String
   user            user?                @relation(fields: [user_id], references: [id])
   category        TransaactionCategory
+  status          TransactionStatus
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  CLOSED
 }
 
 enum TransaactionCategory {
@@ -71,4 +97,12 @@ enum TransaactionCategory {
   WITHDRAW
   SEND
   RECEIVE
+}
+
+model rates {
+  id         String    @id @default(uuid())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+  currency   String
+  symbol     String?
 }

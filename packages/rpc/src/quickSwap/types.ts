@@ -22,13 +22,12 @@ export interface IQuickSwap {
 export type IQuickSwap_GetRatesParams = { walletAddress: string };
 export type IQuickSwap_GetRatesRs = {
   data?: {
-    ngnBuy: number;
-    ngnSell: number;
-    usdBuy: number;
-    usdSell: number;
-    cUsdBuy: number;
-    cUsdSell: number;
-  };
+    id: string;
+    created_at: Date;
+    updated_at: Date;
+    currency: string;
+    symbol: string;
+  }[];
 };
 
 export type IQuickSwap_GetTransactionsParams = { walletAddress: string };

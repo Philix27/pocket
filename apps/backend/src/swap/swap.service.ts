@@ -16,22 +16,24 @@ import { PrismaService } from 'mod/prisma';
 export class SwapService implements IQuickSwap {
   constructor(private readonly service: PrismaService) {}
 
-  get_rates(params: IQuickSwap_GetRatesParams): Promise<IQuickSwap_GetRatesRs> {
-    const res = this.service;
-    throw new Error('Method not implemented.');
+  async get_rates(
+    params: IQuickSwap_GetRatesParams,
+  ): Promise<IQuickSwap_GetRatesRs> {
+    const res = await this.service.rates.findMany();
+    return { data: res };
   }
+
   get_transactions(
     params: IQuickSwap_GetTransactionsParams,
   ): Promise<IQuickSwap_GetTransactionsRs> {
     throw new Error('Method not implemented.');
   }
+
   buy(body: IQuickSwap_BuyRq): Promise<IQuickSwap_BuyRs> {
     throw new Error('Method not implemented.');
   }
+
   sell(body: IQuickSwap_SellRq): Promise<IQuickSwap_SellRs> {
     throw new Error('Method not implemented.');
-  }
-  getHello(): string {
-    return 'Hello World!';
   }
 }

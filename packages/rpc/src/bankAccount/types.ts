@@ -1,8 +1,9 @@
 export const BankAccountRoute = {
+  base: "bank_account",
   get_primary_account: "/get_primary_account",
-  get_all: "/get_all",
-  add: "/add",
-  delete: "/delete",
+  get_all: "/",
+  add: "/",
+  delete: "/",
 };
 
 export interface IBankAccount {
@@ -35,8 +36,21 @@ export type IBankAccount_GetAllRs = {
   }[];
 };
 
-export type IBankAccount_AddRq = {};
-export type IBankAccount_AddRs = {};
+export type IBankAccount_AddRq = {
+  bankName: string;
+  accountName: string;
+  accountNo: string;
+};
+export type IBankAccount_AddRs = {
+  data: {
+    msg: string;
+  };
+};
 
 export type IBankAccount_DeleteRq = {};
-export type IBankAccount_DeleteRs = {};
+export type IBankAccount_DeleteRs = {
+  data: {
+    id: string;
+    msg: string;
+  };
+};

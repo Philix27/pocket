@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Pocket Ramp",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

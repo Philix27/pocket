@@ -19,46 +19,48 @@ import {
 } from "./types";
 
 export class UserRpc implements IUser {
-  url = "/user";
-
   async get_info(params: IUserGetInfoRqParam): Promise<IUserGetInfoRsBody> {
-    const res = await axios.get(this.url + UserRoute.get_info, {
+    const res = await axios.get(UserRoute.base + UserRoute.get_info, {
       params,
     });
     return res.data;
   }
 
   async verify_nin(body: IUser_VerifyNinRq): Promise<IUser_VerifyNinRs> {
-    const res = await axios.post(this.url + UserRoute.verify_nin, body);
+    const res = await axios.post(UserRoute.base + UserRoute.verify_nin, body);
     return res.data;
   }
 
   async verify_bvn(body: IUser_VerifyBvnRq): Promise<IUser_VerifyBvnRs> {
-    const res = await axios.post(this.url + UserRoute.verify_bvn, body);
+    const res = await axios.post(UserRoute.base + UserRoute.verify_bvn, body);
     return res.data;
   }
 
   async verify_phone(body: IUser_VerifyPhoneRq): Promise<IUser_VerifyPhoneRs> {
-    const res = await axios.post(this.url + UserRoute.verify_phone, body);
+    const res = await axios.post(UserRoute.base + UserRoute.verify_phone, body);
     return res.data;
   }
 
   async verify_email(body: IUser_VerifyEmailRq): Promise<IUser_VerifyEmailRs> {
-    const res = await axios.post(this.url + UserRoute.verify_email);
+    const res = await axios.post(UserRoute.base + UserRoute.verify_email);
     return res.data;
   }
 
   async set_transaction_pin(
     body: IUser_SetTransactionPinRq,
   ): Promise<IUser_SetTransactionPinRs> {
-    const res = await axios.post(this.url + UserRoute.set_transaction_pin);
+    const res = await axios.post(
+      UserRoute.base + UserRoute.set_transaction_pin,
+    );
     return res.data;
   }
 
   async verify_transaction_pin(
     body: IUser_VerifyTransactionPinRq,
   ): Promise<IUser_VerifyTransactionPinRs> {
-    const res = await axios.post(this.url + UserRoute.verify_transaction_pin);
+    const res = await axios.post(
+      UserRoute.base + UserRoute.verify_transaction_pin,
+    );
     return res.data;
   }
 }

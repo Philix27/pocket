@@ -6,6 +6,10 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "web:build": "turbo run build --filter=pocket",
+    "web:start": "turbo run start --filter=pocket",
+    "web:dev": "turbo run dev --filter=pocket",
+    "web:lint": "turbo run lint --filter=pocket",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "ui": "pnpm --filter @repo/ui ui",

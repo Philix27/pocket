@@ -1,4 +1,5 @@
 export const UserRoute = {
+  base: "/user",
   get_info: "/get_info",
   verify_nin: "/verify_nin",
   verify_bvn: "/verify_bvn",

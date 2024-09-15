@@ -7,6 +7,7 @@ import { InvoiceModule } from 'mod/invoice';
 import { UserModule } from 'mod/user';
 import { OrderModule } from 'mod/orders';
 import { SwapModule } from 'mod/swap';
+import { BankAccountModule } from 'mod/bankAccount';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SwapModule } from 'mod/swap';
     UserModule,
     OrderModule,
     SwapModule,
+    BankAccountModule,
   ],
   controllers: [AppController],
   providers: [AppService],

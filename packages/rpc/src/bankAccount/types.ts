@@ -18,7 +18,7 @@ export interface IBankAccount {
   delete(body: IBankAccount_DeleteRq): Promise<IBankAccount_DeleteRs>;
 }
 
-export type IBankAccount_GetPrimaryAcctParams = { walletAddress: string };
+export type IBankAccount_GetPrimaryAcctParams = { userId: string };
 export type IBankAccount_GetPrimaryAcctRs = {
   data?: {
     bankName: string;
@@ -27,7 +27,7 @@ export type IBankAccount_GetPrimaryAcctRs = {
   };
 };
 
-export type IBankAccount_GetAllParams = { walletAddress: string };
+export type IBankAccount_GetAllParams = { userId: string };
 export type IBankAccount_GetAllRs = {
   data?: {
     bankName: string;
@@ -47,7 +47,9 @@ export type IBankAccount_AddRs = {
   };
 };
 
-export type IBankAccount_DeleteRq = {};
+export type IBankAccount_DeleteRq = {
+  id: string;
+};
 export type IBankAccount_DeleteRs = {
   data: {
     id: string;

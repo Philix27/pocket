@@ -1,3 +1,5 @@
+import { $Enums } from "@repo/db";
+
 export const QuickSwapRoute = {
   base: "/quick-swap",
   get_rates: "/get_rates",
@@ -30,12 +32,16 @@ export type IQuickSwap_GetRatesRs = {
   }[];
 };
 
-export type IQuickSwap_GetTransactionsParams = { walletAddress: string };
+export type IQuickSwap_GetTransactionsParams = {
+  userId: string;
+  limit?: number;
+};
 export type IQuickSwap_GetTransactionsRs = {
   data?: {
-    bankName: string;
-    accountName: string;
-    accountNo: string;
+    transactionHash: string;
+    description: string;
+    category: $Enums.TransactionCategory;
+    status: $Enums.TransactionStatus;
   }[];
 };
 

@@ -12,8 +12,8 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@web3auth/base": "^8.12.2",
     "axios": "^1.7.2",
+    "@repo/db": "workspace:*",
     "ethers": "^6.13.2"
   },
   "devDependencies": {

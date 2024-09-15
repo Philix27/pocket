@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { $Enums } from '@prisma/client';
 import {
   IQuickSwap,
   IQuickSwap_BuyRq,
@@ -23,10 +24,25 @@ export class SwapService implements IQuickSwap {
     return { data: res };
   }
 
-  get_transactions(
+  async get_transactions(
     params: IQuickSwap_GetTransactionsParams,
   ): Promise<IQuickSwap_GetTransactionsRs> {
-    throw new Error('Method not implemented.');
+    const res = await this.service.transactions.findMany({
+      where: {
+        user_id: params.userId,
+      },
+      take: params.limit,
+    });
+    return {
+      data: res.map((val, inx) => {
+        return {
+          transactionHash: val.transactionHash,
+          description: val.description,
+          category: val.category,
+          status: val.status,
+        };
+      }),
+    };
   }
 
   buy(body: IQuickSwap_BuyRq): Promise<IQuickSwap_BuyRs> {

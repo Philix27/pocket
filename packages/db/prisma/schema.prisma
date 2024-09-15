@@ -76,10 +76,10 @@ model transactions {
   created_at      DateTime?            @default(now())
   updated_at      DateTime?            @updatedAt
   user_id         String?
-  transactionhash String
+  transactionHash String
   description     String
   user            user?                @relation(fields: [user_id], references: [id])
-  category        TransaactionCategory
+  category        TransactionCategory
   status          TransactionStatus
 }
 
@@ -90,7 +90,7 @@ enum TransactionStatus {
   CLOSED
 }
 
-enum TransaactionCategory {
+enum TransactionCategory {
   P2P
   QUICK_SWAP
   AIRTIME
@@ -100,9 +100,16 @@ enum TransaactionCategory {
 }
 
 model rates {
-  id         String    @id @default(uuid())
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
+  id         String     @id @default(uuid())
+  created_at DateTime?  @default(now())
+  updated_at DateTime?  @updatedAt
   currency   String
   symbol     String?
+  amount     String
+  status     RateStatus
+}
+
+enum RateStatus {
+  BUY
+  SELL
 }

@@ -9,7 +9,7 @@ export default function Savings() {
 
   return (
     <>
-      <Navbar title={'Savings'} />
+      <Navbar title={'Savings'} isBack />
       <div className="mb-10">
         <Tabs
           data={[

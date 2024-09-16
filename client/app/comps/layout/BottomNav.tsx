@@ -6,6 +6,7 @@ import { IconType } from 'react-icons';
 import { cn, useAppRouter } from '@/lib';
 import { IoSwapHorizontal, IoHomeOutline } from 'react-icons/io5';
 import { MdOutlineSettings, MdOutlineSavings } from 'react-icons/md';
+import { FaAppStoreIos } from 'react-icons/fa';
 
 type INavItem = { title: string; Icon: IconType | IconType; link: string; onClick: VoidFunction };
 
@@ -21,9 +22,9 @@ export function BottomNav() {
       onClick: () => router.go('/dashboard'),
     },
     {
-      title: 'Savings',
-      link: '/savings',
-      Icon: MdOutlineSavings,
+      title: 'Apps',
+      link: '/mini',
+      Icon: FaAppStoreIos,
       onClick: () => router.go('/savings'),
     },
     {

@@ -1,5 +1,5 @@
 'use client';
-import { Navbar, Row, SimpleRow } from '@/comps';
+import { Navbar, SimpleRow } from '@/comps';
 import { use3Wagmi } from '@/lib';
 import React from 'react';
 import QRCode from 'react-qr-code';

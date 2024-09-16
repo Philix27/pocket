@@ -22,12 +22,6 @@ export function BottomNav() {
       onClick: () => router.go('/dashboard'),
     },
     {
-      title: 'Apps',
-      link: '/mini',
-      Icon: FaAppStoreIos,
-      onClick: () => router.push('/mini'),
-    },
-    {
       title: 'Swap',
       link: '/fx',
       Icon: IoSwapHorizontal,
@@ -72,8 +66,8 @@ export function BottomNav() {
                 `size-[40px] 
               flex flex-col items-center justify-center
               rounded-[10px]`,
-                isActive(link) ? 'bg-background' : 'bg-card',
-                isActive(link) && 'border-primary border-solid border-[1px]'
+                isActive(link) ? 'bg-card' : 'bg-card'
+                // isActive(link) && 'border-primary border-solid border-[1px]'
               )}
             >
               <Icon

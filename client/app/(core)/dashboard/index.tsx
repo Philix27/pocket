@@ -10,7 +10,7 @@ export default function DashboardScreen() {
   return (
     <>
       <Navbar title={'Pocket Ramp'} icon={IoNotifications} onIconClick={() => {}} />
-      <div className="px-6 py-4 mt-12 mb-10">
+      <div className="px-6 py-4 mt-8 mb-10">
         <QuickActions />
         <TransactionHistory />
       </div>

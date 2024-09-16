@@ -25,7 +25,7 @@ export function BottomNav() {
       title: 'Apps',
       link: '/mini',
       Icon: FaAppStoreIos,
-      onClick: () => router.go('/savings'),
+      onClick: () => router.push('/mini'),
     },
     {
       title: 'Swap',

@@ -4,3 +4,4 @@ export * from './Drawer';
 export * from './BottomNav';
 export * from './navbar';
 export * from './CoreWrapper';
+export * from './BottomSheet';

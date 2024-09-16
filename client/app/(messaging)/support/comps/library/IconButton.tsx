@@ -1,6 +1,6 @@
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import { ButtonLoader } from "./Loaders/ButtonLoader";
-import styles from "./IconButton.module.css";
+import { ButtonLoader } from './Loaders/ButtonLoader';
+import styles from './IconButton.module.css';
+import { BiPlusCircle } from 'react-icons/bi';
 
 type IconButtonProps = {
   /**
@@ -10,11 +10,11 @@ type IconButtonProps = {
   /**
    * Is this a round or message shape of the button?
    */
-  variant?: "primary" | "secondary";
+  variant?: 'primary' | 'secondary';
   /**
    * How large is this button?
    */
-  size?: "small" | "large";
+  size?: 'small' | 'large';
   /**
    * Should the button display a loading state?
    */
@@ -41,11 +41,11 @@ type IconButtonProps = {
  * Icon-only button component
  */
 export const IconButton: React.FC<IconButtonProps> = ({
-  label = <PlusCircleIcon width="24" color="white" />,
-  variant = "primary",
+  label = <BiPlusCircle width="24" color="white" />,
+  variant = 'primary',
   isLoading = false,
   isDisabled = false,
-  size = "large",
+  size = 'large',
   srText,
   onClick,
   testId,
@@ -55,12 +55,9 @@ export const IconButton: React.FC<IconButtonProps> = ({
     type="button"
     onClick={onClick}
     disabled={isDisabled}
-    className={`${styles.wrapper} ${styles[variant]} ${
-      isDisabled ? styles.disabled : ""
-    }`}
-    aria-label={srText}>
-    <div>
-      {isLoading ? <ButtonLoader color="primary" size={size} /> : label}
-    </div>
+    className={`${styles.wrapper} ${styles[variant]} ${isDisabled ? styles.disabled : ''}`}
+    aria-label={srText}
+  >
+    <div>{isLoading ? <ButtonLoader color="primary" size={size} /> : label}</div>
   </button>
 );

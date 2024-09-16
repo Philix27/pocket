@@ -1,9 +1,9 @@
-import { LinkIcon } from '@heroicons/react/24/outline';
 import { Signer, useClient } from '@xmtp/react-sdk';
 import { useCallback } from 'react';
 import { Notification } from './Notification';
 import { AppButton, TextP } from '@/comps';
 import { useWalletClient } from 'wagmi';
+import { BiLink } from 'react-icons/bi';
 
 export function XMTPConnect() {
   const { isLoading, error, initialize } = useClient();
@@ -40,7 +40,7 @@ export function XMTPConnect() {
 
   if (isLoading) {
     return (
-      <Notification icon={<LinkIcon />} title="Connecting to XMTP">
+      <Notification icon={<BiLink />} title="Connecting to XMTP">
         Awaiting signatures...
       </Notification>
     );

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { $Enums } from '@prisma/client';
 import {
-  IQuickSwap,
+  IDirectOrder,
   IQuickSwap_BuyRq,
   IQuickSwap_BuyRs,
   IQuickSwap_GetRatesParams,
@@ -14,7 +13,7 @@ import {
 import { PrismaService } from 'mod/prisma';
 
 @Injectable()
-export class SwapService implements IQuickSwap {
+export class SwapService implements IDirectOrder {
   constructor(private readonly service: PrismaService) {}
 
   async get_rates(
@@ -45,7 +44,14 @@ export class SwapService implements IQuickSwap {
     };
   }
 
-  buy(body: IQuickSwap_BuyRq): Promise<IQuickSwap_BuyRs> {
+  async buy(body: IQuickSwap_BuyRq): Promise<IQuickSwap_BuyRs> {
+    const res = await this.service.direct_order.create({
+      data: {
+        amount: body.amount,
+        user_id: body.user_id,
+        status: body.status, // user_id: params.userId,
+      },
+    });
     throw new Error('Method not implemented.');
   }
 

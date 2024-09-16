@@ -26,6 +26,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@repo/rpc": "workspace:*",
     "@repo/db": "workspace:*",
+    "@prisma/client": "^5.19.1",
     "africastalking": "^0.6.0",
     "axios": "^1.7.7",
     "reflect-metadata": "^0.1.13",

@@ -1,3 +1,3 @@
 export * from "@prisma/client";
 
-// export const prisma = { ...Prisma };
+// export * from "./isetup";

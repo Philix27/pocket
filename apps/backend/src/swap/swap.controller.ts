@@ -1,7 +1,7 @@
 import { Controller, Get, Post } from '@nestjs/common';
 import { SwapService } from './swap.service';
 import {
-  IQuickSwap,
+  IDirectOrder,
   IQuickSwap_BuyRq,
   IQuickSwap_BuyRs,
   IQuickSwap_GetRatesParams,
@@ -13,7 +13,7 @@ import {
 } from '@repo/rpc';
 
 @Controller('/swap')
-export class SwapController implements IQuickSwap {
+export class SwapController implements IDirectOrder {
   constructor(private readonly appService: SwapService) {}
 
   @Get('/get_rates')

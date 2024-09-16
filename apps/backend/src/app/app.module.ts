@@ -8,6 +8,9 @@ import { UserModule } from 'mod/user';
 import { OrderModule } from 'mod/orders';
 import { SwapModule } from 'mod/swap';
 import { BankAccountModule } from 'mod/bankAccount';
+import { P2pAdsModule } from 'mod/p2pAds';
+import { P2pOrderModule } from 'mod/p2pOrders';
+import { P2pVendorModule } from 'mod/p2pVendors';
 
 @Module({
   imports: [
@@ -18,6 +21,9 @@ import { BankAccountModule } from 'mod/bankAccount';
     OrderModule,
     SwapModule,
     BankAccountModule,
+    P2pAdsModule,
+    P2pOrderModule,
+    P2pVendorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

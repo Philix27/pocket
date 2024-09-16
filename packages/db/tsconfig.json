@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "baseUrl": ".",
+    "paths": {
+      "@repo/db/*": ["./*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

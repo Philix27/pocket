@@ -1,4 +1,4 @@
-import { $Enums } from "@repo/db";
+// import { $Enums } from "@repo/db";
 
 export const QuickSwapRoute = {
   base: "/quick-swap",
@@ -9,7 +9,7 @@ export const QuickSwapRoute = {
   sell: "/sell",
 };
 
-export interface IQuickSwap {
+export interface IDirectOrder {
   get_rates(params: IQuickSwap_GetRatesParams): Promise<IQuickSwap_GetRatesRs>;
 
   get_transactions(
@@ -40,12 +40,18 @@ export type IQuickSwap_GetTransactionsRs = {
   data?: {
     transactionHash: string;
     description: string;
-    category: $Enums.TransactionCategory;
-    status: $Enums.TransactionStatus;
+    category: string;
+    status: string;
+    // category: $Enums.TransactionCategory;
+    // status: $Enums.TransactionStatus;
   }[];
 };
 
-export type IQuickSwap_BuyRq = {};
+export type IQuickSwap_BuyRq = {
+  amount: number;
+  user_id: string;
+  status: "COMPLETED" | "PENDING" | "FAILED";
+};
 export type IQuickSwap_BuyRs = {};
 
 export type IQuickSwap_SellRq = {};

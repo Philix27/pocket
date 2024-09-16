@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
   QuickSwapRoute,
-  IQuickSwap,
+  IDirectOrder,
   IQuickSwap_BuyRs,
   IQuickSwap_GetRatesRs,
   IQuickSwap_GetTransactionsRs,
@@ -12,7 +12,7 @@ import {
   IQuickSwap_SellRq,
 } from "./types";
 
-export class QuickSwapRpc implements IQuickSwap {
+export class DirectOrderRpc implements IDirectOrder {
   async get_rates(
     params: IQuickSwap_GetRatesParams,
   ): Promise<IQuickSwap_GetRatesRs> {

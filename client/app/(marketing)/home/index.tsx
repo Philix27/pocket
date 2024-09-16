@@ -21,7 +21,7 @@ export function HomeSection() {
   };
 
   useEffect(() => {
-    router.push('/dashboard');
+    //  router.push('/dashboard');
   }, []);
 
   return (

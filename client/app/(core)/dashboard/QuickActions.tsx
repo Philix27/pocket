@@ -17,13 +17,13 @@ export default function QuickActions() {
       Icon: LuSend,
       //display bottom sheet of address to send funds to
       title: 'Send',
-      link: '/send',
+      link: '/dash-send',
     },
     {
       Icon: MdOutlineCallReceived,
       //display bottom sheet of address and barcode scanner
       title: 'Receive',
-      link: '/send',
+      link: '/dash-receive',
     },
     {
       Icon: IoIosSwap,

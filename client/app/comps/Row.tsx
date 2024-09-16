@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { cn } from '@/lib';
 import { IconType } from 'react-icons';
 import { LuChevronRight } from 'react-icons/lu';
@@ -25,6 +25,15 @@ export function Row(props: IRow) {
         </div>
       </div>
       <LuChevronRight size={20} onClick={props.onClick} />
+    </div>
+  );
+}
+
+export function SimpleRow(props: { left: string; right: string; color?: string }) {
+  return (
+    <div className="flex justify-between items-center py-2 border-b border-accent">
+      <TextP className={'text-muted'}>{props.left} </TextP>
+      <TextP className="font-semibold">{props.right}</TextP>
     </div>
   );
 }

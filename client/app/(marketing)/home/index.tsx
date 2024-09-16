@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { JumbutronSection, HeroWithImg } from '../_comps';
 import { useAppRouter } from '@/lib';
 import { AppButton, TextH } from '@/comps';
@@ -19,6 +19,11 @@ export function HomeSection() {
       login();
     }
   };
+
+  useEffect(() => {
+    router.push('/dashboard');
+  }, []);
+
   return (
     <div className={'flex flex-col items-center justify-center'} style={{ overscrollBehavior: 'none' }}>
       <HeroWithImg img={'/banner.png'}>

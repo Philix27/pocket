@@ -5,11 +5,20 @@ import { JumbutronSection, HeroWithImg } from '../_comps';
 import { useAppRouter } from '@/lib';
 import { AppButton, TextH } from '@/comps';
 import { use3Wagmi } from '@/lib';
+import { toast } from 'sonner';
 
 export function HomeSection() {
   const router = useAppRouter();
-  const { isConnected, login, address } = use3Wagmi();
+  const { isConnected, login } = use3Wagmi();
 
+  const handleClick = () => {
+    if (isConnected) {
+      router.push('/dashboard');
+    } else {
+      toast.message('Clicked button');
+      login();
+    }
+  };
   return (
     <div className={'flex flex-col items-center justify-center'} style={{ overscrollBehavior: 'none' }}>
       <HeroWithImg img={'/banner.png'}>
@@ -18,15 +27,9 @@ export function HomeSection() {
         </TextH>
       </HeroWithImg>
       <div className="my-5 flex flex-col items-center justify-center">
-        {isConnected ? (
-          <AppButton className="w-fit" onClick={() => router.go('/dashboard')}>
-            Get Started
-          </AppButton>
-        ) : (
-          <AppButton className="w-fit" onClick={login}>
-            Login
-          </AppButton>
-        )}
+        <AppButton className="w-fit" onClick={handleClick}>
+          {isConnected ? 'Get Started' : 'Login'}
+        </AppButton>
       </div>
       <JumbutronSection
         title={'Swift exchange'}

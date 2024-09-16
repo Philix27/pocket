@@ -3,6 +3,7 @@ import { BottomNav, Drawer } from '@/comps';
 import { AppStores, use3Wagmi } from '@/lib';
 import { useRouter } from 'next/navigation';
 import React, { ReactNode, useEffect } from 'react';
+import { DisableZoom } from './DissableZoom';
 
 export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: boolean }) {
   const router = useRouter();
@@ -41,6 +42,7 @@ export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: 
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
       <div className="min-h-[calc(100vh-250px)] mt-[50px]">
+        <DisableZoom />
         {props.children}
         {props.hideBottomNav || <BottomNav />}
         {store.drawerIsOpen && <Drawer />}

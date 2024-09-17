@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url      = "file:./dev.db"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id         String             @id @default(uuid())
+  title      String
+  desc       String?
+  img_url    String?
+  created_at DateTime?          @default(now())
+  updated_at DateTime?          @updatedAt
+  chapters   BookChapter[]
+  topic      BookChapterTopic[]
+}
+
+model BookChapter {
+  id         String             @id @default(uuid())
+  title      String
+  subtitle   String?
+  book_id    String?
+  created_at DateTime?          @default(now())
+  updated_at DateTime?          @updatedAt
+  book       Book?              @relation(fields: [book_id], references: [id])
+  topics     BookChapterTopic[]
+}
+
+model BookChapterTopic {
+  id             String         @id @default(uuid())
+  title          String
+  content        String?
+  video_url      String?
+  created_at     DateTime?      @default(now())
+  updated_at     DateTime?      @updatedAt
+  book_id        String?
+  // content_blocks ContentBlock[]
+  book           Book?          @relation(fields: [book_id], references: [id])
+  chapter_id     String?
+  chapter        BookChapter?   @relation(fields: [chapter_id], references: [id])
+  tags           Tags[]
+  quiz_topics    QuizTopic[]
+}
+
+// enum TopicType {
+//   BLOG
+//   TUTORIAL
+// }
+
+
+// model ContentBlock {
+//   id         String            @id @default(uuid())
+//   position Int
+//   form       ContentBlockType
+//   content_id String?
+//   content    BookChapterTopic? @relation(fields: [content_id], references: [id])
+// }
+
+// enum ContentBlockType {
+//   TEXT
+//   CODE
+//   VIDEO
+// }
+
+model QuizTopic {
+  id          String             @id @default(uuid())
+  created_at  DateTime?          @default(now())
+  updated_at  DateTime?          @updatedAt
+  title       String
+  desc        String
+  tags        Tags[]
+  quizes      Quiz[]
+  book_topics BookChapterTopic[]
+}
+
+model Quiz {
+  id           String      @id @default(uuid())
+  question     String
+  option1      String
+  option2      String
+  option3      String?
+  option4      String?
+  option5      String?
+  option6      String?
+  answer_index Int
+  answer       String?
+  created_at   DateTime?   @default(now())
+  updated_at   DateTime?   @updatedAt
+  quiz_topics  QuizTopic[]
+}
+
+model Blog {
+  id         String    @id @default(uuid())
+  title      String
+  subtitle   String?
+  img_url    String?
+  video_url  String?
+  story      String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+  tags       Tags[]
+}
+
+model Tags {
+  id          String             @id @default(uuid())
+  title       String
+  subtitle    String?
+  img_url     String?
+  created_at  DateTime?          @default(now())
+  updated_at  DateTime?          @updatedAt
+  blogs       Blog[]
+  book_topics BookChapterTopic[]
+  quiz_topics QuizTopic[]
+}

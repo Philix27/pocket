@@ -37,9 +37,13 @@ export default function SettingsPage() {
         </div>
         <TextH v="h5">More</TextH>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
-          <WalletBalance />
           <SwitchChain />
-          <RowItem title={'Verification'} subtitle={'KYC verification'} Icon={IoPersonOutline} />
+          <RowItem
+            title={'Verification'}
+            subtitle={'KYC verification'}
+            Icon={IoPersonOutline}
+            onClick={() => router.push('/kyc')}
+          />
           <RowItem
             title={'Support'}
             subtitle={'Contact Agents'}

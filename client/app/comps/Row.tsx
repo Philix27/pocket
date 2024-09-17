@@ -14,7 +14,10 @@ export type IRow = {
 export function Row(props: IRow) {
   const { Icon } = props;
   return (
-    <div className="flex justify-between items-center py-2 border-b border-accent" onClick={() => props.onClick}>
+    <div
+      className={cn('flex justify-between items-center py-2 border-b border-accent', props.color)}
+      onClick={() => props.onClick}
+    >
       <div className="flex items-center justify-center">
         <Icon size={20} className={cn('text-primary mr-3')} />
         <div>
@@ -24,7 +27,7 @@ export function Row(props: IRow) {
           <TextP className="text-muted">{props.subtitle}</TextP>
         </div>
       </div>
-      <LuChevronRight size={20} onClick={props.onClick} />
+      <LuChevronRight size={20} />
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function QuickActions() {
       //Enter account number/ select account to send funds to
       // move funds from wallet to pocket ramp wallet
       title: 'Withdraw',
-      link: '/fx',
+      link: '/dash-withdraw',
     },
     {
       Icon: IoIosSwap,
@@ -85,7 +85,7 @@ export default function QuickActions() {
           );
         })}
       </div>
-      <TextH className='mt-4'>More</TextH>
+      <TextH className="mt-4">More</TextH>
       <div className="grid grid-cols-4 gap-x-2 gap-y-2 w-full my-4">
         {moreData.map((val, i) => {
           const Icon = val.Icon;

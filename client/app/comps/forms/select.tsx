@@ -1,34 +1,46 @@
-import { TextP } from "../custom";
+'use client';
+import { useTheme } from 'next-themes';
+import { TextP } from '../custom';
+import Select, { ActionMeta, OnChangeValue } from 'react-select';
 
 export const AppSelect = (props: {
-  label: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  label?: string;
+  onChange: (newValue: string) => void;
   data: {
-    title: string;
+    label: string;
     value: string;
   }[];
 }) => {
+  const theme = useTheme();
+  const isDark = theme.theme == 'dark';
+
   return (
     <>
       <div className={'w-full flex flex-col items-start'}>
-        <label htmlFor="category" className="mb-1">
-          <TextP>{props.label}</TextP>
-        </label>
+        {props.label && (
+          <label htmlFor="category" className="mb-1">
+            <TextP>{props.label}</TextP>
+          </label>
+        )}
       </div>
-      <select
-        name="category"
-        className={`
-                w-full bg-card border-primary outline-primary
-                p-2 border-2 rounded-md
-              `}
-        onChange={props.onChange}
-      >
-        {props.data.map((val, i) => (
-          <option key={i} value={val.value}>
-            {val.title}
-          </option>
-        ))}
-      </select>
+      <Select
+        options={props.data}
+        className="bg-card text-foreground w-full"
+        onChange={(newValue, multi) => {
+          props.onChange(newValue?.value!);
+        }}
+        styles={{
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+            color: isDark ? '#e3e6e6' : '#e6e6e6',
+            background: isDark ? '#19232f' : '#535353',
+            borderColor: state.isFocused ? '#f24500' : '#4c4847',
+            outline: state.isFocused ? '#f24500' : '#4c4847',
+            border: 1,
+            borderStyle: 'solid',
+          }),
+        }}
+      />
     </>
   );
 };

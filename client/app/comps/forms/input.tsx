@@ -52,6 +52,8 @@ export function AppInput(props: IProps<FieldValues>) {
               border-none outline-none bg-transparent
               `
             )}
+            pattern={props.type === 'number' && '[0-9]*'}
+            inputmode={props.type === 'number' && 'numeric'}
             {...props}
             {...props.control}
           />

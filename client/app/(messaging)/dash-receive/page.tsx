@@ -8,7 +8,7 @@ export default function SendMoneyPage() {
   const { address } = use3Wagmi();
   return (
     <div>
-      <Navbar title="Send" isBack />
+      <Navbar title="Receive" isBack />
 
       <div className="px-5">
         <div className="flex items-center justify-center p-2 ">

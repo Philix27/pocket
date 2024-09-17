@@ -1,12 +1,11 @@
 'use client';
 import { TextH, TextP } from '@/comps';
+import { useAppRouter } from '@/lib';
 import React from 'react';
 import { IconType } from 'react-icons';
 import { LuSend, LuUtilityPole } from 'react-icons/lu';
-import { IoIosSwap } from 'react-icons/io';
 import { MdOutlineCallReceived } from 'react-icons/md';
 import { CiDollar, CiLock } from 'react-icons/ci';
-import { useAppRouter } from '@/lib';
 import { IoCallOutline } from 'react-icons/io5';
 import { TbFileInvoice } from 'react-icons/tb';
 
@@ -14,14 +13,14 @@ export default function QuickActions() {
   const router = useAppRouter();
   const data: { Icon: IconType; title: string; link: string }[] = [
     {
-      Icon: LuSend,
       //display bottom sheet of address to send funds to
+      Icon: LuSend,
       title: 'Send',
       link: '/dash-send',
     },
     {
-      Icon: MdOutlineCallReceived,
       //display bottom sheet of address and barcode scanner
+      Icon: MdOutlineCallReceived,
       title: 'Receive',
       link: '/dash-receive',
     },
@@ -33,11 +32,6 @@ export default function QuickActions() {
       // move funds from wallet to pocket ramp wallet
       title: 'Withdraw',
       link: '/dash-withdraw',
-    },
-    {
-      Icon: IoIosSwap,
-      title: 'Buy',
-      link: '/swap',
     },
     {
       Icon: CiDollar,

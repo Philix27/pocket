@@ -24,7 +24,6 @@ export default function QuickActions() {
       title: 'Receive',
       link: '/dash-receive',
     },
-
     {
       Icon: CiDollar,
       //redirect to fast withdraw page

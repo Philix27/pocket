@@ -12,7 +12,7 @@ export default function SendMoneyPage() {
 
       <div className="px-5">
         <div className="flex items-center justify-center p-2 ">
-          <QRCode className="w-full" value={address!} viewBox={`0 0 256 256`} />
+          {/* <QRCode className="w-full" value={address!} viewBox={`0 0 256 256`} /> */}
         </div>
         <TextH>{address}</TextH>
         <SimpleRow left={'Display name'} right="philix27" />

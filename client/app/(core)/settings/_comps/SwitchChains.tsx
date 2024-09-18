@@ -1,7 +1,6 @@
-'use client'
-import { TextP, BottomSheet, AppRadio } from '@/comps';
+'use client';
+import { TextP, BottomSheet, AppRadio, Row } from '@/comps';
 import { useChainId, useSwitchChain } from 'wagmi';
-import { RowItem } from './Row';
 import { useState } from 'react';
 import { LuNetwork } from 'react-icons/lu';
 
@@ -12,7 +11,7 @@ export function SwitchChain() {
   // const { chain } = useNetwork();
   return (
     <>
-      <RowItem
+      <Row
         title={'Switch Network'}
         subtitle={'Active network'}
         Icon={LuNetwork}

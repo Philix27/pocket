@@ -3,6 +3,7 @@ export function dateFromBigint(params: BigInt) {
 
   let timestamp = Number(timestampInMilliseconds)
   let date = new Date(timestamp)
+  
   return date.toString()
 }
 

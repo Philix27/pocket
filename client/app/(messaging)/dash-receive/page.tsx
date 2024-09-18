@@ -12,7 +12,13 @@ export default function SendMoneyPage() {
 
       <div className="px-5 h-full flex flex-col items-center justify-center w-full">
         <div className="flex items-center justify-center my-4 ">
-          <QRCodeSVG className="w-full bg-white p-2 rounded-md" value={address!} viewBox={`0 0 256 256`} />
+          <QRCodeSVG
+            title="Wallet address"
+            className="w-full bg-white p-2 rounded-md"
+            value={address!}
+            // viewBox={`0 0 256 256`}
+            size={300}
+          />
         </div>
         <div className="w-[70%] flex items-center justify-center  bg-card rounded-lg p-2 break-words my-4">
           <TextP className="text-center truncate ">{address}</TextP>

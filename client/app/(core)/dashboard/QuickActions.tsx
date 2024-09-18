@@ -4,7 +4,7 @@ import { useAppRouter } from '@/lib';
 import React from 'react';
 import { IconType } from 'react-icons';
 import { LuSend, LuUtilityPole } from 'react-icons/lu';
-import { MdOutlineCallReceived } from 'react-icons/md';
+import { MdOutlineCallReceived, MdOutlineSettings } from 'react-icons/md';
 import { CiDollar, CiLock } from 'react-icons/ci';
 import { IoCallOutline, IoSettings } from 'react-icons/io5';
 import { TbFileInvoice } from 'react-icons/tb';
@@ -48,7 +48,7 @@ export default function QuickActions() {
       link: '/invoice',
     },
     {
-      Icon: IoSettings,
+      Icon: MdOutlineSettings,
       title: 'settings',
       link: '/settings',
     },

@@ -5,7 +5,6 @@ import { JumbutronSection, HeroWithImg } from '../_comps';
 import { useAppRouter } from '@/lib';
 import { AppButton, TextH } from '@/comps';
 import { use3Wagmi } from '@/lib';
-import { toast } from 'sonner';
 
 export function HomeSection() {
   const router = useAppRouter();
@@ -15,7 +14,6 @@ export function HomeSection() {
     if (isConnected) {
       router.push('/dashboard');
     } else {
-      toast.message('Clicked button');
       login();
     }
   };

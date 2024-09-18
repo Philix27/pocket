@@ -6,20 +6,18 @@ import { IconType } from 'react-icons';
 import { LuSend, LuUtilityPole } from 'react-icons/lu';
 import { MdOutlineCallReceived } from 'react-icons/md';
 import { CiDollar, CiLock } from 'react-icons/ci';
-import { IoCallOutline } from 'react-icons/io5';
+import { IoCallOutline, IoSettings } from 'react-icons/io5';
 import { TbFileInvoice } from 'react-icons/tb';
 
 export default function QuickActions() {
   const router = useAppRouter();
   const data: { Icon: IconType; title: string; link: string }[] = [
     {
-      //display bottom sheet of address to send funds to
       Icon: LuSend,
       title: 'Send',
       link: '/dash-send',
     },
     {
-      //display bottom sheet of address and barcode scanner
       Icon: MdOutlineCallReceived,
       title: 'Receive',
       link: '/dash-receive',
@@ -48,6 +46,11 @@ export default function QuickActions() {
       Icon: TbFileInvoice,
       title: 'Invoice',
       link: '/invoice',
+    },
+    {
+      Icon: IoSettings,
+      title: 'settings',
+      link: '/settings',
     },
   ];
 

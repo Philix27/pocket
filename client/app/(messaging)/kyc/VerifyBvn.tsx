@@ -2,6 +2,6 @@ import { trpc } from '@/lib';
 import React from 'react';
 
 export default function VerifyBvn() {
-  const { isLoading, data: quiz_topics } = trpc.quiz_topics.get_all.useQuery();
+  // const { isLoading, data: quiz_topics } = trpc.quiz_topics.get_all.useQuery();
   return <div>VerifyBvn</div>;
 }

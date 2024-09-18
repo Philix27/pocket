@@ -17,7 +17,7 @@ export function Row(props: IRow) {
   return (
     <div
       className={cn('flex justify-between items-center py-2 border-b border-accent', props.color)}
-      onClick={() => props.onClick}
+      onClick={props.onClick}
     >
       <div className="flex items-center justify-center">
         <Icon size={20} className={cn('text-primary mr-3')} />

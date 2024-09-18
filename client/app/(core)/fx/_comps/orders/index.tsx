@@ -1,6 +1,6 @@
 'use client';
-import { AppButton, Spinner, Tabs, TextP } from '@/comps';
-import React, { memo, useMemo, useState } from 'react';
+import { AppButton, Spinner, TextP } from '@/comps';
+import React, { memo, useState } from 'react';
 import { cn, shortAddress } from '@/lib';
 import { FHE } from '@/contract';
 import { useAccount } from 'wagmi';
@@ -29,7 +29,7 @@ export const OrdersComp = memo(() => {
       <div className="my-2">
         {data &&
           data.map((ads, index) => {
-            if (fundsProcessing === ads.id && releaseFundsResult.isPending) {
+            if (fundsProcessing === ads.id && releaseFundsResult.isLoading) {
               return <Spinner />;
             }
             // if (releaseFundsResult.error) {

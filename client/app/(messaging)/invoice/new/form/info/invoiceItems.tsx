@@ -1,9 +1,10 @@
 import React from "react"
-import { AppInput, IAccordionContent, TextH } from "@/comps"
+import { AppInput, TextH } from "@/comps"
 import { UseFormReturn } from "react-hook-form"
 
 import form, { styles } from ".."
 import { IFormSchema } from "../../formSchema"
+import { IAccordionContent } from "./accordion"
 
 export function invoiceItems(props: {
   form: UseFormReturn<IFormSchema>
@@ -31,14 +32,14 @@ export function invoiceItems(props: {
             name={"item1_amount"}
             label="Item 1"
             place="Quantity"
-            type="no"
+            type="number"
           />
           <AppInput
             control={form.control}
             name={"item1_quantity"}
             label="Item 1"
             place="Amount"
-            type="no"
+            type="number"
           />
         </div>
         <div className={styles.inputGroup}>
@@ -54,14 +55,14 @@ export function invoiceItems(props: {
             name={"item2_amount"}
             label="Item 2"
             place="Quantity"
-            type="no"
+            type="number"
           />
           <AppInput
             control={form.control}
             name={"item2_quantity"}
             label="Item 2"
             place="Amount"
-            type="no"
+            type="number"
           />
         </div>
         <div className={styles.inputGroup}>
@@ -77,14 +78,14 @@ export function invoiceItems(props: {
             name={"item3_amount"}
             label="Item 3"
             place="Quantity"
-            type="no"
+            type="number"
           />
           <AppInput
             control={form.control}
             name={"item3_quantity"}
             label="Item 3"
             place="Amount"
-            type="no"
+            type="number"
           />
         </div>
         <div className={styles.inputGroup}>
@@ -100,14 +101,14 @@ export function invoiceItems(props: {
             name={"item4_amount"}
             label="Item 4"
             place="Quantity"
-            type="no"
+            type="number"
           />
           <AppInput
             control={form.control}
             name={"item4_quantity"}
             label="Item 4"
             place="Amount"
-            type="no"
+            type="number"
           />
         </div>
       </>

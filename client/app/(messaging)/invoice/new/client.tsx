@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { AppButton, TextH } from '@/comps';
+import { AppButton, Navbar, Tabs, TextH } from '@/comps';
 
 import FormComps from './form';
 import { IFormSchema, defaultValues, formSchema } from './formSchema';
@@ -28,33 +28,33 @@ export default function NewInvoiceClient() {
     console.log('Submit clicked');
 
     try {
-      const invoiceId = await t.mutateAsync({
-        ownerWalletAddress: '',
-        toBusinessName: form.getValues('toBusinessName'),
-        toEmail: form.getValues('toEmail'),
-        fromBusinessName: form.getValues('fromBusinessName'),
-        fromPhone: form.getValues('fromPhone'),
-        fromEmail: form.getValues('fromEmail'),
-        fromDate: form.getValues('fromDate'),
-        fromAddress: form.getValues('fromAddress'),
-        footerNote: form.getValues('footerNote'),
-        thanksMsg: form.getValues('thanksMsg'),
-        total: 2,
-        subtotal: 0,
-        // items: [
-        //   {
-        //     name: form.getValues("item1_name"),
-        //     amount: form.getValues("item1_amount"),
-        //     quantity: form.getValues("item1_quantity"),
-        //   },
-        //   {
-        //     name: form.getValues("item2_name"),
-        //     amount: form.getValues("item2_amount"),
-        //     quantity: form.getValues("item2_quantity"),
-        //   },
-        // ],
-      });
-      setInvId(invoiceId);
+      // const invoiceId = await t.mutateAsync({
+      //   ownerWalletAddress: '',
+      //   toBusinessName: form.getValues('toBusinessName'),
+      //   toEmail: form.getValues('toEmail'),
+      //   fromBusinessName: form.getValues('fromBusinessName'),
+      //   fromPhone: form.getValues('fromPhone'),
+      //   fromEmail: form.getValues('fromEmail'),
+      //   fromDate: form.getValues('fromDate'),
+      //   fromAddress: form.getValues('fromAddress'),
+      //   footerNote: form.getValues('footerNote'),
+      //   thanksMsg: form.getValues('thanksMsg'),
+      //   total: 2,
+      //   subtotal: 0,
+      // items: [
+      //   {
+      //     name: form.getValues("item1_name"),
+      //     amount: form.getValues("item1_amount"),
+      //     quantity: form.getValues("item1_quantity"),
+      //   },
+      //   {
+      //     name: form.getValues("item2_name"),
+      //     amount: form.getValues("item2_amount"),
+      //     quantity: form.getValues("item2_quantity"),
+      //   },
+      // ],
+      // });
+      // setInvId(invoiceId);
       toast.success('Invoice created');
     } catch (error) {
       toast.error('Check your form and fill every');
@@ -63,24 +63,13 @@ export default function NewInvoiceClient() {
 
   return (
     <div className={'w-full'}>
-      <div className={'w-full h-[40px] flex justify-between border-b-2'}>
-        <div
-          onClick={() => setActiveTab(true)}
-          className={`w-[50%] flex items-center justify-center 
-            border-r-2 py-2 px-4
-            ${isFormTab && 'bg-primary'}`}
-        >
-          <TextH v="h5">Form</TextH>
-        </div>
-        <div
-          onClick={() => setActiveTab(false)}
-          className={`w-[50%] flex items-center justify-center 
-            border-r-2 py-2 px-4
-            ${isFormTab || 'bg-primary'}`}
-        >
-          <TextH v="h5">Preview</TextH>
-        </div>
-      </div>
+      <Navbar title="Add invoice" isBack />
+      <Tabs
+        data={[
+          { title: 'Form', onClick: () => setActiveTab(true), isActive: isFormTab },
+          { title: 'Preview', onClick: () => setActiveTab(false), isActive: !isFormTab },
+        ]}
+      />
 
       <div className={'w-full'}>
         {isFormTab ? (

@@ -2,16 +2,16 @@
 
 import React from 'react';
 
-import { TextH } from '@/comps';
+import { Navbar, TextH } from '@/comps';
 import { Table, TableCaption, TableRow, TableBody, TableHeader, TableHead, TableCell } from '@/comps';
 
 import { invoices } from './data';
 
 export default function Page() {
   return (
-    <div className={'bg-primary w-full h-full py-4 px-4 flex items-center justify-center'}>
-      <div className={'w-[80%] h-full'}>
-        <TextH v="h3"> All invoices</TextH>
+    <>
+      <Navbar title="All invoices" isBack />
+      <div className={'w-full h-full py-4 px-4 flex flex-col items-center justify-center'}>
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
@@ -25,7 +25,7 @@ export default function Page() {
 
           <TableBody>
             {invoices.map((val, i) => (
-              <TableRow key={i} className={`hover:bg-secondary`}>
+              <TableRow key={i}>
                 <TableCell className="font-medium">{val.invoice}</TableCell>
                 <TableCell className="text-center">{val.paymentStatus}</TableCell>
                 <TableCell className="text-center">{val.paymentMethod}</TableCell>
@@ -35,6 +35,6 @@ export default function Page() {
           </TableBody>
         </Table>
       </div>
-    </div>
+    </>
   );
 }

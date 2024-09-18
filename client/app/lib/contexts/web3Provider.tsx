@@ -18,10 +18,10 @@ import { httpBatchLink } from '@trpc/client';
 import superjson from 'superjson';
 import { trpc } from '../utils';
 
-export const fhenixFrontier = defineChain({
+export const fhenixConfig = defineChain({
   id: 8008135,
   name: 'Fhenix',
-  network: 'fhenixFrontier',
+  network: 'Fhenix',
   nativeCurrency: { name: 'tFHE', symbol: 'tFHE', decimals: 18 },
   rpcUrls: {
     public: {
@@ -42,20 +42,16 @@ export const fhenixFrontier = defineChain({
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 
 const configX = createConfig({
-  chains: [fhenixFrontier, celoAlfajores, celo],
-  // chains: [celoAlfajores],
+  chains: [fhenixConfig, celoAlfajores, celo],
   transports: {
-    [fhenixFrontier.id]: http(),
+    [fhenixConfig.id]: http(),
     [celoAlfajores.id]: http(),
     [celo.id]: http(),
     [sepolia.id]: http(),
   },
   ssr: true,
-  connectors: [Web3AuthConnectorInstance([fhenixFrontier, celoAlfajores, celo, sepolia]), injected()],
-  // connectors: [Web3AuthConnectorInstance([celoAlfajores]), injected()],
+  connectors: [Web3AuthConnectorInstance([fhenixConfig, celoAlfajores, celo, sepolia]), injected()],
 });
-
-// const queryClient = new QueryClient();
 
 export function Web3Providers(props: { children: ReactNode }) {
   const [queryClient] = useState(() => new QueryClient({}));
@@ -69,6 +65,7 @@ export function Web3Providers(props: { children: ReactNode }) {
       transformer: superjson,
     })
   );
+
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <WagmiProvider config={configX}>

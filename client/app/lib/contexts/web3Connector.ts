@@ -51,7 +51,7 @@ export function Web3AuthConnectorInstance(chains: Chain[]) {
 
   web3AuthInstance.addPlugin(walletServicesPlugin);
 
-  // updateInfp(web3AuthInstance);
+  updateInfo(web3AuthInstance);
 
   const modalConfig = {
     [WALLET_ADAPTERS.OPENLOGIN]: {
@@ -74,10 +74,11 @@ export function Web3AuthConnectorInstance(chains: Chain[]) {
   });
 }
 
-const updateInfp = async (web3AuthInstance: Web3Auth) => {
+const updateInfo = async (web3AuthInstance: Web3Auth) => {
   const store = AppStores.useChat;
-  if (web3AuthInstance.connected) {
-    const user = await web3AuthInstance.getUserInfo();
-    store.setState({ isLoggedIn: true, userInfo: user });
-  }
+  // if (web3AuthInstance.connected) {
+  const user = await web3AuthInstance.getUserInfo();
+  console.log('Update user state 5687');
+  store.setState({ isLoggedIn: true, userInfo: user });
+  // }
 };

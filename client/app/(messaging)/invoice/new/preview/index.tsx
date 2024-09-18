@@ -34,7 +34,7 @@ export default function InvoicePreview(props: {
         className={`
           w-[90%]
           md:w-[60%] 
-          bg-primary border-[1px] border-secondary-foreground
+          bg-card border-[0.1px]
         `}
       >
         <TopBar bizName={props.bizName} invoiceDate={props.fromDate} />

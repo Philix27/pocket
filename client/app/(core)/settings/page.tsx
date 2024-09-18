@@ -8,6 +8,7 @@ import { MdSupportAgent } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
 import { SwitchChain } from './_comps';
+import { parseEther } from 'viem';
 
 export default function SettingsPage() {
   const store = AppStores.useChat();
@@ -28,7 +29,7 @@ export default function SettingsPage() {
           <SimpleRow left={'Email'} right={store.userInfo?.email!} />
           <Balance address={address} title={'celo'} />
           <Balance address={address} title={'cUSD'} tokenAddress="0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" />
-          <SimpleRow left={'Address'} right={shortenAddress(address)} />
+          <SimpleRow left={'Address'} right={shortenAddress(address)} isLast />
         </div>
         <TextH v="h5">More</TextH>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
@@ -45,7 +46,14 @@ export default function SettingsPage() {
             Icon={MdSupportAgent}
             onClick={() => router.push('/support')}
           />
-          <Row title={'Logout'} subtitle={'Disconnect from Pocket Ramp'} Icon={BiLogOut} onClick={logout} />
+          <Row
+            title={'Logout'}
+            subtitle={'Disconnect from Pocket Ramp'}
+            Icon={BiLogOut}
+            onClick={logout}
+            isLast
+            hideArrow
+          />
         </div>
       </div>
     </>
@@ -59,6 +67,8 @@ function Balance(props: { address: string; title: string; tokenAddress?: `0x${st
   });
   if (isLoading) return <SimpleRow left={'Balance' + props.title} right={'...'} />;
   if (error) return <SimpleRow left={'Balance ' + props.title} right={'...x'} />;
-  console.log('Balances ' + props.title, data);
-  return <SimpleRow left={'Balance ' + props.title} right={Number(data?.value).toString()} />;
+
+  return (
+    <SimpleRow left={'Balance ' + props.title} right={Number(parseEther(Number(data?.value).toString())).toString()} />
+  );
 }

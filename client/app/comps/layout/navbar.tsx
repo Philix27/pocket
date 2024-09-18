@@ -13,7 +13,8 @@ export function Navbar(props: { title: string; icon?: IconType; isBack?: boolean
   return (
     <div
       className={
-        'h-[50px] border-b-[0.3px] px-4 flex items-center justify-between fixed top-0 w-full z-10 bg-background'
+        // border-b-[0.3px]
+        'h-[50px]  px-4 flex items-center justify-between fixed top-0 w-full z-10 bg-background'
       }
     >
       <div className="flex items-center gap-x-2">

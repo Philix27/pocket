@@ -43,10 +43,10 @@ export function BottomNav() {
   }
 
   return (
-    <div
+    <div // border-t-[0.5px]
       className={`
         fixed bottom-0 h-[60px]
-        border-t-[0.5px] bg-background
+      bg-background
         w-full flex items-center justify-center
         pb-[10px] 
       `}

@@ -10,3 +10,4 @@ export * from './forms';
 export * from './theme';
 export * from './custom';
 export * from './Row';
+export * from './table';

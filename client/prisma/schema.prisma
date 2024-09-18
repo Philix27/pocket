@@ -197,3 +197,42 @@ enum RateStatus {
   BUY
   SELL
 }
+
+model invoice {
+  id                  String            @id @default(uuid())
+  created_at          DateTime?         @default(now())
+  updated_at          DateTime?         @updatedAt
+  currency            String
+  symbol              String?
+  totalAmount         String
+  status              InvoiceStatus
+  items               invoice_item[]
+  invoice_template_id String?
+  invoice_template    invoice_template? @relation(fields: [invoice_template_id], references: [id])
+}
+
+enum InvoiceStatus {
+  SENT
+  APPROVED
+  PENDING
+}
+
+model invoice_item {
+  id          String    @id @default(uuid())
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @updatedAt
+  title       String
+  description String?
+  amount      String
+  quantity    String
+  invoice_id  String?
+  invoice     invoice?  @relation(fields: [invoice_id], references: [id])
+}
+
+model invoice_template {
+  id          String    @id @default(uuid())
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @updatedAt
+  sampleImage String
+  invoice     invoice[]
+}

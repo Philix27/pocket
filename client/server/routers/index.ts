@@ -3,3 +3,7 @@ export * from "./book";
 export * from "./quiz";
 export * from "./bookChapter";
 export * from "./bookChapterTopic";
+export * from "./directOrders";
+export * from "./user";
+export * from './bankAccount';
+export * from './transactions';

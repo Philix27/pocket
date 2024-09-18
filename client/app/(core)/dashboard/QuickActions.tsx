@@ -50,7 +50,7 @@ export default function QuickActions() {
     {
       Icon: TbFileInvoice,
       title: 'Invoice',
-      link: '/swap',
+      link: '/invoice',
     },
   ];
 

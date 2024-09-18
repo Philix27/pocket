@@ -10,6 +10,7 @@ export type IRow = {
   Icon: IconType;
   color?: string;
   onClick?: VoidFunction;
+  hideArrow?: boolean;
 };
 export function Row(props: IRow) {
   const { Icon } = props;
@@ -21,13 +22,13 @@ export function Row(props: IRow) {
       <div className="flex items-center justify-center">
         <Icon size={20} className={cn('text-primary mr-3')} />
         <div>
-          <TextH v="h5" className={'text-card-foreground tracking-wide mb-1'}>
+          <TextH v="h5" className={'text-card-foreground mb-1'}>
             {props.title}
           </TextH>
           <TextP className="text-muted">{props.subtitle}</TextP>
         </div>
       </div>
-      <LuChevronRight size={20} />
+      {!props.hideArrow && <LuChevronRight size={20} />}
     </div>
   );
 }

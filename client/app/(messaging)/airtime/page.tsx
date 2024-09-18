@@ -6,7 +6,7 @@ import { MdAddTask } from 'react-icons/md';
 export default function AirtimePage() {
   return (
     <div>
-      <Navbar title="Purchase airtime" />
+      <Navbar title="Purchase airtime" isBack />
       <div className="px-5 py-4">
         <Row title={'MTN'} subtitle={''} Icon={MdAddTask} />
         <Row title={'Airtel'} subtitle={''} Icon={MdAddTask} />
@@ -21,7 +21,7 @@ export default function AirtimePage() {
             label="Phone number"
           />
           <AppTextInput control={undefined} name={'amount'} type="number" place="Enter amount" label="Amount" />
-          <AppButton className='w-[75%]'>Buy</AppButton>
+          <AppButton className="w-[75%]">Buy</AppButton>
         </div>
       </div>
     </div>

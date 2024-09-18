@@ -5,7 +5,7 @@ import { transData } from './transData';
 
 export default function TransactionHistory() {
   return (
-    <div>
+    <div className='mt-2'>
       <TextH>Transactions</TextH>
       <div className="mt-3">
         {transData.map((transaction, index) => (

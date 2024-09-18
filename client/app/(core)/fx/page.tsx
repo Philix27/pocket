@@ -11,7 +11,7 @@ export default function SwapPage() {
   const { address } = useAccount();
   return (
     <>
-      <Navbar title={'Exchange'} icon={IoSwapHorizontal} onIconClick={() => {}} />
+      <Navbar title={'Exchange'} />
       <div className="mb-[100px]">
         <Tabs
           data={[

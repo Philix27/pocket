@@ -1,7 +1,8 @@
 import {
   // Titillium_Web as FontMono,
-  IBM_Plex_Mono as FontMono,
-  Titillium_Web as FontSans,
+
+  Roboto_Mono as FontMono,
+  Roboto_Flex as FontSans,
 } from 'next/font/google';
 
 export const fontSans = FontSans({

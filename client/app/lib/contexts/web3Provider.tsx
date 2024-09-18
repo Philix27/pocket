@@ -4,7 +4,7 @@ import { celo, celoAlfajores, mainnet, sepolia } from '@wagmi/core/chains';
 import { createConfig, http, injected } from '@wagmi/core';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { defineChain } from 'viem';
 import {
   XMTPProvider,
@@ -14,6 +14,9 @@ import {
 } from '@xmtp/react-sdk';
 import { Web3AuthConnectorInstance } from './web3Connector';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { httpBatchLink } from '@trpc/client';
+import superjson from 'superjson';
+import { trpc } from '../utils';
 
 export const fhenixFrontier = defineChain({
   id: 8008135,
@@ -52,16 +55,29 @@ const configX = createConfig({
   // connectors: [Web3AuthConnectorInstance([celoAlfajores]), injected()],
 });
 
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 
 export function Web3Providers(props: { children: ReactNode }) {
+  const [queryClient] = useState(() => new QueryClient({}));
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
+      links: [
+        httpBatchLink({
+          url: `${process.env.NEXT_PUBLIC_TRPC_REQUEST_URL}/api/trpc`,
+        }),
+      ],
+      transformer: superjson,
+    })
+  );
   return (
-    <WagmiProvider config={configX}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
-          <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <WagmiProvider config={configX}>
+        <QueryClientProvider client={queryClient}>
+          <RainbowKitProvider>
+            <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
+          </RainbowKitProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </trpc.Provider>
   );
 }

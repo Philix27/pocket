@@ -1,5 +1,5 @@
 'use client';
-import { TextH, TextP } from '@/comps';
+import { TextP } from '@/comps';
 import { useAppRouter } from '@/lib';
 import React from 'react';
 import { IconType } from 'react-icons';
@@ -33,13 +33,6 @@ export default function QuickActions() {
       link: '/dash-withdraw',
     },
     {
-      Icon: CiDollar,
-      title: 'Withdraw',
-      link: '/fx',
-    },
-  ];
-  const moreData: { Icon: IconType; title: string; link: string }[] = [
-    {
       Icon: CiLock,
       title: 'Savings',
       link: '/savings',
@@ -65,22 +58,6 @@ export default function QuickActions() {
     <>
       <div className="grid grid-cols-4 gap-x-2 gap-y-2 w-full">
         {data.map((val, i) => {
-          const Icon = val.Icon;
-          return (
-            <div
-              key={i}
-              className="p-4 flex flex-col items-center justify-center bg-accent rounded-md"
-              onClick={() => router.push(val.link)}
-            >
-              <Icon size={24} className="text-primary mb-2" />
-              <TextP> {val.title}</TextP>
-            </div>
-          );
-        })}
-      </div>
-      <TextH className="mt-4">More</TextH>
-      <div className="grid grid-cols-4 gap-x-2 gap-y-2 w-full my-4">
-        {moreData.map((val, i) => {
           const Icon = val.Icon;
           return (
             <div

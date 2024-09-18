@@ -10,7 +10,7 @@ export default function SendMoneyPage() {
     <div>
       <Navbar title="Send" isBack />
 
-      <div className="px-5 gap-y-2 w-full">
+      <div className="px-5 py-4 gap-y-2 w-full">
         <AppInput control={undefined} name="wallet" place={'Enter wallet address'} />
         <AppInput control={undefined} name="username" place={'Enter username'} />
         <AppInput control={undefined} name="phone" place={'Enter phone number'} />

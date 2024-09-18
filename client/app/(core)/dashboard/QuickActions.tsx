@@ -26,9 +26,6 @@ export default function QuickActions() {
     },
     {
       Icon: CiDollar,
-      //redirect to fast withdraw page
-      //Enter account number/ select account to send funds to
-      // move funds from wallet to pocket ramp wallet
       title: 'Withdraw',
       link: '/dash-withdraw',
     },
@@ -40,12 +37,12 @@ export default function QuickActions() {
     {
       Icon: IoCallOutline,
       title: 'Airtime',
-      link: '/send',
+      link: '/airtime',
     },
     {
       Icon: LuUtilityPole,
       title: 'Bills',
-      link: '/send',
+      link: '/bills',
     },
     {
       Icon: TbFileInvoice,

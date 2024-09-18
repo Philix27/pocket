@@ -10,6 +10,9 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
+//redirect to fast withdraw page
+//Enter account number/ select account to send funds to
+// move funds from wallet to pocket ramp wallet
 export default function SendMoneyPage() {
   const { address } = use3Wagmi();
   const theme = useTheme();

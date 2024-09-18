@@ -2,7 +2,6 @@
 import { AppButton, AppInput, Navbar, SimpleRow, TextH, TextP } from '@/comps';
 import { use3Wagmi } from '@/lib';
 import React from 'react';
-import QRCode from 'react-qr-code';
 
 export default function SendMoneyPage() {
   const { address } = use3Wagmi();

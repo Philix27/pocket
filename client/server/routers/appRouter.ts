@@ -14,6 +14,7 @@ import { ratesRouter } from './rates';
 import { invoiceTemplateRouter } from './invoiceTemplates';
 import { invoiceItemRouter } from './invoiceItem';
 import { p2pAdsRouter } from './p2pAds';
+import { authRouter } from './auth';
 
 export const appRouter = router({
   blog: blogRouter,
@@ -31,6 +32,7 @@ export const appRouter = router({
   invoiceItems: invoiceItemRouter,
   invoiceTemplates: invoiceTemplateRouter,
   p2pAds: p2pAdsRouter,
+  auth: authRouter,
   test_all: publicProcedure.query(({ ctx }) => {
     return 'Hello, are you for testing';
   }),

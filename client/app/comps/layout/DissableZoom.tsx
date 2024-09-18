@@ -1,3 +1,4 @@
+'use client'
 //DisableZoom.js
 
 import React, { useState, useEffect } from 'react';

@@ -1,5 +1,5 @@
 'use client';
-import { Navbar, TextH, } from '@/comps';
+import { Navbar, TextH } from '@/comps';
 import React from 'react';
 
 import QuickActions from './QuickActions';
@@ -9,7 +9,7 @@ import { IoNotifications } from 'react-icons/io5';
 export default function DashboardScreen() {
   return (
     <>
-      <Navbar title={'Pocket Ramp'} icon={IoNotifications} onIconClick={() => {}} />
+      <Navbar title={''} icon={IoNotifications} onIconClick={() => {}} />
       <div className="px-6 py-4 mt-8 mb-10">
         <QuickActions />
         <TransactionHistory />

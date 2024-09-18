@@ -1,10 +1,4 @@
 import { publicProcedure, router } from '../init';
-import { blogRouter } from './blogs';
-import { booksRouter } from './book';
-import { bookChaptersRouter } from './bookChapter';
-import { bookChapterTopicsRouter } from './bookChapterTopic';
-import { quizRouter } from './quiz';
-import { quizTopicsRouter } from './quizTopics';
 import { directOrderRouter } from './directOrders';
 import { userRouter } from './user';
 import { bankAccountRouter } from './bankAccount';
@@ -17,12 +11,6 @@ import { p2pAdsRouter } from './p2pAds';
 import { authRouter } from './auth';
 
 export const appRouter = router({
-  blog: blogRouter,
-  books: booksRouter,
-  book_chapter: bookChaptersRouter,
-  book_chapter_topics: bookChapterTopicsRouter,
-  quiz: quizRouter,
-  quiz_topics: quizTopicsRouter,
   direct_order: directOrderRouter,
   user: userRouter,
   bankAccount: bankAccountRouter,

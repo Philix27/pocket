@@ -3,33 +3,36 @@ import { z } from 'zod';
 
 export const bankAccountRouter = router({
   get_all: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.blog.findMany();
+    return await ctx.prisma.bank_account.findMany();
   }),
 
-  delete: publicProcedure.input(z.object({ blog_id: z.string() })).mutation(async ({ ctx, input }) => {
-    return await ctx.prisma.blog.delete({
-      where: {
-        id: input.blog_id,
-      },
-    });
-  }),
+  delete: publicProcedure
+    .input(z.object({ accountId: z.string(), userId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.prisma.bank_account.delete({
+        where: {
+          user_id: input.userId,
+          id: input.accountId,
+        },
+      });
+    }),
 
   create: publicProcedure
     .input(
       z.object({
-        title: z.string(),
-        subtitle: z.string(),
-        img_url: z.string(),
-        story: z.string(),
+        bankName: z.string(),
+        accountNumber: z.string(),
+        accountName: z.string(),
+        userId: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      return await ctx.prisma.blog.create({
+      return await ctx.prisma.bank_account.create({
         data: {
-          title: input.title,
-          subtitle: input.subtitle,
-          img_url: input.img_url,
-          story: input.story,
+          user_id: input.userId,
+          bankName: input.bankName,
+          accountName: input.accountName,
+          accountNo: input.accountNumber,
         },
       });
     }),

@@ -1,19 +1,17 @@
-'use client'
-import { BottomSheet } from '@/comps';
+'use client';
+import { BottomSheet, Row, SimpleRow } from '@/comps';
 import { useChainId, useSwitchChain } from 'wagmi';
-import { InfoRowItem, RowItem } from './Row';
 import { Fragment, useState } from 'react';
-import { IoCalendarNumber } from 'react-icons/io5';
 import { MdBalance } from 'react-icons/md';
 
 export function WalletBalance() {
   const chainId = useChainId();
-  const { chains, switchChain, error } = useSwitchChain();
+  const { error } = useSwitchChain();
   const [showNetworks, setShowNetworks] = useState(false);
 
   return (
     <>
-      <RowItem
+      <Row
         title={'Balance'}
         subtitle={''}
         Icon={MdBalance}
@@ -32,7 +30,7 @@ export function WalletBalance() {
             <div>
               {walletBalance.map((value, index) => (
                 <Fragment key={index}>
-                  <InfoRowItem left={value.title} right={value.network} Icon={IoCalendarNumber} />
+                  <SimpleRow left={value.title} right={value.network} />
                 </Fragment>
               ))}
 

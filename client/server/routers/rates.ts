@@ -1,35 +1,49 @@
 import { publicProcedure, router } from '@/server';
 import { z } from 'zod';
 
+enum RatesStatus {
+  BUY = 'BUY',
+  SELL = 'SELL',
+}
+
 export const ratesRouter = router({
   get_all: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.blog.findMany();
+    return await ctx.prisma.rates.findMany();
   }),
-
-  delete: publicProcedure.input(z.object({ blog_id: z.string() })).mutation(async ({ ctx, input }) => {
-    return await ctx.prisma.blog.delete({
-      where: {
-        id: input.blog_id,
-      },
-    });
-  }),
+  update: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        amount: z.number(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.prisma.rates.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          amount: input.amount,
+        },
+      });
+    }),
 
   create: publicProcedure
     .input(
       z.object({
-        title: z.string(),
-        subtitle: z.string(),
-        img_url: z.string(),
-        story: z.string(),
+        amount: z.number(),
+        currency: z.string(),
+        symbol: z.string(),
+        status: z.nativeEnum(RatesStatus),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      return await ctx.prisma.blog.create({
+      return await ctx.prisma.rates.create({
         data: {
-          title: input.title,
-          subtitle: input.subtitle,
-          img_url: input.img_url,
-          story: input.story,
+          amount: input.amount,
+          currency: input.currency,
+          symbol: input.symbol,
+          status: 'BUY',
         },
       });
     }),

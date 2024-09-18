@@ -1,3 +1,4 @@
+'use client'
 import { Navbar, Row } from '@/comps';
 import React from 'react';
 import { MdAddTask } from 'react-icons/md';

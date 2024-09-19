@@ -28,6 +28,11 @@ export default function QuickActions() {
       link: '/dash-withdraw',
     },
     {
+      Icon: CiDollar,
+      title: 'Swap',
+      link: '/dash-swap',
+    },
+    {
       Icon: CiLock,
       title: 'Savings',
       link: '/savings',

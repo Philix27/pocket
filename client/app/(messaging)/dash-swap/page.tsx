@@ -1,9 +1,9 @@
 'use client';
-import { AppButton, AppSelect, Navbar } from '@/comps';
+import { AppButton, AppSelect, Navbar, TextH } from '@/comps';
 import { use3Wagmi } from '@/lib';
 import React from 'react';
 
-export default function SendMoneyPage() {
+export default function SwapPage() {
   const { address } = use3Wagmi();
 
   return (
@@ -39,6 +39,7 @@ export default function SendMoneyPage() {
             },
           ]}
         />
+        <TextH>4500</TextH>
         <AppButton className="w-[75%]">Swap</AppButton>
       </div>
     </div>

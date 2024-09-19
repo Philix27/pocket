@@ -1,13 +1,18 @@
 'use client';
-import { AppButton, AppTextInput, AppSelect, Navbar } from '@/comps';
+import { AppButton, AppTextInput, AppSelect, Navbar, TextH } from '@/comps';
 import { use3Wagmi } from '@/lib';
 import { useTheme } from 'next-themes';
 import React from 'react';
 
 const options = [
-  { value: 'chocolate', label: 'GTB' },
-  { value: 'strawberry', label: 'Zenith' },
-  { value: 'vanilla', label: 'UBA' },
+  { value: 'GTB', label: 'GTB' },
+  { value: 'Zenith', label: 'Zenith' },
+  { value: 'UBA', label: 'UBA' },
+];
+const tokensOptions = [
+  { value: 'cUSD', label: 'cUSD' },
+  { value: 'CELO', label: 'CELO' },
+  { value: 'cEURO', label: 'cEURO' },
 ];
 
 //redirect to fast withdraw page
@@ -16,15 +21,16 @@ const options = [
 export default function SendMoneyPage() {
   const { address } = use3Wagmi();
   const theme = useTheme();
-  const isDark = theme.theme == 'dark';
   return (
     <div>
       <Navbar title="Withdraw" isBack />
 
       <div className="px-5 w-full">
         <div className="py-4 space-y-4 flex flex-col w-full items-center">
-          <AppTextInput control={undefined} name="amount" place={'Enter amount'} type="number" />
-          <AppSelect data={options} onChange={(e) => {}} />
+          <AppSelect data={tokensOptions} onChange={(e) => {}} label="Select token" />
+          <AppTextInput control={undefined} name="amount" place={'Enter amount'} type="number" label="Amount" />
+          <AppSelect data={options} onChange={(e) => {}} label="Bank account" />
+          <TextH>You get 3400</TextH>
           <AppButton className="w-[75%]">Send</AppButton>
         </div>
       </div>

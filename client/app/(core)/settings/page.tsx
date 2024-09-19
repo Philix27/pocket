@@ -41,6 +41,12 @@ export default function SettingsPage() {
             onClick={() => router.push('/kyc')}
           />
           <Row
+            title={'Bank Accounts'}
+            subtitle={'Manage all your bank accounts'}
+            Icon={IoPersonOutline}
+            onClick={() => router.push('/bank')}
+          />
+          <Row
             title={'Support'}
             subtitle={'Contact Agents'}
             Icon={MdSupportAgent}

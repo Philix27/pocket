@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { AppInput } from '@/comps';
+import { AppTextInput } from '@/comps';
 import { UseFormReturn } from 'react-hook-form';
 
 import { TextH } from '@/app/comps';
@@ -20,8 +20,8 @@ export function footerInfo(props: { form: UseFormReturn<IFormSchema> }): IAccord
     ),
     content: (
       <div className={styles.inputGroup}>
-        <AppInput control={form.control} name="footerNote" label="Footer note" />
-        <AppInput control={form.control} name="thanksMsg" label="Thank you message" />
+        <AppTextInput control={form.control} name="footerNote" label="Footer note" />
+        <AppTextInput control={form.control} name="thanksMsg" label="Thank you message" />
       </div>
     ),
   };

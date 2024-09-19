@@ -1,13 +1,13 @@
 'use client';
-import { AppButton, AppInput, AppSelect, Navbar } from '@/comps';
+import { AppButton, AppTextInput, AppSelect, Navbar } from '@/comps';
 import { use3Wagmi } from '@/lib';
 import { useTheme } from 'next-themes';
 import React from 'react';
 
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
+  { value: 'chocolate', label: 'GTB' },
+  { value: 'strawberry', label: 'Zenith' },
+  { value: 'vanilla', label: 'UBA' },
 ];
 
 //redirect to fast withdraw page
@@ -23,7 +23,7 @@ export default function SendMoneyPage() {
 
       <div className="px-5 w-full">
         <div className="py-4 space-y-4 flex flex-col w-full items-center">
-          <AppInput control={undefined} name="amount" place={'Enter amount'} type="number" />
+          <AppTextInput control={undefined} name="amount" place={'Enter amount'} type="number" />
           <AppSelect data={options} onChange={(e) => {}} />
           <AppButton className="w-[75%]">Send</AppButton>
         </div>

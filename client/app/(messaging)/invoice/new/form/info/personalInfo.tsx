@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { AppInput, TextH } from '@/comps';
+import { AppTextInput, TextH } from '@/comps';
 import { UseFormReturn } from 'react-hook-form';
 
 import form, { styles } from '..';
@@ -18,14 +18,14 @@ export function personalInfo(props: { form: UseFormReturn<IFormSchema> }): IAcco
     ),
     content: (
       <>
-        <AppInput control={form.control} name="fromBusinessName" label="Your name" />
+        <AppTextInput control={form.control} name="fromBusinessName" label="Your name" />
         <div className={styles.inputGroup}>
-          <AppInput control={form.control} name="fromEmail" label="Email" place="Enter email" />
-          <AppInput control={form.control} name="fromDate" label="Date" />
+          <AppTextInput control={form.control} name="fromEmail" label="Email" place="Enter email" />
+          <AppTextInput control={form.control} name="fromDate" label="Date" />
         </div>
         <div className={styles.inputGroup}>
-          <AppInput control={form.control} name="fromAddress" label="Address" />
-          <AppInput control={form.control} name="fromPhone" label="Phone number" />
+          <AppTextInput control={form.control} name="fromAddress" label="Address" />
+          <AppTextInput control={form.control} name="fromPhone" label="Phone number" />
         </div>
       </>
     ),

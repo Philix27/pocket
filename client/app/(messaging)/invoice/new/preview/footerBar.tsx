@@ -1,5 +1,5 @@
-import React from "react"
-import { TextP } from "@/comps"
+import React from 'react';
+import { TextP } from '@/comps';
 
 export function FooterBar(props: { thankYou?: string; msg?: string }) {
   return (
@@ -10,12 +10,8 @@ export function FooterBar(props: { thankYou?: string; msg?: string }) {
       border-secondary
     `}
     >
-      <TextP v="p6">{props.thankYou ? props.thankYou : "Thank you"}</TextP>
-      <TextP v="p6">
-        {props.msg
-          ? props.msg
-          : "We hope to here from you as soon as possible"}
-      </TextP>
+      <TextP v="p6">{props.thankYou ? props.thankYou : 'Thank you'}</TextP>
+      <TextP v="p6">{props.msg ? props.msg : 'We hope to here from you as soon as possible'}</TextP>
     </div>
-  )
+  );
 }

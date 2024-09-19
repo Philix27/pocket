@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { TextH } from '@/comps';
 import React, { ReactNode } from 'react';
 import { IoClose } from 'react-icons/io5';

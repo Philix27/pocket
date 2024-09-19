@@ -1,6 +1,6 @@
-"use client"
-import { motion } from "framer-motion";
-import React, { ReactNode } from "react";
+'use client';
+import { motion } from 'framer-motion';
+import React, { ReactNode } from 'react';
 
 export function ModalWrapper(props: { children: ReactNode }) {
   return (
@@ -15,7 +15,7 @@ export function ModalWrapper(props: { children: ReactNode }) {
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ ease: "easeInOut", duration: 0.5 }}
+        transition={{ ease: 'easeInOut', duration: 0.5 }}
         className="bg-background w-[90%] md:w-[50%] lg:w-[75%] rounded-lg px-4 py-4"
       >
         {props.children}

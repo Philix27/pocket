@@ -1,8 +1,8 @@
-import { Avatar } from "./Avatar";
-import styles from "./ConversationList.module.css";
-import previewStyles from "./ConversationPreviewCard.module.css";
-import { IconSkeletonLoader } from "./SkeletonLoaders/IconSkeletonLoader";
-import { ShortCopySkeletonLoader } from "./SkeletonLoaders/ShortCopySkeletonLoader";
+import { Avatar } from './Avatar';
+import styles from './ConversationList.module.css';
+import previewStyles from './ConversationPreviewCard.module.css';
+import { IconSkeletonLoader } from './SkeletonLoaders/IconSkeletonLoader';
+import { ShortCopySkeletonLoader } from './SkeletonLoaders/ShortCopySkeletonLoader';
 
 type ConversationListProps = {
   /**

@@ -1,5 +1,5 @@
 'use client';
-import { AppButton, AppInput, Navbar, SimpleRow, TextH, TextP } from '@/comps';
+import { AppButton, AppInput, Navbar } from '@/comps';
 import { use3Wagmi } from '@/lib';
 import React from 'react';
 

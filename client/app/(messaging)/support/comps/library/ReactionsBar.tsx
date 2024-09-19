@@ -1,23 +1,17 @@
-import { useSendMessage } from "@xmtp/react-sdk";
-import type { CachedMessage, CachedConversation } from "@xmtp/react-sdk";
-import { useCallback } from "react";
-import {
-  ContentTypeReaction,
-  type Reaction,
-} from "@xmtp/content-type-reaction";
-import styles from "./ReactionsBar.module.css";
+import { useSendMessage } from '@xmtp/react-sdk';
+import type { CachedMessage, CachedConversation } from '@xmtp/react-sdk';
+import { useCallback } from 'react';
+import { ContentTypeReaction, type Reaction } from '@xmtp/content-type-reaction';
+import styles from './ReactionsBar.module.css';
 
 type ReactionsBarProps = {
   conversation: CachedConversation;
   message: CachedMessage;
 };
 
-const availableReactionEmojis = ["👍", "👎", "❤️"];
+const availableReactionEmojis = ['👍', '👎', '❤️'];
 
-export const ReactionsBar: React.FC<ReactionsBarProps> = ({
-  conversation,
-  message,
-}) => {
+export const ReactionsBar: React.FC<ReactionsBarProps> = ({ conversation, message }) => {
   const { sendMessage } = useSendMessage();
   const handleClick = useCallback(
     (emoji: string) => {
@@ -25,24 +19,20 @@ export const ReactionsBar: React.FC<ReactionsBarProps> = ({
         conversation,
         {
           content: emoji,
-          schema: "unicode",
+          schema: 'unicode',
           reference: message.id,
-          action: "added",
+          action: 'added',
         },
-        ContentTypeReaction,
+        ContentTypeReaction
       );
     },
-    [conversation, message.id, sendMessage],
+    [conversation, message.id, sendMessage]
   );
 
   return (
     <div className={styles.wrapper}>
       {availableReactionEmojis.map((emoji) => (
-        <button
-          type="button"
-          key={emoji}
-          className={styles.option}
-          onClick={() => handleClick(emoji)}>
+        <button type="button" key={emoji} className={styles.option} onClick={() => handleClick(emoji)}>
           <span className={styles.emoji}>{emoji}</span>
         </button>
       ))}

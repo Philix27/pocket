@@ -1,4 +1,4 @@
-import styles from "./MessageSkeletonLoader.module.css";
+import styles from './MessageSkeletonLoader.module.css';
 
 export const MessageSkeletonLoader = ({ incoming = true }) => (
   <div role="status" className={styles.wrapper}>

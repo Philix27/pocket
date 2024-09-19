@@ -1,24 +1,17 @@
-import {
-  useClient,
-  useMessages,
-  useSendMessage,
-  useStreamMessages,
-} from "@xmtp/react-sdk";
-import type { CachedConversation } from "@xmtp/react-sdk";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ContentTypeReaction } from "@xmtp/content-type-reaction";
-import "./Messages.css";
-import { ContentTypeId } from "@xmtp/content-type-primitives";
-import { Messages as MessagesList } from "./library/Messages";
-import { MessageInput } from "./library/MessageInput";
+import { useClient, useMessages, useSendMessage, useStreamMessages } from '@xmtp/react-sdk';
+import type { CachedConversation } from '@xmtp/react-sdk';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ContentTypeReaction } from '@xmtp/content-type-reaction';
+import './Messages.css';
+import { ContentTypeId } from '@xmtp/content-type-primitives';
+import { Messages as MessagesList } from './library/Messages';
+import { MessageInput } from './library/MessageInput';
 
 type ConversationMessagesProps = {
   conversation: CachedConversation;
 };
 
-export const Messages: React.FC<ConversationMessagesProps> = ({
-  conversation,
-}) => {
+export const Messages: React.FC<ConversationMessagesProps> = ({ conversation }) => {
   const [isSending, setIsSending] = useState(false);
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const { messages, isLoading } = useMessages(conversation);
@@ -37,7 +30,7 @@ export const Messages: React.FC<ConversationMessagesProps> = ({
           !contentType.sameAs(ContentTypeReaction)
         );
       }),
-    [messages],
+    [messages]
   );
 
   const handleSendMessage = useCallback(
@@ -48,7 +41,7 @@ export const Messages: React.FC<ConversationMessagesProps> = ({
       // ensure focus of input by waiting for a browser tick
       setTimeout(() => messageInputRef.current?.focus(), 0);
     },
-    [conversation, sendMessage],
+    [conversation, sendMessage]
   );
 
   useEffect(() => {
@@ -64,11 +57,7 @@ export const Messages: React.FC<ConversationMessagesProps> = ({
         clientAddress={client?.address}
       />
       <div className="w-full">
-        <MessageInput
-          isDisabled={isSending}
-          onSubmit={handleSendMessage}
-          ref={messageInputRef}
-        />
+        <MessageInput isDisabled={isSending} onSubmit={handleSendMessage} ref={messageInputRef} />
       </div>
     </div>
   );

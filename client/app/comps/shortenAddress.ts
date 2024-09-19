@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
 
 /**
  * Shorten a wallet address.
@@ -15,7 +15,6 @@ export function shortenAddress(address: string, chars = 4) {
   return `${start}...${end}`;
 }
 
-
-export function formatBalance(balance:BigInt, decimals = 18) {
+export function formatBalance(balance: BigInt, decimals = 18) {
   return ethers.formatUnits(balance.toString(), decimals);
 }

@@ -1,4 +1,4 @@
-import { cn } from "@/lib";
+import { cn } from '@/lib';
 
 export function AppRadio(props: { onClick?: VoidFunction; isSelected?: boolean }) {
   return (

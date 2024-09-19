@@ -1,2 +1,2 @@
-export * from "./textB"
-export * from "./textH"
+export * from './textB';
+export * from './textH';

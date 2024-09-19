@@ -19,7 +19,7 @@ export default function SettingsPage() {
 
   return (
     <>
-      <Navbar title={'Settings'} isBack/>
+      <Navbar title={'Settings'} isBack />
       <div className={'flex flex-col items-center px-4 py-4 mb-10'}>
         <div className="size-[120px]">
           <img src={store.userInfo?.profileImage!} className="size-full" />

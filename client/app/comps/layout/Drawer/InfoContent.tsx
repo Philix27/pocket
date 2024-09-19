@@ -8,13 +8,6 @@ export function InfoContent({ router }: { router: AppRouterInstance }) {
   return (
     <div>
       <DrawerRow
-        title={'Help'}
-        icon={FaInfo}
-        onClick={() => {
-          router.push('/docs/HELP');
-        }}
-      />
-      <DrawerRow
         title={'FAQ'}
         icon={MdQuestionMark}
         onClick={() => {

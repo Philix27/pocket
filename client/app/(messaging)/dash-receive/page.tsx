@@ -1,8 +1,11 @@
 'use client';
-import { Navbar, SimpleRow, TextH, TextP } from '@/comps';
+import { AppButton, Navbar, SimpleRow, TextH, TextP } from '@/comps';
 import { use3Wagmi } from '@/lib';
 import React from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { toast } from 'sonner';
+import { LuCopyCheck } from 'react-icons/lu';
 
 export default function SendMoneyPage() {
   const { address } = use3Wagmi();
@@ -20,8 +23,27 @@ export default function SendMoneyPage() {
             size={300}
           />
         </div>
-        <div className="w-[70%] flex items-center justify-center  bg-card rounded-lg p-2 break-words my-4">
-          <TextP className="text-center truncate ">{address}</TextP>
+
+        <div
+          className={`
+          w-[70%] flex flex-col items-center justify-center 
+          bg-card rounded-lg p-2 break-words my-4 text-wrap
+        `}
+        >
+          <TextP className="truncate text-ellipsis text-sm max-w-[90%] text-center">{address}</TextP>
+        </div>
+
+        <div className="mt-2 mb-4 w-full flex items-center justify-center">
+          <CopyToClipboard
+            text={address!}
+            onCopy={() => {
+              toast.message('Wallet address copied');
+            }}
+          >
+            <AppButton className="w-fit">
+              Copy Address <LuCopyCheck className="mr-1 ml-5" size={20} />
+            </AppButton>
+          </CopyToClipboard>
         </div>
         <div className="w-full">
           <SimpleRow left={'Display name'} right="philix27" />

@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 
+export type IDuration = '1week' | '2weeks' | '3weeks' | '4weeks' | '5weeks';
 export const schema = z.object({
   amount: z.number(),
   purpose: z

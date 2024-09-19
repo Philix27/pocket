@@ -5,16 +5,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { FormData, durationTransformer, schema } from './schema';
-import { AppStores } from '@/lib';
+import { FormData, IDuration, durationTransformer, schema } from './schema';
 import { useDeposit } from './useDeposit';
-import { AppButton, AppTextInput } from '@/comps';
+import { AppButton, AppSelect, AppTextInput } from '@/comps';
 
 export default function DepositSection() {
   const {
     register,
     handleSubmit,
-    getValues,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -22,7 +21,6 @@ export default function DepositSection() {
 
   // const { formattedBalance, userAddress } = useMain()
   const { depositFunds } = useDeposit();
-  const store = AppStores.useChat();
 
   const submitData = async (formData: FormData) => {
     try {
@@ -67,14 +65,35 @@ export default function DepositSection() {
             <AppTextInput control={register('purpose')} name={'amount'} place="Purpose" className={`text-black`} />
             {errors.purpose?.message && <span className={`text-red-700`}>{errors.purpose.message}</span>}
 
-            <select id="duration" {...register('duration')} className={`w-full border-2 border-primary p-2 rounded-md`}>
-              <option value="duration">Select Duration</option>
-              <option value="1week">1 week</option>
-              <option value="2weeks">2 weeks</option>
-              <option value="3weeks">1 months</option>
-              <option value="4weeks">2 months</option>
-              <option value="5weeks">3 months</option>
-            </select>
+            <AppSelect
+              data={[
+                {
+                  label: '1 week',
+                  value: '1week',
+                },
+                {
+                  label: '2 weeks',
+                  value: '2weeks',
+                },
+                {
+                  label: '3 weeks',
+                  value: '3weeks',
+                },
+                {
+                  label: '4 weeks',
+                  value: '4weeks',
+                },
+                {
+                  label: '5 weeks',
+                  value: '5weeks',
+                },
+              ]}
+              label="Duration"
+              onChange={(newValue: string) => {
+                setValue('duration', newValue as IDuration);
+                throw new Error('Function not implemented.');
+              }}
+            />
             {errors.duration?.message && <span className={`text-red-700`}>{errors.duration.message}</span>}
 
             <div className={`w-full space-x-2`}>

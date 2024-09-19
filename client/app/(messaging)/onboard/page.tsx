@@ -1,6 +1,5 @@
 'use client';
 import { AppButton, AppSelect, AppTextInput, Navbar, Tabs } from '@/comps';
-import { AppStores, use3Wagmi } from '@/lib';
 import React from 'react';
 
 export default function OnboardPage() {

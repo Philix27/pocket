@@ -56,7 +56,7 @@ export const defaultValues: Required<ISlice> = {
   isConnectedToXmpt: false,
   etherKey: null,
   etherWallet: null,
-  userInfo: null
+  userInfo: null,
 };
 
 export const useChat = create(

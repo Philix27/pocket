@@ -1,5 +1,5 @@
-import { format } from "date-fns";
-import styles from "./DateDivider.module.css";
+import { format } from 'date-fns';
+import styles from './DateDivider.module.css';
 
 type DateDividerProps = {
   /**
@@ -11,7 +11,7 @@ type DateDividerProps = {
 export const DateDivider: React.FC<DateDividerProps> = ({ date }) => (
   <div className={styles.wrapper}>
     <div className={styles.date} title={date.toDateString()}>
-      {format(date, "PPP")}
+      {format(date, 'PPP')}
     </div>
   </div>
 );

@@ -1,4 +1,4 @@
-import "./Notification.css";
+import './Notification.css';
 
 type NotificationProps = React.PropsWithChildren & {
   cta?: React.ReactNode;
@@ -6,12 +6,7 @@ type NotificationProps = React.PropsWithChildren & {
   title: string;
 };
 
-export const Notification: React.FC<NotificationProps> = ({
-  children,
-  cta,
-  icon,
-  title,
-}) => (
+export const Notification: React.FC<NotificationProps> = ({ children, cta, icon, title }) => (
   <div className="NotificationWrapper">
     <div className="Notification">
       <div className="Notification__icon">{icon}</div>

@@ -1,6 +1,11 @@
 'use client';
+<<<<<<< HEAD:apps/client/app/(core)/fx/_comps/orders/index.tsx
 import { AppButton, Spinner, Tabs, TextP } from '@/comps';
 import React, { memo, useMemo, useState } from 'react';
+=======
+import { AppButton, Spinner, TextP } from '@/comps';
+import React, { memo, useState } from 'react';
+>>>>>>> main:client/app/(core)/fx/_comps/orders/index.tsx
 import { cn, shortAddress } from '@/lib';
 import { FHE } from '@/contract';
 import { useAccount } from 'wagmi';
@@ -29,7 +34,11 @@ export const OrdersComp = memo(() => {
       <div className="my-2">
         {data &&
           data.map((ads, index) => {
+<<<<<<< HEAD:apps/client/app/(core)/fx/_comps/orders/index.tsx
             if (fundsProcessing === ads.id && releaseFundsResult.isPending) {
+=======
+            if (fundsProcessing === ads.id && releaseFundsResult.isLoading) {
+>>>>>>> main:client/app/(core)/fx/_comps/orders/index.tsx
               return <Spinner />;
             }
             // if (releaseFundsResult.error) {

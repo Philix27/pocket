@@ -1,4 +1,4 @@
-import styles from "./ShortCopySkeletonLoader.module.css";
+import styles from './ShortCopySkeletonLoader.module.css';
 
 export const ShortCopySkeletonLoader = ({ lines = 1 }) => (
   <div role="status" className={styles.wrapper}>

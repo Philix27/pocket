@@ -1,8 +1,8 @@
-import type { CachedMessage } from "@xmtp/react-sdk";
-import { useReply } from "@xmtp/react-sdk";
-import type { Reply } from "@xmtp/content-type-reply";
-import { ContentTypeId } from "@xmtp/content-type-primitives";
-import { MessageContent } from "./MessageContent";
+import type { CachedMessage } from '@xmtp/react-sdk';
+import { useReply } from '@xmtp/react-sdk';
+import type { Reply } from '@xmtp/content-type-reply';
+import { ContentTypeId } from '@xmtp/content-type-primitives';
+import { MessageContent } from './MessageContent';
 
 type ReplyProps = {
   message: CachedMessage;
@@ -24,13 +24,9 @@ export const ReplyContent: React.FC<ReplyProps> = ({ message, isIncoming }) => {
     <>
       <div>
         {originalMessage ? (
-          <MessageContent
-            message={originalMessage}
-            isIncoming={isIncoming}
-            isRepliedTo
-          />
+          <MessageContent message={originalMessage} isIncoming={isIncoming} isRepliedTo />
         ) : (
-          "Loading original message..."
+          'Loading original message...'
         )}
       </div>
       <div>

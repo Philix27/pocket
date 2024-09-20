@@ -1,6 +1,6 @@
-"use client"
-import React from "react";
-import { ThreeDots } from "react-loader-spinner";
+'use client';
+import React from 'react';
+import { ThreeDots } from 'react-loader-spinner';
 
 export function Spinner() {
   return (

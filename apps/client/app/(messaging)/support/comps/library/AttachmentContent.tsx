@@ -1,7 +1,7 @@
-import type { Attachment } from "@xmtp/content-type-remote-attachment";
-import type { CachedMessage } from "@xmtp/react-sdk";
-import { useAttachment } from "@xmtp/react-sdk";
-import styles from "./Attachment.module.css";
+import type { Attachment } from '@xmtp/content-type-remote-attachment';
+import type { CachedMessage } from '@xmtp/react-sdk';
+import { useAttachment } from '@xmtp/react-sdk';
+import styles from './Attachment.module.css';
 
 type AttachmentProps = {
   message: CachedMessage;
@@ -21,8 +21,8 @@ const getBlobURL = (attachment: Attachment) => {
       URL.createObjectURL(
         new Blob([Buffer.from(attachment.data)], {
           type: attachment.mimeType,
-        }),
-      ),
+        })
+      )
     );
   }
 
@@ -32,17 +32,17 @@ const getBlobURL = (attachment: Attachment) => {
 export const AttachmentContent: React.FC<AttachmentProps> = ({ message }) => {
   const { attachment, status } = useAttachment(message);
 
-  if (status === "error") {
-    return "Unable to load attachment";
+  if (status === 'error') {
+    return 'Unable to load attachment';
   }
 
-  if (status === "loading" || !attachment) {
-    return "Loading...";
+  if (status === 'loading' || !attachment) {
+    return 'Loading...';
   }
 
   const blobURL = getBlobURL(attachment);
 
-  if (attachment.mimeType.startsWith("image/")) {
+  if (attachment.mimeType.startsWith('image/')) {
     return (
       <div className={styles.attachment}>
         <img src={blobURL} alt="" />
@@ -50,7 +50,7 @@ export const AttachmentContent: React.FC<AttachmentProps> = ({ message }) => {
     );
   }
 
-  if (attachment.mimeType.startsWith("audio/")) {
+  if (attachment.mimeType.startsWith('audio/')) {
     return (
       // eslint-disable-next-line jsx-a11y/media-has-caption
       <audio controls src={blobURL}>
@@ -59,7 +59,7 @@ export const AttachmentContent: React.FC<AttachmentProps> = ({ message }) => {
     );
   }
 
-  if (attachment.mimeType.startsWith("video/")) {
+  if (attachment.mimeType.startsWith('video/')) {
     return (
       // eslint-disable-next-line jsx-a11y/media-has-caption
       <video controls autoPlay>

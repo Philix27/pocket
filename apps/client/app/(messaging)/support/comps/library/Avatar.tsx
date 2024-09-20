@@ -1,5 +1,5 @@
-import Blockies from "react-18-blockies";
-import styles from "./Avatar.module.css";
+import Blockies from 'react-18-blockies';
+import styles from './Avatar.module.css';
 
 type AvatarProps = {
   /**
@@ -29,13 +29,5 @@ export const Avatar: React.FC<AvatarProps> = ({ url, isLoading, address }) => {
     return <div className={styles.avatar} />;
   }
 
-  return (
-    <Blockies
-      data-testid="avatar"
-      seed={address || ""}
-      scale={5}
-      size={8}
-      className={styles.blockies}
-    />
-  );
+  return <Blockies data-testid="avatar" seed={address || ''} scale={5} size={8} className={styles.blockies} />;
 };

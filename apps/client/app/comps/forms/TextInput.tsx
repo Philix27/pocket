@@ -43,16 +43,18 @@ export function AppTextInput<T extends FieldValues>(props: {
           {props.isPassword && <CiLock className={cn('mx-2', props.errorMessage && 'text-red-600')} />}
 
           <input
-            name={props.name}
+            {...props.control}
+            {...props}
             placeholder={props.place}
-            // type="number"
             type={props.isPassword ? 'password' : !showPassword && props.type}
             className={cn(
               `flex h-12 w-full rounded-md
              border-none outline-none bg-transparent
         `
             )}
-            {...props.control}
+            pattern={props.type === 'number' && '[0-9]*'}
+            inputmode={props.type === 'number' && 'numeric'}
+            name={props.name}
           />
 
           {props.isPassword &&

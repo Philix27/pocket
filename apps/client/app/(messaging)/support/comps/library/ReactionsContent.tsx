@@ -1,26 +1,17 @@
-import {
-  type CachedConversation,
-  type CachedMessage,
-  useSendMessage,
-  useClient,
-  useReactions,
-} from "@xmtp/react-sdk";
-import { useCallback, useMemo } from "react";
-import type { Reaction } from "@xmtp/content-type-reaction";
-import { ContentTypeReaction } from "@xmtp/content-type-reaction";
-import styles from "./ReactionsContent.module.css";
+import { type CachedConversation, type CachedMessage, useSendMessage, useClient, useReactions } from '@xmtp/react-sdk';
+import { useCallback, useMemo } from 'react';
+import type { Reaction } from '@xmtp/content-type-reaction';
+import { ContentTypeReaction } from '@xmtp/content-type-reaction';
+import styles from './ReactionsContent.module.css';
 
 type ReactionsContentProps = {
   conversation: CachedConversation;
   message: CachedMessage;
 };
 
-const availableReactionEmojis = ["👍", "👎", "❤️"];
+const availableReactionEmojis = ['👍', '👎', '❤️'];
 
-export const ReactionsContent: React.FC<ReactionsContentProps> = ({
-  conversation,
-  message,
-}) => {
+export const ReactionsContent: React.FC<ReactionsContentProps> = ({ conversation, message }) => {
   const { client } = useClient();
   const { sendMessage } = useSendMessage();
   const reactions = useReactions(message);
@@ -28,12 +19,11 @@ export const ReactionsContent: React.FC<ReactionsContentProps> = ({
   const emojiReactions = useMemo(
     () =>
       reactions
-        .filter((reaction) => reaction.schema === "unicode")
+        .filter((reaction) => reaction.schema === 'unicode')
         .reduce(
           (acc, reaction) => {
             const count = (acc?.[reaction.content]?.count ?? 0) + 1;
-            const senderAddresses =
-              acc?.[reaction.content]?.senderAddresses ?? [];
+            const senderAddresses = acc?.[reaction.content]?.senderAddresses ?? [];
             return {
               ...acc,
               [reaction.content]: {
@@ -48,33 +38,28 @@ export const ReactionsContent: React.FC<ReactionsContentProps> = ({
               count: number;
               senderAddresses: string[];
             }
-          >,
+          >
         ),
-    [reactions],
+    [reactions]
   );
 
-  const emojiCount = useCallback(
-    (emoji: string) => emojiReactions[emoji]?.count ?? 0,
-    [emojiReactions],
-  );
+  const emojiCount = useCallback((emoji: string) => emojiReactions[emoji]?.count ?? 0, [emojiReactions]);
 
   const handleClick = useCallback(
     (emoji: string) => {
-      const hasReacted = emojiReactions[emoji].senderAddresses.includes(
-        client?.address ?? "",
-      );
+      const hasReacted = emojiReactions[emoji].senderAddresses.includes(client?.address ?? '');
       void sendMessage<Reaction>(
         conversation,
         {
           content: emoji,
-          schema: "unicode",
+          schema: 'unicode',
           reference: message.id,
-          action: hasReacted ? "removed" : "added",
+          action: hasReacted ? 'removed' : 'added',
         },
-        ContentTypeReaction,
+        ContentTypeReaction
       );
     },
-    [client?.address, conversation, emojiReactions, message.id, sendMessage],
+    [client?.address, conversation, emojiReactions, message.id, sendMessage]
   );
 
   return (
@@ -87,7 +72,8 @@ export const ReactionsContent: React.FC<ReactionsContentProps> = ({
               type="button"
               key={emoji}
               className={`${styles.option} ${styles.active}`}
-              onClick={() => handleClick(emoji)}>
+              onClick={() => handleClick(emoji)}
+            >
               <span className={styles.emoji}>{emoji}</span>
               <span className={styles.count}>{count}</span>
             </button>

@@ -1,3 +1,7 @@
+<<<<<<< HEAD:apps/client/app/comps/layout/BottomSheet.tsx
+=======
+'use client';
+>>>>>>> main:client/app/comps/layout/BottomSheet.tsx
 import { TextH } from '@/comps';
 import React, { ReactNode } from 'react';
 import { IoClose } from 'react-icons/io5';

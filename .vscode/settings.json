@@ -1,10 +1,24 @@
 {
   "cSpell.words": [
+<<<<<<< HEAD
     "cusd",
     "Fhenix",
     "hookform",
     "Openlogin",
     "tanstack",
+=======
+    "Alfajores",
+    "celo",
+    "fhenix",
+    "hookform",
+    "Openlogin",
+    "rainbowkit",
+    "sepolia",
+    "superjson",
+    "tanstack",
+    "trpc",
+    "viem",
+>>>>>>> main
     "Wagmi",
     "Xmpt",
     "xmtp"

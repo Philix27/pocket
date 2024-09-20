@@ -1,12 +1,12 @@
-import { format } from "date-fns";
-import type { CachedConversation, CachedMessage } from "@xmtp/react-sdk";
-import { ContentTypeReply } from "@xmtp/content-type-reply";
-import { ContentTypeId } from "@xmtp/content-type-primitives";
-import styles from "./Message.module.css";
-import { MessageContent } from "./MessageContent";
-import { ReplyContent } from "./ReplyContent";
-import { ReactionsBar } from "./ReactionsBar";
-import { ReactionsContent } from "./ReactionsContent";
+import { format } from 'date-fns';
+import type { CachedConversation, CachedMessage } from '@xmtp/react-sdk';
+import { ContentTypeReply } from '@xmtp/content-type-reply';
+import { ContentTypeId } from '@xmtp/content-type-primitives';
+import styles from './Message.module.css';
+import { MessageContent } from './MessageContent';
+import { ReplyContent } from './ReplyContent';
+import { ReactionsBar } from './ReactionsBar';
+import { ReactionsContent } from './ReactionsContent';
 
 type MessageProps = {
   conversation: CachedConversation;
@@ -20,22 +20,17 @@ type MessageProps = {
   isIncoming?: boolean;
 };
 
-export const Message: React.FC<MessageProps> = ({
-  conversation,
-  message,
-  isIncoming,
-}) => {
+export const Message: React.FC<MessageProps> = ({ conversation, message, isIncoming }) => {
   const contentType = ContentTypeId.fromString(message.contentType);
   return (
-    <div
-      className={`${styles.wrapper} ${styles[isIncoming ? "left" : "right"]}`}>
+    <div className={`${styles.wrapper} ${styles[isIncoming ? 'left' : 'right']}`}>
       {contentType.sameAs(ContentTypeReply) ? (
         <ReplyContent message={message} isIncoming={isIncoming} />
       ) : (
         <MessageContent message={message} isIncoming={isIncoming} />
       )}
       <div className={styles.time} title={message.sentAt.toLocaleString()}>
-        <span>{format(message.sentAt, "h:mm a")}</span>
+        <span>{format(message.sentAt, 'h:mm a')}</span>
       </div>
       <div className={styles.reactions}>
         <ReactionsBar conversation={conversation} message={message} />

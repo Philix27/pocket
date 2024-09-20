@@ -9,7 +9,7 @@ import { Analytics } from '@vercel/analytics/react';
 export function AppProviders(props: { children: ReactNode }) {
   return (
     <Web3Providers>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         {props.children}
         <Toaster className={'bg-primary'} />
         <Analytics />

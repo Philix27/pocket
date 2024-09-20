@@ -6,6 +6,7 @@ import { IconType } from 'react-icons';
 import { cn, useAppRouter } from '@/lib';
 import { IoSwapHorizontal, IoHomeOutline } from 'react-icons/io5';
 import { MdOutlineSettings, MdOutlineSavings } from 'react-icons/md';
+import { FaAppStoreIos } from 'react-icons/fa';
 
 type INavItem = { title: string; Icon: IconType | IconType; link: string; onClick: VoidFunction };
 
@@ -19,12 +20,6 @@ export function BottomNav() {
       link: '/dashboard',
       Icon: IoHomeOutline,
       onClick: () => router.go('/dashboard'),
-    },
-    {
-      title: 'Savings',
-      link: '/savings',
-      Icon: MdOutlineSavings,
-      onClick: () => router.go('/savings'),
     },
     {
       title: 'Swap',
@@ -48,10 +43,10 @@ export function BottomNav() {
   }
 
   return (
-    <div
+    <div // border-t-[0.5px]
       className={`
         fixed bottom-0 h-[60px]
-        border-t-[0.5px] bg-background
+      bg-background
         w-full flex items-center justify-center
         pb-[10px] 
       `}
@@ -71,8 +66,8 @@ export function BottomNav() {
                 `size-[40px] 
               flex flex-col items-center justify-center
               rounded-[10px]`,
-                isActive(link) ? 'bg-background' : 'bg-card',
-                isActive(link) && 'border-primary border-solid border-[1px]'
+                isActive(link) ? 'bg-card' : 'bg-card'
+                // isActive(link) && 'border-primary border-solid border-[1px]'
               )}
             >
               <Icon

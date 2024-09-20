@@ -2723,6 +2723,11 @@
     react-remove-scroll "2.6.0"
     ua-parser-js "^1.0.37"
 
+"@remote-ui/rpc@^1.2.5":
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/@remote-ui/rpc/-/rpc-1.4.5.tgz#20328970c314374d96fdaae1cf93aca4b47fefee"
+  integrity sha512-Cr+06niG/vmE4A9YsmaKngRuuVSWKMY42NMwtZfy+gctRWGu6Wj9BWuMJg5CEp+JTkRBPToqT5rqnrg1G/Wvow==
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.1.tgz#04bc0608f4aa4b2e4b1aebf284344d0f68fda283"
@@ -3100,6 +3105,32 @@
     "@sentry/bundler-plugin-core" "2.22.3"
     unplugin "1.0.1"
     uuid "^9.0.0"
+
+"@shopify/react-hooks@^4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@shopify/react-hooks/-/react-hooks-4.1.2.tgz#5f39e6dbc6eca0645d34125e3a10de52c37e0653"
+  integrity sha512-F5WWZ7t2qd0i+ALCFbdQ6v5TG+6jUZ/N/dTWLd7w56uteO2H6a91KfwUWClffPVfch0qqlHG84F8t4pOMj8/Gg==
+
+"@shopify/react-web-worker@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@shopify/react-web-worker/-/react-web-worker-5.1.5.tgz#1f76ff8f1f88475fab411e6d57eb6ff68c305906"
+  integrity sha512-bGT5E3N0HxjaWWmMF2xoY1gyAL6dZ55DUUJqsJUxBthFKRoGicijo10e/rYmx1Bc7hmEZ1el1fkSSQAneLFxEQ==
+  dependencies:
+    "@shopify/react-hooks" "^4.1.2"
+    "@shopify/useful-types" "^5.3.0"
+    "@shopify/web-worker" "^6.3.1"
+
+"@shopify/useful-types@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@shopify/useful-types/-/useful-types-5.3.0.tgz#aa6ee340223b02a082bb0fcd05ba70241e000157"
+  integrity sha512-8BlaedSqR7ssQAhCsa88K+l2eIImSBlTLlnf7/dlqSlMSEqGVUf+O8oPsnyy9Oh3aDMt+rD4Q5JPOo984Cbz7Q==
+
+"@shopify/web-worker@^6.3.1":
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/@shopify/web-worker/-/web-worker-6.3.1.tgz#1b276df94cea5461c49e67947bbdc75d531dd26e"
+  integrity sha512-h2l5Z0ncKl+z2WwkW2YG0LBdq54o3aSDm/aS90EMtQBuiloW/d+lEhUEtt1gNDyKd0n5GAlDYiKohoZBJ1CAJQ==
+  dependencies:
+    "@remote-ui/rpc" "^1.2.5"
 
 "@sindresorhus/merge-streams@^2.1.0":
   version "2.3.0"

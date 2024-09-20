@@ -22,10 +22,6 @@
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@rainbow-me/rainbowkit": "^2.1.3",
-<<<<<<< HEAD:apps/client/package.json
-    "@tanstack/react-query": "^5.51.1",
-    "@toruslabs/tss-dkls-lib": "^3.0.0",
-=======
     "@sentry/nextjs": "^8",
     "@shopify/react-web-worker": "^5.1.5",
     "@tanstack/react-query": "^4.35.3",
@@ -34,7 +30,6 @@
     "@trpc/react-query": "^10.44.1",
     "@trpc/server": "^10.44.1",
     "@types/react-copy-to-clipboard": "^5.0.7",
->>>>>>> main:client/package.json
     "@vercel/analytics": "^1.3.1",
     "@wagmi/core": "^2.11.7",
     "@web3auth/base": "^8.12.2",
@@ -63,14 +58,9 @@
     "ethers": "^6.13.2",
     "framer-motion": "^10.17.9",
     "net": "^1.0.2",
-<<<<<<< HEAD:apps/client/package.json
-    "next": "14.2.11",
-    "next-themes": "^0.3.0",
-=======
     "next": "14.2.5",
     "next-themes": "^0.2.1",
     "qrcode.react": "^4.0.1",
->>>>>>> main:client/package.json
     "react": "^18.3.1",
     "react-18-blockies": "^1.0.6",
     "react-copy-to-clipboard": "^5.1.0",
@@ -78,11 +68,7 @@
     "react-hook-form": "^7.51.5",
     "react-icons": "^5.0.0",
     "react-loader-spinner": "^6.1.6",
-<<<<<<< HEAD:apps/client/package.json
-    "react-qr-code": "^2.0.15",
-=======
     "react-select": "^5.8.0",
->>>>>>> main:client/package.json
     "react-use": "17.5.0",
     "sharp": "^0.33.4",
     "sonner": "^1.4.41",
@@ -97,10 +83,6 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@types/mdx": "^2.0.13",
-<<<<<<< HEAD:apps/client/package.json
-    "@types/next": "9.0.0",
-=======
->>>>>>> main:client/package.json
     "@types/node": "^22.3.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

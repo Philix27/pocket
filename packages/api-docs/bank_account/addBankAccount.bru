@@ -5,7 +5,16 @@ meta {
 }
 
 post {
-  url: http://localhost:5300/bank-account/
-  body: none
+  url: http://localhost:5300/bank_account/
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "bankName": "GTB",
+    "accountName": "ELIGBUE FELIX",
+    "accountNo": "0169421974",
+    "userId": "hey"
+  }
 }

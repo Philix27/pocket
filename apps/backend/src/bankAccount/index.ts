@@ -1,3 +1,3 @@
-export * from './bankAccount.controller';
-export * from './bankAccount.module';
-export * from './bankAccount.service';
+export * from './controller';
+export * from './module';
+export * from './service';

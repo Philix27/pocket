@@ -1,5 +1,5 @@
-import { Controller, Delete, Get, Post } from '@nestjs/common';
-import { BankAccountService } from './bankAccount.service';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { BankAccountService } from './service';
 import {
   IBankAccount,
   IBankAccount_AddRq,
@@ -12,7 +12,7 @@ import {
   IBankAccount_GetPrimaryAcctRs,
 } from '@repo/rpc';
 
-@Controller('/bank_account')
+@Controller('bank_account')
 export class BankAccountController implements IBankAccount {
   constructor(private readonly service: BankAccountService) {}
 
@@ -20,22 +20,23 @@ export class BankAccountController implements IBankAccount {
   async get_primary_account(
     params: IBankAccount_GetPrimaryAcctParams,
   ): Promise<IBankAccount_GetPrimaryAcctRs> {
-    return await this.get_primary_account(params);
+    return await this.service.get_primary_account(params);
   }
+
   @Get()
   async get_all(
-    params: IBankAccount_GetAllParams,
+    @Param() params: IBankAccount_GetAllParams,
   ): Promise<IBankAccount_GetAllRs> {
-    return await this.get_all(params);
+    return await this.service.get_all(params);
   }
 
   @Post()
-  async add(body: IBankAccount_AddRq): Promise<IBankAccount_AddRs> {
-    return await this.add(body);
+  async add(@Body() body: IBankAccount_AddRq): Promise<IBankAccount_AddRs> {
+    return await this.service.add(body);
   }
 
   @Delete()
   async delete(body: IBankAccount_DeleteRq): Promise<IBankAccount_DeleteRs> {
-    return await this.delete(body);
+    return await this.service.delete(body);
   }
 }

@@ -32,6 +32,16 @@ export class BankAccountService implements IBankAccount {
   async get_all(
     params: IBankAccount_GetAllParams,
   ): Promise<IBankAccount_GetAllRs> {
+    // return {
+    //   data: [
+    //     {
+    //       bankName: 'GTB',
+    //       accountName: 'Eligbue Felix',
+    //       accountNo: '0900029298',
+    //     },
+    //   ],
+    // };
+
     try {
       const res = await this.service.bank_account.findMany({
         where: {

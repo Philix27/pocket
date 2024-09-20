@@ -5,13 +5,12 @@
   "scripts": {
     "lint": "eslint ."
   },
-  "peerDependencies": {},
   "exports": {
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "axios": "^1.7.2",
     "@repo/db": "workspace:*",
+    "axios": "^1.7.2",
     "ethers": "^6.13.2"
   },
   "devDependencies": {

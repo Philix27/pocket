@@ -40,6 +40,7 @@ export type IBankAccount_AddRq = {
   bankName: string;
   accountName: string;
   accountNo: string;
+  userId: string;
 };
 export type IBankAccount_AddRs = {
   data: {

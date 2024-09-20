@@ -3,6 +3,10 @@
   "version": "1.4.1",
   "private": true,
   "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -12,8 +16,8 @@
     "web:lint": "turbo run lint --filter=pocket",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ui": "pnpm --filter @repo/ui ui",
-    "pocket": "pnpm run dev --filter pocket"
+    "ui": "yarn --filter @repo/ui ui",
+    "pocket": "yarn dev --filter pocket"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -21,8 +25,10 @@
     "prettier": "^3.3.3",
     "turbo": "2.1.1"
   },
-  "packageManager": "pnpm@8.9.0",
   "engines": {
-    "node": ">=18"
-  }
+    "node": ">=18.x",
+    "npm": ">=7.0.0",
+    "yarn": "3.4.1"
+  },
+  "packageManager": "yarn@3.4.1"
 }

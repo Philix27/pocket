@@ -1,26 +1,14 @@
 'use client';
 
-<<<<<<< HEAD:apps/client/app/(core)/settings/page.tsx
-import React, { useState } from 'react';
-import { Navbar, shortenAddress, Spinner, TextH, TextP } from '@/comps';
-import { IconType } from 'react-icons';
-=======
 import React from 'react';
 import { Navbar, Row, shortenAddress, SimpleRow, Spinner, TextH } from '@/comps';
->>>>>>> main:client/app/(core)/settings/page.tsx
 import { IoPersonOutline } from 'react-icons/io5';
 import { AppStores, use3Wagmi, useAppRouter } from '@/lib';
 import { MdSupportAgent } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
-<<<<<<< HEAD:apps/client/app/(core)/settings/page.tsx
-import { InfoRowItem, RowItem } from './_comps/Row';
-import { BottomSheet } from '../../comps/layout/BottomSheet';
-import { SwitchChain, WalletBalance } from './_comps';
-=======
 import { SwitchChain } from './_comps';
 import { parseEther } from 'viem';
->>>>>>> main:client/app/(core)/settings/page.tsx
 
 export default function SettingsPage() {
   const store = AppStores.useChat();
@@ -37,25 +25,14 @@ export default function SettingsPage() {
           <img src={store.userInfo?.profileImage!} className="size-full" />
         </div>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
-<<<<<<< HEAD:apps/client/app/(core)/settings/page.tsx
-          <InfoRowItem left={'Name'} right={store.userInfo?.name!} Icon={IoPersonOutline} />
-          <InfoRowItem left={'Email'} right={store.userInfo?.email!} Icon={MdEmail} />
-=======
           <SimpleRow left={'Name'} right={store.userInfo?.name!} />
           <SimpleRow left={'Email'} right={store.userInfo?.email!} />
->>>>>>> main:client/app/(core)/settings/page.tsx
           <Balance address={address} title={'celo'} />
           <Balance address={address} title={'cUSD'} tokenAddress="0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" />
           <SimpleRow left={'Address'} right={shortenAddress(address)} isLast />
         </div>
         <TextH v="h5">More</TextH>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
-<<<<<<< HEAD:apps/client/app/(core)/settings/page.tsx
-          <WalletBalance />
-          <SwitchChain />
-          <RowItem title={'Verification'} subtitle={'KYC verification'} Icon={IoPersonOutline} />
-          <RowItem
-=======
           <SwitchChain />
           <Row
             title={'Verification'}
@@ -70,7 +47,6 @@ export default function SettingsPage() {
             onClick={() => router.push('/bank')}
           />
           <Row
->>>>>>> main:client/app/(core)/settings/page.tsx
             title={'Support'}
             subtitle={'Contact Agents'}
             Icon={MdSupportAgent}

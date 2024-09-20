@@ -1,5 +1,5 @@
 {
-  "name": "root-app",
+  "name": "pocket-app",
   "version": "1.4.1",
   "private": true,
   "license": "MIT",
@@ -10,9 +10,9 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "web:build": "turbo run build --filter=pocket",
+    "web:dev": "turbo run dev --filter=pocket-client",
+    "web:build": "turbo run build --filter=pocket-client",
     "web:start": "turbo run start --filter=pocket",
-    "web:dev": "turbo run dev --filter=pocket",
     "web:lint": "turbo run lint --filter=pocket",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

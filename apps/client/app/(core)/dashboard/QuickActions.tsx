@@ -43,15 +43,9 @@ export default function QuickActions() {
       link: '/airtime',
     },
     {
-<<<<<<< HEAD:apps/client/app/(core)/dashboard/QuickActions.tsx
-      Icon: IoIosSwap,
-      title: 'Deposit',
-      link: '/swap',
-=======
       Icon: LuUtilityPole,
       title: 'Bills',
       link: '/bills',
->>>>>>> main:client/app/(core)/dashboard/QuickActions.tsx
     },
     {
       Icon: TbFileInvoice,

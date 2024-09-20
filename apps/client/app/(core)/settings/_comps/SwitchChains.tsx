@@ -1,12 +1,6 @@
-<<<<<<< HEAD:apps/client/app/(core)/settings/_comps/SwitchChains.tsx
-import { TextP, BottomSheet, AppRadio } from '@/comps';
-import { useChainId, useSwitchChain } from 'wagmi';
-import { RowItem } from './Row';
-=======
 'use client';
 import { TextP, BottomSheet, AppRadio, Row } from '@/comps';
 import { useChainId, useSwitchChain } from 'wagmi';
->>>>>>> main:client/app/(core)/settings/_comps/SwitchChains.tsx
 import { useState } from 'react';
 import { LuNetwork } from 'react-icons/lu';
 
@@ -17,11 +11,7 @@ export function SwitchChain() {
   // const { chain } = useNetwork();
   return (
     <>
-<<<<<<< HEAD:apps/client/app/(core)/settings/_comps/SwitchChains.tsx
-      <RowItem
-=======
       <Row
->>>>>>> main:client/app/(core)/settings/_comps/SwitchChains.tsx
         title={'Switch Network'}
         subtitle={'Active network'}
         Icon={LuNetwork}

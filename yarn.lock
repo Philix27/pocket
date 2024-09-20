@@ -17881,9 +17881,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pocket@workspace:apps/client":
+"pocket-app@workspace:.":
   version: 0.0.0-use.local
-  resolution: "pocket@workspace:apps/client"
+  resolution: "pocket-app@workspace:."
+  dependencies:
+    "@repo/eslint-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*"
+    prettier: ^3.3.3
+    turbo: 2.1.1
+  languageName: unknown
+  linkType: soft
+
+"pocket-client@workspace:apps/client":
+  version: 0.0.0-use.local
+  resolution: "pocket-client@workspace:apps/client"
   dependencies:
     "@celo/abis": ^11.0.0
     "@ducanh2912/next-pwa": ^10.2.8
@@ -19386,17 +19397,6 @@ __metadata:
   checksum: 6a2bf167b3587d4df709b37d149ad0300692cc5deb510f89ac7bdc77c8738c9546ae3de9322b0968e1ed2b0e984571f5f55aae28fa7de4cfcb1bc5402a4e2be6
   languageName: node
   linkType: hard
-
-"root-app@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "root-app@workspace:."
-  dependencies:
-    "@repo/eslint-config": "workspace:*"
-    "@repo/typescript-config": "workspace:*"
-    prettier: ^3.3.3
-    turbo: 2.1.1
-  languageName: unknown
-  linkType: soft
 
 "rtl-css-js@npm:^1.16.1":
   version: 1.16.1

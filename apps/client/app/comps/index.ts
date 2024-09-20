@@ -8,7 +8,4 @@ export * from './forms';
 export * from './theme';
 export * from './custom';
 export * from './Row';
-<<<<<<< HEAD:apps/client/app/comps/index.ts
-=======
 export * from './table';
->>>>>>> main:client/app/comps/index.ts

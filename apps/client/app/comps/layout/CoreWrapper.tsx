@@ -3,10 +3,7 @@ import { BottomNav, Drawer } from '@/comps';
 import { AppStores, use3Wagmi } from '@/lib';
 import { useRouter } from 'next/navigation';
 import React, { ReactNode, useEffect } from 'react';
-<<<<<<< HEAD:apps/client/app/comps/layout/CoreWrapper.tsx
-=======
 import { DisableZoom } from './DissableZoom';
->>>>>>> main:client/app/comps/layout/CoreWrapper.tsx
 
 export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: boolean }) {
   const router = useRouter();
@@ -21,31 +18,19 @@ export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: 
     document.addEventListener('gesturestart', function (e) {
       e.preventDefault();
       // special hack to prevent zoom-to-tabs gesture in safari
-<<<<<<< HEAD:apps/client/app/comps/layout/CoreWrapper.tsx
-      document.body.style.zoom = 0.99;
-=======
       document.body.style.zoom = '0.99';
->>>>>>> main:client/app/comps/layout/CoreWrapper.tsx
     });
 
     document.addEventListener('gesturechange', function (e) {
       e.preventDefault();
       // special hack to prevent zoom-to-tabs gesture in safari
-<<<<<<< HEAD:apps/client/app/comps/layout/CoreWrapper.tsx
-      document.body.style.zoom = 0.99;
-=======
       document.body.style.zoom = '0.99';
->>>>>>> main:client/app/comps/layout/CoreWrapper.tsx
     });
 
     document.addEventListener('gestureend', function (e) {
       e.preventDefault();
       // special hack to prevent zoom-to-tabs gesture in safari
-<<<<<<< HEAD:apps/client/app/comps/layout/CoreWrapper.tsx
-      document.body.style.zoom = 0.99;
-=======
       document.body.style.zoom = '0.99';
->>>>>>> main:client/app/comps/layout/CoreWrapper.tsx
     });
 
     return () => {};

@@ -3,10 +3,6 @@ import { Navbar, Tabs } from '@/comps';
 import React, { useState } from 'react';
 import { OrdersComp } from './_comps/orders';
 import AdsComp from './_comps/ads';
-<<<<<<< HEAD:apps/client/app/(core)/fx/page.tsx
-import { IoSwapHorizontal } from 'react-icons/io5';
-=======
->>>>>>> main:client/app/(core)/fx/page.tsx
 import { useAccount } from 'wagmi';
 
 export default function SwapPage() {

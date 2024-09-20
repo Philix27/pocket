@@ -1,10 +1,6 @@
 'use client';
 
-<<<<<<< HEAD:apps/client/app/(marketing)/home/index.tsx
-import React from 'react';
-=======
 import React, { useEffect } from 'react';
->>>>>>> main:client/app/(marketing)/home/index.tsx
 import { JumbutronSection, HeroWithImg } from '../_comps';
 import { useAppRouter } from '@/lib';
 import { AppButton, TextH } from '@/comps';
@@ -34,21 +30,9 @@ export function HomeSection() {
         </TextH>
       </HeroWithImg>
       <div className="my-5 flex flex-col items-center justify-center">
-<<<<<<< HEAD:apps/client/app/(marketing)/home/index.tsx
-        {isConnected ? (
-          <AppButton className="w-fit" onClick={() => router.go('/dashboard')}>
-            Get Started
-          </AppButton>
-        ) : (
-          <AppButton className="w-fit" onClick={login}>
-            Login
-          </AppButton>
-        )}
-=======
         <AppButton className="w-fit" onClick={handleClick}>
           {isConnected ? 'Get Started' : 'Login'}
         </AppButton>
->>>>>>> main:client/app/(marketing)/home/index.tsx
       </div>
       <JumbutronSection
         title={'Swift exchange'}

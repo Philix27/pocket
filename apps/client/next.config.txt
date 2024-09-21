@@ -35,17 +35,6 @@ const pwaConfig = withPWA(nextConfig);
 export default withMDX(pwaConfig);
 
 // export default config;
-<<<<<<< HEAD:apps/client/next.config.txt
-
-// import analyzer from '@next/bundle-analyzer';
-// const withBundleAnalyzer = analyzer({
-//   enabled: process.env.ANALYZE === 'true',
-// });
-
-// export default withBundleAnalyzer(mdxConfig);
-
-// "fhenixjs": "^0.2.1",
-=======
 export default withSentryConfig(finalConfig, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
@@ -86,4 +75,3 @@ export default withSentryConfig(finalConfig, {
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
 });
->>>>>>> main:client/next.config.mjs

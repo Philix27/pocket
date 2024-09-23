@@ -14,7 +14,7 @@ import {
 } from '@xmtp/react-sdk';
 import { Web3AuthConnectorInstance } from './web3Connector';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { httpBatchLink } from '@trpc/client';
+import { httpBatchLink, loggerLink } from '@trpc/client';
 import superjson from 'superjson';
 import { trpc } from '../utils';
 
@@ -58,6 +58,11 @@ export function Web3Providers(props: { children: ReactNode }) {
   const [trpcClient] = useState(() =>
     trpc.createClient({
       links: [
+        loggerLink({
+          enabled: (opts) =>
+            (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') ||
+            (opts.direction === 'down' && opts.result instanceof Error),
+        }),
         httpBatchLink({
           url: `${process.env.NEXT_PUBLIC_TRPC_REQUEST_URL}/api/trpc`,
         }),

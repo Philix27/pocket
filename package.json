@@ -1,32 +1,23 @@
 {
-  "name": "pocket-app",
-  "version": "0.0.1",
+  "name": "turbon",
   "private": true,
-  "license": "MIT",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "web:dev": "turbo run dev --filter=pocket-client",
-    "web:build": "turbo run build --filter=pocket-client",
-    "web:start": "turbo run start --filter=pocket",
-    "web:lint": "turbo run lint --filter=pocket",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ui": "yarn --filter @repo/ui ui",
-    "pocket": "yarn dev --filter pocket"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "prettier": "^3.3.3",
-    "turbo": "2.1.1"
+    "prettier": "^3.2.5",
+    "turbo": "^2.1.2",
+    "typescript": "^5.4.5"
   },
   "engines": {
-    "node": ">=18.x"
+    "node": ">=18"
   },
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "yarn@1.22.22",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "turbon",
+  "name": "pocket",
   "private": true,
   "scripts": {
     "build": "turbo build",

@@ -8,9 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "studio": "prisma studio",
-    "migrate:dev": "prisma migrate dev",
     "migrate": "prisma migrate deploy",
-    "generate": "prisma generate"
+    "p:m": "prisma migrate dev",
+    "p:gen": "prisma generate",
+    "p:f": "prisma format",
+    "p:push": "prisma db push",
+    "p:seed": "prisma db seed"
   },
   "dependencies": {
     "@celo/abis": "^11.0.0",

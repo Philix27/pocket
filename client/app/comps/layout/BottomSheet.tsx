@@ -7,12 +7,13 @@ import { IoClose } from 'react-icons/io5';
 export function BottomSheet(props: { children: ReactNode; onClose?: VoidFunction; title?: string }) {
   return (
     <div className="fixed top-0 left-0 bg-black/30  w-full bottom-0 z-30 h-screen flex flex-col justify-between">
-      <div />
+      <div className="bg-teal-600" onClick={props.onClose} />
+
       <motion.div
         initial={{ y: 2000 }}
         animate={{ y: 0 }}
         transition={{ ease: 'easeInOut', duration: 0.4 }}
-        className="bg-background w-full p-4 rounded-t-[20px] min-h-[calc(30vh)] border-t "
+        className="bg-background w-full p-4 rounded-t-[20px] min-h-[calc(30vh)] border-t"
       >
         <div
           onClick={props.onClose}

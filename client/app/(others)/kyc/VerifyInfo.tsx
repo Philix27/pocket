@@ -1,4 +1,4 @@
-import { AppTextInput } from '@/comps';
+import { AppButton, AppTextInput } from '@/comps';
 import React from 'react';
 
 export default function VerifyInfo() {
@@ -10,6 +10,7 @@ export default function VerifyInfo() {
       <AppTextInput control={undefined} name={'dob'} label="Date of Birth" type="number" />
       <AppTextInput control={undefined} name={'address1'} label="Address 1" />
       <AppTextInput control={undefined} name={'address2'} label="Address 2" />
+      <AppButton className="w-[75%]">Submit</AppButton>
     </div>
   );
 }

@@ -146,19 +146,6 @@ export const userRouter = router({
         },
       });
     }),
-  addResidentialAddress: publicProcedure
-    .input(z.object({ walletAddress: z.string(), residentialAddress1: z.string(), residentialAddress2: z.string() }))
-    .mutation(async (params) => {
-      params.ctx.prisma.user.update({
-        where: {
-          walletAddress: params.input.walletAddress,
-        },
-        data: {
-          address1: params.input.residentialAddress1,
-          address2: params.input.residentialAddress2,
-        },
-      });
-    }),
   addNamesDob: publicProcedure
     .input(
       z.object({
@@ -167,6 +154,8 @@ export const userRouter = router({
         middleName: z.string().optional(),
         dob: z.string(),
         walletAddress: z.string(),
+        residentialAddress1: z.string(),
+        residentialAddress2: z.string(),
       })
     )
     .mutation(async (params) => {
@@ -179,6 +168,8 @@ export const userRouter = router({
           lastName: params.input.lastName,
           middleName: params.input.middleName,
           dob: params.input.dob,
+          address1: params.input.residentialAddress1,
+          address2: params.input.residentialAddress2,
         },
       });
     }),

@@ -1,25 +1,121 @@
 'use client';
-import { Navbar, Row } from '@/comps';
+import { BottomSheet, Navbar, Row } from '@/comps';
 import React from 'react';
 import { IoCallOutline } from 'react-icons/io5';
 import { LuUtilityPole } from 'react-icons/lu';
 import { HiOutlineMail } from 'react-icons/hi';
 import { FaRegAddressBook } from 'react-icons/fa';
+import VerifyInfo from './VerifyInfo';
+import VerifyBvn from './VerifyBvn';
+import VerifyEmail from './VerifyEmail';
+import VerifyPhone from './VerifyPhone';
+import VerifyNin from './VerifyNin';
+import PictureBvn from './VerifyPics';
+import { type IKycScreen } from './type';
+import { AppStores } from '@/lib';
 
 export default function KycPage() {
+  // todo: getAllUserInfo
+  // todo: create type to handle all screens
+  // todo: conditional for the various screens
+  // todo: Onclick to display active sheet
+  const store = AppStores.useUser();
   return (
     <div>
       <Navbar title="KYC Verification" isBack />
       <div className="px-5 w-full">
-        <Row title="Name" subtitle="Full name" Icon={LuUtilityPole} />
-        <Row title="Address" subtitle="Home Address" Icon={FaRegAddressBook} />
-        <Row title="Profile Picture" subtitle="Passport photograph" Icon={FaRegAddressBook} />
-        <Row title="Phone" subtitle="Verify phone number" Icon={IoCallOutline} />
-        <Row title="Email" subtitle="Verify email address" Icon={HiOutlineMail} />
-        <Row title="Date of Birth" subtitle="Enter your dob" Icon={LuUtilityPole} />
-        <Row title="NIN" subtitle="National Identity Number" Icon={LuUtilityPole} />
-        <Row title="BVN" subtitle="Verify BVN" Icon={IoCallOutline} />
+        <Row
+          title="Name"
+          subtitle="Full name"
+          Icon={LuUtilityPole}
+          onClick={() =>
+            store.update({
+              activeKycSheet: 'Name',
+            })
+          }
+        />
+        <Row
+          title="Profile Picture"
+          subtitle="Passport photograph"
+          Icon={FaRegAddressBook}
+          onClick={() =>
+            store.update({
+              activeKycSheet: 'ProfilePic',
+            })
+          }
+        />
+        <Row
+          title="Phone"
+          subtitle="Verify phone number"
+          Icon={IoCallOutline}
+          onClick={() =>
+            store.update({
+              activeKycSheet: 'Phone',
+            })
+          }
+        />
+        <Row
+          title="Email"
+          subtitle="Verify email address"
+          Icon={HiOutlineMail}
+          onClick={() =>
+            store.update({
+              activeKycSheet: 'Email',
+            })
+          }
+        />
+        {/* <Row title="Date of Birth" subtitle="Enter your dob" Icon={LuUtilityPole} /> */}
+        <Row
+          title="NIN"
+          subtitle="National Identity Number"
+          Icon={LuUtilityPole}
+          onClick={() =>
+            store.update({
+              activeKycSheet: 'NIN',
+            })
+          }
+        />
+        <Row
+          title="BVN"
+          subtitle="Verify BVN"
+          Icon={IoCallOutline}
+          onClick={() =>
+            store.update({
+              activeKycSheet: 'BVN',
+            })
+          }
+        />
       </div>
+      {store.activeKycSheet !== 'NONE' && (
+        <BottomSheet
+          onClose={() =>
+            store.update({
+              activeKycSheet: 'NONE',
+            })
+          }
+        >
+          <GetScreen screen={store.activeKycSheet} />
+        </BottomSheet>
+      )}
     </div>
   );
+}
+
+function GetScreen(props: { screen: IKycScreen }): JSX.Element {
+  switch (props.screen) {
+    case 'Name':
+      return <VerifyInfo />;
+    case 'BVN':
+      return <VerifyBvn />;
+    case 'Email':
+      return <VerifyEmail />;
+    case 'Phone':
+      return <VerifyPhone />;
+    case 'NIN':
+      return <VerifyNin />;
+    case 'ProfilePic':
+      return <PictureBvn />;
+    default:
+      return <div></div>;
+  }
 }

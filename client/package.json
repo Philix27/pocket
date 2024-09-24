@@ -7,13 +7,13 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "studio": "prisma studio",
-    "migrate": "prisma migrate deploy",
-    "p:m": "prisma migrate dev",
-    "p:gen": "prisma generate",
-    "p:f": "prisma format",
-    "p:push": "prisma db push",
-    "p:seed": "prisma db seed"
+    "studio": "cd server && prisma studio",
+    "migrate": "cd server && prisma migrate deploy",
+    "p:m": "cd server && prisma migrate dev",
+    "p:g": "cd server && npx prisma generate",
+    "p:f": "cd server && prisma format",
+    "p:push": "cd server && prisma db push",
+    "p:seed": "cd server && prisma db seed"
   },
   "dependencies": {
     "@celo/abis": "^11.0.0",

@@ -49,7 +49,7 @@ export function AppTextInput<T extends FieldValues>(props: {
             type={props.isPassword ? 'password' : !showPassword && props.type}
             className={cn(
               `flex h-12 w-full rounded-md
-             border-none outline-none bg-transparent
+             border-none outline-none bg-transparent text-foreground
         `
             )}
             pattern={props.type === 'number' && '[0-9]*'}

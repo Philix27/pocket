@@ -1,10 +1,9 @@
 'use client';
 import { BottomSheet, Navbar, Row } from '@/comps';
 import React from 'react';
-import { IoCallOutline } from 'react-icons/io5';
 import { LuUtilityPole } from 'react-icons/lu';
 import { HiOutlineMail } from 'react-icons/hi';
-import { FaRegAddressBook } from 'react-icons/fa';
+import { FaPhone } from 'react-icons/fa';
 import VerifyInfo from './VerifyInfo';
 import VerifyBvn from './VerifyBvn';
 import VerifyEmail from './VerifyEmail';
@@ -13,12 +12,11 @@ import VerifyNin from './VerifyNin';
 import PictureBvn from './VerifyPics';
 import { type IKycScreen } from './type';
 import { AppStores } from '@/lib';
+import { CiBank, CiPassport1 } from 'react-icons/ci';
+import { AiOutlineProfile } from 'react-icons/ai';
 
 export default function KycPage() {
   // todo: getAllUserInfo
-  // todo: create type to handle all screens
-  // todo: conditional for the various screens
-  // todo: Onclick to display active sheet
   const store = AppStores.useUser();
   return (
     <div>
@@ -27,7 +25,7 @@ export default function KycPage() {
         <Row
           title="Name"
           subtitle="Full name"
-          Icon={LuUtilityPole}
+          Icon={AiOutlineProfile}
           onClick={() =>
             store.update({
               activeKycSheet: 'Name',
@@ -37,7 +35,7 @@ export default function KycPage() {
         <Row
           title="Profile Picture"
           subtitle="Passport photograph"
-          Icon={FaRegAddressBook}
+          Icon={CiPassport1}
           onClick={() =>
             store.update({
               activeKycSheet: 'ProfilePic',
@@ -47,7 +45,7 @@ export default function KycPage() {
         <Row
           title="Phone"
           subtitle="Verify phone number"
-          Icon={IoCallOutline}
+          Icon={FaPhone}
           onClick={() =>
             store.update({
               activeKycSheet: 'Phone',
@@ -64,7 +62,6 @@ export default function KycPage() {
             })
           }
         />
-        {/* <Row title="Date of Birth" subtitle="Enter your dob" Icon={LuUtilityPole} /> */}
         <Row
           title="NIN"
           subtitle="National Identity Number"
@@ -78,7 +75,7 @@ export default function KycPage() {
         <Row
           title="BVN"
           subtitle="Verify BVN"
-          Icon={IoCallOutline}
+          Icon={CiBank}
           onClick={() =>
             store.update({
               activeKycSheet: 'BVN',

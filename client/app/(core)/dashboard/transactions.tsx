@@ -7,7 +7,7 @@ import { useAccount } from 'wagmi';
 import { shortAddress } from '@/lib';
 import { FaPoundSign } from 'react-icons/fa';
 import { parseEther } from 'viem';
-import { dateFromBigint } from '@/(messaging)/savings/_comps/withdraw/fn';
+import { dateFromBigint } from '@/(others)/savings/_comps/withdraw/fn';
 
 export default function TransactionHistory() {
   const { address } = useAccount();

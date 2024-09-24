@@ -36,7 +36,7 @@ export function Row(props: IRow) {
 
 export function SimpleRow(props: { left: string; right: string; color?: string; isLast?: boolean }) {
   return (
-    <div className={cn('flex justify-between items-center py-2', props.isLast || 'border-b border-accent')}>
+    <div className={cn('flex justify-between items-center py-2', props.isLast || 'border-accent')}>
       <TextP className={'text-muted'}>{props.left} </TextP>
       <TextP className="font-semibold">{props.right}</TextP>
     </div>

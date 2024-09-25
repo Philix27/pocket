@@ -5,6 +5,8 @@ import Select from 'react-select';
 
 export const AppSelect = (props: {
   label?: string;
+  errorMessage?: string;
+  desc?: string;
   onChange: (newValue: string) => void;
   data: {
     label: string;
@@ -90,6 +92,8 @@ export const AppSelect = (props: {
           }),
         }}
       />
+      {props.errorMessage && <TextP className={`text-red-500 my-2`}>{props.errorMessage}</TextP>}
+      {props.desc && <TextP>{props.desc}</TextP>}
     </>
   );
 };

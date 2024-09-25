@@ -7,21 +7,21 @@ export const bankAccountRouter = router({
     .query(async ({ ctx, input }) => {
       // todo: use account number to retrieve name
     }),
-  get_all: publicProcedure.input(z.object({ walletAddress: z.string() })).query(async ({ ctx, input }) => {
+  get_all: publicProcedure.input(z.object({ user_id: z.string() })).query(async ({ ctx, input }) => {
     return await ctx.prisma.bank_account.findMany({
       where: {
-        walletAddress: input.walletAddress,
+        user_id: input.user_id,
       },
     });
   }),
 
   delete: publicProcedure
-    .input(z.object({ walletAddress: z.string(), accountId: z.string() }))
+    .input(z.object({ user_id: z.string(), accountId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
         await ctx.prisma.bank_account.delete({
           where: {
-            walletAddress: input.walletAddress,
+            user_id: input.user_id,
             id: input.accountId,
           },
         });

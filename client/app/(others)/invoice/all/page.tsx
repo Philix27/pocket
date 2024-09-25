@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Navbar, TextH } from '@/comps';
+import { Navbar } from '@/comps';
 import { Table, TableCaption, TableRow, TableBody, TableHeader, TableHead, TableCell } from '@/comps';
 
 import { invoices } from './data';

@@ -2,11 +2,9 @@ import { publicProcedure, router } from '@/server';
 import { z } from 'zod';
 
 export const invoiceTemplateRouter = router({
-  get_all: publicProcedure.query(async ({ ctx }) => {
-    // return await ctx.prisma.blog.findMany();
-  }),
+  get_all: publicProcedure.query(async ({ ctx }) => {}),
 
-  delete: publicProcedure.input(z.object({ blog_id: z.string() })).mutation(async ({ ctx, input }) => {
+  delete: publicProcedure.input(z.object({ walletAddress: z.string() })).mutation(async ({ ctx, input }) => {
     // return await ctx.prisma.blog.delete({
     //   where: {
     //     id: input.blog_id,
@@ -17,10 +15,7 @@ export const invoiceTemplateRouter = router({
   create: publicProcedure
     .input(
       z.object({
-        title: z.string(),
-        subtitle: z.string(),
-        img_url: z.string(),
-        story: z.string(),
+        walletAddress: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {

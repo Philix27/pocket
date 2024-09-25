@@ -2,28 +2,26 @@ import { publicProcedure, router } from '@/server';
 import { z } from 'zod';
 
 export const bankAccountRouter = router({
-  get_all: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.bank_account.findMany();
+  get_account_info: publicProcedure
+    .input(z.object({ walletAddress: z.string(), accountNumber: z.string() }))
+    .query(async ({ ctx, input }) => {
+      // todo: use account number to retrieve name
+    }),
+  get_all: publicProcedure.input(z.object({ walletAddress: z.string() })).query(async ({ ctx, input }) => {
+    return await ctx.prisma.bank_account.findMany({
+      where: {
+        walletAddress: input.walletAddress,
+      },
+    });
   }),
 
   delete: publicProcedure
-    // .use(async (opts) => {
-    //   const { ctx } = opts;
-    //   if (!ctx.user?.isAdmin) {
-    //     throw new TRPCError({ code: 'UNAUTHORIZED' });
-    //   }
-    //   return opts.next({
-    //     ctx: {
-    //       user: ctx.user,
-    //     },
-    //   });
-    // })
-    .input(z.object({ accountId: z.string(), userId: z.string() }))
+    .input(z.object({ walletAddress: z.string(), accountId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
         await ctx.prisma.bank_account.delete({
           where: {
-            user_id: input.userId,
+            walletAddress: input.walletAddress,
             id: input.accountId,
           },
         });

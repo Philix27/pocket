@@ -3,4 +3,5 @@ export enum EmailNotificationTemplate {
   OTP,
   WELCOME,
   SUCCESSFUL_TRANSACTION,
+  INVOICE,
 }

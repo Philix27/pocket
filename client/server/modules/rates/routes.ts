@@ -13,8 +13,10 @@ export const ratesRouter = router({
   update: publicProcedure
     .input(
       z.object({
+        walletAddress: z.string(),
         id: z.string(),
-        amount: z.number(),
+        buyPrice: z.number(),
+        sellPrice: z.number(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -23,7 +25,8 @@ export const ratesRouter = router({
           id: input.id,
         },
         data: {
-          amount: input.amount,
+          buyPrice: input.buyPrice,
+          sellPrice: input.sellPrice,
         },
       });
     }),
@@ -31,19 +34,24 @@ export const ratesRouter = router({
   create: publicProcedure
     .input(
       z.object({
-        amount: z.number(),
+        walletAddress: z.string(),
+        buyPrice: z.number(),
+        sellPrice: z.number(),
         currency: z.string(),
         symbol: z.string(),
+        title: z.string(),
         status: z.nativeEnum(RatesStatus),
       })
     )
     .mutation(async ({ ctx, input }) => {
       return await ctx.prisma.rates.create({
         data: {
-          amount: input.amount,
+          buyPrice: input.buyPrice,
+          sellPrice: input.sellPrice,
           currency: input.currency,
           symbol: input.symbol,
-          status: 'BUY',
+          title: input.title,
+          status: 'AVAILABLE',
         },
       });
     }),

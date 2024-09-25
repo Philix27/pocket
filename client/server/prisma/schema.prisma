@@ -109,15 +109,18 @@ model rates {
   id         String     @id @default(uuid())
   created_at DateTime?  @default(now())
   updated_at DateTime?  @updatedAt
+  title      String
   currency   String
-  symbol     String?
-  amount     Int
-  status     RateStatus
+  symbol     String
+  network    String?
+  buyPrice   Int
+  sellPrice  Int
+  status     RateStatus @default(AVAILABLE)
 }
 
 enum RateStatus {
-  BUY
-  SELL
+  AVAILABLE
+  DOWN
 }
 
 model invoice {

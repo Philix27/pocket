@@ -12,13 +12,13 @@ import { toast } from 'sonner';
 
 export const schema = z.object({
   accountNumber: z.number(),
+  bankName: z.string(),
 });
 
 export type FormData = z.infer<typeof schema>;
 
 export default function BankAccountsPage() {
   const [showAdd, setShowAdd] = useState(false);
-  const [bankName, setBankName] = useState<string>();
 
   const api = trpc.bankAccount.create.useMutation();
   const { isLoading, data } = trpc.bankAccount.get_all.useQuery({
@@ -35,14 +35,10 @@ export default function BankAccountsPage() {
   });
 
   const onSubmit = (formData: FormData) => {
-    if (!bankName) {
-      toast.error('Select a bank');
-      return;
-    }
     api
       .mutateAsync({
         accountNumber: formData.accountNumber.toString(),
-        bankName: bankName,
+        bankName: formData.bankName,
         accountName: '',
         userId: '1',
       })
@@ -84,7 +80,7 @@ export default function BankAccountsPage() {
             <AppSelect
               label="Bank"
               onChange={(value) => {
-                setBankName(value);
+                setValue('bankName', value);
               }}
               data={[
                 {
@@ -108,6 +104,7 @@ export default function BankAccountsPage() {
                   value: '',
                 },
               ]}
+              errorMessage={errors.bankName && errors.bankName.message}
             />
           </form>
         </BottomSheet>

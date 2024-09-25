@@ -10,12 +10,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-export const schema = z.object({
+const schema = z.object({
   accountNumber: z.number(),
   bankName: z.string(),
 });
 
-export type FormData = z.infer<typeof schema>;
+type FormData = z.infer<typeof schema>;
 
 export default function BankAccountsPage() {
   const [showAdd, setShowAdd] = useState(false);

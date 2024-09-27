@@ -29,7 +29,7 @@ export function NavbarMarketing(props: MainNavProps) {
 
         <div className="flex items-center justify-center md:gap-x-3">
           <div className={''}>
-            {store.drawerIsOpen && <Drawer />}
+            {/* {store.drawerIsOpen && <Drawer />}
 
             {store.drawerIsOpen ? (
               <AiOutlineClose
@@ -45,7 +45,7 @@ export function NavbarMarketing(props: MainNavProps) {
                   store.update({ drawerIsOpen: true });
                 }}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>

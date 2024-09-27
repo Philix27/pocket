@@ -13,10 +13,10 @@ export function InAppDrawer(props: { router: AppRouterInstance }) {
   return (
     <div>
       <DrawerRow
-        title={'Notifications'}
+        title={'Dashboard'}
         icon={IoIosNotificationsOutline}
         onClick={() => {
-          router.push('/notify');
+          router.push('/dashboard');
         }}
       />
       <DrawerRow

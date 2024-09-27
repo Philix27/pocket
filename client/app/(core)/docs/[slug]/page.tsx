@@ -8,6 +8,7 @@ export default function DocsPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
+      <Navbar title={doc.title} isBack />
       <div
         className={`
       px-5 py-3

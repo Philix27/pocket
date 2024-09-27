@@ -2,9 +2,8 @@
 import { Navbar, Row } from '@/comps';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { BiLock } from 'react-icons/bi';
-import { FaInfo } from 'react-icons/fa';
-import { IoHelp, IoInformation } from 'react-icons/io5';
+import { BiGroup, BiLock, BiReceipt } from 'react-icons/bi';
+import { IoHelp } from 'react-icons/io5';
 
 export default function HelpDocPage() {
   const router = useRouter();
@@ -23,14 +22,14 @@ export default function HelpDocPage() {
         <Row
           title={'About us'}
           subtitle={'Mobarter, an easy to use offramping service'}
-          Icon={IoInformation}
+          Icon={BiGroup}
           onClick={() => {
             router.push('/docs/ABOUT');
           }}
         />
         <Row
           title={'Privacy Policy'}
-          subtitle={''}
+          subtitle={'Learn how we manage your data'}
           Icon={BiLock}
           onClick={() => {
             router.push('/docs/PP');
@@ -38,8 +37,8 @@ export default function HelpDocPage() {
         />
         <Row
           title={'Terms of Service'}
-          subtitle={''}
-          Icon={FaInfo}
+          subtitle={'Compliance'}
+          Icon={BiReceipt}
           onClick={() => {
             router.push('/docs/TOS');
           }}

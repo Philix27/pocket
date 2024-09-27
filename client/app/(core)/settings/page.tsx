@@ -38,13 +38,13 @@ export default function SettingsPage() {
             title={'Verification'}
             subtitle={'KYC verification'}
             Icon={IoPersonOutline}
-            onClick={() => router.push('/settings-kyc')}
+            onClick={() => router.push('/settings/kyc')}
           />
           <Row
             title={'Bank Accounts'}
             subtitle={'Manage all your bank accounts'}
             Icon={IoPersonOutline}
-            onClick={() => router.push('/settings-bank')}
+            onClick={() => router.push('/settings/bank')}
           />
           {/* <Row
             title={'Support'}
@@ -71,8 +71,8 @@ function Balance(props: { address: string; title: string; tokenAddress?: `0x${st
     address: props.address as `0x${string}`,
     token: props.tokenAddress,
   });
-  if (isLoading) return <SimpleRow left={'Balance' + props.title} right={'...'} />;
-  if (error) return <SimpleRow left={'Balance ' + props.title} right={'...x'} />;
+  if (isLoading) return <SimpleRow left={props.title} right={'...'} />;
+  if (error) return <SimpleRow left={props.title} right={'...x'} />;
 
-  return <SimpleRow left={'Balance ' + data?.symbol} right={shortValue(data.value!)} />;
+  return <SimpleRow left={data?.symbol} right={shortValue(data.value!)} />;
 }

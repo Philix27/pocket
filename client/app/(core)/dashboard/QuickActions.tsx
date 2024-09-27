@@ -47,11 +47,6 @@ export default function QuickActions() {
       title: 'Bills',
       link: '/dash-bills',
     },
-    {
-      Icon: MdOutlineSettings,
-      title: 'settings',
-      link: '/settings',
-    },
   ];
 
   return (

@@ -12,6 +12,7 @@ export function InAppDrawer(props: { router: AppRouterInstance }) {
   const { setTheme, theme } = useTheme();
   const { router } = props;
   const pathname = usePathname();
+  const store = AppStores.useSettingsStore();
 
   const checkActive = (val: string): boolean => {
     return pathname.toLowerCase().includes(val.toLowerCase());
@@ -24,6 +25,7 @@ export function InAppDrawer(props: { router: AppRouterInstance }) {
         icon={AiOutlineDashboard}
         isActive={checkActive('dash')}
         onClick={() => {
+          store.update({ drawerIsOpen: false });
           router.push('/dashboard');
         }}
       />
@@ -32,6 +34,7 @@ export function InAppDrawer(props: { router: AppRouterInstance }) {
         icon={TbFileInvoice}
         isActive={checkActive('invoice')}
         onClick={() => {
+          store.update({ drawerIsOpen: false });
           router.push('/invoice');
         }}
       />
@@ -40,6 +43,7 @@ export function InAppDrawer(props: { router: AppRouterInstance }) {
         icon={IoSettingsOutline}
         isActive={checkActive('settings')}
         onClick={() => {
+          store.update({ drawerIsOpen: false });
           router.push('/settings');
         }}
       />
@@ -48,6 +52,7 @@ export function InAppDrawer(props: { router: AppRouterInstance }) {
         icon={MdSupportAgent}
         isActive={checkActive('support')}
         onClick={() => {
+          store.update({ drawerIsOpen: false });
           router.push('/support');
         }}
       />
@@ -61,6 +66,7 @@ export function InAppDrawer(props: { router: AppRouterInstance }) {
         isActive={checkActive('doc')}
         icon={TbFileInvoice}
         onClick={() => {
+          store.update({ drawerIsOpen: false });
           router.push('/docs');
         }}
       />

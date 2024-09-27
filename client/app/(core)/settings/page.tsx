@@ -38,20 +38,20 @@ export default function SettingsPage() {
             title={'Verification'}
             subtitle={'KYC verification'}
             Icon={IoPersonOutline}
-            onClick={() => router.push('/kyc')}
+            onClick={() => router.push('/settings-kyc')}
           />
           <Row
             title={'Bank Accounts'}
             subtitle={'Manage all your bank accounts'}
             Icon={IoPersonOutline}
-            onClick={() => router.push('/bank')}
+            onClick={() => router.push('/settings-bank')}
           />
-          <Row
+          {/* <Row
             title={'Support'}
             subtitle={'Contact Agents'}
             Icon={MdSupportAgent}
             onClick={() => router.push('/support')}
-          />
+          /> */}
           <Row
             title={'Logout'}
             subtitle={'Disconnect from Mobarter'}

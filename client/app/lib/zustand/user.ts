@@ -1,4 +1,4 @@
-import { IKycScreen } from '@/(others)/kyc/type';
+import { IKycScreen } from '@/(core)/settings/kyc/type';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 

@@ -40,12 +40,12 @@ export default function QuickActions() {
     {
       Icon: IoCallOutline,
       title: 'Airtime',
-      link: '/airtime',
+      link: '/dash-airtime',
     },
     {
       Icon: LuUtilityPole,
       title: 'Bills',
-      link: '/bills',
+      link: '/dash-bills',
     },
     {
       Icon: MdOutlineSettings,

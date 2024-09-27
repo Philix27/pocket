@@ -8,7 +8,7 @@ import { DrawerRow } from './Row';
 export function HomeDrawer(props: { router: AppRouterInstance }) {
   const { router } = props;
   const { setTheme, theme } = useTheme();
-  const store = AppStores.useSettingsStore();
+
 
   return (
     <div>

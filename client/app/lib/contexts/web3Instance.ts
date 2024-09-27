@@ -3,7 +3,7 @@ import { Web3Auth } from '@web3auth/modal';
 import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
 import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK } from '@web3auth/base';
 
-const name = 'Pocket Ramp';
+const name = 'Mobarter';
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
   chainId: '44787', // hex of 44787, celo testnet

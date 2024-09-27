@@ -5,9 +5,9 @@ import { AppProviders, fontSans, cn } from './lib';
 
 import type { Metadata, Viewport } from 'next';
 
-const APP_NAME = 'Pocket Ramp';
+const APP_NAME = 'Mobarter';
 const APP_DEFAULT_TITLE = 'An off-ramping platform';
-const APP_TITLE_TEMPLATE = '%s - Pocket Ramp';
+const APP_TITLE_TEMPLATE = '%s - Mobarter';
 const APP_DESCRIPTION = 'Easy swap and p2p exchange';
 
 export const metadata: Metadata = {

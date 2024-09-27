@@ -54,7 +54,7 @@ export default function SettingsPage() {
           />
           <Row
             title={'Logout'}
-            subtitle={'Disconnect from Pocket Ramp'}
+            subtitle={'Disconnect from Mobarter'}
             Icon={BiLogOut}
             onClick={logout}
             isLast

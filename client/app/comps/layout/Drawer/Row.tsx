@@ -6,7 +6,7 @@ export function DrawerRow(props: { title: string; icon?: IconType; onClick?: Voi
   return (
     <div className="w-full flex items-center py-3" onClick={props.onClick}>
       {props.icon && <Icon className="mr-4" size={22} />}
-      <TextP className={' font-semibold text-[16px]'}>{props.title}</TextP>
+      <TextP className={' font-semibold text-[15px]'}>{props.title}</TextP>
     </div>
   );
 }

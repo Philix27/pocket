@@ -65,7 +65,7 @@ export default function QuickActions() {
               className="p-4 flex flex-col items-center justify-center bg-accent rounded-md"
               onClick={() => router.push(val.link)}
             >
-              <Icon size={24} className="text-primary mb-2" />
+              <Icon size={24} className="text-foreground mb-2" />
               <TextP> {val.title}</TextP>
             </div>
           );

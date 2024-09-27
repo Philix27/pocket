@@ -75,6 +75,11 @@ function Balance(props: { address: string; title: string; tokenAddress?: `0x${st
   if (error) return <SimpleRow left={'Balance ' + props.title} right={'...x'} />;
 
   return (
-    <SimpleRow left={'Balance ' + props.title} right={Number(parseEther(Number(data?.value).toString())).toString()} />
+    <SimpleRow
+      left={'Balance ' + props.title}
+      right={Number(parseEther(Number(data?.value).toString()))
+        .toString()
+        .trimEnd()}
+    />
   );
 }

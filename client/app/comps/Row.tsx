@@ -21,7 +21,7 @@ export function Row(props: IRow) {
       onClick={props.onClick}
     >
       <div className="flex items-center justify-center">
-        <Icon size={20} className={cn('text-primary mr-3')} />
+        <Icon size={20} className={cn('text-accent mr-3')} />
         <div>
           <TextH v="h5" className={'text-card-foreground mb-1'}>
             {props.title}

@@ -14,7 +14,7 @@ export function Navbar(props: { title: string; icon?: IconType; isBack?: boolean
     <div
       className={
         // border-b-[0.3px]
-        'h-[50px]  px-4 flex items-center justify-between fixed top-0 w-full z-10 bg-background'
+        'h-[50px]  px-5 flex items-center justify-between fixed top-0 w-full z-10 bg-background'
       }
     >
       <div className="flex items-center gap-x-2">
@@ -27,7 +27,7 @@ export function Navbar(props: { title: string; icon?: IconType; isBack?: boolean
           />
         ) : (
           <IoMenu
-            size={22}
+            size={23}
             onClick={() => {
               store.update({ drawerIsOpen: true });
             }}

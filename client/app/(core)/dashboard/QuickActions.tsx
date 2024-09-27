@@ -48,11 +48,6 @@ export default function QuickActions() {
       link: '/bills',
     },
     {
-      Icon: TbFileInvoice,
-      title: 'Invoice',
-      link: '/invoice',
-    },
-    {
       Icon: MdOutlineSettings,
       title: 'settings',
       link: '/settings',

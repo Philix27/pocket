@@ -3,3 +3,4 @@ export * from './useWeb3Auth';
 export * from './useWallet';
 export * from './useRouter';
 export * from './use3Wagmi';
+export * from './useTheme';

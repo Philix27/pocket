@@ -3,7 +3,7 @@
 import React from 'react';
 import { Navbar, Row, shortenAddress, SimpleRow, Spinner, TextH } from '@/comps';
 import { IoPersonOutline } from 'react-icons/io5';
-import { AppStores, use3Wagmi, useAppRouter } from '@/lib';
+import { AppStores, shortValue, use3Wagmi, useAppRouter } from '@/lib';
 import { MdSupportAgent } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
@@ -74,12 +74,5 @@ function Balance(props: { address: string; title: string; tokenAddress?: `0x${st
   if (isLoading) return <SimpleRow left={'Balance' + props.title} right={'...'} />;
   if (error) return <SimpleRow left={'Balance ' + props.title} right={'...x'} />;
 
-  return (
-    <SimpleRow
-      left={'Balance ' + props.title}
-      right={Number(parseEther(Number(data?.value).toString()))
-        .toString()
-        .trimEnd()}
-    />
-  );
+  return <SimpleRow left={'Balance ' + data?.symbol} right={shortValue(data.value!)} />;
 }

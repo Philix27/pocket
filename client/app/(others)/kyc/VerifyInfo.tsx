@@ -36,7 +36,7 @@ export default function VerifyInfo() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = () => {
+  const onSubmit = (data: FormData) => {
     api
       .mutateAsync({
         walletAddress: '',
@@ -60,38 +60,38 @@ export default function VerifyInfo() {
         <AppTextInput
           name={'firstName'}
           label="First name"
-          control={register('amount', { valueAsNumber: true })}
+          control={register('amount')}
           errorMessage={errors.amount && errors.amount.message}
         />
         <AppTextInput
           name={'lastName'}
           label="Last name"
-          control={register('amount', { valueAsNumber: true })}
+          control={register('amount')}
           errorMessage={errors.amount && errors.amount.message}
         />
         <AppTextInput
           name={'middleName'}
           label="Middle name"
-          control={register('amount', { valueAsNumber: true })}
+          control={register('amount')}
           errorMessage={errors.amount && errors.amount.message}
         />
         <AppTextInput
           name={'dob'}
           label="Date of Birth"
           type="number"
-          control={register('amount', { valueAsNumber: true })}
+          control={register('amount')}
           errorMessage={errors.amount && errors.amount.message}
         />
         <AppTextInput
           name={'address1'}
           label="Address 1"
-          control={register('amount', { valueAsNumber: true })}
+          control={register('amount')}
           errorMessage={errors.amount && errors.amount.message}
         />
         <AppTextInput
           name={'address2'}
           label="Address 2"
-          control={register('amount', { valueAsNumber: true })}
+          control={register('amount')}
           errorMessage={errors.amount && errors.amount.message}
         />
         <AppButton className="w-[75%]">Submit</AppButton>

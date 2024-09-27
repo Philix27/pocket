@@ -1,3 +1,12 @@
+'use client';
+
+import { useTheme } from 'next-themes';
+
 export const useAppTheme = () => {
-  return {};
+  const t = useTheme();
+
+  return {
+    isDark: t.theme === 'dark',
+    t,
+  };
 };

@@ -6,7 +6,7 @@ import { App } from './comps';
 export default function SupportPage() {
   return (
     <>
-      <Navbar title="Support" isBack />
+      <Navbar title="Support" />
       <App />
     </>
   );

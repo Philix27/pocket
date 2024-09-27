@@ -8,7 +8,7 @@ export default function InvoicePage() {
   const router = useRouter();
   return (
     <div>
-      <Navbar title="Invoice" isBack />
+      <Navbar title="Invoice" />
       <div className="px-5 py-4">
         <Row
           title={'Create new invoice'}

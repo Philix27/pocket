@@ -2,24 +2,29 @@
 
 import React from 'react';
 import { Navbar, Row, shortenAddress, SimpleRow, Spinner, TextH } from '@/comps';
-import { IoPersonOutline } from 'react-icons/io5';
+import { IoMoon, IoPersonOutline } from 'react-icons/io5';
 import { AppStores, shortValue, use3Wagmi, useAppRouter } from '@/lib';
-import { MdSupportAgent } from 'react-icons/md';
-import { BiLogOut } from 'react-icons/bi';
+import { BiLogOut, BiSun } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
 import { SwitchChain } from './_comps';
-import { parseEther } from 'viem';
+import { useTheme } from 'next-themes';
 
 export default function SettingsPage() {
   const store = AppStores.useChat();
   const router = useAppRouter();
   const { logout, address } = use3Wagmi(); // Just for initialization of values
+  const { setTheme, theme } = useTheme();
 
   if (!address) return <Spinner />;
 
   return (
     <>
-      <Navbar title={'Settings'} />
+      <Navbar
+        title={'Settings'}
+        icon={theme === 'light' ? BiSun : IoMoon}
+        onIconClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      />
+
       <div className={'flex flex-col items-center px-4 py-4 mb-10'}>
         <div className="size-[120px]">
           <img src={store.userInfo?.profileImage!} className="size-full" />
@@ -46,12 +51,6 @@ export default function SettingsPage() {
             Icon={IoPersonOutline}
             onClick={() => router.push('/settings/bank')}
           />
-          {/* <Row
-            title={'Support'}
-            subtitle={'Contact Agents'}
-            Icon={MdSupportAgent}
-            onClick={() => router.push('/support')}
-          /> */}
           <Row
             title={'Logout'}
             subtitle={'Disconnect from Mobarter'}

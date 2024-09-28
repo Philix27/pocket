@@ -38,7 +38,7 @@ export function Navbar(props: { title: string; icon?: IconType; isBack?: boolean
         {props.title}
       </TextP>
       <div className="flex items-center gap-x-3">
-        {props.icon ? <Icon onClick={props.onIconClick} size={23} /> : <div />}
+        {props.icon ? <Icon onClick={props.onIconClick} size={22} /> : <div />}
       </div>
     </div>
   );

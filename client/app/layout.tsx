@@ -4,6 +4,7 @@ import './globals.css';
 import { AppProviders, fontSans, cn } from './lib';
 
 import type { Metadata, Viewport } from 'next';
+import StatusBarMeta from './lib/statusBarMeta';
 
 const APP_NAME = 'Mobarter';
 const APP_DEFAULT_TITLE = 'An off-ramping platform';
@@ -13,6 +14,7 @@ const APP_DESCRIPTION = 'Easy swap and p2p exchange';
 export const metadata: Metadata = {
   applicationName: APP_NAME,
   icons: '/logo.png',
+  themeColor:"", 
   title: {
     default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,
@@ -61,8 +63,9 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="HandheldFriendly" content="true" />
-        <meta name="theme-color" content="browserThemeColor"></meta>
+        <meta name="theme-color" content="browserThemeColor" />
         {/* <meta name="theme-color" content="???"></meta> */}
+        <StatusBarMeta />
         <script></script>
       </head>
       <body

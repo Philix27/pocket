@@ -14,7 +14,7 @@ const APP_DESCRIPTION = 'Easy swap and p2p exchange';
 export const metadata: Metadata = {
   applicationName: APP_NAME,
   icons: '/logo.png',
-  themeColor:"", 
+  themeColor: '',
   title: {
     default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,
@@ -65,7 +65,43 @@ export default function RootLayout({
         <meta name="HandheldFriendly" content="true" />
         {/* <meta name="theme-color" content="browserThemeColor" /> */}
         {/* <meta name="theme-color" content="???"></meta> */}
-        {/* <StatusBarMeta /> */}
+        <StatusBarMeta />
+
+        <link
+          rel="apple-touch-startup-image"
+          href="/logo.png"
+          media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+        />
+        <link
+          rel="apple-touch-startup-image"
+          href="/logo.png"
+          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+        />
+        <link
+          rel="apple-touch-startup-image"
+          href="/logo.png"
+          media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+        />
+        <link
+          rel="apple-touch-startup-image"
+          href="/logo.png"
+          media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+        />
+        <link
+          rel="apple-touch-startup-image"
+          href="/logo.png"
+          media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
+        />
+        <link
+          rel="apple-touch-startup-image"
+          href="/logo.png"
+          media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
+        />
+        <link
+          rel="apple-touch-startup-image"
+          href="/logo.png"
+          media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
+        />
         <script></script>
       </head>
       <body

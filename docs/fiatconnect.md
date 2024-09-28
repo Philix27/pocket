@@ -21,4 +21,4 @@ quote generation will depend on the following parameters:
 - **fiatType**: The type of fiat currency used for the transfer.
 - **cryptoType**: The type of cryptocurrency used for the transfer.
 - **fiatAmount/cryptoAmount**: The amount of either fiat or cryptocurrency selected for the quote.
-- **region**: The user's geographical region.
+- **region**: The user's geographical region.****

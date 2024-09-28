@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { TextP, TextH, AppButton } from './comps';
+import { TextP, TextH, AppButton } from './comps/index.ts';
 import Link from 'next/link';
 
 export default function PageError() {
@@ -18,4 +18,3 @@ export default function PageError() {
     </div>
   );
 }
-

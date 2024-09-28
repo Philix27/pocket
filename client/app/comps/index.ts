@@ -9,3 +9,5 @@ export * from './theme';
 export * from './custom';
 export * from './Row';
 export * from './table';
+export * from './Seperator';
+export * from './Skeleton';

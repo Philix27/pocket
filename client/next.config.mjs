@@ -6,6 +6,7 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
     serverComponentsExternalPackages: ['@xmtp/user-preferences-bindings-wasm'],
+    nextScriptWorkers: true,
   },
   webpack: (config, options) => {
     config.externals.push('pino-pretty', 'lokijs', 'encoding');

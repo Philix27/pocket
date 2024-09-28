@@ -5,6 +5,7 @@ import { AppProviders, fontSans, cn } from './lib';
 
 import type { Metadata, Viewport } from 'next';
 import StatusBarMeta from './lib/statusBarMeta';
+import Script from 'next/script';
 
 const APP_NAME = 'Mobarter';
 const APP_DEFAULT_TITLE = 'An off-ramping platform';
@@ -66,6 +67,9 @@ export default function RootLayout({
         {/* <meta name="theme-color" content="browserThemeColor" /> */}
         {/* <meta name="theme-color" content="???"></meta> */}
         <StatusBarMeta />
+        {/* <script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js"></script> */}
+        <Script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js" />
+        <Script>{`iosPWASplash('logo.png', '#19232f');`}</Script>
 
         <link
           rel="apple-touch-startup-image"

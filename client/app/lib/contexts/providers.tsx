@@ -9,6 +9,7 @@ import { useAppTheme } from '../hooks/useTheme';
 
 export function AppProviders(props: { children: ReactNode }) {
   const theme = useAppTheme();
+
   return (
     <Web3Providers>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

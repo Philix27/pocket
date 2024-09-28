@@ -1031,6 +1031,13 @@
   resolved "https://registry.yarnpkg.com/@celo/abis/-/abis-11.0.0.tgz#7f96b6142498662fdf36427afc8a4539c6db50e4"
   integrity sha512-rPjHQxHbWaKQU3MX6hE3A3xRkBFBphjFvfCs4t+19dqPPys6Q+cneHmRWGBX4NLiBh5BLZcNZjQoMf2jxRLMpg==
 
+"@celo/rainbowkit-celo@^0.11.0":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@celo/rainbowkit-celo/-/rainbowkit-celo-0.11.2.tgz#9e9f5435964585cb6dfa94a6766341bb5075cf42"
+  integrity sha512-pgHPe/2vhLc2+BPsqQtdqnqA+jORhxUo6qs4Br/o/65SOANixF6p5v5iVBObtClRtp5O0Ou+rzaN+VUfh/PvmA==
+  dependencies:
+    "@wagmi/chains" ">=0.2.1"
+
 "@chaitanyapotti/register-service-worker@^1.7.4":
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/@chaitanyapotti/register-service-worker/-/register-service-worker-1.7.4.tgz#db410702dc54a91ac61328c8bcf765da30c6eaad"
@@ -1737,6 +1744,18 @@
     unist-util-stringify-position "^4.0.0"
     unist-util-visit "^5.0.0"
     vfile "^6.0.0"
+
+"@mento-protocol/mento-core-ts@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@mento-protocol/mento-core-ts/-/mento-core-ts-0.1.1.tgz#a775db1eadd8ccf895b9b33f5a7e490628566193"
+  integrity sha512-3kQUqwi19sZlCFInROqSNqwaTDN5K3ZZ2K1W1BVuoNpTqhPEs26n5CWYQQPMZaEA8hAybQyQsGlQbGXpYNeinw==
+
+"@mento-protocol/mento-sdk@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@mento-protocol/mento-sdk/-/mento-sdk-0.1.5.tgz#8704ada987a8f3e98601a613f81f5f9090560ab2"
+  integrity sha512-YEYHNMMp0wtCE1UN+83nGYoyELfdgA2URlG+CFOtHPfPS8yc/zAgnNkCI4R7ehRnX1RDRQgf9s/w0kGKsi7M9w==
+  dependencies:
+    "@mento-protocol/mento-core-ts" "^0.1.1"
 
 "@metamask/abi-utils@2.0.2":
   version "2.0.2"
@@ -4470,6 +4489,11 @@
   dependencies:
     server-only "^0.0.1"
 
+"@wagmi/chains@>=0.2.1":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-1.8.0.tgz#70e5fd0d50c8f9b8e63585eaf8544481e71707d3"
+  integrity sha512-UXo0GF0Cl0+neKC2KAmVAahv8L/5rACbFRRqkDvHMefzY6Fh7yzJd8F4GaGNNG3w4hj8eUB/E3+dEpaTYDN62w==
+
 "@wagmi/connectors@5.1.8":
   version "5.1.8"
   resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-5.1.8.tgz#3793fecfa8bbe7c1b675f36103fc3bfdb8262e63"
@@ -5698,6 +5722,11 @@ base64url@3.0.1, base64url@^3.0.1:
   resolved "https://registry.yarnpkg.com/base64url/-/base64url-3.0.1.tgz#6399d572e2bc3f90a9a8b22d5dbb0a32d33f788d"
   integrity sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==
 
+bignumber.js@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.0.4.tgz#7c40f5abcd2d6623ab7b99682ee7db81b11889a4"
+  integrity sha512-LDXpJKVzEx2/OqNbG9mXBNvHuiRL4PzHCGfnANHMJ+fv68Ads3exDVJeGDJws+AoNEuca93bU3q+S0woeUaCdg==
+
 bignumber.js@^9.1.2:
   version "9.1.2"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.1.2.tgz#b7c4242259c008903b13707983b5f4bbd31eda0c"
@@ -6331,6 +6360,11 @@ decamelize@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==
+
+decimal.js-light@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/decimal.js-light/-/decimal.js-light-2.5.1.tgz#134fd32508f19e208f4fb2f8dac0d2626a867934"
+  integrity sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==
 
 decode-named-character-reference@^1.0.0:
   version "1.0.2"
@@ -8671,6 +8705,11 @@ js-yaml@^4.1.0:
   integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
   dependencies:
     argparse "^2.0.1"
+
+jsbi@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-4.3.0.tgz#b54ee074fb6fcbc00619559305c8f7e912b04741"
+  integrity sha512-SnZNcinB4RIcnEyZqFPdGPVgrg2AcnykiBy0sHVJQKHYeaLUvi3Exj+iaPpLnFVkDPZIV4U0yvgC9/R4uEAZ9g==
 
 jsesc@^2.5.1:
   version "2.5.2"
@@ -11753,6 +11792,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+toformat@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/toformat/-/toformat-2.0.0.tgz#7a043fd2dfbe9021a4e36e508835ba32056739d8"
+  integrity sha512-03SWBVop6nU8bpyZCx7SodpYznbZF5R4ljwNLBcTQzKOD9xuihRo/psX58llS1BMFhhAI08H3luot5GoXJz2pQ==
 
 toggle-selection@^1.0.6:
   version "1.0.6"

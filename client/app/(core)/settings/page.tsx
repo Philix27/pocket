@@ -3,12 +3,12 @@
 import React from 'react';
 import { Navbar, Row, SimpleRow, Spinner, TextH } from '@/comps';
 import { IoMoon, IoPersonOutline } from 'react-icons/io5';
-import { AppStores, shortValue, use3Wagmi, useAppRouter } from '@/lib';
+import { AppStores, use3Wagmi, useAppRouter } from '@/lib';
 import { BiLogOut, BiSun } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
 import { SwitchChain } from './_comps';
 import { useTheme } from 'next-themes';
-import { shortenAddress } from '@/lib';
+import { AddressFn } from '@/lib';
 
 export default function SettingsPage() {
   const store = AppStores.useChat();
@@ -35,7 +35,7 @@ export default function SettingsPage() {
           <SimpleRow left={'Email'} right={store.userInfo?.email!} />
           <Balance address={address} title={'celo'} />
           <Balance address={address} title={'cUSD'} tokenAddress="0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" />
-          <SimpleRow left={'Address'} right={shortenAddress(address)} isLast />
+          <SimpleRow left={'Address'} right={AddressFn.shortenAddress(address)} isLast />
         </div>
         <TextH v="h5">More</TextH>
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
@@ -74,5 +74,5 @@ function Balance(props: { address: string; title: string; tokenAddress?: `0x${st
   if (isLoading) return <SimpleRow left={props.title} right={'...'} />;
   if (error) return <SimpleRow left={props.title} right={'...x'} />;
 
-  return <SimpleRow left={data?.symbol} right={shortValue(data.value!)} />;
+  return <SimpleRow left={data?.symbol} right={AddressFn.shortValue(data.value!)} />;
 }

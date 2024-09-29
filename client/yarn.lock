@@ -1026,6 +1026,11 @@
   resolved "https://registry.yarnpkg.com/@badrap/result/-/result-0.2.13.tgz#3c23f39f7e861cfa8ac3a65726ac17b1ee364927"
   integrity sha512-Qvyzz0dmGY0h8pwvBFo1BznAKf5Y5NXIDiqhPALWtfU7oHbAToCtPu4FlYQ3uysskSWLx8GUiyhe0nv0nDd/7Q==
 
+"@builder.io/partytown@^0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.10.2.tgz#102c909f805c945a638e249275003ef6ba828287"
+  integrity sha512-A9U+4PREWcS+CCYzKGIPovtGB/PBgnH/8oQyCE6Nr9drDJk6cMPpLQIEajpGPmG9tYF7N3FkRvhXm/AS9+0iKg==
+
 "@celo/abis@^11.0.0":
   version "11.0.0"
   resolved "https://registry.yarnpkg.com/@celo/abis/-/abis-11.0.0.tgz#7f96b6142498662fdf36427afc8a4539c6db50e4"

@@ -13,7 +13,7 @@ export function formatBalance(balance: BigInt, decimals = 18) {
 
 // import { getAddress, isAddress } from './address'
 import { logger } from '@/utils';
-import { getAddress, isAddress } from 'viem';
+import { getAddress, isAddress, parseEther } from 'viem';
 
 export function isValidAddress(address: string) {
   // Need to catch because ethers' isAddress throws in some cases (bad checksum)
@@ -67,3 +67,9 @@ export function trimLeading0x(input: string) {
 export function ensureLeading0x(input: string) {
   return input.startsWith('0x') ? input : `0x${input}`;
 }
+
+export const shortValue = (value: bigint): string => {
+  return Number(parseEther(Number(value).toString()))
+    .toString()
+    .trimEnd();
+};

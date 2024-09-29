@@ -97,6 +97,7 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@builder.io/partytown": "^0.10.2",
     "@fiatconnect/fiatconnect-types": "^13.3.8",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@types/mdx": "^2.0.13",

@@ -37,5 +37,5 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({ children }) 
     [address, disconnect, error, isLoading, isConnected]
   );
 
-  return <WalletContext.Provider value={value}>{children}</WalletContext.Provider>;
+  return <WalletContext.Provider  value={value}>{children}</WalletContext.Provider>;
 };

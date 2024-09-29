@@ -1,12 +1,4 @@
-// import { FormikErrors } from 'formik'
-// import { useCallback } from 'react'
-// import { MIN_ROUNDED_VALUE } from 'src/config/consts'
-// import { Tokens, getTokenAddress, getTokenByAddress } from 'src/config/tokens'
 // import { AccountBalances } from 'src/features/accounts/fetchBalances'
-// import { getMentoSdk } from 'src/features/sdk'
-// import { SwapFormValues } from 'src/features/swap/types'
-// import { areAmountsNearlyEqual, parseAmount, toWei } from 'src/utils/amount'
-// import { logger } from 'src/utils/logger'
 import {
   parseAmount,
   MIN_ROUNDED_VALUE,

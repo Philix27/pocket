@@ -1,4 +1,4 @@
-import { TokenId } from 'src/config/tokens'
+import { TokenId } from '@/lib'
 
 export type SwapDirection = 'in' | 'out'
 

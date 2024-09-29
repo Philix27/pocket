@@ -7,9 +7,10 @@ export const useAppTheme = () => {
   const isDark = t.theme === 'dark';
 
   return {
-    isDark: t.theme === 'dark',
     t,
+    isDark: t.theme === 'dark',
     primaryColor: '#f24500',
+    color: isDark ? '#e3e6e6' : '#535353',
     secondaryColor: isDark ? '#232525' : '#ffffff',
     bgColor: isDark ? '#151718' : '#e6e6e6',
     accentColor: isDark ? '#222525' : '#ffffff',

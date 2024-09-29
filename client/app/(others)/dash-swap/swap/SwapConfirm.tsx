@@ -1,33 +1,24 @@
-import Lottie from 'lottie-react'
-// import { SVGProps, useEffect, useState } from 'react'
+import Lottie from 'lottie-react';
+
 // import mentoLoaderBlue from 'src/animations/Mentoloader_blue.json'
 // import mentoLoaderGreen from 'src/animations/Mentoloader_green.json'
 // import { toastToYourSuccess } from 'src/components/TxSuccessToast'
 // import { Button3D } from 'src/components/buttons/3DButton'
-// import { TokenId, Tokens } from 'src/config/tokens'
 // import { useAppDispatch, useAppSelector } from 'src/features/store/hooks'
-// import { setFormValues } from 'src/features/swap/swapSlice'
-// import { SwapFormValues } from 'src/features/swap/types'
-// import { useApproveTransaction } from 'src/features/swap/useApproveTransaction'
-// import { useSwapQuote } from 'src/features/swap/useSwapQuote'
-// import { useSwapTransaction } from 'src/features/swap/useSwapTransaction'
-// import { getMaxSellAmount, getMinBuyAmount } from 'src/features/swap/utils'
 // import { TokenIcon } from 'src/images/tokens/TokenIcon'
 // import { FloatingBox } from 'src/layout/FloatingBox'
 // import { Modal } from 'src/layout/Modal'
-// import { fromWeiRounded, getAdjustedAmount, toSignificant } from 'src/utils/amount'
-// import { useAccount, useChainId } from 'wagmi'
 
-import { getAdjustedAmount, fromWeiRounded, Tokens, TokenId, toSignificant } from "@/lib";
-import { logger } from "@/utils";
-import { useState, useEffect, SVGProps } from "react";
-import { useAccount, useChainId } from "wagmi";
-import { setFormValues } from "./swapSlice";
-import { SwapFormValues } from "./types";
-import { useApproveTransaction } from "./useApproveTransaction";
-import { useSwapQuote } from "./useSwapQuote";
-import { useSwapTransaction } from "./useSwapTransaction";
-import { getMinBuyAmount, getMaxSellAmount } from "./utils";
+import { getAdjustedAmount, fromWeiRounded, Tokens, TokenId, toSignificant } from '@/lib';
+import { logger } from '@/utils';
+import { useState, useEffect, SVGProps } from 'react';
+import { useAccount, useChainId } from 'wagmi';
+import { setFormValues } from './swapSlice';
+import { SwapFormValues } from './types';
+import { useApproveTransaction } from './useApproveTransaction';
+import { useSwapQuote } from './useSwapQuote';
+import { useSwapTransaction } from './useSwapTransaction';
+import { getMinBuyAmount, getMaxSellAmount } from './utils';
 
 interface Props {
   formValues: SwapFormValues;

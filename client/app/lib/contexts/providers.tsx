@@ -6,6 +6,10 @@ import { Toaster } from 'sonner';
 import { Web3Providers } from './web3Provider';
 import { Analytics } from '@vercel/analytics/react';
 import { useAppTheme } from '../hooks/useTheme';
+import { MdOutlineErrorOutline } from 'react-icons/md';
+import { IoWarningOutline } from 'react-icons/io5';
+import { IoMdInformationCircleOutline } from 'react-icons/io';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 export function AppProviders(props: { children: ReactNode }) {
   const theme = useAppTheme();
@@ -15,11 +19,32 @@ export function AppProviders(props: { children: ReactNode }) {
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         {props.children}
         <Toaster
-          className={'bg-primary'}
           position="top-center"
           style={{
-            backgroundColor: theme.isDark ? '#19232f' : '#e6e6e6',
-            color: theme.isDark ? '#e3e6e6' : '#535353',
+            backgroundColor: theme.bgColor,
+            color: theme.color,
+          }}
+          toastOptions={{
+            unstyled: true,
+            classNames: {
+              toast: 'bg-background border border-[0.1px]',
+              title: 'text-foreground',
+              description: 'text-red-400',
+              actionButton: 'bg-zinc-400',
+              cancelButton: 'bg-orange-400',
+              closeButton: 'bg-lime-400',
+              error: 'bg-red-400',
+              success: 'text-green-400',
+              warning: 'text-yellow-400',
+              info: 'bg-blue-400',
+            },
+          }}
+          icons={{
+            // success: <SuccessIcon />,
+            info: <IoMdInformationCircleOutline />,
+            warning: <IoWarningOutline />,
+            error: <MdOutlineErrorOutline />,
+            loading: <AiOutlineLoading3Quarters />,
           }}
         />
         <Analytics />

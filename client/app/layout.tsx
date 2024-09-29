@@ -66,12 +66,12 @@ export default function RootLayout({
         <meta name="HandheldFriendly" content="true" />
         {/* <meta name="theme-color" content="browserThemeColor" /> */}
         {/* <meta name="theme-color" content="???"></meta> */}
-        <StatusBarMeta />
+        {/* <StatusBarMeta /> */}
         {/* <script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js"></script> */}
         <Script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js" />
         <Script>{`iosPWASplash('logo.png', '#19232f');`}</Script>
 
-        <link
+        {/* <link
           rel="apple-touch-startup-image"
           href="/logo.png"
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
@@ -105,7 +105,7 @@ export default function RootLayout({
           rel="apple-touch-startup-image"
           href="/logo.png"
           media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
-        />
+        /> */}
         <script></script>
       </head>
       <body

@@ -31,7 +31,7 @@ export default function Layout(props: { children: ReactNode }) {
       className="h-screen overscroll-none bg-background"
       style={{ overscrollBehavior: 'none', WebkitOverflowScrolling: 'touch', height: '100vh' }}
     >
-      <NavbarMarketing title={'PR'} />
+      <NavbarMarketing title={'Mobarter'} />
       <DisableZoom />
       <div className="min-h-[calc(100vh-250px)]">{props.children}</div>
     </div>

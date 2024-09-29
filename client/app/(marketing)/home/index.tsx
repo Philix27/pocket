@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { JumbutronSection, HeroWithImg } from '../_comps';
 import { useAppRouter } from '@/lib';
-import { AppButton, TextH } from '@/comps';
+import { AppButton } from '@/comps';
 import { use3Wagmi } from '@/lib';
 
 export function HomeSection() {
@@ -24,20 +24,18 @@ export function HomeSection() {
 
   return (
     <div className={'flex flex-col items-center justify-center'} style={{ overscrollBehavior: 'none' }}>
-      <HeroWithImg img={'/banner.png'}>
-        <TextH v="h1" className={'text-[24px] font-extrabold md:text-[50px] text-card-foreground'}>
-          <span className="text-primary tracking-wide"> Mobarter </span>
-        </TextH>
-      </HeroWithImg>
+      <HeroWithImg img={'/banner.png'}>{''}</HeroWithImg>
+
+      <JumbutronSection
+        title={'Swift exchange'}
+        subtitle="Easy to use off-ramping service. We also help you develop a good saving habit."
+      />
+
       <div className="my-5 flex flex-col items-center justify-center">
         <AppButton className="w-fit" onClick={handleClick}>
           {isConnected ? 'Get Started' : 'Login'}
         </AppButton>
       </div>
-      <JumbutronSection
-        title={'Swift exchange'}
-        subtitle="Easy to use off-ramping service. We also help you develop a good saving habit."
-      />
     </div>
   );
 }

@@ -16,7 +16,7 @@ export function NavbarMarketing(props: MainNavProps) {
   const store = AppStores.useSettingsStore();
   const { isLoggedIn, login } = useWeb3Modal();
   return (
-    <header className="bg-background sticky top-0 z-20 w-full border-b">
+    <header className="bg-background sticky top-0 z-20 w-full">
       <div className="container flex h-[50px] md:h-[60px] items-center justify-between">
         <div className="flex gap-6 md:gap-10 ">
           {/* <img src={'/logoBlue.png'} className="size-[35px] rounded-[17.5px]" /> */}

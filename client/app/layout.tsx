@@ -14,7 +14,7 @@ const APP_DESCRIPTION = 'Easy swap and p2p exchange';
 export const metadata: Metadata = {
   applicationName: APP_NAME,
   icons: '/logo.png',
-  themeColor: '',
+  themeColor: '#151718',
   title: {
     default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#19232f',
+  themeColor: '#151718',
 };
 
 export default function RootLayout({
@@ -67,7 +67,8 @@ export default function RootLayout({
         {/* <meta name="theme-color" content="???"></meta> */}
         {/* <StatusBarMeta /> */}
         <Script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js" />
-        <Script>{`iosPWASplash('logo.png', '#161718');`}</Script>
+        <Script>{`iosPWASplash('logo.png', '#151718');`}</Script>
+        {/* <Script>{`iosPWASplash('logo.png', '#161718');`}</Script> */}
 
         {/* <link
           rel="apple-touch-startup-image"

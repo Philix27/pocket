@@ -38,10 +38,10 @@ export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: 
 
   return (
     <div
-      className="h-screen overscroll-none bg-background overflow-y-auto"
+      className="h-screen overscroll-none bg-background overflow-y-auto  no-scrollbar"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
-      <div className="min-h-[calc(100vh-250px)] mt-[50px]">
+      <div className="min-h-[calc(100vh-250px)] mt-[50px]  no-scrollbar">
         <DisableZoom />
         {props.children}
         {props.hideBottomNav || <BottomNav />}

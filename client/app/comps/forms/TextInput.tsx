@@ -48,7 +48,7 @@ export function AppTextInput<T extends FieldValues>(props: {
             placeholder={props.place}
             type={props.isPassword ? 'password' : !showPassword && props.type}
             className={cn(
-              `flex h-12 w-full rounded-md
+              `flex h-10 w-full rounded-md
              border-none outline-none bg-transparent text-foreground
         `
             )}

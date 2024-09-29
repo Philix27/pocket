@@ -1,3 +1,1 @@
-export enum SettingsEvents {
-    
-}
+export enum SettingsEvents {}

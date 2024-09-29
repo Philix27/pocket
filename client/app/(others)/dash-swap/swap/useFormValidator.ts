@@ -1,4 +1,4 @@
-// import { AccountBalances } from 'src/features/accounts/fetchBalances'
+import { AccountBalances } from '../accounts/fetchBalances';
 import {
   parseAmount,
   MIN_ROUNDED_VALUE,

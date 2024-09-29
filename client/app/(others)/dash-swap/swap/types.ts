@@ -1,30 +1,30 @@
-import { TokenId } from '@/lib'
+import { TokenId } from '@/lib';
 
-export type SwapDirection = 'in' | 'out'
+export type SwapDirection = 'in' | 'out';
 
 export interface SwapFormValues {
-  fromTokenId: TokenId
-  toTokenId: TokenId
-  amount: number | string
-  quote: number | string
-  direction: SwapDirection
-  slippage: string
+  fromTokenId: TokenId;
+  toTokenId: TokenId;
+  amount: number | string;
+  quote: number | string;
+  direction: SwapDirection;
+  slippage: string;
 }
 
-export type ToCeloRates = Partial<Record<TokenId, ExchangeRate>>
+export type ToCeloRates = Partial<Record<TokenId, ExchangeRate>>;
 
 // Raw Mento chain data from an Exchange contract
 export interface ExchangeRate {
-  stableBucket: string
-  celoBucket: string
-  spread: string
-  lastUpdated: number
+  stableBucket: string;
+  celoBucket: string;
+  spread: string;
+  lastUpdated: number;
 }
 
 // Result after ExchangeRate gets processed
 export interface SimpleExchangeRate {
-  rate: number
-  lastUpdated: number
+  rate: number;
+  lastUpdated: number;
 }
 
-export type SizeLimits = Partial<Record<TokenId, { min: string; max: string }>>
+export type SizeLimits = Partial<Record<TokenId, { min: string; max: string }>>;

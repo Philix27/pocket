@@ -10,6 +10,7 @@ import { MdOutlineErrorOutline } from 'react-icons/md';
 import { IoWarningOutline } from 'react-icons/io5';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { GrStatusGood } from 'react-icons/gr';
 
 export function AppProviders(props: { children: ReactNode }) {
   const theme = useAppTheme();
@@ -40,7 +41,7 @@ export function AppProviders(props: { children: ReactNode }) {
             },
           }}
           icons={{
-            // success: <SuccessIcon />,
+            success: <GrStatusGood />,
             info: <IoMdInformationCircleOutline />,
             warning: <IoWarningOutline />,
             error: <MdOutlineErrorOutline />,

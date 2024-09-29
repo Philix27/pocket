@@ -1,5 +1,5 @@
 import { JsonRpcProvider } from 'ethers';
-import { ChainId, chainIdToChain } from 'src/config/chains';
+import { ChainId, chainIdToChain } from '@/lib';
 
 const cache: Record<number, JsonRpcProvider> = {};
 

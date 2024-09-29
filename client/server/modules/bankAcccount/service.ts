@@ -1,3 +1,1 @@
-export class BankAccountService {
-    
-}
+export class BankAccountService {}

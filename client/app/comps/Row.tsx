@@ -17,7 +17,11 @@ export function Row(props: IRow) {
   const { Icon } = props;
   return (
     <div
-      className={cn('flex justify-between items-center py-2', props.isLast || 'border-b border-background', props.color)}
+      className={cn(
+        'flex justify-between items-center py-2',
+        props.isLast || 'border-b border-background',
+        props.color
+      )}
       onClick={props.onClick}
     >
       <div className="flex items-center justify-center">

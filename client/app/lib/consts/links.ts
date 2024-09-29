@@ -4,4 +4,4 @@ export const links = {
   github: 'https://github.com/mento-protocol/mento-web',
   docs: 'https://docs.mento.org',
   twitter: 'https://twitter.com/MentoLabs',
-}
+};

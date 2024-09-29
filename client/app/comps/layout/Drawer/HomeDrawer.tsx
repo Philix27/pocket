@@ -9,7 +9,6 @@ export function HomeDrawer(props: { router: AppRouterInstance }) {
   const { router } = props;
   const { setTheme, theme } = useTheme();
 
-
   return (
     <div>
       <DrawerRow

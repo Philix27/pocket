@@ -1,7 +1,7 @@
 import { NumberT, parseAmountWithDefault, toWei, TokenId, Tokens } from '@/lib';
 import { logger } from '@/utils';
 import BigNumber from 'bignumber.js';
-import { ethers } from 'ethers';
+import { ethers, formatUnits } from 'ethers';
 
 export function parseInputExchangeAmount(amount: NumberT | null | undefined, tokenId: TokenId, isWei = false) {
   const parsed = parseAmountWithDefault(amount, 0);
@@ -26,8 +26,8 @@ export function calcExchangeRate(
   toDecimals: number
 ) {
   try {
-    const rate = new BigNumber(ethers.utils.formatUnits(fromAmountWei.toString(), fromDecimals)).dividedBy(
-      ethers.utils.formatUnits(toAmountWei.toString(), toDecimals)
+    const rate = new BigNumber(formatUnits(fromAmountWei.toString(), fromDecimals)).dividedBy(
+      formatUnits(toAmountWei.toString(), toDecimals)
     );
     if (rate.isFinite()) return rate.toFixed(4, BigNumber.ROUND_DOWN);
     else return '0';

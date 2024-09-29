@@ -7,5 +7,5 @@ export const AppStores = {
   useSettingsStore,
   useChat,
   useTabs,
-  useUser
+  useUser,
 };

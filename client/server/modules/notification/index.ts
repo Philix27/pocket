@@ -1,2 +1,2 @@
-export * from "./service"
-export * from "./emailTemplate"
+export * from './service';
+export * from './emailTemplate';

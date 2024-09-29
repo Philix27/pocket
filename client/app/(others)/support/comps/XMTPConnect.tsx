@@ -32,7 +32,7 @@ export function XMTPConnect() {
             <img src={'/support.png'} className="h-[300px] w-auto" />
           </div>
           <TextP className="my-5">Something went wrong.</TextP>
-          <AppButton onClick={handleConnect}>{`Try again`}</AppButton>
+          <AppButton onClick={handleConnect} className="w-fit">{`Try again`}</AppButton>
         </div>
       </div>
     );
@@ -53,7 +53,7 @@ export function XMTPConnect() {
           <img src={'/support.png'} className="h-[300px] w-auto" />
         </div>
         <TextP className="my-5">Welcome...</TextP>
-        <AppButton onClick={handleConnect}>{`Connect & Get started`}</AppButton>
+        <AppButton onClick={handleConnect} className='w-fit'>{`Connect & Get started`}</AppButton>
       </div>
     </div>
   );

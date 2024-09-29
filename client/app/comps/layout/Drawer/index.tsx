@@ -18,7 +18,7 @@ export function Drawer() {
         initial={{ x: 0, opacity: 0.5, translateX: -20 }}
         animate={{ x: 0, opacity: 1, translateX: 0 }}
         transition={{ ease: 'easeInOut', duration: 0.3 }}
-        className={'w-[60%] max-w-[300px] bg-secondary rounded-r-2xl'}
+        className={'w-[60%] max-w-[300px] bg-background rounded-r-2xl'}
       >
         <div className="mt-[50px] mb-[100px] flex flex-col">
           {/* <div className="px-4 mt-[50px] mb-[100px] flex flex-col justify-between h-[80%]"> */}

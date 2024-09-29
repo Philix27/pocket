@@ -69,7 +69,7 @@ export default function RootLayout({
         {/* <StatusBarMeta /> */}
         {/* <script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js"></script> */}
         <Script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js" />
-        <Script>{`iosPWASplash('logo.png', '#19232f');`}</Script>
+        <Script>{`iosPWASplash('logo.png', '#161718');`}</Script>
 
         {/* <link
           rel="apple-touch-startup-image"

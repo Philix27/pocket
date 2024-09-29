@@ -4,7 +4,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { Skeleton } from './Skeleton';
 
 export function Spinner() {
-  return <Skeleton className="h-4 w-full my-4" />;
+  // return <Skeleton className="h-4 w-full my-4" />;
   return (
     <div className="w-full flex items-center justify-center">
       <ThreeDots

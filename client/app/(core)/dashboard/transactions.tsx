@@ -1,10 +1,10 @@
 'use client';
-import { Row, Spinner, TextH, TextP } from '@/comps';
+import { Row, Spinner, TextH } from '@/comps';
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getTransactions } from '@/calls';
 import { useAccount } from 'wagmi';
-import { shortAddress } from '@/lib';
+import { AddressFn } from '@/lib';
 import { FaPoundSign } from 'react-icons/fa';
 import { parseEther } from 'viem';
 import { dateFromBigint } from '@/(others)/savings/_comps/withdraw/fn';
@@ -36,7 +36,7 @@ export default function TransactionHistory() {
           data!.map((trans, index) => (
             <Row
               title={Number(parseEther(trans.value)).toString()}
-              subtitle={`to: ${shortAddress(trans.to)}`}
+              subtitle={`to: ${AddressFn.shortenAddress(trans.to)}`}
               Icon={FaPoundSign}
               key={index}
               hideArrow
@@ -46,24 +46,3 @@ export default function TransactionHistory() {
     </div>
   );
 }
-
-//  <Row
-//    title={Number(parseEther(trans.value)).toString()}
-//    subtitle={`to: ${shortAddress(trans.to)}`}
-//    Icon={FaPoundSign}
-//    key={index}
-//    hideArrow
-//  />;
-
-// <div key={index} className="w-full bg-card mb-1 p-2">
-
-//   <div className="flex w-full items-center justify-between mb-2">
-//     <TextH v="h5">cELO: {Number(parseEther(trans.value)).toString()}</TextH>
-//     <TextP>gas: {trans.gasUsed}</TextP>
-//   </div>
-
-//   <div className="flex justify-between">
-//     <TextH v="h5">{dateFromBigint(trans.timeStamp as unknown as BigInt)}</TextH>
-//     <TextP>{shortAddress(trans.to)}</TextP>
-//   </div>
-// </div>

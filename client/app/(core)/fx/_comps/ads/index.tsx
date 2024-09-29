@@ -2,7 +2,7 @@ import { AppButton, TextP } from '@/comps';
 import React, { useState } from 'react';
 import { boolean } from 'zod';
 import { adsData, IAds } from './data';
-import { cn, shortAddress } from '@/lib';
+import { cn, AddressFn } from '@/lib';
 import { FHE } from '@/contract';
 import { toast } from 'sonner';
 
@@ -34,7 +34,7 @@ export default function AdsComp() {
             <Row title={'Username'} subtitle={'Felix Eligbue'} />
             <Row title={'Limit'} subtitle={`${ads.lowerLimit.toString()} - ${ads.upperLimit.toString()}`} />
             <Row title={'SALE'} subtitle={ads.isBuy ? 'BUY' : 'SELL'} />
-            <Row title={'Address'} subtitle={shortAddress(ads.owner)} />
+            <Row title={'Address'} subtitle={AddressFn.shortenAddress(ads.owner)} />
             <Row title={'Payment Method'} subtitle={ads.paymentMethod} />
             <Row title={'Rate'} subtitle={ads.rate.toString()} isLast />
             <AppButton

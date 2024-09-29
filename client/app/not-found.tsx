@@ -1,6 +1,6 @@
 'use client';
 
-import { AppButton, TextP, TextH } from './comps/index.ts';
+import { AppButton, TextP, TextH } from '@/comps';
 import { useAppRouter } from '@/lib';
 
 export default function NotFound() {

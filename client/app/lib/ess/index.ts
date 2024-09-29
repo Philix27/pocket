@@ -5,7 +5,6 @@ import * as retry from './retry';
 import * as ssr from '../hooks/ssr';
 import * as str from './string';
 import * as time from './time';
-import * as config from '../consts';
 
 export const Helper = {
   ...amount,
@@ -15,7 +14,6 @@ export const Helper = {
   ...str,
   ...ssr,
   ...clipboard,
-  ...config,
 };
 
-export * from "./celoWallets"
+

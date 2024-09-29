@@ -6,7 +6,7 @@ import { getAttachment, useConsent } from '@xmtp/react-sdk';
 import type { ConsentState, CachedConversation, CachedMessage } from '@xmtp/react-sdk';
 import { Avatar } from './Avatar';
 import styles from './ConversationPreviewCard.module.css';
-import { shortAddress } from '@/lib';
+import { AddressFn } from '@/lib';
 
 type ConversationPreviewCardProps = {
   /**
@@ -83,7 +83,7 @@ export const ConversationPreviewCard: React.FC<ConversationPreviewCardProps> = (
     >
       <Avatar address={conversation.peerAddress} />
       <div className={styles.element}>
-        <div className={styles.address}>{shortAddress(conversation.peerAddress)}</div>
+        <div className={styles.address}>{AddressFn.shortenAddress(conversation.peerAddress)}</div>
         <div className={styles.message}>{content}</div>
       </div>
       <div className={styles.extra}>

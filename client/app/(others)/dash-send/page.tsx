@@ -1,6 +1,6 @@
 'use client';
 import { AppButton, AppSelect, AppTextInput, Navbar, Tabs } from '@/comps';
-import { AppStores, shortValue, use3Wagmi } from '@/lib';
+import { AppStores, use3Wagmi } from '@/lib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -100,7 +100,7 @@ export default function SendMoneyPage() {
             },
           ]}
           desc={balance.data?.value!.toString()}
-          // desc={shortValue(balance.data?.value!)}
+          // desc={AddressFn.shortValue(balance.data?.value!)}
         />
 
         {store.sendToWallet === 'WALLET' && (

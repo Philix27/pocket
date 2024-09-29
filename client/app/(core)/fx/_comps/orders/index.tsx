@@ -1,7 +1,7 @@
 'use client';
 import { AppButton, Spinner, TextP } from '@/comps';
 import React, { memo, useState } from 'react';
-import { cn, shortAddress } from '@/lib';
+import { cn, AddressFn } from '@/lib';
 import { FHE } from '@/contract';
 import { useAccount } from 'wagmi';
 import { parseEther } from 'viem';
@@ -41,7 +41,7 @@ export const OrdersComp = memo(() => {
                 <Row title={'Amount'} subtitle={Number(parseEther(ads.amount.toString())).toString()} />
                 <Row title={'Status'} subtitle={ads.isCompleted ? 'Completed' : 'Pending'} />
                 <Row title={'Dispute'} subtitle={ads.isDisputed ? 'Yes' : 'None'} />
-                <Row title={'Dispute'} subtitle={shortAddress(ads.seller)} />
+                <Row title={'Dispute'} subtitle={AddressFn.shortenAddress(ads.seller)} />
                 <AppButton
                   onClick={() => {
                     setFundsProcessing(ads.id);

@@ -58,7 +58,7 @@
     "@xmtp/react-sdk": "8.0.1",
     "@xmtp/xmtp-js": "^12.1.0",
     "axios": "^1.7.2",
-    "bignumber.js": "4.0.4",
+    "bignumber.js": "^9.1.1",
     "bn.js": "^5.2.1",
     "class-variance-authority": "^0.4.0",
     "clsx": "^2.1.1",

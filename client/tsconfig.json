@@ -41,6 +41,7 @@
     "z/mod1/(core)/chat/MessageItem.tsx",
     "z/mod1/(core)/chat/NewConversation.tsx",
     "app/not-found.tsx",
-    "app/comps/index.ts"
+    "app/comps/index.ts",
+    "app/lib/ess/celoWallets.sample"
   ]
 }

@@ -9,11 +9,13 @@ import { logger } from '@/utils';
 
 export type NumberT = BigNumber.Value;
 
+// export type NumberT = any;
+
 export function fromWei(value: NumberT | null | undefined, decimals = STANDARD_TOKEN_DECIMALS): number {
   if (!value) return 0;
   const valueString = value.toString().trim();
   const flooredValue = new BigNumber(valueString).toFixed(0, BigNumber.ROUND_FLOOR);
-  return parseFloat(formatUnits(flooredValue, decimals));
+  return parseFloat(formatUnits(flooredValue as unknown as bigint, decimals));
 }
 
 // Similar to fromWei above but rounds to set number of decimals
@@ -25,7 +27,7 @@ export function fromWeiRounded(
 ): string {
   if (!value) return '0';
   const flooredValue = new BigNumber(value).toFixed(0, BigNumber.ROUND_FLOOR);
-  const amount = new BigNumber(formatUnits(flooredValue, decimals));
+  const amount = new BigNumber(formatUnits(flooredValue as unknown as bigint, decimals));
   if (amount.isZero()) return '0';
 
   // If amount is less than min value

@@ -1,4 +1,4 @@
-import { logger } from './logger'
+import { logger } from '@/utils'
 
 export function isClipboardReadSupported() {
   return !!navigator?.clipboard?.readText

@@ -1,13 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Navbar, Row, shortenAddress, SimpleRow, Spinner, TextH } from '@/comps';
+import { Navbar, Row, SimpleRow, Spinner, TextH } from '@/comps';
 import { IoMoon, IoPersonOutline } from 'react-icons/io5';
 import { AppStores, shortValue, use3Wagmi, useAppRouter } from '@/lib';
 import { BiLogOut, BiSun } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
 import { SwitchChain } from './_comps';
 import { useTheme } from 'next-themes';
+import { shortenAddress } from '@/lib';
 
 export default function SettingsPage() {
   const store = AppStores.useChat();

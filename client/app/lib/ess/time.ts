@@ -1,4 +1,4 @@
-import { EXCHANGE_RATE_STALE_TIME } from './config/consts';
+import { EXCHANGE_RATE_STALE_TIME } from '@/lib';
 
 export function isStale(lastUpdated: number | null, staleTime: number) {
   return !lastUpdated || Date.now() - lastUpdated > staleTime;

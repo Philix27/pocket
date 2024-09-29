@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 // import { tryClipboardSet } from './clipboard'
 import { WalletConnectConnector } from 'wagmi/dist/connectors/walletConnect';
 // import { WalletConnectConnector } from 'wagmi/dist/esm/';
-import { tryClipboardSet } from '../clipboard';
+import { tryClipboardSet } from './clipboard';
 
 async function getWalletConnectUri(connector: WalletConnectConnector): Promise<string> {
   const provider = await connector.getProvider();

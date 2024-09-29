@@ -71,6 +71,7 @@ export const AppSelect = (props: {
             outline: state.isFocused ? '#f24500' : '#4c4847',
             borderColor: '#4c4847',
             borderStyle: 'solid',
+            margin: 0,
           }),
           valueContainer: (base, state) => ({
             ...base,

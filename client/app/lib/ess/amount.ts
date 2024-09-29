@@ -2,10 +2,10 @@
 import BigNumber from 'bignumber.js';
 import Decimal from 'decimal.js-light';
 import JSBI from 'jsbi';
-import { DISPLAY_DECIMALS, MIN_ROUNDED_VALUE, STANDARD_TOKEN_DECIMALS } from './config/consts';
-import { logger } from './logger';
+import { DISPLAY_DECIMALS, MIN_ROUNDED_VALUE, STANDARD_TOKEN_DECIMALS } from '@/lib';
 import toFormat from 'toformat';
 import { formatUnits, parseUnits } from 'viem';
+import { logger } from '@/utils';
 
 export type NumberT = BigNumber.Value;
 

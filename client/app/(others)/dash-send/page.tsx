@@ -114,13 +114,14 @@ export default function SendMoneyPage() {
         )}
 
         {store.sendToWallet === 'PHONE' && (
-          <AppTextInput control={undefined} name="phone" place={'2348012345678'} label="Phone number" />
+          <AppTextInput control={undefined} type="number" name="phone" place={'2348012345678'} label="Phone number" />
         )}
 
         <AppTextInput
           name="amount"
           place={'100'}
           label="Amount"
+          type="number"
           control={register('amount', { valueAsNumber: true })}
           errorMessage={errors.amount && errors.amount.message}
         />

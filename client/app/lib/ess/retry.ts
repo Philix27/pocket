@@ -1,5 +1,5 @@
-import { logger } from './logger';
-import { sleep } from './timeout';
+import { logger } from '@/utils';
+import { sleep } from '../hooks/timeout';
 
 // If all the tries fail it raises the last thrown exception
 export async function retryAsync<T>(runner: () => T, attempts = 3, delay = 500) {

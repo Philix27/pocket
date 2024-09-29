@@ -2,10 +2,10 @@ import { AppStores } from '@/lib';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { DrawerRow } from './Row';
-import { AiOutlineDashboard } from 'react-icons/ai';
 import { TbFileInvoice } from 'react-icons/tb';
 import { usePathname } from 'next/navigation';
 import { MdSupportAgent } from 'react-icons/md';
+import { RxDashboard } from 'react-icons/rx';
 
 export function InAppDrawer(props: { router: AppRouterInstance }) {
   const { router } = props;
@@ -20,7 +20,7 @@ export function InAppDrawer(props: { router: AppRouterInstance }) {
     <div>
       <DrawerRow
         title={'Dashboard'}
-        icon={AiOutlineDashboard}
+        icon={RxDashboard}
         isActive={checkActive('dash')}
         onClick={() => {
           store.update({ drawerIsOpen: false });

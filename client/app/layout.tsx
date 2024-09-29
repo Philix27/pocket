@@ -4,7 +4,6 @@ import './globals.css';
 import { AppProviders, fontSans, cn } from './lib';
 
 import type { Metadata, Viewport } from 'next';
-import StatusBarMeta from './lib/statusBarMeta';
 import Script from 'next/script';
 
 const APP_NAME = 'Mobarter';
@@ -67,7 +66,6 @@ export default function RootLayout({
         {/* <meta name="theme-color" content="browserThemeColor" /> */}
         {/* <meta name="theme-color" content="???"></meta> */}
         {/* <StatusBarMeta /> */}
-        {/* <script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js"></script> */}
         <Script src="https://cdn.jsdelivr.net/npm/ios-pwa-splash@1.0.0/cdn.min.js" />
         <Script>{`iosPWASplash('logo.png', '#161718');`}</Script>
 
@@ -106,7 +104,6 @@ export default function RootLayout({
           href="/logo.png"
           media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
         /> */}
-        <script></script>
       </head>
       <body
         style={{ overscrollBehavior: 'none', overflow: 'hidden' }}

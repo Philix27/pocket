@@ -5,6 +5,7 @@ import { IconType } from 'react-icons';
 import { IoArrowBack, IoMenu } from 'react-icons/io5';
 import { AppStores } from '@/lib';
 import { useRouter } from 'next/navigation';
+import { LuChevronLeft } from 'react-icons/lu';
 
 export function Navbar(props: { title: string; icon?: IconType; isBack?: boolean; onIconClick?: VoidFunction }) {
   const Icon = props.icon!;
@@ -12,14 +13,16 @@ export function Navbar(props: { title: string; icon?: IconType; isBack?: boolean
   const router = useRouter();
   return (
     <div
-      className={
-        // border-b-[0.3px]
-        'h-[50px]  px-5 flex items-center justify-between fixed top-0 w-full z-10 bg-background'
-      }
+      className={`
+        h-[50px]  px-5 flex items-center 
+        justify-between 
+        fixed top-0 w-full 
+        z-10 bg-background
+      `}
     >
       <div className="flex items-center gap-x-2">
         {props.isBack ? (
-          <IoArrowBack
+          <LuChevronLeft
             size={22}
             onClick={() => {
               router.back();

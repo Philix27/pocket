@@ -4,10 +4,10 @@ import { useAppRouter } from '@/lib';
 import React from 'react';
 import { IconType } from 'react-icons';
 import { LuSend, LuUtilityPole } from 'react-icons/lu';
-import { MdOutlineCallReceived, MdOutlineSettings } from 'react-icons/md';
+import { MdOutlineCallReceived } from 'react-icons/md';
 import { CiDollar, CiLock } from 'react-icons/ci';
-import { IoCallOutline, IoSettings } from 'react-icons/io5';
-import { TbFileInvoice } from 'react-icons/tb';
+import { IoCallOutline, IoSwapHorizontalOutline } from 'react-icons/io5';
+import { BsCashCoin } from 'react-icons/bs';
 
 export default function QuickActions() {
   const router = useAppRouter();
@@ -23,12 +23,12 @@ export default function QuickActions() {
       link: '/dash-receive',
     },
     {
-      Icon: CiDollar,
+      Icon: BsCashCoin,
       title: 'Withdraw',
       link: '/dash-withdraw',
     },
     {
-      Icon: CiDollar,
+      Icon: IoSwapHorizontalOutline,
       title: 'Swap',
       link: '/dash-swap',
     },

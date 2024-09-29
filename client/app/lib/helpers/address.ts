@@ -30,13 +30,14 @@ export function validateAddress(address: string, context: string) {
   if (!address || !isAddress(address)) {
     const errorMsg = `Invalid addresses for ${context}: ${address}`;
     logger.error(errorMsg);
-    throw new Error(errorMsg);
+    // throw new Error(errorMsg);
   }
 }
 
 export function normalizeAddress(address: string) {
   validateAddress(address, 'normalize');
-  return getAddress(address);
+  return address;
+  // return getAddress(address);
 }
 
 export function shortenAddress(address: string, capitalize = true, startCount = 6, endCount = 4) {

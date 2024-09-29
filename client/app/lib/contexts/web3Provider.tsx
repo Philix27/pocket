@@ -1,6 +1,6 @@
 'use client';
 
-import { celo, celoAlfajores, mainnet, sepolia} from '@wagmi/core/chains';
+import { celo, celoAlfajores, mainnet, sepolia } from '@wagmi/core/chains';
 import { createConfig, http, injected } from '@wagmi/core';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -16,7 +16,7 @@ import { Web3AuthConnectorInstance } from './web3Connector';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { httpBatchLink, loggerLink } from '@trpc/client';
 import superjson from 'superjson';
-import { trpc } from '../utils';
+import { trpc } from '../app';
 // import { Alfajores, Baklava, Celo } from '@celo/rainbowkit-celo/chains'
 
 export const fhenixConfig = defineChain({

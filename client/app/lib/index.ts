@@ -1,5 +1,5 @@
 export * from './contexts/providers';
-export * from './utils';
+export * from './app';
 export * from './zustand';
 export * from './cn';
 export * from './hooks';

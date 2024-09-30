@@ -1,10 +1,9 @@
 import { AccountBalances } from '../accounts/fetchBalances';
-import { parseAmount, MIN_ROUNDED_VALUE, toWei, Tokens, areAmountsNearlyEqual, TokenFn } from '@/lib';
-import { logger } from '@/utils';
-import { useCallback } from 'react';
+// import { parseAmount, MIN_ROUNDED_VALUE, toWei, Tokens, areAmountsNearlyEqual, TokenFn } from '@/lib';
 import { useChainId } from 'wagmi';
 import { getMentoSdk } from './sdk';
 import { SwapFormValues } from './types';
+import { TokenFn } from '@/lib';
 
 export function useFormValidator(balances: AccountBalances) {
   const chainId = useChainId();

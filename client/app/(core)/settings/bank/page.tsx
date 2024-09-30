@@ -68,47 +68,45 @@ export default function BankAccountsPage() {
         <Row title="Sample account" subtitle="Full Name" Icon={FaRegAddressBook} />
       </div>
 
-      {showAdd && (
-        <BottomSheet onClose={() => setShowAdd(false)}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <AppTextInput
-              name={'accountNumber'}
-              label="Account number"
-              control={register('accountNumber', { valueAsNumber: true })}
-              errorMessage={errors.accountNumber && errors.accountNumber.message}
-            />
-            <AppSelect
-              label="Bank"
-              onChange={(value) => {
-                setValue('bankName', value);
-              }}
-              data={[
-                {
-                  label: 'GTB',
-                  value: '',
-                },
-                {
-                  label: 'Zenith',
-                  value: '',
-                },
-                {
-                  label: 'UBA',
-                  value: '',
-                },
-                {
-                  label: 'Opay',
-                  value: '',
-                },
-                {
-                  label: 'Moniepoint',
-                  value: '',
-                },
-              ]}
-              errorMessage={errors.bankName && errors.bankName.message}
-            />
-          </form>
-        </BottomSheet>
-      )}
+      <BottomSheet show={showAdd} onClose={() => setShowAdd(false)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <AppTextInput
+            name={'accountNumber'}
+            label="Account number"
+            control={register('accountNumber', { valueAsNumber: true })}
+            errorMessage={errors.accountNumber && errors.accountNumber.message}
+          />
+          <AppSelect
+            label="Bank"
+            onChange={(value) => {
+              setValue('bankName', value);
+            }}
+            data={[
+              {
+                label: 'GTB',
+                value: '',
+              },
+              {
+                label: 'Zenith',
+                value: '',
+              },
+              {
+                label: 'UBA',
+                value: '',
+              },
+              {
+                label: 'Opay',
+                value: '',
+              },
+              {
+                label: 'Moniepoint',
+                value: '',
+              },
+            ]}
+            errorMessage={errors.bankName && errors.bankName.message}
+          />
+        </form>
+      </BottomSheet>
     </div>
   );
 }

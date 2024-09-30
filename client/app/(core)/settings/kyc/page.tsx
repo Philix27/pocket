@@ -83,17 +83,17 @@ export default function KycPage() {
           }
         />
       </div>
-      {store.activeKycSheet !== 'NONE' && (
-        <BottomSheet
-          onClose={() =>
-            store.update({
-              activeKycSheet: 'NONE',
-            })
-          }
-        >
-          <GetScreen screen={store.activeKycSheet} />
-        </BottomSheet>
-      )}
+
+      <BottomSheet
+        show={store.activeKycSheet !== 'NONE'}
+        onClose={() =>
+          store.update({
+            activeKycSheet: 'NONE',
+          })
+        }
+      >
+        <GetScreen screen={store.activeKycSheet} />
+      </BottomSheet>
     </div>
   );
 }

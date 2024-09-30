@@ -1,10 +1,8 @@
 import { ChainId } from './chains';
-import { MentoExchanges } from './exchanges';
 import { Color } from '../ess/Color';
-import { AddressFn } from '@/lib';
 
 export interface Token {
-  id: string;
+  id: TokenId;
   symbol: string; // The same as id for now
   name: string;
   color: string;
@@ -169,63 +167,4 @@ export const TokenAddresses: Record<ChainId, Record<TokenId, Address>> = Object.
   },
 });
 
-export function isNativeToken(tokenId: string) {
-  return Object.keys(Tokens).includes(tokenId);
-}
-
-export function isNativeStableToken(tokenId: string) {
-  return NativeStableTokenIds.includes(tokenId as TokenId);
-}
-
-export function isSwappable(token_1: string, token_2: string, chainId: number) {
-  const exchanges = MentoExchanges[chainId as ChainId];
-
-  if (!exchanges) return false;
-
-  if (token_1 === token_2) return false;
-
-  return exchanges.some(
-    (obj) =>
-      obj.assets.includes(getTokenAddress(token_1 as TokenId, chainId)) &&
-      obj.assets.includes(getTokenAddress(token_2 as TokenId, chainId))
-  );
-}
-
-export function getSwappableTokenOptions(token: string, chainId: ChainId) {
-  return getTokenOptionsByChainId(chainId)
-    .filter((tkn) => isSwappable(tkn, token, chainId))
-    .filter((tkn) => token !== tkn);
-}
-
-export function getTokenOptionsByChainId(chainId: ChainId): TokenId[] {
-  const tokensForChain = TokenAddresses[chainId];
-
-  return tokensForChain
-    ? Object.entries(tokensForChain)
-        .filter(([, tokenAddress]) => tokenAddress !== '') // Allows incomplete 'TokenAddresses' list i.e When tokens are not on all chains
-        .map(([tokenId]) => tokenId as TokenId)
-    : [];
-}
-
-export function getTokenById(id: string): Token | null {
-  return Tokens[id as TokenId] || null;
-}
-
-export function getTokenAddress(id: TokenId, chainId: ChainId): Address {
-  const addr = TokenAddresses[chainId][id];
-  if (!addr) throw new Error(`No address found for token ${id} on chain ${chainId}`);
-  return addr;
-}
-
-export function getTokenByAddress(address: Address): Token {
-  const idAddressTuples = Object.values(TokenAddresses)
-    .map((idToAddress) => Object.entries(idToAddress))
-    .flat();
-  // This assumes no clashes btwn different tokens on diff chains
-  for (const [id, tokenAddr] of idAddressTuples) {
-    if (AddressFn.areAddressesEqual(address, tokenAddr)) {
-      return Tokens[id as TokenId];
-    }
-  }
-  throw new Error(`No token found for address ${address}`);
-}
+export const TokenList: Token[] = [CELO, cUSD, cEUR, cREAL, USDC, USDT, axlUSDC, axlEUROC, eXOF, cKES, PUSO];

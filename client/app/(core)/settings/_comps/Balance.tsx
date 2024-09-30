@@ -19,26 +19,26 @@ export function WalletBalance() {
           setShowNetworks(true);
         }}
       />
-      {showNetworks && (
-        <BottomSheet
-          title="Select network"
-          onClose={() => {
-            setShowNetworks(false);
-          }}
-        >
-          <div className="w-full">
-            <div>
-              {walletBalance.map((value, index) => (
-                <Fragment key={index}>
-                  <SimpleRow left={value.title} right={value.network} />
-                </Fragment>
-              ))}
 
-              {error?.message}
-            </div>
+      <BottomSheet
+        show={showNetworks}
+        title="Select network"
+        onClose={() => {
+          setShowNetworks(false);
+        }}
+      >
+        <div className="w-full">
+          <div>
+            {walletBalance.map((value, index) => (
+              <Fragment key={index}>
+                <SimpleRow left={value.title} right={value.network} />
+              </Fragment>
+            ))}
+
+            {error?.message}
           </div>
-        </BottomSheet>
-      )}
+        </div>
+      </BottomSheet>
     </>
   );
 }

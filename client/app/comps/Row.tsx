@@ -7,7 +7,9 @@ import { TextH, TextP } from './custom';
 export type IRow = {
   title: string;
   subtitle: string;
-  Icon: IconType;
+  Icon?: IconType;
+  imgPath?: string;
+  imgComp?: JSX.Element;
   color?: string;
   onClick?: VoidFunction;
   hideArrow?: boolean;
@@ -19,13 +21,16 @@ export function Row(props: IRow) {
     <div
       className={cn(
         'flex justify-between items-center py-2',
-        props.isLast || 'border-b border-background',
+        props.isLast || 'border-b border-muted',
         props.color
       )}
       onClick={props.onClick}
     >
       <div className="flex items-center justify-center">
-        <Icon size={20} className={cn('text-accent mr-3')} />
+        {Icon && <Icon size={20} className={cn('text-accent mr-3')} />}
+        {props.imgPath && <img src={props.imgPath} className="size-[50px] rounded-lg" />}
+        {props.imgComp && props.imgComp}
+
         <div>
           <TextH v="h5" className={'text-card-foreground mb-1'}>
             {props.title}

@@ -35,4 +35,17 @@ export class AppImg {
     trophy: '/icons/trophy.png',
     wallet: '/icons/wallet.png',
   };
+  static svgTokens = {
+    celo: '/tokens/CELO.svg',
+    cEUR: '/tokens/cEUR.svg',
+    USDT: '/tokens/USDT.svg',
+    USDC: '/tokens/USDC.svg',
+    PUSD: '/tokens/PUSD.svg',
+    eXOF: '/tokens/eXOF.svg',
+    cUSD: '/tokens/cUSD.svg',
+    cREAL: '/tokens/cREAL.svg',
+    cKES: '/tokens/cKES.svg',
+    axIUSDC: '/tokens/axIUSDC.svg',
+    axIEUROC: '/tokens/axIEUROC.svg',
+  };
 }

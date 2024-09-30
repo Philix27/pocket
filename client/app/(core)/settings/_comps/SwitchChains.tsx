@@ -19,31 +19,31 @@ export function SwitchChain() {
           setShowNetworks(true);
         }}
       />
-      {showNetworks && (
-        <BottomSheet
-          title="Select network"
-          onClose={() => {
-            setShowNetworks(false);
-          }}
-        >
-          <div className="w-full">
-            <div>
-              {chains.map((chain) => (
-                <div
-                  key={chain.id}
-                  onClick={() => switchChain({ chainId: chain.id })}
-                  className="flex items-center gap-x-4 py-2 mb-1 bg-opacity/10"
-                >
-                  <AppRadio isSelected={chainId === chain.id} />
-                  <TextP> {chain.name}</TextP>
-                </div>
-              ))}
 
-              {error?.message}
-            </div>
+      <BottomSheet
+        show={showNetworks}
+        title="Select network"
+        onClose={() => {
+          setShowNetworks(false);
+        }}
+      >
+        <div className="w-full">
+          <div>
+            {chains.map((chain) => (
+              <div
+                key={chain.id}
+                onClick={() => switchChain({ chainId: chain.id })}
+                className="flex items-center gap-x-4 py-2 mb-1 bg-opacity/10"
+              >
+                <AppRadio isSelected={chainId === chain.id} />
+                <TextP> {chain.name}</TextP>
+              </div>
+            ))}
+
+            {error?.message}
           </div>
-        </BottomSheet>
-      )}
+        </div>
+      </BottomSheet>
     </>
   );
 }

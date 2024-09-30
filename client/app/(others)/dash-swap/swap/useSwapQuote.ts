@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { ethers } from 'ethers';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { getMentoSdk } from './sdk';
@@ -7,7 +6,9 @@ import { SwapDirection } from './types';
 import { calcExchangeRate, invertExchangeRate, parseInputExchangeAmount } from './utils';
 import { useChainId } from 'wagmi';
 import { logger } from '@/utils';
-import { TokenId, Tokens, getTokenAddress, SWAP_QUOTE_REFETCH_INTERVAL, useDebounce, fromWei } from '@/lib';
+import { TokenId, Tokens, TokenFn, SWAP_QUOTE_REFETCH_INTERVAL, useDebounce, fromWei } from '@/lib';
+import BigNumber from 'bignumber.js';
+import { BigNumberish } from 'ethers/lib.commonjs/ethers';
 
 export function useSwapQuote(
   amount: string | number,
@@ -26,19 +27,25 @@ export function useSwapQuote(
       const toToken = Tokens[toTokenId];
       const isSwapIn = direction === 'in';
       const amountWei = parseInputExchangeAmount(amount, isSwapIn ? fromTokenId : toTokenId);
-      const amountWeiBN = ethers.BigNumber.from(amountWei);
+      const amountWeiBN = BigNumber(amountWei);
+      // const amountWeiBN = ethers.BigNumber.from(amountWei);
+
       const amountDecimals = isSwapIn ? fromToken.decimals : toToken.decimals;
       const quoteDecimals = isSwapIn ? toToken.decimals : fromToken.decimals;
       if (amountWeiBN.lte(0) || !fromToken || !toToken) return null;
-      const fromTokenAddr = getTokenAddress(fromTokenId, chainId);
-      const toTokenAddr = getTokenAddress(toTokenId, chainId);
+      const fromTokenAddr = TokenFn.getTokenAddress(fromTokenId, chainId);
+      const toTokenAddr = TokenFn.getTokenAddress(toTokenId, chainId);
       const mento = await getMentoSdk(chainId);
 
       let quoteWei: string;
       if (isSwapIn) {
-        quoteWei = (await mento.getAmountOut(fromTokenAddr, toTokenAddr, amountWeiBN)).toString();
+        quoteWei = (
+          await mento.getAmountOut(fromTokenAddr, toTokenAddr, amountWeiBN as unknown as BigNumberish)
+        ).toString();
       } else {
-        quoteWei = (await mento.getAmountIn(fromTokenAddr, toTokenAddr, amountWeiBN)).toString();
+        quoteWei = (
+          await mento.getAmountIn(fromTokenAddr, toTokenAddr, amountWeiBN as unknown as BigNumberish)
+        ).toString();
       }
 
       const quote = fromWei(quoteWei, quoteDecimals).toString();

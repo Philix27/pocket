@@ -1,5 +1,5 @@
 'use client';
-import { AppButton, BottomSheet, Navbar, Row, Separator, TextH, TextP } from '@/comps';
+import { AppButton, BottomSheet, Navbar, Row, Separator, TextP } from '@/comps';
 import { Token, TokenList, Tokens } from '@/lib';
 import React, { useState } from 'react';
 import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
@@ -27,6 +27,11 @@ export default function SwapPage() {
             title={'You send'}
             balance={`4000 ${selectedToken.fromTokens.symbol}`}
             token={selectedToken.fromTokens}
+            onTokenClick={() => {
+              if (!showTokens?.fromTokens) {
+                setShowTokens({ fromTokens: true, toTokens: false });
+              }
+            }}
           />
           <div>
             <IoSwapVertical />
@@ -36,7 +41,12 @@ export default function SwapPage() {
           <ChangeSection
             title={'You receive'}
             balance={`4000 ${selectedToken.toTokens.symbol}`}
-            token={selectedToken.fromTokens}
+            token={selectedToken.toTokens}
+            onTokenClick={() => {
+              if (!showTokens?.toTokens) {
+                setShowTokens({ fromTokens: false, toTokens: true });
+              }
+            }}
           />
         </div>
         <AppButton className="w-[75%]">Swap</AppButton>
@@ -81,7 +91,7 @@ export default function SwapPage() {
   );
 }
 
-function ChangeSection(props: { title: string; balance: string; token: Token }) {
+function ChangeSection(props: { title: string; balance: string; token: Token; onTokenClick: VoidFunction }) {
   return (
     <div className="bg-card w-full mb-2 flex items-center justify-between rounded-lg">
       <div>
@@ -98,7 +108,9 @@ function ChangeSection(props: { title: string; balance: string; token: Token }) 
                 px-2 py-2 text-xl tracking-wide`}
         />
 
-        <TokenIcon token={props.token} size="s" />
+        <div className="bg-primary p2" onClick={props.onTokenClick}>
+          <TokenIcon token={props.token} size="s" />
+        </div>
       </div>
 
       <div>

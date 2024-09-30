@@ -1,13 +1,5 @@
 import { AccountBalances } from '../accounts/fetchBalances';
-import {
-  parseAmount,
-  MIN_ROUNDED_VALUE,
-  toWei,
-  Tokens,
-  areAmountsNearlyEqual,
-  getTokenAddress,
-  getTokenByAddress,
-} from '@/lib';
+import { parseAmount, MIN_ROUNDED_VALUE, toWei, Tokens, areAmountsNearlyEqual, TokenFn } from '@/lib';
 import { logger } from '@/utils';
 import { useCallback } from 'react';
 import { useChainId } from 'wagmi';
@@ -16,38 +8,39 @@ import { SwapFormValues } from './types';
 
 export function useFormValidator(balances: AccountBalances) {
   const chainId = useChainId();
-  return useCallback(
-    (values?: SwapFormValues): Promise<FormikErrors<SwapFormValues>> => {
-      return (async () => {
-        if (!values || !values.amount) return { amount: 'Amount Required' };
-        const parsedAmount = parseAmount(values.amount);
-        if (!parsedAmount) return { amount: 'Amount is Invalid' };
-        if (parsedAmount.lt(0)) return { amount: 'Amount cannot be negative' };
-        if (parsedAmount.lt(MIN_ROUNDED_VALUE)) return { amount: 'Amount too small' };
-        const tokenId = values.fromTokenId;
-        const tokenBalance = balances[tokenId];
-        const weiAmount = toWei(parsedAmount, Tokens[values.fromTokenId].decimals);
-        if (weiAmount.gt(tokenBalance) && !areAmountsNearlyEqual(weiAmount, tokenBalance)) {
-          return { amount: 'Amount exceeds balance' };
-        }
-        const { exceeds, errorMsg } = await checkTradingLimits(values, chainId);
-        if (exceeds) return { amount: errorMsg };
-        return {};
-      })().catch((error) => {
-        logger.error(error);
-        return {};
-      });
-    },
-    [balances, chainId]
-  );
+  // return useCallback(
+  //   (values?: SwapFormValues): Promise<FormikErrors<SwapFormValues>> => {
+  //     return (async () => {
+  //       if (!values || !values.amount) return { amount: 'Amount Required' };
+  //       const parsedAmount = parseAmount(values.amount);
+  //       if (!parsedAmount) return { amount: 'Amount is Invalid' };
+  //       if (parsedAmount.lt(0)) return { amount: 'Amount cannot be negative' };
+  //       if (parsedAmount.lt(MIN_ROUNDED_VALUE)) return { amount: 'Amount too small' };
+  //       const tokenId = values.fromTokenId;
+  //       const tokenBalance = balances[tokenId];
+  //       const weiAmount = toWei(parsedAmount, Tokens[values.fromTokenId].decimals);
+  //       if (weiAmount.gt(tokenBalance) && !areAmountsNearlyEqual(weiAmount, tokenBalance)) {
+  //         return { amount: 'Amount exceeds balance' };
+  //       }
+  //       const { exceeds, errorMsg } = await checkTradingLimits(values, chainId);
+  //       if (exceeds) return { amount: errorMsg };
+  //       return {};
+  //     })().catch((error) => {
+  //       logger.error(error);
+  //       return {};
+  //     });
+  //   },
+
+  //   [balances, chainId]
+  // );
 }
 
 async function checkTradingLimits(
   values: SwapFormValues,
   chainId: number
 ): Promise<{ exceeds: boolean; errorMsg: string }> {
-  const token0 = getTokenAddress(values.fromTokenId, chainId);
-  const token1 = getTokenAddress(values.toTokenId, chainId);
+  const token0 = TokenFn.getTokenAddress(values.fromTokenId, chainId);
+  const token1 = TokenFn.getTokenAddress(values.toTokenId, chainId);
   const mento = await getMentoSdk(chainId);
   const exchangeId = (await mento.getExchangeForTokens(token0, token1)).id;
   const tradingLimits = await mento.getTradingLimits(exchangeId);
@@ -68,7 +61,7 @@ async function checkTradingLimits(
     }
   }
   const isSwapIn = values.direction === 'in';
-  const tokenToCheck = getTokenByAddress(tradingLimits[0].asset).symbol;
+  const tokenToCheck = TokenFn.getTokenByAddress(tradingLimits[0].asset).symbol;
 
   let amountToCheck: number;
   let exceeds = false;

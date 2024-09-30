@@ -3,8 +3,8 @@ import BigNumber from 'bignumber.js';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { getMentoSdk } from './sdk';
-import { usePrepareSendTransaction, useSendTransaction } from 'wagmi';
-import { TokenId, getTokenAddress } from '@/lib';
+import { useSendTransaction, useEstimateGas } from 'wagmi';
+import { TokenId, TokenFn } from '@/lib';
 import { logger } from '@/utils';
 
 export function useApproveTransaction(
@@ -18,17 +18,19 @@ export function useApproveTransaction(
     async () => {
       if (!accountAddress || new BigNumber(amountInWei).lte(0)) return null;
       const sdk = await getMentoSdk(chainId);
-      const tokenAddr = getTokenAddress(tokenId, chainId);
-      const txRequest = await sdk.increaseTradingAllowance(tokenAddr, amountInWei);
-      return { ...txRequest, to: tokenAddr };
+      const tokenAddr = TokenFn.getTokenAddress(tokenId, chainId);
+      const _txRequest = await sdk.increaseTradingAllowance(tokenAddr, amountInWei);
+      return { ..._txRequest, to: tokenAddr };
     },
     {
       retry: false,
     }
   );
 
-  const { config, error: sendPrepError } = usePrepareSendTransaction(txRequest ? { request: txRequest } : undefined);
-  const { data: txResult, isLoading, isSuccess, error: txSendError, sendTransactionAsync } = useSendTransaction(config);
+  const { data, error: sendPrepError } = useEstimateGas(txRequest ? txRequest : undefined);
+  const { data: txResult, isLoading, isSuccess, error: txSendError, sendTransactionAsync } = useSendTransaction();
+  // const { config, error: sendPrepError } = usePrepareSendTransaction(txRequest ? { request: txRequest } : undefined);
+  // const { data: txResult, isLoading, isSuccess, error: txSendError, sendTransactionAsync } = useSendTransaction(config);
 
   useEffect(() => {
     if (txPrepError || sendPrepError?.message) {

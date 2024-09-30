@@ -1,11 +1,21 @@
 'use client';
 import React from 'react';
 import { AppDocs } from '../md';
-import { Navbar } from '@/comps';
+import { Navbar, TextP } from '@/comps';
 
 export default function DocsPage({ params }: { params: { slug: string } }) {
   const doc = AppDocs.filter((v) => v.key === params.slug)[0];
 
+  if (!doc) {
+    return (
+      <div>
+        <Navbar title={'Help'} isBack />
+        <div>
+          <TextP>No document found</TextP>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <Navbar title={doc.title} isBack />

@@ -6,7 +6,8 @@ import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
 
 export default function SwapPage() {
-  const [showTokens, setShowTokens] = useState<{ fromTokens?: boolean; toTokens?: boolean }>();
+  const [showTokens, setShowTokens] = useState<boolean>(false);
+  const [lastClicked, setLastClicked] = useState<'SEND' | 'RECEIVE'>('SEND');
   const [selectedToken, setSelectedToken] = useState<{ fromTokens: Token; toTokens: Token }>({
     fromTokens: Tokens.CELO,
     toTokens: Tokens.cUSD,
@@ -18,7 +19,7 @@ export default function SwapPage() {
 
       <div className="px-5 py-4 gap-y-2 w-full flex flex-col items-center space-y-3">
         <div className="w-full">
-          <div className="flex items-center justify-center w-full">
+          <div className="flex items-center justify-between w-full">
             <IoReload />
             <IoSettings />
           </div>
@@ -28,14 +29,12 @@ export default function SwapPage() {
             balance={`4000 ${selectedToken.fromTokens.symbol}`}
             token={selectedToken.fromTokens}
             onTokenClick={() => {
-              if (!showTokens?.fromTokens) {
-                setShowTokens({ fromTokens: true, toTokens: false });
-              }
+              setShowTokens(true);
+              setLastClicked('SEND');
             }}
           />
-          <div>
-            <IoSwapVertical />
-            <Separator />
+          <div className="relative my-4 flex items-center justify-center">
+            <IoSwapVertical size={24} className="text-primary" />
           </div>
 
           <ChangeSection
@@ -43,9 +42,8 @@ export default function SwapPage() {
             balance={`4000 ${selectedToken.toTokens.symbol}`}
             token={selectedToken.toTokens}
             onTokenClick={() => {
-              if (!showTokens?.toTokens) {
-                setShowTokens({ fromTokens: false, toTokens: true });
-              }
+              setShowTokens(true);
+              setLastClicked('RECEIVE');
             }}
           />
         </div>
@@ -53,14 +51,9 @@ export default function SwapPage() {
       </div>
 
       <BottomSheet
-        show={!showTokens?.fromTokens || !showTokens?.toTokens}
+        show={showTokens}
         onClose={() => {
-          if (showTokens?.fromTokens) {
-            setShowTokens({ fromTokens: false });
-          }
-          if (showTokens?.toTokens) {
-            setShowTokens({ toTokens: false });
-          }
+          setShowTokens(false);
         }}
       >
         <div className="w-full">
@@ -71,17 +64,16 @@ export default function SwapPage() {
               subtitle={val.id}
               imgComp={<TokenIcon token={val} size="s" />}
               onClick={() => {
-                if (showTokens?.fromTokens) {
+                if (lastClicked === 'SEND') {
                   setSelectedToken((prev) => {
                     return { ...prev, fromTokens: val };
                   });
-                }
-                if (showTokens?.toTokens) {
+                } else {
                   setSelectedToken((prev) => {
                     return { ...prev, toTokens: val };
                   });
                 }
-                setShowTokens({ fromTokens: true });
+                setShowTokens(false);
               }}
             />
           ))}
@@ -93,7 +85,7 @@ export default function SwapPage() {
 
 function ChangeSection(props: { title: string; balance: string; token: Token; onTokenClick: VoidFunction }) {
   return (
-    <div className="bg-card w-full mb-2 flex items-center justify-between rounded-lg">
+    <div className="bg-card w-full mb-2 flex flex-col items-center justify-between rounded-lg px-3 py-4">
       <div>
         <TextP>{props.title}</TextP>
         <TextP className="text-muted text-[10px]">Bal: {props.balance} </TextP>
@@ -105,7 +97,9 @@ function ChangeSection(props: { title: string; balance: string; token: Token; on
           placeholder="0.00"
           className={`outline-none w-full
                 border-none bg-transparent
-                px-2 py-2 text-xl tracking-wide`}
+                px-2 py-2 text-2xl tracking-wide`}
+          pattern={'[0-9]*'}
+          inputMode="numeric"
         />
 
         <div className="bg-primary p2" onClick={props.onTokenClick}>
@@ -113,9 +107,9 @@ function ChangeSection(props: { title: string; balance: string; token: Token; on
         </div>
       </div>
 
-      <div>
+      <div className="flex justify-between items-center">
         <TextP className="text-primary text-[10px]"> ~ $9000 Equi</TextP>
-        <TextP className="text-primary text-[10px]">MAX</TextP>
+        <TextP className="text-primary text-[10px] font-bold">MAX</TextP>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import React, { ReactNode } from 'react';
 import { IoClose } from 'react-icons/io5';
 
 export function BottomSheet(props: { children: ReactNode; onClose?: VoidFunction; title?: string; show: boolean }) {
-  if(props.show) return <></>
+  if(!props.show) return <></>
   return (
     <div className="fixed top-0 left-0 bg-black/30  w-full bottom-0 z-30 h-screen flex flex-col justify-between">
       <div className="bg-teal-600" onClick={props.onClose} />

@@ -39,7 +39,8 @@
     --background: #151718;
     --foreground: #e3e6e6;
 
-    --muted: #5e5e5e;
+    --muted: #353636;
+    /* --muted: #5e5e5e; */
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --popover: 0 0% 100%;
@@ -61,9 +62,12 @@
     --destructive: #d00000;
     --destructive-foreground: #ffffff;
 
-    --ring: #3a4d5f;
+    --ring: #353636;
+    --border: #353636;
+    --input: #353636;
+    /* --ring: #3a4d5f;
     --border: #3a4d5f;
-    --input: #3a4d5f;
+    --input: #3a4d5f; */
 
     --radius: 0.5rem;
   }

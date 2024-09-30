@@ -8,7 +8,7 @@ export function SwitchChain() {
   const chainId = useChainId();
   const { chains, switchChain, error } = useSwitchChain();
   const [showNetworks, setShowNetworks] = useState(false);
-  // const { chain } = useNetwork();
+
   return (
     <>
       <Row

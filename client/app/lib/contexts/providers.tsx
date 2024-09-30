@@ -28,8 +28,8 @@ export function AppProviders(props: { children: ReactNode }) {
           toastOptions={{
             unstyled: true,
             classNames: {
-              toast: 'bg-background border border-[0.1px]',
-              title: 'text-foreground',
+              toast: 'bg-background border border-[0.1px] px-3 py-4 flex items-center rounded ',
+              title: 'text-muted text-sm ml-3',
               description: 'text-red-400',
               actionButton: 'bg-zinc-400',
               cancelButton: 'bg-orange-400',
@@ -41,11 +41,11 @@ export function AppProviders(props: { children: ReactNode }) {
             },
           }}
           icons={{
-            success: <GrStatusGood />,
-            info: <IoMdInformationCircleOutline />,
-            warning: <IoWarningOutline />,
-            error: <MdOutlineErrorOutline />,
-            loading: <AiOutlineLoading3Quarters />,
+            success: <GrStatusGood className="mr-3" />,
+            info: <IoMdInformationCircleOutline className="mr-3" />,
+            warning: <IoWarningOutline className="mr-3" />,
+            error: <MdOutlineErrorOutline className="mr-3" />,
+            loading: <AiOutlineLoading3Quarters className="mr-3" />,
           }}
         />
         <Analytics />

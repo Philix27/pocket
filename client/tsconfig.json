@@ -42,8 +42,6 @@
     "z/mod1/(core)/chat/NewConversation.tsx",
     "app/not-found.tsx",
     "app/comps/index.ts",
-    "app/lib/ess/celoWallets.sample",
-    "../../../Downloads/valora/ahob/providers.ts",
-    "../../../Downloads/valora/ahob/sdk.ts"
+    "app/lib/ess/celoWallets.sample"
   ]
 }

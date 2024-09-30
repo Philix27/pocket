@@ -1,6 +1,6 @@
 import { useReadContract, useWriteContract } from 'wagmi';
 
-import { App3Abi } from '.';
+import { FheApp3Abi } from '.';
 
 export type Transaction = {
   id: number;
@@ -21,8 +21,8 @@ export const useCreateEscrow = () => {
       functionName: 'createEscrow',
       args: [sellerAddress],
       value: BigInt(amount),
-      address: App3Abi.p2pContractAddress as `0x${string}`,
-      abi: App3Abi.p2pAbi,
+      address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+      abi: FheApp3Abi.p2pAbi,
     });
 
   return { createEscrow, result: res };
@@ -35,8 +35,8 @@ export const useReleaseFunds = () => {
     writeContract({
       functionName: 'releaseFunds',
       args: [txId],
-      address: App3Abi.p2pContractAddress as `0x${string}`,
-      abi: App3Abi.p2pAbi,
+      address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+      abi: FheApp3Abi.p2pAbi,
     });
   };
 
@@ -50,8 +50,8 @@ export const useRequestRefund = () => {
     writeContract({
       functionName: 'requestRefund',
       args: [txId],
-      address: App3Abi.p2pContractAddress as `0x${string}`,
-      abi: App3Abi.p2pAbi,
+      address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+      abi: FheApp3Abi.p2pAbi,
     });
   };
 
@@ -65,8 +65,8 @@ export const useAgreeRefund = () => {
     writeContract({
       functionName: 'agreeRefund',
       args: [txId],
-      address: App3Abi.p2pContractAddress as `0x${string}`,
-      abi: App3Abi.p2pAbi,
+      address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+      abi: FheApp3Abi.p2pAbi,
     });
   };
 
@@ -80,8 +80,8 @@ export const useDisputeTransaction = () => {
     writeContract({
       functionName: 'disputeTransaction',
       args: [txId],
-      address: App3Abi.p2pContractAddress as `0x${string}`,
-      abi: App3Abi.p2pAbi,
+      address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+      abi: FheApp3Abi.p2pAbi,
     });
   };
 
@@ -93,8 +93,8 @@ export const useGetAllTransactionsForUser = (address: string) => {
   const result = useReadContract({
     functionName: 'getAllTransactionsForUser',
     args: [address],
-    address: App3Abi.p2pContractAddress as `0x${string}`,
-    abi: App3Abi.p2pAbi,
+    address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+    abi: FheApp3Abi.p2pAbi,
   });
   return {
     result,
@@ -105,8 +105,8 @@ export const useGetAllTransactionsForUser = (address: string) => {
 export const useGetAllRefundedTransactions = () => {
   const result = useReadContract({
     functionName: 'getAllRefundedTransactions',
-    address: App3Abi.p2pContractAddress as `0x${string}`,
-    abi: App3Abi.p2pAbi,
+    address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+    abi: FheApp3Abi.p2pAbi,
   });
   return {
     result,
@@ -117,8 +117,8 @@ export const useGetAllRefundedTransactions = () => {
 export const useGetAllDisputedTransactions = () => {
   const result = useReadContract({
     functionName: 'getAllDisputedTransactions',
-    address: App3Abi.p2pContractAddress as `0x${string}`,
-    abi: App3Abi.p2pAbi,
+    address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+    abi: FheApp3Abi.p2pAbi,
   });
   return {
     result,
@@ -129,8 +129,8 @@ export const useGetAllDisputedTransactions = () => {
 export const useGetAllCompletedTransactions = () => {
   const result = useReadContract({
     functionName: 'getAllCompletedTransactions',
-    address: App3Abi.p2pContractAddress as `0x${string}`,
-    abi: App3Abi.p2pAbi,
+    address: FheApp3Abi.p2pContractAddress as `0x${string}`,
+    abi: FheApp3Abi.p2pAbi,
   });
   return {
     result,

@@ -1,8 +1,6 @@
 import { JsonRpcProvider } from 'ethers';
 // import { EncryptionTypes, FhenixClient, SupportedProvider } from "fhenixjs"
 
-import { App3Abi } from '.';
-
 export async function encrypt(data: number | `0x${string}`) {
   // initialize your web3 provider
   const provider = new JsonRpcProvider('https://api.helium.fhenix.zone');

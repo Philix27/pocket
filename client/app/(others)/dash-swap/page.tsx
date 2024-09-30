@@ -1,9 +1,10 @@
 'use client';
-import { AppButton, BottomSheet, Navbar, Row, Separator, TextP } from '@/comps';
+import { AppButton, BottomSheet, Navbar, Row, TextP } from '@/comps';
 import { Token, TokenList, Tokens } from '@/lib';
 import React, { useState } from 'react';
 import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
+import { ChangeSection } from './ValueSection';
 
 export default function SwapPage() {
   const [showTokens, setShowTokens] = useState<boolean>(false);
@@ -12,16 +13,20 @@ export default function SwapPage() {
     fromTokens: Tokens.CELO,
     toTokens: Tokens.cUSD,
   });
+  const [exchangeValue, setExchangeValue] = useState<{ fromToken: number; toToken: number }>({
+    fromToken: 0.0,
+    toToken: 0.0,
+  });
 
   return (
     <div>
       <Navbar title="Swap tokens" isBack />
 
-      <div className="px-5 py-4 gap-y-2 w-full flex flex-col items-center space-y-3">
+      <div className="px-5 py-2 gap-y-2 w-full flex flex-col items-center space-y-3">
         <div className="w-full">
-          <div className="flex items-center justify-between w-full">
-            <IoReload />
-            <IoSettings />
+          <div className="flex items-center justify-between w-full p-4">
+            <IoReload size={22} />
+            <IoSettings size={22} />
           </div>
 
           <ChangeSection
@@ -32,18 +37,47 @@ export default function SwapPage() {
               setShowTokens(true);
               setLastClicked('SEND');
             }}
+            value={exchangeValue.fromToken.toString()}
+            // value={formatToCurrency(exchangeValue.fromToken)}
+            onChange={function (val: string): void {
+              setExchangeValue((prev) => {
+                return {
+                  ...prev,
+                  fromToken: parseInt(val),
+                };
+              });
+            }}
           />
-          <div className="relative my-4 flex items-center justify-center">
-            <IoSwapVertical size={24} className="text-primary" />
+          <div
+            className="relative my-3 flex items-center justify-center"
+            onClick={() => {
+              setSelectedToken((prev) => {
+                return { toTokens: prev.fromTokens, fromTokens: prev.toTokens };
+              });
+            }}
+          >
+            <div className="bg-card p-2 rounded-lg">
+              <IoSwapVertical size={24} className="text-primary" />
+            </div>
           </div>
 
           <ChangeSection
             title={'You receive'}
             balance={`4000 ${selectedToken.toTokens.symbol}`}
             token={selectedToken.toTokens}
+            isReadOnly
             onTokenClick={() => {
               setShowTokens(true);
               setLastClicked('RECEIVE');
+            }}
+            value={exchangeValue.toToken.toString()}
+            onChange={function (val: string): void {
+              setExchangeValue((prev) => {
+                return {
+                  ...prev,
+                  toToken: parseInt(val),
+                };
+              });
             }}
           />
         </div>
@@ -62,7 +96,10 @@ export default function SwapPage() {
               key={i}
               title={val.name}
               subtitle={val.id}
-              imgComp={<TokenIcon token={val} size="s" />}
+              hideArrow
+              color={val.color}
+              trailingText={'$90.2'}
+              imgComp={<TokenIcon token={val} size="s" className="mr-3" />}
               onClick={() => {
                 if (lastClicked === 'SEND') {
                   setSelectedToken((prev) => {
@@ -83,34 +120,6 @@ export default function SwapPage() {
   );
 }
 
-function ChangeSection(props: { title: string; balance: string; token: Token; onTokenClick: VoidFunction }) {
-  return (
-    <div className="bg-card w-full mb-2 flex flex-col items-center justify-between rounded-lg px-3 py-4">
-      <div>
-        <TextP>{props.title}</TextP>
-        <TextP className="text-muted text-[10px]">Bal: {props.balance} </TextP>
-      </div>
-
-      <div className="w-full flex items-center justify-between flex-col">
-        <input
-          type="number"
-          placeholder="0.00"
-          className={`outline-none w-full
-                border-none bg-transparent
-                px-2 py-2 text-2xl tracking-wide`}
-          pattern={'[0-9]*'}
-          inputMode="numeric"
-        />
-
-        <div className="bg-primary p2" onClick={props.onTokenClick}>
-          <TokenIcon token={props.token} size="s" />
-        </div>
-      </div>
-
-      <div className="flex justify-between items-center">
-        <TextP className="text-primary text-[10px]"> ~ $9000 Equi</TextP>
-        <TextP className="text-primary text-[10px] font-bold">MAX</TextP>
-      </div>
-    </div>
-  );
+function formatToCurrency(num: number) {
+  return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }

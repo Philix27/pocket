@@ -11,6 +11,7 @@ export type IRow = {
   imgPath?: string;
   imgComp?: JSX.Element;
   color?: string;
+  trailingText?: string;
   onClick?: VoidFunction;
   hideArrow?: boolean;
   isLast?: boolean;
@@ -19,11 +20,7 @@ export function Row(props: IRow) {
   const { Icon } = props;
   return (
     <div
-      className={cn(
-        'flex justify-between items-center py-2',
-        props.isLast || 'border-b border-muted',
-        props.color
-      )}
+      className={cn('flex justify-between items-center py-2', props.isLast || 'border-b border-background', props.color)}
       onClick={props.onClick}
     >
       <div className="flex items-center justify-center">
@@ -38,6 +35,7 @@ export function Row(props: IRow) {
           <TextP className="text-muted">{props.subtitle}</TextP>
         </div>
       </div>
+      {props.trailingText && <TextP className="text-muted">{props.trailingText}</TextP>}
       {!props.hideArrow && <LuChevronRight size={20} />}
     </div>
   );

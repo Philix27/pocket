@@ -57,7 +57,7 @@ export default function QuickActions() {
           return (
             <div
               key={i}
-              className="p-4 flex flex-col items-center justify-center bg-accent rounded-md"
+              className="p-4 flex flex-col items-center justify-center bg-accent rounded-md cursor-pointer"
               onClick={() => router.push(val.link)}
             >
               <Icon size={24} className="text-foreground mb-2" />

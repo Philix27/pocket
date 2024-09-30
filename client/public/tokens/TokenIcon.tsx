@@ -13,14 +13,15 @@ import cKESIcon from './cKES.svg';
 import cREALIcon from './cREAL.svg';
 import cUSDIcon from './cUSD.svg';
 import eXOFIcon from './eXOF.svg';
-import { Token, TokenId } from '@/lib';
+import { cn, Token, TokenId } from '@/lib';
 
 interface Props {
   token?: Token | null;
   size?: 'xs' | 's' | 'm' | 'l';
+  className?:string
 }
 
-function _TokenIcon({ token, size = 'm' }: Props) {
+function _TokenIcon({ token, size = 'm', className }: Props) {
   const { actualSize, fontSize } = sizeValues[size];
 
   if (!token) {
@@ -56,13 +57,14 @@ function _TokenIcon({ token, size = 'm' }: Props) {
         width={actualSize}
         height={actualSize}
         priority={true}
+        className={className}
       />
     );
   }
 
   return (
     <div
-      className="flex items-center justify-center rounded-full"
+      className={cn('flex items-center justify-center rounded-full', className)}
       style={{
         width: actualSize,
         height: actualSize,

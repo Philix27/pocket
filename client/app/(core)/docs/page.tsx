@@ -15,6 +15,7 @@ export default function HelpDocPage() {
           title={'Faq'}
           subtitle={'Frequently asked questions'}
           Icon={IoHelp}
+          hideArrow
           onClick={() => {
             router.push('/docs/FAQ');
           }}
@@ -23,6 +24,7 @@ export default function HelpDocPage() {
           title={'About us'}
           subtitle={'Mobarter, an easy to use offramping service'}
           Icon={BiGroup}
+          hideArrow
           onClick={() => {
             router.push('/docs/ABOUT');
           }}
@@ -31,6 +33,7 @@ export default function HelpDocPage() {
           title={'Privacy Policy'}
           subtitle={'Learn how we manage your data'}
           Icon={BiLock}
+          hideArrow
           onClick={() => {
             router.push('/docs/PP');
           }}
@@ -39,6 +42,7 @@ export default function HelpDocPage() {
           title={'Terms of Service'}
           subtitle={'Compliance'}
           Icon={BiReceipt}
+          hideArrow
           onClick={() => {
             router.push('/docs/TOS');
           }}

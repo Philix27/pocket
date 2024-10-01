@@ -8,11 +8,12 @@ import { DisableZoom } from './DissableZoom';
 export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: boolean }) {
   const router = useRouter();
   const { isConnected } = use3Wagmi();
+  
   const store = AppStores.useSettingsStore();
-
-  if (!isConnected) {
-    router.push('/');
-  }
+  // todo: protector
+  // if (!isConnected) {
+  //   router.push('/');
+  // }
 
   useEffect(() => {
     document.addEventListener('gesturestart', function (e) {

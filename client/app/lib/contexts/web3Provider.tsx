@@ -17,6 +17,7 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { httpBatchLink, loggerLink } from '@trpc/client';
 import superjson from 'superjson';
 import { trpc } from '../app';
+import { WalletProvider } from './WalletContext';
 // import { Alfajores, Baklava, Celo } from '@celo/rainbowkit-celo/chains'
 
 export const fhenixConfig = defineChain({
@@ -77,7 +78,9 @@ export function Web3Providers(props: { children: ReactNode }) {
       <WagmiProvider config={configX}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider>
-            <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
+            <WalletProvider>
+              <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
+            </WalletProvider>
           </RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>

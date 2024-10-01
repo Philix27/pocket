@@ -1,6 +1,7 @@
 'use client';
 import { createContext, useMemo } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { useContext } from 'react';
 
 type WalletContextValue = {
   address: `0x${string}` | undefined;
@@ -39,3 +40,8 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({ children }) 
 
   return <WalletContext.Provider value={value}>{children}</WalletContext.Provider>;
 };
+
+
+
+
+export const useWallet = () => useContext(WalletContext);

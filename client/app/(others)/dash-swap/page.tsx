@@ -1,22 +1,25 @@
 'use client';
-import { AppButton, BottomSheet, Navbar, Row, TextP } from '@/comps';
-import { Token, TokenList, Tokens } from '@/lib';
-import React, { useState } from 'react';
+import { AppButton, BottomSheet, Navbar, Row } from '@/comps';
+import { Token, TokenFn, TokenList } from '@/lib';
+import React, { useEffect } from 'react';
 import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
 import { ChangeSection } from './ValueSection';
+import { useAccount, useBalance } from 'wagmi';
+import { useSwap } from './useAcctBalance';
 
 export default function SwapPage() {
-  const [showTokens, setShowTokens] = useState<boolean>(false);
-  const [lastClicked, setLastClicked] = useState<'SEND' | 'RECEIVE'>('SEND');
-  const [selectedToken, setSelectedToken] = useState<{ fromTokens: Token; toTokens: Token }>({
-    fromTokens: Tokens.CELO,
-    toTokens: Tokens.cUSD,
-  });
-  const [exchangeValue, setExchangeValue] = useState<{ fromToken: number; toToken: number }>({
-    fromToken: 0.0,
-    toToken: 0.0,
-  });
+  const { selectedToken, update, exchangeValue, ...store } = useSwap();
+  const { address, chainId } = useAccount();
+
+  useEffect(() => {
+    if (store.address === null || store.chainId === null) {
+      update({
+        address,
+        chainId,
+      });
+    }
+  }, []);
 
   return (
     <div>
@@ -32,27 +35,28 @@ export default function SwapPage() {
           <ChangeSection
             title={'You send'}
             balance={`4000 ${selectedToken.fromTokens.symbol}`}
-            token={selectedToken.fromTokens}
+            token={selectedToken.fromTokens!}
             onTokenClick={() => {
-              setShowTokens(true);
-              setLastClicked('SEND');
+              update({
+                showTokens: true,
+                lastClicked: 'SEND',
+              });
             }}
             value={exchangeValue.fromToken.toString()}
-            // value={formatToCurrency(exchangeValue.fromToken)}
             onChange={function (val: string): void {
-              setExchangeValue((prev) => {
-                return {
-                  ...prev,
+              update({
+                exchangeValue: {
+                  ...exchangeValue,
                   fromToken: parseInt(val),
-                };
+                },
               });
             }}
           />
           <div
             className="relative my-3 flex items-center justify-center"
             onClick={() => {
-              setSelectedToken((prev) => {
-                return { toTokens: prev.fromTokens, fromTokens: prev.toTokens };
+              update({
+                selectedToken: { toTokens: selectedToken.fromTokens, fromTokens: selectedToken.toTokens },
               });
             }}
           >
@@ -67,16 +71,18 @@ export default function SwapPage() {
             token={selectedToken.toTokens}
             isReadOnly
             onTokenClick={() => {
-              setShowTokens(true);
-              setLastClicked('RECEIVE');
+              update({
+                showTokens: true,
+                lastClicked: 'RECEIVE',
+              });
             }}
             value={exchangeValue.toToken.toString()}
             onChange={function (val: string): void {
-              setExchangeValue((prev) => {
-                return {
-                  ...prev,
-                  toToken: parseInt(val),
-                };
+              update({
+                exchangeValue: {
+                  ...exchangeValue,
+                  toToken: exchangeValue.toToken! * 2,
+                },
               });
             }}
           />
@@ -84,39 +90,58 @@ export default function SwapPage() {
         <AppButton className="w-[75%]">Swap</AppButton>
       </div>
 
-      <BottomSheet
-        show={showTokens}
-        onClose={() => {
-          setShowTokens(false);
-        }}
-      >
-        <div className="w-full">
-          {TokenList.map((val, i) => (
-            <Row
-              key={i}
-              title={val.name}
-              subtitle={val.id}
-              hideArrow
-              color={val.color}
-              trailingText={'$90.2'}
-              imgComp={<TokenIcon token={val} size="s" className="mr-3" />}
-              onClick={() => {
-                if (lastClicked === 'SEND') {
-                  setSelectedToken((prev) => {
-                    return { ...prev, fromTokens: val };
-                  });
-                } else {
-                  setSelectedToken((prev) => {
-                    return { ...prev, toTokens: val };
-                  });
-                }
-                setShowTokens(false);
-              }}
-            />
-          ))}
-        </div>
-      </BottomSheet>
+      <BottomCurrencies />
     </div>
   );
 }
 
+function BottomCurrencies() {
+  const { update, showTokens } = useSwap();
+  return (
+    <BottomSheet
+      show={showTokens}
+      onClose={() => {
+        update({ showTokens: false });
+      }}
+    >
+      <div className="w-full">
+        {TokenList.map((val, i) => (
+          <CurrencyRow key={i} val={val} />
+        ))}
+      </div>
+    </BottomSheet>
+  );
+}
+
+function CurrencyRow(props: { val: Token }): React.JSX.Element {
+  const { update, lastClicked, address,selectedToken, chainId } = useSwap();
+
+  // const { isLoading, error, data } = useBalance({
+  //   address: address as `0x${string}`,
+  //   token: TokenFn.getTokenAddress(props.val.id, chainId!) as `0x${string}`,
+  // });
+  return (
+    <Row
+      title={props.val.name}
+      subtitle={props.val.id}
+      hideArrow
+      color={props.val.color}
+      trailingText={'...'}
+      // trailingText={isLoading ? '...' : Number(data?.value).toString()}
+      imgComp={<TokenIcon token={props.val} size="s" className="mr-3" />}
+      onClick={() => {
+        if (lastClicked === 'SEND') {
+          update({
+            selectedToken: {...selectedToken, fromTokens: props.val },
+            showTokens: false,
+          });
+        } else {
+          update({
+            selectedToken: { ...selectedToken, toTokens: props.val },
+            showTokens: false,
+          });
+        }
+      }}
+    />
+  );
+}

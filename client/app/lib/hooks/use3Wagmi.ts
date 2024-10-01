@@ -1,23 +1,22 @@
 'use client';
 import { useAppRouter, AppStores, web3AuthInstance } from '@/lib';
+import { useCallback, useMemo } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 
 export const use3Wagmi = () => {
   const store = AppStores.useChat();
   const router = useAppRouter();
   const { address, connector, isConnected } = useAccount();
-  const { connect, connectors, error: connectionErr } = useConnect();
+  const { connect, connectors, error: connectionErr, isLoading } = useConnect();
   const { disconnect } = useDisconnect();
-  const web3auth = web3AuthInstance;
 
-  const login = async () => {
+  const login = useCallback(() => {
     const activeCon = connectors.filter((con) => con.name.toUpperCase() === 'WEB3AUTH')[0];
 
     connect({
       connector: activeCon,
     });
-    console.log('activeCon', activeCon);
-  };
+  }, []);
 
   const logout = async () => {
     disconnect();
@@ -25,14 +24,20 @@ export const use3Wagmi = () => {
     router.push('/');
   };
 
+  const value = useMemo(
+    () => ({
+      address,
+      isConnected,
+      isLoading,
+    }),
+    [address, isConnected, isLoading, isConnected]
+  );
+
   return {
-    address,
     logout,
     connector,
-    connectors,
-    connect,
     connectionErr,
-    isConnected,
     login,
+    ...value,
   };
 };

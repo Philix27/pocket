@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { JumbutronSection, HeroWithImg } from '../_comps';
-import { useAppRouter } from '@/lib';
 import { AppButton } from '@/comps';
-import { use3Wagmi } from '@/lib';
+import { use3Wagmi, useWallet, useAppRouter } from '@/lib';
 
 export function HomeSection() {
   const router = useAppRouter();
-  const { isConnected, login } = use3Wagmi();
+  const { login } = use3Wagmi();
+  const { isConnected } = useWallet();
 
   const handleClick = () => {
     if (isConnected) {
@@ -17,10 +17,6 @@ export function HomeSection() {
       login();
     }
   };
-
-  useEffect(() => {
-    //  router.push('/dashboard');
-  }, []);
 
   return (
     <div className={'flex flex-col items-center justify-center'} style={{ overscrollBehavior: 'none' }}>

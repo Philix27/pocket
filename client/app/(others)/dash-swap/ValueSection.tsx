@@ -15,7 +15,7 @@ export function ChangeSection(props: {
 }) {
   return (
     <div className="bg-card w-full mb-1 flex flex-col items-center justify-between rounded-lg px-3 py-4">
-      <div>
+      <div className='flex items-center justify-between w-full'>
         <TextP>{props.title}</TextP>
         <TextP className="text-muted text-[10px]">Bal: {props.balance} </TextP>
       </div>

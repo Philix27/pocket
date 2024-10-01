@@ -14,7 +14,6 @@ const APP_DESCRIPTION = 'Easy swap and p2p exchange';
 export const metadata: Metadata = {
   applicationName: APP_NAME,
   icons: '/logo.png',
-  themeColor: '#151718',
   title: {
     default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,

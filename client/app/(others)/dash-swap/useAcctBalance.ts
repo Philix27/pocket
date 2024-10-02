@@ -7,7 +7,7 @@ export interface ISlice {
   lastClicked?: 'SEND' | 'RECEIVE';
   showTokens?: boolean;
   address?: string | null;
-  chainId?: number | null;
+  chainId?: number;
   selectedToken?: {
     fromTokens: Token;
     toTokens: Token;
@@ -35,7 +35,7 @@ export const defaultValues: Required<ISlice> = {
     toToken: 0,
   },
   address: null,
-  chainId: null,
+  chainId: 42220,
 };
 
 export const useSwap = create(

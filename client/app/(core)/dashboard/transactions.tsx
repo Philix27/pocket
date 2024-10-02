@@ -9,6 +9,10 @@ import { FaPoundSign } from 'react-icons/fa';
 import { parseEther } from 'viem';
 import { dateFromBigint } from '@/(others)/savings/_comps/withdraw/fn';
 
+function generateArray(length: number) {
+  return Array.from({ length }, (_, index) => index);
+}
+
 export default function TransactionHistory() {
   const { address } = useAccount();
 
@@ -22,7 +26,15 @@ export default function TransactionHistory() {
   });
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className="flex flex-col w-full space-y-1 mt-2">
+        {generateArray(10).map((val, i) => (
+          <div className="flex h-[50px] gap-x-2" key={i}>
+            <Spinner skeleton skeletonStyle={'h-full w-full '} />
+          </div>
+        ))}
+      </div>
+    );
   }
   if (isError) {
     return <div> An error</div>;

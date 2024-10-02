@@ -1,6 +1,6 @@
 'use client';
 import { AppButton, BottomSheet, Navbar, Row } from '@/comps';
-import { Token, TokenFn, TokenList, Tokens } from '@/lib';
+import { Token, TokenAddresses, TokenFn, TokenList, Tokens } from '@/lib';
 import React, { useEffect } from 'react';
 import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
@@ -12,14 +12,14 @@ export default function SwapPage() {
   const { selectedToken, update, exchangeValue, ...store } = useSwap();
   const { address, chainId } = useAccount();
 
-  useEffect(() => {
-    if (store.address === null || store.chainId === null) {
-      update({
-        address,
-        chainId,
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   // if (store.address === null || store.chainId === null) {
+  //   update({
+  //     address,
+  //     chainId,
+  //   });
+  //   // }
+  // }, []);
 
   return (
     <div>
@@ -34,7 +34,8 @@ export default function SwapPage() {
 
           <ChangeSection
             title={'You send'}
-            balance={`4000 ${selectedToken.fromTokens.symbol || Tokens.CELO}`}
+            balance={`4000 ${Tokens.CELO}`}
+            // balance={`4000 ${selectedToken.fromTokens.symbol ?? Tokens.CELO}`}
             token={selectedToken.fromTokens}
             onTokenClick={() => {
               update({
@@ -114,25 +115,21 @@ function BottomCurrencies() {
 }
 
 function CurrencyRow(props: { val: Token }): React.JSX.Element {
-  const { update, lastClicked, address,selectedToken, chainId } = useSwap();
+  const { update, lastClicked, selectedToken } = useSwap();
 
-  // const { isLoading, error, data } = useBalance({
-  //   address: address as `0x${string}`,
-  //   token: TokenFn.getTokenAddress(props.val.id, chainId!) as `0x${string}`,
-  // });
   return (
     <Row
       title={props.val.name}
       subtitle={props.val.id}
       hideArrow
       color={props.val.color}
-      trailingText={'...'}
-      // trailingText={isLoading ? '...' : Number(data?.value).toString()}
+      // trailingText={'...'}
+      // trailingText={isLoading ? '...' : data?.value.toString()}
       imgComp={<TokenIcon token={props.val} size="s" className="mr-3" />}
       onClick={() => {
         if (lastClicked === 'SEND') {
           update({
-            selectedToken: {...selectedToken, fromTokens: props.val },
+            selectedToken: { ...selectedToken, fromTokens: props.val },
             showTokens: false,
           });
         } else {

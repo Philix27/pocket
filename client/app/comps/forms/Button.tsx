@@ -50,7 +50,7 @@ const AppButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : 'button';
     return (
       <Comp disabled={isLoading} className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
-        {isLoading ? <Spinner isBtn size={40} /> : children}
+        {isLoading ? <Spinner color="#fff" size={40} /> : children}
       </Comp>
     );
   }

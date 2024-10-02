@@ -8,9 +8,10 @@ export function ConfirmTransaction() {
   return (
     <div className="w-full flex flex-col items-center justify-center">
       <TextP>Confirm your transaction details</TextP>
-      <div className="flex items-center justify-between px-5">
+      <div className="flex items-center justify-evenly px-5 w-full space-x-2 my-4">
         <AppButton
           className="w-fit"
+          variant={"outline"}
           onClick={() => {
             store.update({ currentStep: '2ACCOUNT' });
           }}

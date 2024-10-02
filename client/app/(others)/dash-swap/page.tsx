@@ -1,6 +1,6 @@
 'use client';
-import { AppButton, BottomSheet, Navbar, Row } from '@/comps';
-import { Token, TokenList, Tokens } from '@/lib';
+import { AppButton, BottomSheet, Navbar } from '@/comps';
+import { TokenList, Tokens } from '@/lib';
 import React from 'react';
 import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { ChangeSection } from './ValueSection';

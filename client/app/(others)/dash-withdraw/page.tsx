@@ -31,7 +31,7 @@ export default function SendMoneyPage() {
         ]}
       />
       <div className="px-5 w-full">
-        <div className="py-4 space-y-4 flex flex-col w-full items-center">
+        <div className="py-4 px-2 space-y-4 flex flex-col w-full items-center">
           {store.currentStep === '1LIST' && <CoinList />}
           {store.currentStep === '2ACCOUNT' && <BankAccountAmount />}
           {store.currentStep === '3CONFIRM' && <ConfirmTransaction />}

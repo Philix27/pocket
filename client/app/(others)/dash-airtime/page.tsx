@@ -1,5 +1,5 @@
 'use client';
-import { AppButton, AppTextInput, BottomSheet, Navbar, Row, TextP } from '@/comps';
+import { AppButton, AppTextInput, BottomSheet, Navbar, Radial, Row, TextP } from '@/comps';
 import React, { useState } from 'react';
 import { AirtimeData } from './data';
 import Image from 'next/image';
@@ -115,7 +115,7 @@ export default function AirtimePage() {
           >
             <Row
               title={'MTN'}
-              imgComp={NetworkComps('MTN')}
+              imgComp={<Radial isChecked={getValues().network === 'MTN'} />}
               hideArrow
               onClick={() => {
                 setValue('network', 'MTN');
@@ -123,7 +123,7 @@ export default function AirtimePage() {
             />
             <Row
               title={'Airtel'}
-              imgComp={NetworkComps('AIRTEL')}
+              imgComp={<Radial isChecked={getValues().network === 'AIRTEL'} />}
               hideArrow
               onClick={() => {
                 setValue('network', 'AIRTEL');
@@ -131,7 +131,7 @@ export default function AirtimePage() {
             />
             <Row
               title={'Glo'}
-              imgComp={NetworkComps('GLO')}
+              imgComp={<Radial isChecked={getValues().network === 'GLO'} />}
               hideArrow
               onClick={() => {
                 setValue('network', 'GLO');

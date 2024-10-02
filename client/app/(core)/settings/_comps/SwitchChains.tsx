@@ -1,5 +1,5 @@
 'use client';
-import { TextP, BottomSheet, AppRadio, Row } from '@/comps';
+import { BottomSheet, Row, Radial } from '@/comps';
 import { useChainId, useSwitchChain } from 'wagmi';
 import { useState } from 'react';
 import { LuNetwork } from 'react-icons/lu';
@@ -28,20 +28,19 @@ export function SwitchChain() {
         }}
       >
         <div className="w-full">
-          <div>
-            {chains.map((chain) => (
-              <div
-                key={chain.id}
-                onClick={() => switchChain({ chainId: chain.id })}
-                className="flex items-center gap-x-4 py-2 mb-1 bg-opacity/10"
-              >
-                <AppRadio isSelected={chainId === chain.id} />
-                <TextP> {chain.name}</TextP>
-              </div>
-            ))}
+          {chains.map((chain) => (
+            <Row
+              key={chain.id}
+              title={chain.name}
+              imgComp={<Radial isChecked={chainId === chain.id} />}
+              hideArrow
+              onClick={() => {
+                switchChain({ chainId: chain.id });
+              }}
+            />
+          ))}
 
-            {error?.message}
-          </div>
+          {error?.message}
         </div>
       </BottomSheet>
     </>

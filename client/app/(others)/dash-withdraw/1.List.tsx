@@ -19,7 +19,7 @@ export function CoinList() {
           store.update({ currentStep: '2ACCOUNT' });
         }}
       >
-        Send
+        Continue
       </AppButton>
     </div>
   );

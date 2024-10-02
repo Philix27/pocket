@@ -13,7 +13,7 @@ import { useAirtime } from './useAirtime';
 const zSchema = z.object({
   network: z.string().max(10),
   amount: z.number(),
-  phone: z.string().min(11, { message: 'mut be 11 digits' }).max(11, { message: 'mut be 11 digits' }),
+  phone: z.string().min(11, { message: 'mut be 11 digits' }).max(11, { message: 'must be 11 digits' }),
 });
 
 export type FormData = z.infer<typeof zSchema>;

@@ -30,7 +30,7 @@ export function BankAccountAmount() {
           store.update({ currentStep: '1LIST' });
         }}
       >
-        Send
+        Continue
       </AppButton>
     </div>
   );

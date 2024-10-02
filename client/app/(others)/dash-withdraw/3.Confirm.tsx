@@ -14,7 +14,7 @@ export function ConfirmTransaction() {
           store.update({ currentStep: '3CONFIRM' });
         }}
       >
-        Send
+        Confirm
       </AppButton>
     </div>
   );

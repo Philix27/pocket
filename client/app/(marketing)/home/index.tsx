@@ -3,12 +3,11 @@
 import React from 'react';
 import { JumbutronSection, HeroWithImg } from '../_comps';
 import { AppButton } from '@/comps';
-import { use3Wagmi, useWallet, useAppRouter } from '@/lib';
+import { useWallet, useAppRouter } from '@/lib';
 
 export function HomeSection() {
   const router = useAppRouter();
-  const { login } = use3Wagmi();
-  const { isConnected } = useWallet();
+  const { login, isConnected } = useWallet();
 
   const handleClick = () => {
     if (isConnected) {

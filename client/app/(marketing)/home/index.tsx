@@ -7,7 +7,7 @@ import { useWallet, useAppRouter } from '@/lib';
 
 export function HomeSection() {
   const router = useAppRouter();
-  const { login, isConnected } = useWallet();
+  const { login, isConnected, isLoading } = useWallet();
 
   const handleClick = () => {
     if (isConnected) {
@@ -27,7 +27,7 @@ export function HomeSection() {
       />
 
       <div className="my-5 flex flex-col items-center justify-center">
-        <AppButton className="w-fit" onClick={handleClick}>
+        <AppButton className="w-fit" onClick={handleClick} isLoading={isLoading}>
           {isConnected ? 'Get Started' : 'Login'}
         </AppButton>
       </div>

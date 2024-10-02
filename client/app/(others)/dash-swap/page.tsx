@@ -1,6 +1,6 @@
 'use client';
 import { AppButton, BottomSheet, Navbar, Row } from '@/comps';
-import { Token, TokenFn, TokenList } from '@/lib';
+import { Token, TokenFn, TokenList, Tokens } from '@/lib';
 import React, { useEffect } from 'react';
 import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
@@ -34,8 +34,8 @@ export default function SwapPage() {
 
           <ChangeSection
             title={'You send'}
-            balance={`4000 ${selectedToken.fromTokens.symbol}`}
-            token={selectedToken.fromTokens!}
+            balance={`4000 ${selectedToken.fromTokens.symbol || Tokens.CELO}`}
+            token={selectedToken.fromTokens}
             onTokenClick={() => {
               update({
                 showTokens: true,

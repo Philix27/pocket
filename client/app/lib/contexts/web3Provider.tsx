@@ -77,11 +77,11 @@ export function Web3Providers(props: { children: ReactNode }) {
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <WagmiProvider config={configX}>
         <QueryClientProvider client={queryClient}>
-          <RainbowKitProvider>
-            <WalletProvider>
+          <WalletProvider>
+            <RainbowKitProvider>
               <XMTPProvider contentTypeConfigs={contentTypeConfigs}>{props.children}</XMTPProvider>
-            </WalletProvider>
-          </RainbowKitProvider>
+            </RainbowKitProvider>
+          </WalletProvider>
         </QueryClientProvider>
       </WagmiProvider>
     </trpc.Provider>

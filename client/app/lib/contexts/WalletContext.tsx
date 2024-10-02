@@ -3,7 +3,6 @@ import { createContext, useCallback, useMemo } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { useContext } from 'react';
 import { useAppRouter } from '../hooks';
-import { AppStores } from '../zustand';
 
 type WalletContextValue = {
   address: `0x${string}` | undefined;
@@ -11,7 +10,7 @@ type WalletContextValue = {
   connectionErr: Error | null;
   isConnected: boolean;
   isLoading: boolean;
-  logout: () => Promise<void>;
+  logout: (fn?: VoidFunction) => void;
   login: () => void;
 };
 
@@ -21,35 +20,33 @@ export const WalletContext = createContext<WalletContextValue>({
   connectionErr: null,
   isConnected: false,
   isLoading: false,
-  logout: async () => {},
+  logout: () => {},
   login: () => {},
 });
 
 export const WalletProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { address, isConnected, isConnecting, isReconnecting, connector } = useAccount();
+  const { address, isConnected, isConnecting, isReconnecting } = useAccount();
   const { connect, connectors, error: connectionErr, isLoading: loadingConnect } = useConnect();
   const { disconnect } = useDisconnect();
 
   const isLoading = isConnecting || isReconnecting || loadingConnect;
-  // ! From
-  const store = AppStores.useChat();
+
   const router = useAppRouter();
 
-  const login = useCallback(() => {
+  const login = () => {
     const activeCon = connectors.filter((con) => con.name.toUpperCase() === 'WEB3AUTH')[0];
 
     connect({
       connector: activeCon,
     });
-  }, []);
-
-  const logout = async () => {
-    disconnect();
-    store.clear();
-    router.push('/');
   };
 
-  // ! End
+  const logout = (fn?: VoidFunction) => {
+    fn && fn();
+    disconnect();
+    router.push('/');
+    // store.clear();
+  };
 
   // memo-ize the context value to prevent unnecessary re-renders
   const value = useMemo(
@@ -66,7 +63,6 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({ children }) 
   const outValues = {
     logout,
     login,
-    connector,
     ...value,
   };
   return <WalletContext.Provider value={outValues}>{children}</WalletContext.Provider>;

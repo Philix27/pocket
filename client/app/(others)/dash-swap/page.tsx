@@ -49,7 +49,7 @@ export default function SwapPage() {
             onChange={function (val: string): void {
               update({
                 exchangeValue: {
-                  ...exchangeValue,
+                  toToken: exchangeValue.toToken * 1.56,
                   fromToken: parseInt(val),
                 },
               });
@@ -82,14 +82,7 @@ export default function SwapPage() {
               });
             }}
             value={exchangeValue.toToken.toString()}
-            onChange={function (val: string): void {
-              update({
-                exchangeValue: {
-                  ...exchangeValue,
-                  toToken: exchangeValue.toToken! * 2,
-                },
-              });
-            }}
+            onChange={function (val: string): void {}}
             address={address!}
             chainId={chainId!}
           />

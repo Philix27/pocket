@@ -1,25 +1,27 @@
 'use client';
 import { AppButton, BottomSheet, Navbar, Row } from '@/comps';
-import { Token, TokenAddresses, TokenFn, TokenList, Tokens } from '@/lib';
+import { Token, TokenList, Tokens } from '@/lib';
 import React, { useEffect } from 'react';
 import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
 import { ChangeSection } from './ValueSection';
-import { useAccount, useBalance } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { useSwap } from './useAcctBalance';
 
 export default function SwapPage() {
   const { selectedToken, update, exchangeValue, ...store } = useSwap();
   const { address, chainId } = useAccount();
 
-  // useEffect(() => {
-  //   // if (store.address === null || store.chainId === null) {
-  //   update({
-  //     address,
-  //     chainId,
-  //   });
-  //   // }
-  // }, []);
+  useEffect(() => {
+    if (store.address === null || store.chainId === null) {
+      if (address && chainId) {
+        update({
+          address,
+          chainId,
+        });
+      }
+    }
+  }, []);
 
   return (
     <div>
@@ -52,6 +54,8 @@ export default function SwapPage() {
                 },
               });
             }}
+            address={store.address!}
+            chainId={store.chainId!}
           />
           <div
             className="relative my-3 flex items-center justify-center"
@@ -86,6 +90,8 @@ export default function SwapPage() {
                 },
               });
             }}
+            address={address!}
+            chainId={chainId!}
           />
         </div>
         <AppButton className="w-[75%]">Swap</AppButton>

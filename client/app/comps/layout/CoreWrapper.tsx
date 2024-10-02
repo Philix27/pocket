@@ -1,19 +1,19 @@
 'use client';
 import { BottomNav, Drawer } from '@/comps';
-import { AppStores, use3Wagmi } from '@/lib';
+import { AppStores, use3Wagmi , useWallet} from '@/lib';
 import { useRouter } from 'next/navigation';
 import React, { ReactNode, useEffect } from 'react';
 import { DisableZoom } from './DissableZoom';
 
 export function CoreLayoutWrapper(props: { children: ReactNode; hideBottomNav?: boolean }) {
   const router = useRouter();
-  const { isConnected } = use3Wagmi();
-  
+  const { isConnected } = useWallet();
+
   const store = AppStores.useSettingsStore();
   // todo: protector
-  // if (!isConnected) {
-  //   router.push('/');
-  // }
+  if (!isConnected) {
+    router.push('/');
+  }
 
   useEffect(() => {
     document.addEventListener('gesturestart', function (e) {

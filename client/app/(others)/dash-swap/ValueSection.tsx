@@ -10,17 +10,19 @@ export function ChangeSection(props: {
   isReadOnly?: boolean;
   title: string;
   balance: string;
+  address: string;
+  chainId: number;
   value: string;
   onChange: (val: string) => void;
   token: Token;
   onTokenClick: VoidFunction;
 }) {
-  const { address, chainId } = useAccount();
-  const chainValue = chainId as ChainId;
+  // const { address, chainId } = useAccount();
+  const chainValue = props.chainId as ChainId;
   const { isLoading, error, data } = useBalance({
-    address: address,
-    // token: TokenFn.getTokenAddress(props.val.id, chainId!) as `0x${string}`,
+    address: props.address as `0x${string}`,
     token: TokenAddresses[chainValue][props.token.id] as `0x${string}`,
+    // token: TokenFn.getTokenAddress(props.val.id, chainId!) as `0x${string}`,
     // token: TokenAddresses[42220].USDC as `0x${string}`,
     // token: '0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1',
   });

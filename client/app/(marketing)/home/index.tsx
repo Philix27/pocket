@@ -4,10 +4,22 @@ import React from 'react';
 import { JumbutronSection, HeroWithImg } from '../_comps';
 import { AppButton } from '@/comps';
 import { useWallet, useAppRouter } from '@/lib';
+import { useAccount, useConnect } from 'wagmi';
 
 export function HomeSection() {
   const router = useAppRouter();
-  const { login, isConnected, isLoading } = useWallet();
+  // const { isConnected, isLoading } = useWallet();
+  const { isConnected, isConnecting, isReconnecting } = useAccount();
+  const { connect, connectors, isLoading: loadingConnect } = useConnect();
+  const isLoading = isConnecting || isReconnecting || loadingConnect;
+
+  const login = () => {
+    const activeCon = connectors.filter((con) => con.name.toUpperCase() === 'WEB3AUTH')[0];
+
+    connect({
+      connector: activeCon,
+    });
+  };
 
   const handleClick = () => {
     if (isConnected) {

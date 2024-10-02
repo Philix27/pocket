@@ -29,6 +29,7 @@ export default function SwapPage() {
 
       <div className="px-5 py-2 gap-y-2 w-full flex flex-col items-center space-y-3">
         <div className="w-full">
+          
           <div className="flex items-center justify-between w-full p-4">
             <IoReload size={22} />
             <IoSettings size={22} />
@@ -57,11 +58,15 @@ export default function SwapPage() {
             address={store.address!}
             chainId={store.chainId!}
           />
+
           <div
             className="relative my-3 flex items-center justify-center"
             onClick={() => {
               update({
-                selectedToken: { toTokens: selectedToken.fromTokens, fromTokens: selectedToken.toTokens },
+                selectedToken: {
+                  toTokens: selectedToken.fromTokens,
+                  fromTokens: selectedToken.toTokens,
+                },
               });
             }}
           >
@@ -87,6 +92,7 @@ export default function SwapPage() {
             chainId={chainId!}
           />
         </div>
+
         <AppButton className="w-[75%]">Swap</AppButton>
       </div>
 

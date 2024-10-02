@@ -97,7 +97,7 @@ export default function AirtimePage() {
           </div>
 
           <AppTextInput
-            control={register('amount')}
+            control={register('amount', { valueAsNumber: true })}
             name={'amount'}
             type="number"
             place="Enter amount"

@@ -13,7 +13,7 @@ export const schema = z.object({
     .min(3, { message: 'must contain 3 to 10 words ' })
     .max(10, { message: 'must contain 3 to 10 words ' }),
 
-  sholdLock: z.boolean().refine((val) => val === true, {
+  shouldLock: z.boolean().refine((val) => val === true, {
     message: 'You must lock your funds',
   }),
 

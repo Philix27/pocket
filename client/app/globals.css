@@ -64,11 +64,8 @@
 
     --ring: #353636;
     --border: #353636;
-    --input: #353636;
-    /* --ring: #3a4d5f;
-    --border: #3a4d5f;
-    --input: #3a4d5f; */
-
+    --input: #151718;
+    
     --radius: 0.5rem;
   }
 }

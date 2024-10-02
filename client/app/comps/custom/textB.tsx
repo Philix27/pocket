@@ -14,6 +14,10 @@ const cNames: Record<IVariants, string> = {
   p6: 'text-xs font-light leading-tight text-muted-foreground',
 };
 
-export function TextP(props: { children: ReactNode; v?: IVariants; className?: string }) {
-  return <p className={cn(cNames[props.v || 'p5'], props.className)}>{props.children}</p>;
+export function TextP(props: { children: ReactNode; v?: IVariants; className?: string; onClick?: VoidFunction }) {
+  return (
+    <p className={cn(cNames[props.v || 'p5'], props.className)} onClick={props.onClick}>
+      {props.children}
+    </p>
+  );
 }

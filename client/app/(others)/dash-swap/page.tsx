@@ -1,12 +1,12 @@
 'use client';
 import { AppButton, BottomSheet, Navbar, Row } from '@/comps';
 import { Token, TokenList, Tokens } from '@/lib';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
-import { TokenIcon } from '@/public/tokens/TokenIcon';
 import { ChangeSection } from './ValueSection';
 import { useAccount } from 'wagmi';
 import { useSwap } from './useAcctBalance';
+import { CurrencyRow } from './CurrencyRow';
 
 export default function SwapPage() {
   const { selectedToken, update, exchangeValue, ...store } = useSwap();
@@ -110,34 +110,5 @@ function BottomCurrencies() {
         ))}
       </div>
     </BottomSheet>
-  );
-}
-
-function CurrencyRow(props: { val: Token }): React.JSX.Element {
-  const { update, lastClicked, selectedToken } = useSwap();
-
-  return (
-    <Row
-      title={props.val.name}
-      subtitle={props.val.id}
-      hideArrow
-      color={props.val.color}
-      // trailingText={'...'}
-      // trailingText={isLoading ? '...' : data?.value.toString()}
-      imgComp={<TokenIcon token={props.val} size="s" className="mr-3" />}
-      onClick={() => {
-        if (lastClicked === 'SEND') {
-          update({
-            selectedToken: { ...selectedToken, fromTokens: props.val },
-            showTokens: false,
-          });
-        } else {
-          update({
-            selectedToken: { ...selectedToken, toTokens: props.val },
-            showTokens: false,
-          });
-        }
-      }}
-    />
   );
 }

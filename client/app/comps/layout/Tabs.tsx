@@ -4,7 +4,7 @@ import { TextP } from '@/comps';
 
 export function Tabs(props: {
   className?: string;
-  data: { title: string; isActive: boolean; onClick: VoidFunction; className?: string }[];
+  data: { title: string; isActive: boolean; onClick?: VoidFunction; className?: string }[];
 }) {
   return (
     <div className={cn('w-full', props.className)}>

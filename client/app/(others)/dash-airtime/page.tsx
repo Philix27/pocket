@@ -104,6 +104,7 @@ export default function AirtimePage() {
             label="Amount"
             errorMessage={errors.amount && errors.amount.message}
           />
+          <TextP>Select token</TextP>
           <AppButton className="w-[75%] my-4">Buy</AppButton>
           <BottomSheet
             onClose={() => {

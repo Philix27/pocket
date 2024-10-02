@@ -37,7 +37,7 @@ export function AppTextInput<T extends FieldValues>(props: {
             `flex justify-between 
             items-center border rounded-md 
             w-full px-2 bg-background`,
-            props.errorMessage ? 'border-red-600' : 'border-input'
+            props.errorMessage && 'border-red-600'
           )}
         >
           {props.isPassword && <CiLock className={cn('mx-2', props.errorMessage && 'text-red-600')} />}

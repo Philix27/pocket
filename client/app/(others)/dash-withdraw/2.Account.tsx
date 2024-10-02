@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { AppSelect, AppTextInput, TextH, AppButton } from '@/comps';
 import React from 'react';
 import { useWithdraw } from './useWithraw';
@@ -24,14 +24,24 @@ export function BankAccountAmount() {
       <AppSelect data={options} onChange={(e) => {}} label="Bank account" />
       <TextH>You get 3400</TextH>
 
-      <AppButton
-        className="w-[75%]"
-        onClick={() => {
-          store.update({ currentStep: '1LIST' });
-        }}
-      >
-        Continue
-      </AppButton>
+      <div className="flex items-center justify-between px-5">
+        <AppButton
+          className="w-fit"
+          onClick={() => {
+            store.update({ currentStep: '1LIST' });
+          }}
+        >
+          Back
+        </AppButton>
+        <AppButton
+          className="w-fit"
+          onClick={() => {
+            store.update({ currentStep: '3CONFIRM' });
+          }}
+        >
+          Continue
+        </AppButton>
+      </div>
     </div>
   );
 }

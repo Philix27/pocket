@@ -8,14 +8,24 @@ export function ConfirmTransaction() {
   return (
     <div className="w-full flex flex-col items-center justify-center">
       <TextP>Confirm your transaction details</TextP>
-      <AppButton
-        className="w-[75%]"
-        onClick={() => {
-          store.update({ currentStep: '3CONFIRM' });
-        }}
-      >
-        Confirm
-      </AppButton>
+      <div className="flex items-center justify-between px-5">
+        <AppButton
+          className="w-fit"
+          onClick={() => {
+            store.update({ currentStep: '2ACCOUNT' });
+          }}
+        >
+          Back
+        </AppButton>
+        <AppButton
+          className="w-fit"
+          onClick={() => {
+            store.update({ currentStep: '1LIST' });
+          }}
+        >
+          Confirm
+        </AppButton>
+      </div>
     </div>
   );
 }

@@ -12,16 +12,16 @@ export default function SwapPage() {
   const { selectedToken, update, exchangeValue, ...store } = useSwap();
   const { address, chainId } = useAccount();
 
-  useEffect(() => {
-    if (store.address === null || store.chainId === null) {
-      if (address && chainId) {
-        update({
-          address,
-          chainId,
-        });
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (store.address === null || store.chainId === null) {
+  //     if (address && chainId) {
+  //       update({
+  //         address,
+  //         chainId,
+  //       });
+  //     }
+  //   }
+  // }, []);
 
   return (
     <div>

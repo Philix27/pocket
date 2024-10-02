@@ -29,7 +29,7 @@ export function AppProviders(props: { children: ReactNode }) {
             unstyled: true,
             classNames: {
               toast: 'bg-background border border-[0.1px] px-3 py-4 flex items-center rounded ',
-              title: 'text-muted text-sm ml-3',
+              title: 'text-sm ml-3',
               description: 'text-red-400',
               actionButton: 'bg-zinc-400',
               cancelButton: 'bg-orange-400',

@@ -1,4 +1,5 @@
+import { cn } from '@/lib';
 import { GrRadial, GrRadialSelected } from 'react-icons/gr';
 
-export const Radial = ({ isChecked }: { isChecked: boolean }) =>
-  isChecked ? <GrRadialSelected className="text-primary" /> : <GrRadial />;
+export const Radial = (props: { isChecked: boolean; className?: string }) =>
+  props.isChecked ? <GrRadialSelected className={cn('text-primary', props.className)} /> : <GrRadial />;

@@ -32,7 +32,7 @@ export function Row(props: IRow) {
         {props.imgPath && <img src={props.imgPath} className="size-[50px] rounded-lg" />}
         {props.imgComp && props.imgComp}
 
-        <div>
+        <div className=''>
           <TextH v="h5" className={'text-card-foreground mb-1'}>
             {props.title}
           </TextH>

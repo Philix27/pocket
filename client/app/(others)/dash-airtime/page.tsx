@@ -1,14 +1,14 @@
 'use client';
 import { AppButton, AppTextInput, BottomSheet, Navbar, Radial, Row, TextP } from '@/comps';
-import React, { useState } from 'react';
+import React from 'react';
 import { AirtimeData } from './data';
 import Image from 'next/image';
-import { GrRadial, GrRadialSelected } from 'react-icons/gr';
 import { cn } from '@/lib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { useAirtime } from './useAirtime';
 
 const zSchema = z.object({
   network: z.string().max(10),
@@ -19,7 +19,7 @@ const zSchema = z.object({
 export type FormData = z.infer<typeof zSchema>;
 
 export default function AirtimePage() {
-  const [showNetworks, setNetworks] = useState<boolean>(false);
+  const store = useAirtime();
 
   const {
     register,
@@ -53,19 +53,16 @@ export default function AirtimePage() {
     //   });
   };
 
-  const NetworkComps = (val: string) =>
-    getValues().network === val ? <GrRadialSelected className="text-primary" /> : <GrRadial />;
-
   return (
     <>
       <div>
         <Navbar title="Purchase airtime" isBack />
         <form className="w-full px-5 py-4 flex flex-col items-center justify-center" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex w-full items-center justify-between my-4">
+          <div className="flex w-full items-center justify-between mb-4">
             <TextP
               className="text-primary"
               onClick={() => {
-                setNetworks(true);
+                store.update({ showNetwork: true });
               }}
             >
               Select Network
@@ -87,10 +84,11 @@ export default function AirtimePage() {
                 key={i}
                 className={cn(
                   `px-4 py-2 bg-card rounded-full flex items-center justify-center`,
-                  getValues().amount === val && 'border-primary border'
+                  store.amountSelected === val && 'border-primary border'
                 )}
                 onClick={() => {
                   setValue('amount', val);
+                  store.update({ amountSelected: val });
                 }}
               >
                 <TextP className="text-primary">{`${AirtimeData['Nigeria'].symbol}  ${val.toString()}`}</TextP>
@@ -109,32 +107,35 @@ export default function AirtimePage() {
           <AppButton className="w-[75%] my-4">Buy</AppButton>
           <BottomSheet
             onClose={() => {
-              setNetworks(false);
+              store.update({ showNetwork: false });
             }}
-            show={showNetworks}
+            show={store.showNetwork}
           >
             <Row
               title={'MTN'}
-              imgComp={<Radial isChecked={getValues().network === 'MTN'} />}
+              imgComp={<Radial className="mr-2" isChecked={getValues().network === 'MTN'} />}
               hideArrow
               onClick={() => {
                 setValue('network', 'MTN');
+                store.update({ networkSelected: 'MTN' });
               }}
             />
             <Row
               title={'Airtel'}
-              imgComp={<Radial isChecked={getValues().network === 'AIRTEL'} />}
+              imgComp={<Radial className="mr-2" isChecked={getValues().network === 'AIRTEL'} />}
               hideArrow
               onClick={() => {
                 setValue('network', 'AIRTEL');
+                store.update({ networkSelected: 'AIRTEL' });
               }}
             />
             <Row
               title={'Glo'}
-              imgComp={<Radial isChecked={getValues().network === 'GLO'} />}
+              imgComp={<Radial className="mr-2" isChecked={getValues().network === 'GLO'} />}
               hideArrow
               onClick={() => {
                 setValue('network', 'GLO');
+                store.update({ networkSelected: 'GLO' });
               }}
             />
           </BottomSheet>

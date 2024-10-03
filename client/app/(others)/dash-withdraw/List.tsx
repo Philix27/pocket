@@ -1,9 +1,9 @@
 'use client';
-import { BottomSheet } from '@/comps';
+import { BottomSheet, Row } from '@/comps';
 import React from 'react';
 import { useWithdraw } from './useWithraw';
 import { TokenList } from '@/lib';
-import { CurrencyRow } from '../dash-swap/CurrencyRow';
+import { TokenIcon } from '@/public/tokens/TokenIcon';
 
 export function CoinList() {
   const store = useWithdraw();
@@ -16,7 +16,17 @@ export function CoinList() {
     >
       <div className="w-full">
         {TokenList.map((val, i) => (
-          <CurrencyRow key={i} val={val} />
+          <Row
+            key={i}
+            title={val.name}
+            subtitle={val.id}
+            hideArrow
+            color={val.color}
+            imgComp={<TokenIcon token={val} size="s" className="mr-3" />}
+            onClick={() => {
+              store.update({ selectedToken: val });
+            }}
+          />
         ))}
       </div>
     </BottomSheet>

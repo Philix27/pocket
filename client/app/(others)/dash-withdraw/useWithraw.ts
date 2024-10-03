@@ -5,7 +5,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 export interface ISlice {
   showCurrencies?: boolean;
   selectedToken?: Token;
-  currentStep?: '2ACCOUNT' | '3CONFIRM';
+  showConfirm?: boolean
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -14,7 +14,7 @@ export interface ISliceUpdate extends Required<ISlice> {
 }
 
 export const defaultValues: Required<ISlice> = {
-  currentStep: "2ACCOUNT",
+  showConfirm: false,
   showCurrencies: false,
   selectedToken: Tokens.cUSD,
 };

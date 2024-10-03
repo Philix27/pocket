@@ -125,7 +125,7 @@ export default function AirtimePage() {
             />
             <Row
               title={'Airtel'}
-              imgComp={<Radial className="mr-2" isChecked={getValues().network === 'AIRTEL'} />}
+              imgComp={<Radial className="mr-4" isChecked={getValues().network === 'AIRTEL'} />}
               trailingComp={<img src={getImgPath('AIRTEL')} className="size-[40px] rounded-lg" />}
               hideArrow
               onClick={() => {
@@ -135,7 +135,7 @@ export default function AirtimePage() {
             />
             <Row
               title={'Glo'}
-              imgComp={<Radial className="mr-2" isChecked={getValues().network === 'GLO'} />}
+              imgComp={<Radial className="mr-4" isChecked={getValues().network === 'GLO'} />}
               trailingComp={<img src={getImgPath('GLO')} className="size-[40px] rounded-lg" />}
               hideArrow
               onClick={() => {
@@ -154,5 +154,5 @@ const getImgPath = (name: string) => {
   if (name.trim().toUpperCase() === 'MTN') return '/networks/mtn2.png';
   if (name.trim().toUpperCase() === 'GLO') return '/networks/glo.png';
   if (name.trim().toUpperCase() === 'AIRTEL') return '/networks/airtel.png';
-  return '/networks/mtn.png';
+  return '/networks/mtn2.png';
 };

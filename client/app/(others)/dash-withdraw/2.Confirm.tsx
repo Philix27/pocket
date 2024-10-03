@@ -1,24 +1,23 @@
 'use client';
 import React from 'react';
 import { useWithdraw } from './useWithraw';
-import { AppButton, TextP } from '@/comps';
+import { AppButton, BottomSheet, TextH, TextP } from '@/comps';
 import { toast } from 'sonner';
 
 export function ConfirmTransaction() {
   const store = useWithdraw();
   return (
-    <div className="w-full flex flex-col items-center justify-center">
-      <TextP>Confirm your transaction details</TextP>
-      <div className="flex items-center justify-evenly px-5 w-full space-x-2 my-4">
-        <AppButton
-          className="w-fit"
-          variant={'outline'}
-          onClick={() => {
-            store.update({ currentStep: '2ACCOUNT' });
-          }}
-        >
-          Back
-        </AppButton>
+    <BottomSheet
+      show={store.showConfirm}
+      onClose={() => {
+        store.update({ showConfirm: false });
+      }}
+    >
+      <div className="w-full flex flex-col items-center justify-center">
+        <div className="flex items-center justify-center flex-col">
+          <TextH>Withdraw 50 cUSD</TextH>
+          <TextP>Confirm your transaction details</TextP>
+        </div>
         <AppButton
           className="w-fit"
           onClick={() => {
@@ -28,6 +27,6 @@ export function ConfirmTransaction() {
           Confirm
         </AppButton>
       </div>
-    </div>
+    </BottomSheet>
   );
 }

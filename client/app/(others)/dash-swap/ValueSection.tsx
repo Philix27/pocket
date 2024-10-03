@@ -5,6 +5,7 @@ import React from 'react';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
 import { BiChevronDown } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
+import { TokenSelector } from '../_comps';
 
 export function ChangeSection(props: {
   isReadOnly?: boolean;
@@ -50,14 +51,7 @@ export function ChangeSection(props: {
             props.onChange(e.target.value);
           }}
         />
-
-        <div
-          className="bg-background border px-3 py-[0px] flex rounded-full items-center justify-center"
-          onClick={props.onTokenClick}
-        >
-          <TokenIcon token={props.token} size="s" className="mr-3" />
-          <BiChevronDown size={45} className="m-0" />
-        </div>
+        <TokenSelector onClick={props.onTokenClick} token={props.token} />
       </div>
 
       <div className="flex justify-between items-center w-full">

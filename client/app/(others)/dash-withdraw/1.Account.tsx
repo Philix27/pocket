@@ -21,7 +21,7 @@ export function BankAccountAmount() {
         <AppButton
           className="w-[30%]"
           onClick={() => {
-            store.update({ currentStep: '3CONFIRM' });
+            store.update({ showConfirm: true, showCurrencies: false });
           }}
         >
           Continue

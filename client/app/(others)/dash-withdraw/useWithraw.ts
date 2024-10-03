@@ -1,9 +1,11 @@
-import { Tokens } from '@/lib';
+import { Token, Tokens } from '@/lib';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 export interface ISlice {
-  currentStep?: '1LIST' | '2ACCOUNT' | '3CONFIRM';
+  showCurrencies?: boolean;
+  selectedToken?: Token;
+  currentStep?: '2ACCOUNT' | '3CONFIRM';
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -12,7 +14,9 @@ export interface ISliceUpdate extends Required<ISlice> {
 }
 
 export const defaultValues: Required<ISlice> = {
-  currentStep: '1LIST',
+  currentStep: "2ACCOUNT",
+  showCurrencies: false,
+  selectedToken: Tokens.cUSD,
 };
 
 export const useWithdraw = create(

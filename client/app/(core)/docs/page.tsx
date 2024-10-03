@@ -17,6 +17,7 @@ export default function HelpDocPage() {
           Icon={IoHelp}
           hideArrow
           onClick={() => {
+            // router.push('/docs');
             router.push('/docs/FAQ');
           }}
         />

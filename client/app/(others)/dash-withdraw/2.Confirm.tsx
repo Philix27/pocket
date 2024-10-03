@@ -2,6 +2,7 @@
 import React from 'react';
 import { useWithdraw } from './useWithraw';
 import { AppButton, TextP } from '@/comps';
+import { toast } from 'sonner';
 
 export function ConfirmTransaction() {
   const store = useWithdraw();
@@ -11,7 +12,7 @@ export function ConfirmTransaction() {
       <div className="flex items-center justify-evenly px-5 w-full space-x-2 my-4">
         <AppButton
           className="w-fit"
-          variant={"outline"}
+          variant={'outline'}
           onClick={() => {
             store.update({ currentStep: '2ACCOUNT' });
           }}
@@ -21,7 +22,7 @@ export function ConfirmTransaction() {
         <AppButton
           className="w-fit"
           onClick={() => {
-            store.update({ currentStep: '1LIST' });
+            toast.success('Enter pin and send');
           }}
         >
           Confirm

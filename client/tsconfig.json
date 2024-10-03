@@ -42,6 +42,7 @@
     "z/mod1/(core)/chat/NewConversation.tsx",
     "app/not-found.tsx",
     "app/comps/index.ts",
-    "app/lib/ess/celoWallets.sample"
+    "app/lib/ess/celoWallets.sample",
+    "app/(others)/dash-withdraw/.List.tsx"
   ]
 }

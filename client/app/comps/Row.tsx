@@ -12,6 +12,7 @@ export type IRow = {
   imgComp?: JSX.Element;
   color?: string;
   trailingText?: string;
+  trailingComp?: JSX.Element;
   onClick?: VoidFunction;
   hideArrow?: boolean;
   isLast?: boolean;
@@ -21,7 +22,7 @@ export function Row(props: IRow) {
   return (
     <div
       className={cn(
-        'flex justify-between items-center py-2',
+        'flex justify-between items-center py-2 cursor-pointer',
         props.isLast || 'border-b border-background',
         props.color
       )}
@@ -32,14 +33,18 @@ export function Row(props: IRow) {
         {props.imgPath && <img src={props.imgPath} className="size-[50px] rounded-lg" />}
         {props.imgComp && props.imgComp}
 
-        <div className=''>
+        <div className="">
           <TextH v="h5" className={'text-card-foreground mb-1'}>
             {props.title}
           </TextH>
           {props.subtitle && <TextP className="text-muted">{props.subtitle}</TextP>}
         </div>
       </div>
-      {props.trailingText && <TextP className="text-muted">{props.trailingText}</TextP>}
+      {props.trailingText ? (
+        <TextP className="text-muted">{props.trailingText}</TextP>
+      ) : (
+        props.trailingComp && props.trailingComp
+      )}
       {!props.hideArrow && <LuChevronRight size={20} />}
     </div>
   );

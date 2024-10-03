@@ -67,7 +67,7 @@ export default function AirtimePage() {
             >
               Select Network
             </TextP>
-            <Image src="/xmtp-icon.png" alt="" height={40} width={40} />
+            <Image src={getImgPath(store.networkSelected)!} alt="" height={35} width={35} />
           </div>
           <AppTextInput
             control={register('phone')}
@@ -104,8 +104,9 @@ export default function AirtimePage() {
             label="Amount"
             errorMessage={errors.amount && errors.amount.message}
           />
-          <TextP>Select token</TextP>
+
           <AppButton className="w-[75%] my-4">Buy</AppButton>
+
           <BottomSheet
             onClose={() => {
               store.update({ showNetwork: false });
@@ -114,7 +115,8 @@ export default function AirtimePage() {
           >
             <Row
               title={'MTN'}
-              imgComp={<Radial className="mr-2" isChecked={getValues().network === 'MTN'} />}
+              imgComp={<Radial className="mr-4" isChecked={getValues().network === 'MTN'} />}
+              trailingComp={<img src={getImgPath('MTN')} className="size-[40px] rounded-lg" />}
               hideArrow
               onClick={() => {
                 setValue('network', 'MTN');
@@ -124,6 +126,7 @@ export default function AirtimePage() {
             <Row
               title={'Airtel'}
               imgComp={<Radial className="mr-2" isChecked={getValues().network === 'AIRTEL'} />}
+              trailingComp={<img src={getImgPath('AIRTEL')} className="size-[40px] rounded-lg" />}
               hideArrow
               onClick={() => {
                 setValue('network', 'AIRTEL');
@@ -133,6 +136,7 @@ export default function AirtimePage() {
             <Row
               title={'Glo'}
               imgComp={<Radial className="mr-2" isChecked={getValues().network === 'GLO'} />}
+              trailingComp={<img src={getImgPath('GLO')} className="size-[40px] rounded-lg" />}
               hideArrow
               onClick={() => {
                 setValue('network', 'GLO');
@@ -145,3 +149,10 @@ export default function AirtimePage() {
     </>
   );
 }
+
+const getImgPath = (name: string) => {
+  if (name.trim().toUpperCase() === 'MTN') return '/networks/mtn2.png';
+  if (name.trim().toUpperCase() === 'GLO') return '/networks/glo.png';
+  if (name.trim().toUpperCase() === 'AIRTEL') return '/networks/airtel.png';
+  return '/networks/mtn.png';
+};

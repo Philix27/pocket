@@ -25,16 +25,10 @@ export default function SwapPage() {
 
   return (
     <div>
-      <Navbar title="Swap tokens" isBack />
+      <Navbar title="Swap tokens" isBack icon={IoSettings} />
 
       <div className="px-5 py-2 gap-y-2 w-full flex flex-col items-center space-y-3">
-        <div className="w-full">
-          
-          <div className="flex items-center justify-between w-full p-4">
-            <IoReload size={22} />
-            <IoSettings size={22} />
-          </div>
-
+        <div className="w-full relative">
           <ChangeSection
             title={'You send'}
             balance={`4000 ${Tokens.CELO}`}
@@ -60,7 +54,7 @@ export default function SwapPage() {
           />
 
           <div
-            className="relative my-3 flex items-center justify-center"
+            className="my-1 flex items-center justify-center absolute bottom-[40%] left-[45%]"
             onClick={() => {
               update({
                 selectedToken: {
@@ -70,7 +64,7 @@ export default function SwapPage() {
               });
             }}
           >
-            <div className="bg-card p-2 rounded-lg">
+            <div className="bg-background p-2 rounded-lg">
               <IoSwapVertical size={24} className="text-primary" />
             </div>
           </div>

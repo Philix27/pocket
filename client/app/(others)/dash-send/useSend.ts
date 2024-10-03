@@ -2,7 +2,8 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 export interface ISlice {
-  sendToWallet?: 'WALLET' | 'PHONE';
+  screen?: 'WALLET' | 'PHONE' | 'BANK';
+  showConfirm?: boolean;
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -11,13 +12,15 @@ export interface ISliceUpdate extends Required<ISlice> {
 }
 
 export const defaultValues: Required<ISlice> = {
-  sendToWallet: 'PHONE',
+  showConfirm: false,
+  screen: 'WALLET',
 };
 
-export const useTabs = create(
+export const useAppSend = create(
   persist<ISliceUpdate>(
     (set) => ({
       ...defaultValues,
+
       update: (data) =>
         set((state) => {
           return { ...state, ...data };
@@ -28,7 +31,7 @@ export const useTabs = create(
         }),
     }),
     {
-      name: 'tabs',
+      name: 'useWithdraw',
       storage: createJSONStorage(() => localStorage),
     }
   )

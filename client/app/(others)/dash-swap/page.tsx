@@ -2,7 +2,7 @@
 import { AppButton, BottomSheet, Navbar } from '@/comps';
 import { TokenList, Tokens } from '@/lib';
 import React from 'react';
-import { IoReload, IoSettings, IoSwapVertical } from 'react-icons/io5';
+import { IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { ChangeSection } from './ValueSection';
 import { useAccount } from 'wagmi';
 import { useSwap } from './useAcctBalance';

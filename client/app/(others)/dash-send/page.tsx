@@ -15,21 +15,21 @@ export default function SendMoneyPage() {
       <Tabs
         data={[
           {
-            title: 'To Wallet Address',
+            title: 'Wallet Address',
             isActive: store.screen === 'WALLET',
             onClick: () => {
               store.update({ screen: 'WALLET' });
             },
           },
           {
-            title: 'To Phone',
+            title: 'Phone',
             isActive: store.screen === 'PHONE',
             onClick: () => {
               store.update({ screen: 'PHONE' });
             },
           },
           {
-            title: 'To Bank Account',
+            title: 'Bank Account',
             isActive: store.screen === 'BANK',
             onClick: () => {
               store.update({ screen: 'BANK' });

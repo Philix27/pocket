@@ -1,20 +1,11 @@
-import { Token, TokenId, Tokens } from '@/lib';
+'use client';
+import { Token, Tokens } from '@/lib';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 export interface ISlice {
-  lastClicked?: 'SEND' | 'RECEIVE';
-  showTokens?: boolean;
-  address?: string | null;
-  chainId?: number;
-  selectedToken?: {
-    fromTokens: Token;
-    toTokens: Token;
-  };
-  exchangeValue?: {
-    fromToken: number;
-    toToken: number;
-  };
+  screen?: 'WALLET' | 'PARTNER';
+  selectedToken?: Token;
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -23,21 +14,11 @@ export interface ISliceUpdate extends Required<ISlice> {
 }
 
 export const defaultValues: Required<ISlice> = {
-  lastClicked: 'SEND',
-  showTokens: false,
-  selectedToken: {
-    fromTokens: Tokens.CELO,
-    toTokens: Tokens.cUSD,
-  },
-  exchangeValue: {
-    fromToken: 0,
-    toToken: 0,
-  },
-  address: null,
-  chainId: 42220,
+  selectedToken: Tokens.CELO,
+  screen: 'WALLET',
 };
 
-export const useSwap = create(
+export const useReceive = create(
   persist<ISliceUpdate>(
     (set) => ({
       ...defaultValues,
@@ -52,7 +33,7 @@ export const useSwap = create(
         }),
     }),
     {
-      name: 'accountBalances',
+      name: 'receive',
       storage: createJSONStorage(() => localStorage),
     }
   )

@@ -1,7 +1,25 @@
-import { Token } from '@/lib';
+import { Token, TokenList } from '@/lib';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
-import { Row } from '@/comps';
+import { BottomSheet, Row } from '@/comps';
 import { useSwap } from './useAcctBalance';
+
+export function BottomCurrencies() {
+  const { update, showTokens } = useSwap();
+  return (
+    <BottomSheet
+      show={showTokens}
+      onClose={() => {
+        update({ showTokens: false });
+      }}
+    >
+      <div className="w-full">
+        {TokenList.map((val, i) => (
+          <CurrencyRow key={i} val={val} />
+        ))}
+      </div>
+    </BottomSheet>
+  );
+}
 
 export function CurrencyRow(props: { val: Token }): React.JSX.Element {
   const { update, lastClicked, selectedToken } = useSwap();

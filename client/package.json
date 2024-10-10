@@ -7,6 +7,7 @@
     "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:check": "prettier --check ./",
     "prettier": "prettier --write ./",
     "studio": "cd server && prisma studio",
     "migrate": "cd server && prisma migrate deploy",
@@ -15,6 +16,11 @@
     "p:f": "cd server && prisma format",
     "p:push": "cd server && prisma db push",
     "p:seed": "cd server && prisma db seed"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:check && git add -A"
+    }
   },
   "dependencies": {
     "@celo/abis": "^11.0.0",
@@ -61,6 +67,7 @@
     "axios": "^1.7.2",
     "bignumber.js": "^9.1.1",
     "bn.js": "^5.2.1",
+    "celo-tokens": "^0.0.16",
     "class-variance-authority": "^0.4.0",
     "clsx": "^2.1.1",
     "cookie-parser": "^1.4.6",
@@ -113,6 +120,7 @@
     "copy-webpack-plugin": "^12.0.2",
     "dotenv": "^16.4.5",
     "eslint": "^9.9.0",
+    "husky": "^9.1.6",
     "eslint-config-next": "14.2.5",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-xmtp-web": "1.0.0",

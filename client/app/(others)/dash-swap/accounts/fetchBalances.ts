@@ -24,7 +24,7 @@ export async function fetchBalances(address: string, chainId: number) {
     const tokenContract = new Contract(tokenAddr, App3Abi.erc20ABI, providerX);
 
     const balance: BigNumberish = await tokenContract.balanceOf(address);
-    
+
     tokenBalances[tokenId] = balance.toString();
   }
 

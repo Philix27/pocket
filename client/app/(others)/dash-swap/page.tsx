@@ -90,12 +90,7 @@ export default function SwapPage() {
           />
         </div>
 
-        <AppButton
-          className="w-[75%]"
-          onClick={
-            onSubmit
-          }
-        >
+        <AppButton className="w-[75%]" onClick={onSubmit}>
           Swap
         </AppButton>
       </div>

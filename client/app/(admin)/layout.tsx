@@ -7,7 +7,7 @@ export default function AdminLayout(props: { children: ReactNode }) {
   return (
     <div className="flex w-full">
       <AdminSidebar />
-      <div className='w-full'>{props.children}</div>
+      <div className="w-full">{props.children}</div>
     </div>
   );
 }

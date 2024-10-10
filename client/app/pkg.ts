@@ -1,4 +1,4 @@
-import { AddressFn, TokenFn , Tokens, cUSD} from 'celo-tokens';
+import { AddressFn, TokenFn, Tokens, cUSD } from 'celo-tokens';
 
 export default function LoadingPage() {
   const tokenId = TokenFn.addresses['42220'];

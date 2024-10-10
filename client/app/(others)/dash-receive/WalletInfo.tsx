@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { TextP, AppButton, SimpleRow } from '@/comps';
 import { use3Wagmi } from '@/lib';
 import { QRCodeSVG } from 'qrcode.react';

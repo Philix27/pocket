@@ -55,7 +55,7 @@ export function useSwapTransaction(
 
   const { data, error: sendPrepError } = useEstimateGas(txRequest ? txRequest : undefined);
   const { data: txResult, isLoading, isSuccess, error: txSendError, sendTransactionAsync } = useSendTransaction();
-  
+
   useEffect(() => {
     if (txPrepError || (sendPrepError?.message && !isLoading && !isSuccess)) {
       toast.error('Unable to prepare swap transaction');

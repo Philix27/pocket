@@ -16,5 +16,11 @@
     "Wagmi",
     "Xmpt",
     "xmtp"
-  ]
+  ],
+  "files.exclude": {
+    "**/.git": false,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true
+  }
 }

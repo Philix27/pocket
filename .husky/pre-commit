@@ -1,1 +1,44 @@
-cd client && yarn lint:write
+
+
+#!/bin/bash
+
+# Path to your commit message file
+COMMIT_MSG_FILE=$1
+
+# Ask the developer questions
+echo "Answer the following questions to proceed with the commit."
+
+# Example questions
+echo "What is the purpose of this commit?"
+read PURPOSE
+
+echo "What issue or feature number does this commit relate to? (leave blank if not applicable)"
+read ISSUE_NUMBER
+
+echo "Is this commit a breaking change? (yes/no)"
+read BREAKING_CHANGE
+
+# Validate that answers were given
+if [ -z "$PURPOSE" ]; then
+    echo "Error: You must provide a purpose for this commit."
+    exit 1
+fi
+
+# Construct the commit message
+COMMIT_MESSAGE="Commit Purpose: $PURPOSE"
+
+if [ -n "$ISSUE_NUMBER" ]; then
+    COMMIT_MESSAGE="$COMMIT_MESSAGE\nRelated Issue/Feature: #$ISSUE_NUMBER"
+fi
+
+if [ "$BREAKING_CHANGE" == "yes" ]; then
+    COMMIT_MESSAGE="$COMMIT_MESSAGE\n⚠️ Breaking Change!"
+fi
+
+# Append the user's original commit message to retain any input
+echo -e "$COMMIT_MESSAGE\n\n---\n$(cat $COMMIT_MSG_FILE)" > $COMMIT_MSG_FILE
+
+# Save the commit message back into the file
+echo "Commit message updated successfully."
+
+exit 0

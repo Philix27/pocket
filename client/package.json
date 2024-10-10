@@ -7,7 +7,7 @@
     "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:check": "prettier --check ./",
+    "lint:check": "prettier --check ./ --quiet",
     "lint:write": "prettier --write ./",
     "studio": "cd server && prisma studio",
     "migrate": "cd server && prisma migrate deploy",

@@ -1,11 +1,22 @@
 'use client';
 import { AppButton, Navbar } from '@/comps';
-import { AddressFn, Celo, fromWei, fromWeiRounded, HelperFn, TokenFn, TokenId, Tokens } from '@/lib';
+import {
+  AddressFn,
+  Celo,
+  ChainId,
+  fromWei,
+  fromWeiRounded,
+  HelperFn,
+  TokenAddresses,
+  TokenFn,
+  TokenId,
+  Tokens,
+} from '@/lib';
 import React, { useEffect, useMemo, useState } from 'react';
 import { IoSettings, IoSwapVertical } from 'react-icons/io5';
 import { ChangeSection } from './ValueSection';
 import { useAccount } from 'wagmi';
-import { useSwap } from './useAcctBalance';
+import { useSwap } from './useSwap';
 import { BottomCurrencies } from './Currencies';
 import { useSwapQuote } from './swap/useSwapQuote';
 import { toast } from 'sonner';
@@ -106,8 +117,7 @@ export default function SwapPage() {
                 },
               });
             }}
-            address={store.address!}
-            chainId={store.chainId!}
+            tokenAddress={TokenAddresses[chainId! as ChainId][selectedToken.fromTokens.id] as `0x${string}`}
           />
 
           <div
@@ -139,8 +149,7 @@ export default function SwapPage() {
             }}
             value={exchangeValue.toToken.toString()}
             onChange={function (val: string): void {}}
-            address={address!}
-            chainId={chainId!}
+            tokenAddress={TokenAddresses[chainId! as ChainId][selectedToken.toTokens.id] as `0x${string}`}
           />
         </div>
         {!isLoading && rate ? `${rate} ${selectedToken.fromTokens.id} ~ 1 ${selectedToken.toTokens.id}` : '...'}

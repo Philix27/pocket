@@ -44,15 +44,15 @@ export const fhenixConfig = defineChain({
 const contentTypeConfigs = [attachmentContentTypeConfig, reactionContentTypeConfig, replyContentTypeConfig];
 
 const configX = createConfig({
-  chains: [fhenixConfig, celoAlfajores, celo],
+  chains: [celoAlfajores, fhenixConfig, celo, sepolia],
   transports: {
-    [fhenixConfig.id]: http(),
     [celoAlfajores.id]: http(),
+    [fhenixConfig.id]: http(),
     [celo.id]: http(),
     [sepolia.id]: http(),
   },
   ssr: true,
-  connectors: [Web3AuthConnectorInstance([fhenixConfig, celoAlfajores, celo, sepolia]), injected()],
+  connectors: [Web3AuthConnectorInstance([celoAlfajores, fhenixConfig, celo, sepolia]), injected()],
 });
 
 export function Web3Providers(props: { children: ReactNode }) {

@@ -3,7 +3,7 @@ import { useApproveTransaction } from './swap/useApproveTransaction';
 import { useSwapTransaction } from './swap/useSwapTransaction';
 import { logger } from '@/utils';
 import { useAccount } from 'wagmi';
-import { useSwap } from './useAcctBalance';
+import { useSwap } from './useSwap';
 
 export function ConfirmSwap() {
   const { selectedToken, update, exchangeValue, balances, ...store } = useSwap();

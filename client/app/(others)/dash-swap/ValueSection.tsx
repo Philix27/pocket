@@ -5,34 +5,25 @@ import React from 'react';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
 import { BiChevronDown } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
-import { TokenSelector } from '../_comps';
+import { Balance, TokenSelector } from '../_comps';
 
 export function ChangeSection(props: {
   isReadOnly?: boolean;
   title: string;
   balance: string;
-  address: string;
-  chainId: number;
+  tokenAddress: string;
   value: string;
   onChange: (val: string) => void;
   token: Token;
   onTokenClick: VoidFunction;
 }) {
-  // const { address, chainId } = useAccount();
-  const chainValue = props.chainId as ChainId;
-  // const { isLoading, error, data } = useBalance({
-  //   address: props.address as `0x${string}`,
-  //   token: '0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1',
-  //   // token: TokenAddresses[chainValue][props.token.id] as `0x${string}`,
-  //   // token: TokenFn.getTokenAddress(props.val.id, chainId!) as `0x${string}`,
-  //   // token: TokenAddresses[42220].USDC as `0x${string}`,
-  // });
-
   return (
     <div className="bg-card w-full mb-1 flex flex-col items-center justify-between rounded-lg px-3 py-4">
       <div className="flex items-center justify-between w-full">
         <TextP>{props.title}</TextP>
-        <TextP className="text-muted text-[10px]">Bal: ...</TextP>
+        <TextP className="text-muted text-[10px]">
+          <Balance tokenAddress={props.tokenAddress as `0x${string}`} />
+        </TextP>
         {/* Bal: {isLoading ? '...' : data?.value!.toString().substring(0, 4)} */}
       </div>
 

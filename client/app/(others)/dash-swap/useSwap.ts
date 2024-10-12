@@ -5,6 +5,7 @@ import { AccountBalances } from './accounts/fetchBalances';
 
 export interface ISlice {
   lastClicked?: 'SEND' | 'RECEIVE';
+  showConfirm?: boolean;
   showTokens?: boolean;
   address?: string | null;
   chainId?: number;
@@ -47,18 +48,19 @@ export const defaultValues: Required<ISlice> = {
   direction: 'out',
   slippage: 0,
   balances: {
-    [TokenId.CELO]: "0.0",
-    [TokenId.cUSD]: "0.0",
-    [TokenId.cEUR]: "0.0",
-    [TokenId.cREAL]: "0.0",
-    [TokenId.USDC]: "0.0",
-    [TokenId.USDT]: "0.0",
-    [TokenId.axlUSDC]: "0.0",
-    [TokenId.axlEUROC]: "0.0",
-    [TokenId.eXOF]: "0.0",
-    [TokenId.cKES]: "0.0",
-    [TokenId.PUSO]: "0.0",
+    [TokenId.CELO]: '0.0',
+    [TokenId.cUSD]: '0.0',
+    [TokenId.cEUR]: '0.0',
+    [TokenId.cREAL]: '0.0',
+    [TokenId.USDC]: '0.0',
+    [TokenId.USDT]: '0.0',
+    [TokenId.axlUSDC]: '0.0',
+    [TokenId.axlEUROC]: '0.0',
+    [TokenId.eXOF]: '0.0',
+    [TokenId.cKES]: '0.0',
+    [TokenId.PUSO]: '0.0',
   },
+  showConfirm: false
 };
 
 export const useSwap = create(

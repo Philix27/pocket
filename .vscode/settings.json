@@ -2,6 +2,8 @@
   "cSpell.words": [
     "Alfajores",
     "celo",
+    "CEURO",
+    "CUSD",
     "extralight",
     "fhenix",
     "hookform",
@@ -19,9 +21,18 @@
     "xmtp"
   ],
   "files.exclude": {
-    "**/.git": false,
+    "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
-    "**/.DS_Store": true
+    "**/.DS_Store": true,
+    ".yarn": true,
+    ".husky": true,
+    ".devcontainer": true,
+    ".config": true,
+    "docs": true,
+    ".commitlintrc.json": true,
+    "contracts": true,
+    ".github": true,
+    "yarn.lock": true
   }
 }

@@ -17,11 +17,6 @@
     "p:push": "cd server && prisma db push",
     "p:seed": "cd server && prisma db seed"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:check && git add -A"
-    }
-  },
   "dependencies": {
     "@celo/abis": "^11.0.0",
     "@celo/rainbowkit-celo": "^0.11.0",

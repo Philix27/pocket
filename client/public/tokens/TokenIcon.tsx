@@ -18,7 +18,7 @@ import { cn, Token, TokenId } from '@/lib';
 interface Props {
   token?: Token | null;
   size?: 'xs' | 's' | 'm' | 'l';
-  className?: string;
+  className?:string
 }
 
 function _TokenIcon({ token, size = 'm', className }: Props) {

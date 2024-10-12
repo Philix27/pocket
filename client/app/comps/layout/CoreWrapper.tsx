@@ -1,6 +1,6 @@
 'use client';
 import { BottomNav, Drawer } from '@/comps';
-import { AppStores, use3Wagmi, useWallet } from '@/lib';
+import { AppStores, use3Wagmi , useWallet} from '@/lib';
 import { useRouter } from 'next/navigation';
 import React, { ReactNode, useEffect } from 'react';
 import { DisableZoom } from './DissableZoom';

@@ -1,7 +1,9 @@
-import { Token, TokenList } from '@/lib';
+import { ChainId, Token, TokenAddresses, TokenList, use3Wagmi } from '@/lib';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
-import { BottomSheet, Row } from '@/comps';
-import { useSwap } from './useAcctBalance';
+import { BottomSheet, Row, TextP } from '@/comps';
+import { useSwap } from './useSwap';
+import { useAccount } from 'wagmi';
+import { Balance } from '../_comps';
 
 export function BottomCurrencies() {
   const { update, showTokens } = useSwap();
@@ -23,6 +25,7 @@ export function BottomCurrencies() {
 
 export function CurrencyRow(props: { val: Token }): React.JSX.Element {
   const { update, lastClicked, selectedToken } = useSwap();
+  const { chainId } = useAccount();
 
   return (
     <Row
@@ -30,8 +33,13 @@ export function CurrencyRow(props: { val: Token }): React.JSX.Element {
       subtitle={props.val.id}
       hideArrow
       color={props.val.color}
-      // trailingText={'...'}
+      trailingComp={
+        <TextP>
+          <Balance tokenAddress={TokenAddresses[chainId! as ChainId][props.val.id] as `0x${string}`} />
+        </TextP>
+      }
       // trailingText={isLoading ? '...' : data?.value.toString()}
+      // trailingText={balances[props.val.id]}
       imgComp={<TokenIcon token={props.val} size="s" className="mr-3" />}
       onClick={() => {
         if (lastClicked === 'SEND') {

@@ -32,7 +32,7 @@ export function SwitchChain() {
             <Row
               key={chain.id}
               title={chain.name}
-              imgComp={<Radial isChecked={chainId === chain.id} />}
+              imgComp={<Radial isChecked={chainId === chain.id} className='mr-4' />}
               hideArrow
               onClick={() => {
                 switchChain({ chainId: chain.id });

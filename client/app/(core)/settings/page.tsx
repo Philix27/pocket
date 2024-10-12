@@ -3,7 +3,7 @@
 import React from 'react';
 import { Navbar, Row, SimpleRow, Spinner, TextH } from '@/comps';
 import { IoMoon, IoPersonOutline } from 'react-icons/io5';
-import { AppStores, use3Wagmi, useAppRouter } from '@/lib';
+import { AppStores, Tokens, use3Wagmi, useAppRouter } from '@/lib';
 import { BiLogOut, BiSun } from 'react-icons/bi';
 import { useBalance } from 'wagmi';
 import { SwitchChain } from './_comps';
@@ -33,6 +33,7 @@ export default function SettingsPage() {
         <div className="w-full my-4 bg-secondary px-4 rounded-md">
           <SimpleRow left={'Name'} right={store.userInfo?.name!} />
           <SimpleRow left={'Email'} right={store.userInfo?.email!} />
+          {/* <Balance address={address} title={Tokens.CELO.symbol} /> */}
           <Balance address={address} title={'celo'} />
           <Balance address={address} title={'cUSD'} tokenAddress="0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" />
           <SimpleRow left={'Address'} right={AddressFn.shortenAddress(address)} isLast />

@@ -15,7 +15,7 @@ export function AppProviders(props: { children: ReactNode }) {
   const theme = useAppTheme();
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       {props.children}
       <Toaster
         position="top-center"

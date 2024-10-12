@@ -65,7 +65,6 @@ function Testimonial() {
     </div>
   );
 }
-
 function MobileBanner() {
   return (
     <div className={'flex flex-col items-center w-full h-full bg-zinc-100 min-h-[50vh]'}>

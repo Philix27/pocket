@@ -1,6 +1,6 @@
-import { Token } from '@/lib';
-import { TokenIcon } from '@/public/tokens/TokenIcon';
-import { BiChevronDown } from 'react-icons/bi';
+import { Token } from "@/lib";
+import { TokenIcon } from "@/public/tokens/TokenIcon";
+import { BiChevronDown } from "react-icons/bi";
 
 export function TokenSelector(props: { onClick: VoidFunction; token: Token }) {
   return (

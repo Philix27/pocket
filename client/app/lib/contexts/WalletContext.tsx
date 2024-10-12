@@ -28,7 +28,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({ children }) 
   const { address, isConnected, isConnecting, isReconnecting } = useAccount();
   const { connect, connectors, error: connectionErr, isLoading: loadingConnect } = useConnect();
   const { disconnect } = useDisconnect();
-
+  
   const isLoading = isConnecting || isReconnecting || loadingConnect;
 
   const router = useAppRouter();

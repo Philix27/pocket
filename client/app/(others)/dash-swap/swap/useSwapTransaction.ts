@@ -1,3 +1,4 @@
+'use client'
 import { TokenId, TokenFn } from '@/lib';
 import { useQuery } from '@tanstack/react-query';
 import BigNumber from 'bignumber.js';

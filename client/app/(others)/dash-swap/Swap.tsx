@@ -10,7 +10,7 @@ import { useSwapQuote } from './swap/useSwapQuote';
 import { toast } from 'sonner';
 
 export default function Swap() {
-  const { selectedToken, update, exchangeValue, balances, ...store } = useSwap();
+  const { selectedToken, update, exchangeValue, ...store } = useSwap();
   const { address, chainId, isConnected } = useAccount();
   // const [fieldValue, setFieldValue] = useState();
   const tokensForChain = useMemo(() => {
@@ -61,15 +61,15 @@ export default function Swap() {
     }
   }, [chainId, exchangeValue.fromToken, swappableTokenOptions, isConnected]);
 
-  const roundedBalance = fromWeiRounded(
-    balances[selectedToken.fromTokens.id],
-    Tokens[selectedToken.fromTokens.id].decimals
-  );
-  const isRoundedBalanceGreaterThanZero = Boolean(Number.parseInt(roundedBalance) > 0);
+  // const roundedBalance = fromWeiRounded(
+  //   balances[selectedToken.fromTokens.id],
+  //   Tokens[selectedToken.fromTokens.id].decimals
+  // );
+  // const isRoundedBalanceGreaterThanZero = Boolean(Number.parseInt(roundedBalance) > 0);
   const onClickUseMax = () => {
-    update({
-      amount: fromWei(balances[selectedToken.fromTokens.id], Tokens[selectedToken.fromTokens.id].decimals),
-    });
+    // update({
+    //   amount: fromWei(balances[selectedToken.fromTokens.id], Tokens[selectedToken.fromTokens.id].decimals),
+    // });
 
     if (selectedToken.fromTokens.id === TokenId.CELO) {
       toast.warning('Consider keeping some CELO for transaction fees');
@@ -141,7 +141,7 @@ export default function Swap() {
           tokenAddress={TokenAddresses[chainId! as ChainId][selectedToken.toTokens.id] as `0x${string}`}
         />
       </div>
-      <div className='flex flex-col items-center justify-center w-full'>
+      <div className="flex flex-col items-center justify-center w-full">
         {!isLoading && rate ? `${rate} ${selectedToken.fromTokens.id} ~ 1 ${selectedToken.toTokens.id}` : '...'}
         <AppButton className="w-[75%]" onClick={onSubmit}>
           Continue

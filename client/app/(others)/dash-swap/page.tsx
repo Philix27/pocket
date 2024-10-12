@@ -4,13 +4,12 @@ import React from 'react';
 import { IoSettings } from 'react-icons/io5';
 import { useSwap } from './useSwap';
 import { BottomCurrencies } from './Currencies';
-// import { SwapConfirm } from './SwapConfirm';
-// import Swap from './Swap';
 import { MdClose } from 'react-icons/md';
-
 import dynamic from 'next/dynamic';
 
-const SwapConfirm = dynamic(() => import('./SwapConfirm'), { loading: () => <Spinner /> });
+const SwapConfirm = dynamic(() => import('./SwapConfirm').then((module) => module.default), {
+  loading: () => <Spinner />,
+});
 const Swap = dynamic(() => import('./Swap'), { loading: () => <Spinner /> });
 
 export default function SwapPage() {

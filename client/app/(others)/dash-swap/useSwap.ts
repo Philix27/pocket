@@ -1,7 +1,7 @@
+'use client';
 import { Token, TokenId, Tokens } from '@/lib';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { AccountBalances } from './accounts/fetchBalances';
 
 export interface ISlice {
   lastClicked?: 'SEND' | 'RECEIVE';
@@ -22,7 +22,6 @@ export interface ISlice {
     fromToken: number;
     toToken: number;
   };
-  balances?: AccountBalances;
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -47,20 +46,7 @@ export const defaultValues: Required<ISlice> = {
   quote: '',
   direction: 'out',
   slippage: 0,
-  balances: {
-    [TokenId.CELO]: '0.0',
-    [TokenId.cUSD]: '0.0',
-    [TokenId.cEUR]: '0.0',
-    [TokenId.cREAL]: '0.0',
-    [TokenId.USDC]: '0.0',
-    [TokenId.USDT]: '0.0',
-    [TokenId.axlUSDC]: '0.0',
-    [TokenId.axlEUROC]: '0.0',
-    [TokenId.eXOF]: '0.0',
-    [TokenId.cKES]: '0.0',
-    [TokenId.PUSO]: '0.0',
-  },
-  showConfirm: false
+  showConfirm: false,
 };
 
 export const useSwap = create(

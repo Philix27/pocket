@@ -1,3 +1,4 @@
+'use client';
 import { Token, TokenId, Tokens } from '@/lib';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';

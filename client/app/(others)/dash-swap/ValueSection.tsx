@@ -1,13 +1,10 @@
 'use client';
 import { TextP } from '@/comps';
-import { ChainId, Token } from '@/lib';
-import React from 'react';
-import { TokenIcon } from '@/public/tokens/TokenIcon';
-import { BiChevronDown } from 'react-icons/bi';
-import { useBalance } from 'wagmi';
+import { Token } from '@/lib';
+import React, { memo } from 'react';
 import { Balance, TokenSelector } from '../_comps';
 
-export function ChangeSection(props: {
+function Comp(props: {
   isReadOnly?: boolean;
   title: string;
   balance: string;
@@ -52,3 +49,5 @@ export function ChangeSection(props: {
     </div>
   );
 }
+
+export const ChangeSection = memo(Comp);

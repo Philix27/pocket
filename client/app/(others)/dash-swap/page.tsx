@@ -7,7 +7,7 @@ import { BottomCurrencies } from './Currencies';
 import { MdClose } from 'react-icons/md';
 import dynamic from 'next/dynamic';
 
-const SwapConfirm = dynamic(() => import('./SwapConfirm').then((module) => module.default), {
+const SwapConfirm = dynamic(() => import('./SwapConfirm'), {
   loading: () => <Spinner />,
 });
 const Swap = dynamic(() => import('./Swap'), { loading: () => <Spinner /> });

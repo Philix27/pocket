@@ -1,5 +1,5 @@
 'use client';
-import { ChainId, Token, TokenAddresses, TokenList, use3Wagmi } from '@/lib';
+import { ChainId, Token, TokenAddresses, TokenList } from '@/lib';
 import { TokenIcon } from '@/public/tokens/TokenIcon';
 import { BottomSheet, Row, TextP } from '@/comps';
 import { useSwap } from './useSwap';

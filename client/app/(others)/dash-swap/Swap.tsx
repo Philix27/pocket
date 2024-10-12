@@ -6,7 +6,7 @@ import { IoSwapVertical } from 'react-icons/io5';
 import { ChangeSection } from './ValueSection';
 import { useAccount } from 'wagmi';
 import { useSwap } from './useSwap';
-import { useSwapQuote } from './swap/useSwapQuote';
+// import { useSwapQuote } from './swap/useSwapQuote';
 import { toast } from 'sonner';
 
 export default function Swap() {
@@ -21,12 +21,12 @@ export default function Swap() {
     return TokenFn.getSwappableTokenOptions(selectedToken.fromTokens.id, chainId ? chainId : Celo.chainId);
   }, [chainId, exchangeValue]);
 
-  const { isLoading, quote, rate } = useSwapQuote(
-    exchangeValue.fromToken,
-    store.direction,
-    selectedToken.fromTokens.id,
-    selectedToken.toTokens.id
-  );
+  // const { isLoading, quote, rate } = useSwapQuote(
+  //   exchangeValue.fromToken,
+  //   store.direction,
+  //   selectedToken.fromTokens.id,
+  //   selectedToken.toTokens.id
+  // );
   // useEffect(() => {
   //   if (store.address === null || store.chainId === null) {
   //     if (address && chainId) {
@@ -142,7 +142,7 @@ export default function Swap() {
         />
       </div>
       <div className="flex flex-col items-center justify-center w-full">
-        {!isLoading && rate ? `${rate} ${selectedToken.fromTokens.id} ~ 1 ${selectedToken.toTokens.id}` : '...'}
+        {/* {!isLoading && rate ? `${rate} ${selectedToken.fromTokens.id} ~ 1 ${selectedToken.toTokens.id}` : '...'} */}
         <AppButton className="w-[75%]" onClick={onSubmit}>
           Continue
         </AppButton>

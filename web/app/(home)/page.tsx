@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { TextH, TextP } from '@/comps';
-import { cn, useAppRouter } from '@/lib';
-import { HeroCenter, HeroSection, JumbutronSection } from './_comps';
+import { TextH } from '@/comps';
+import { useAppRouter } from '@/lib';
+import { HeroSection, JumbutronSection } from './_comps';
 import { ContentBlock } from './_comps/content';
 
 export default function Home() {

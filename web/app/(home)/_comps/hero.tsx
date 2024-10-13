@@ -1,14 +1,18 @@
 'use client';
 
 import React from 'react';
+import { GRADIENT } from '../const';
+import { TextH } from '@/comps';
 
 export function HeroSection(props: { title: string; subtitle: string; img: string; imgFirst?: boolean }) {
   return (
     <section
-      className={`container w-full min-h-[80vh] 
+      className={
+        `w-full min-h-[calc(100vh-50px)] 
       flex flex-col items-center
-      justify-center
-       from-orange-600 via-pink-500 to-red-500 bg-gradient-to-tr`}
+      justify-center 
+      ` + GRADIENT
+      }
     >
       <div
         className={`
@@ -40,9 +44,9 @@ export function HeroSection(props: { title: string; subtitle: string; img: strin
 function TextBlock(props: { title: string; subtitle: string; img: string; imgFirst?: boolean }) {
   return (
     <div className="h-full flex flex-col items-start justify-center md:px-4 py-8 md:py-4">
-      <p className="text-[80px] font-extrabold text-primary-foreground">{props.title}</p>
+      <TextH className="text-[80px] font-extrabold">{props.title}</TextH>
       <div className="mb-10" />
-      <p className={'text-secondary-foreground text-xl font-extralight'}>{props.subtitle}</p>
+      <p className={'text-xl font-extralight'}>{props.subtitle}</p>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { AppButton } from '@/comps';
 import { useTheme } from 'next-themes';
 import { FaMoon } from 'react-icons/fa';
 import { BiSun } from 'react-icons/bi';
+import { AppButton } from '../Button';
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme();

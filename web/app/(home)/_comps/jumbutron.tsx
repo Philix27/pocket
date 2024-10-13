@@ -5,7 +5,7 @@ import { TextH, TextP } from '@/comps';
 
 export function JumbutronSection(props: { title: string; subtitle: string }) {
   return (
-    <section className="container w-full bg-slate-200">
+    <section className="w-full">
       <div className="flex items-center justify-center ">
         <div
           className={`

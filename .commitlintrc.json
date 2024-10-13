@@ -6,6 +6,7 @@
       2,
       "always",
       [
+        "clean",
         "ci",
         "chore",
         "docs",
@@ -15,7 +16,6 @@
         "perf",
         "refactor",
         "revert",
-        "clean",
         "style"
       ]
     ]

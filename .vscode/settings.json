@@ -26,11 +26,11 @@
     "**/.hg": true,
     "**/.DS_Store": true,
     ".yarn": true,
-    ".husky": true,
+    ".husky": false,
     ".devcontainer": true,
     ".config": true,
     "docs": true,
-    ".commitlintrc.json": true,
+    // ".commitlintrc.json": true,
     "contracts": true,
     ".github": true,
     "yarn.lock": true

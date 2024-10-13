@@ -15,6 +15,7 @@
         "perf",
         "refactor",
         "revert",
+        "clean",
         "style"
       ]
     ]

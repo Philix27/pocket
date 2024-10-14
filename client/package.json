@@ -23,7 +23,6 @@
     "@ducanh2912/next-pwa": "^10.2.8",
     "@hookform/resolvers": "^3.3.4",
     "@mdx-js/loader": "^3.0.1",
-    "@mento-protocol/mento-sdk": "^0.1.5",
     "@next/mdx": "^14.2.7",
     "@prisma/client": "^5.19.1",
     "@radix-ui/react-accordion": "^1.2.0",
@@ -96,6 +95,7 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@mento-protocol/mento-sdk": "^0.2.3",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",

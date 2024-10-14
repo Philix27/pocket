@@ -7,3 +7,4 @@ export * from './contexts';
 export * from './helpers';
 export * from './consts';
 export * from './ess';
+export * from './celoApi';

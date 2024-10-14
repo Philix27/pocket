@@ -43,6 +43,6 @@
     "app/not-found.tsx",
     "app/comps/index.ts",
     "app/lib/ess/celoWallets.sample",
-    "app/(others)/dash-withdraw/.List.tsx"
+    "app/(pages)/dash-withdraw/.List.tsx"
   ]
 }

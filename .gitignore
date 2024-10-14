@@ -20,6 +20,7 @@ coverage
 # Turbo
 .turbo
 z
+_z
 # Vercel
 .vercel
 

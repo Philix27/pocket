@@ -2,12 +2,12 @@
 import { Row, Spinner, TextH } from '@/comps';
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getTransactions } from '@/calls';
+import { getTransactions } from '@/lib';
 import { useAccount } from 'wagmi';
 import { AddressFn } from '@/lib';
 import { FaPoundSign } from 'react-icons/fa';
 import { parseEther } from 'viem';
-import { dateFromBigint } from '@/(others)/savings/_comps/withdraw/fn';
+import { dateFromBigint } from '@/(pages)/savings/_comps/withdraw/fn';
 
 function generateArray(length: number) {
   return Array.from({ length }, (_, index) => index);
